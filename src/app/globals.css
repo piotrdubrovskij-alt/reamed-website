@@ -3,22 +3,60 @@
 @theme inline {
   --font-sans: var(--font-poppins);
 
-  --color-brand: #2B6CB0;
-  --color-brand-light: #4A90D9;
-  --color-brand-dark: #1A4F8A;
+  --color-brand: #1A56A0;
+  --color-brand-dark: #134285;
+  --color-brand-mid: #2E6BB8;
+  --color-brand-light: #EBF3FC;
+  --color-brand-subtle: #F4F8FD;
 
-  --color-background: #ffffff;
-  --color-foreground: #1a1a2e;
-  --color-muted: #6b7280;
-  --color-muted-bg: #f8fafc;
+  --color-foreground: #0D1B2E;
+  --color-secondary: #2D3748;
+  --color-muted: #64748B;
+  --color-muted-bg: #F7F9FC;
+  --color-surface: #F4F7FB;
+  --color-border: #E2E8F0;
+  --color-border-light: #EEF2F7;
 }
 
 body {
-  background: var(--color-background);
-  color: var(--color-foreground);
+  background: #ffffff;
+  color: #0D1B2E;
   font-family: var(--font-sans), system-ui, sans-serif;
 }
 
 * {
   box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+@layer utilities {
+  .container-xl {
+    max-width: 1200px;
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+  }
+
+  @media (min-width: 768px) {
+    .container-xl {
+      padding-left: 2rem;
+      padding-right: 2rem;
+    }
+  }
+
+  .section-padding {
+    padding-top: 5rem;
+    padding-bottom: 5rem;
+  }
+
+  @media (min-width: 768px) {
+    .section-padding {
+      padding-top: 7rem;
+      padding-bottom: 7rem;
+    }
+  }
 }
