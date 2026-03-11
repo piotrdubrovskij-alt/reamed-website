@@ -36,7 +36,7 @@ export default function ServicesSection() {
           </h2>
           <a
             href="#kontaktai"
-            className="text-[0.9rem] font-semibold text-[#79B8B3] hover:text-[#6AA9A4] flex items-center gap-1.5 transition-colors duration-200 flex-shrink-0"
+            className="text-[0.9rem] font-semibold text-[#7DB9B5] hover:text-[#68A7A2] flex items-center gap-1.5 transition-colors duration-200 flex-shrink-0"
           >
             {t.services.cta} →
           </a>
@@ -49,7 +49,7 @@ export default function ServicesSection() {
               className="group bg-white rounded-2xl border border-[#DDE9E8] p-6 hover:border-[#90CECA] hover:shadow-[0_6px_28px_rgba(144,206,202,0.12)] transition-all duration-200 hover:-translate-y-0.5"
             >
               <div className="flex items-start gap-4">
-                <div className="flex-shrink-0 w-10 h-10 rounded-xl bg-[#EEF5F4] flex items-center justify-center text-[#79B8B3] group-hover:bg-[#79B8B3] group-hover:text-white transition-colors duration-200 mt-0.5">
+                <div className="flex-shrink-0 w-10 h-10 rounded-xl bg-[#EEF5F4] flex items-center justify-center text-[#7DB9B5] group-hover:bg-[#7DB9B5] group-hover:text-white transition-colors duration-200 mt-0.5">
                   {serviceIcons[i]}
                 </div>
                 <div>

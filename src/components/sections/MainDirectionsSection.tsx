@@ -39,7 +39,7 @@ export default function MainDirectionsSection() {
                 aria-hidden="true"
               />
 
-              <div className="w-12 h-12 rounded-xl bg-[#EEF5F4] flex items-center justify-center text-[#79B8B3] mb-6 group-hover:bg-[#79B8B3] group-hover:text-white transition-colors duration-300">
+              <div className="w-12 h-12 rounded-xl bg-[#EEF5F4] flex items-center justify-center text-[#7DB9B5] mb-6 group-hover:bg-[#7DB9B5] group-hover:text-white transition-colors duration-300">
                 {directionIcons[i]}
               </div>
 
@@ -52,7 +52,7 @@ export default function MainDirectionsSection() {
 
               <a
                 href="#kontaktai"
-                className="inline-flex items-center gap-1.5 text-[0.875rem] font-semibold text-[#79B8B3] hover:gap-2 transition-all duration-200"
+                className="inline-flex items-center gap-1.5 text-[0.875rem] font-semibold text-[#7DB9B5] hover:gap-2 transition-all duration-200"
                 aria-label={`Registruotis: ${item.title}`}
               >
                 Registruotis

@@ -30,7 +30,7 @@ export default function WhatWeTreatSection() {
               className="group bg-white rounded-2xl border border-[#DDE9E8] p-5 hover:border-[#90CECA] hover:shadow-[0_6px_24px_rgba(144,206,202,0.12)] transition-all duration-200 hover:-translate-y-0.5"
             >
               <div className="flex items-center justify-between mb-2.5">
-                <h3 className="text-[0.9375rem] font-semibold text-foreground group-hover:text-[#6AA9A4] transition-colors duration-200 leading-snug">
+                <h3 className="text-[0.9375rem] font-semibold text-foreground group-hover:text-[#68A7A2] transition-colors duration-200 leading-snug">
                   {item.title}
                 </h3>
                 <ChevronRight

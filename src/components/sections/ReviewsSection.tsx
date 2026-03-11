@@ -46,8 +46,8 @@ export default function ReviewsSection() {
               <div className="flex items-center gap-3 pt-2 border-t border-[#EEF5F4]">
                 <div className="w-8 h-8 rounded-full bg-[#EEF5F4] flex items-center justify-center">
                   <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true">
-                    <circle cx="7" cy="5" r="2.5" stroke="#79B8B3" strokeWidth="1.3" />
-                    <path d="M2 12C2 9.8 4.2 8 7 8C9.8 8 12 9.8 12 12" stroke="#79B8B3" strokeWidth="1.3" strokeLinecap="round" />
+                    <circle cx="7" cy="5" r="2.5" stroke="#7DB9B5" strokeWidth="1.3" />
+                    <path d="M2 12C2 9.8 4.2 8 7 8C9.8 8 12 9.8 12 12" stroke="#7DB9B5" strokeWidth="1.3" strokeLinecap="round" />
                   </svg>
                 </div>
                 <span className="text-[0.8125rem] font-medium text-muted">{review.author}</span>
@@ -61,7 +61,7 @@ export default function ReviewsSection() {
             href="https://g.co/kgs/reamed"
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 px-5 py-2.5 border-2 border-[#DDE9E8] text-secondary text-[0.875rem] font-semibold rounded-xl hover:border-[#90CECA] hover:text-[#6AA9A4] transition-colors duration-200"
+            className="inline-flex items-center gap-2 px-5 py-2.5 border-2 border-[#DDE9E8] text-secondary text-[0.875rem] font-semibold rounded-xl hover:border-[#90CECA] hover:text-[#68A7A2] transition-colors duration-200"
           >
             {t.reviews.cta} →
           </a>

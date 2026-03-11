@@ -33,7 +33,7 @@ export default function SpecialistsSection() {
               {/* Avatar */}
               <div className="h-[152px] bg-gradient-to-br from-[#EEF5F4] to-[#D4EDEB] flex items-center justify-center relative overflow-hidden">
                 <div className="w-20 h-20 rounded-full bg-white shadow-[0_4px_16px_rgba(144,206,202,0.2)] flex items-center justify-center">
-                  <span className="text-[1.375rem] font-bold text-[#79B8B3]">
+                  <span className="text-[1.375rem] font-bold text-[#7DB9B5]">
                     {spec.initials}
                   </span>
                 </div>
@@ -46,7 +46,7 @@ export default function SpecialistsSection() {
                 <h3 className="text-[1rem] font-bold text-foreground mb-1 leading-snug">
                   {spec.name}
                 </h3>
-                <p className="text-[0.8125rem] font-medium text-[#79B8B3] mb-3 leading-snug">
+                <p className="text-[0.8125rem] font-medium text-[#7DB9B5] mb-3 leading-snug">
                   {spec.role}
                 </p>
                 <p className="text-[0.8125rem] text-muted leading-relaxed">

@@ -37,7 +37,7 @@ export default function HowWeWorkSection() {
 
               <div className="relative z-10">
                 <div className="flex items-center gap-3 mb-4">
-                  <span className="flex-shrink-0 w-14 h-14 rounded-2xl bg-[#79B8B3] flex items-center justify-center text-white text-[1.1rem] font-bold shadow-[0_4px_16px_rgba(121,184,179,0.3)]">
+                  <span className="flex-shrink-0 w-14 h-14 rounded-2xl bg-[#7DB9B5] flex items-center justify-center text-white text-[1.1rem] font-bold shadow-[0_4px_16px_rgba(121,184,179,0.3)]">
                     {step.number}
                   </span>
                 </div>

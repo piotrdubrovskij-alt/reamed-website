@@ -27,7 +27,7 @@ function HeroVisual() {
         />
         <path
           d="M 130 310 A 160 160 0 0 0 430 310"
-          stroke="#79B8B3"
+          stroke="#7DB9B5"
           strokeWidth="1.5"
           strokeLinecap="round"
           strokeDasharray="6 8"
@@ -38,7 +38,7 @@ function HeroVisual() {
         <circle cx="280" cy="260" r="48" fill="#EEF5F4" />
         <circle cx="280" cy="260" r="36" fill="#D4EDEB" />
         <circle cx="280" cy="260" r="24" fill="#90CECA" opacity="0.2" />
-        <circle cx="280" cy="260" r="10" fill="#79B8B3" />
+        <circle cx="280" cy="260" r="10" fill="#7DB9B5" />
 
         {/* Spine */}
         <line x1="280" y1="160" x2="280" y2="360" stroke="#90CECA" strokeWidth="2" strokeLinecap="round" opacity="0.35" />
@@ -50,16 +50,16 @@ function HeroVisual() {
         <circle cx="280" cy="345" r="5" fill="#90CECA" opacity="0.55" />
 
         {/* Shoulder arcs */}
-        <path d="M 180 230 C 200 190 240 175 280 175" stroke="#79B8B3" strokeWidth="2" strokeLinecap="round" opacity="0.6" />
-        <path d="M 380 230 C 360 190 320 175 280 175" stroke="#79B8B3" strokeWidth="2" strokeLinecap="round" opacity="0.6" />
+        <path d="M 180 230 C 200 190 240 175 280 175" stroke="#7DB9B5" strokeWidth="2" strokeLinecap="round" opacity="0.6" />
+        <path d="M 380 230 C 360 190 320 175 280 175" stroke="#7DB9B5" strokeWidth="2" strokeLinecap="round" opacity="0.6" />
 
         {/* Joint circles */}
         <circle cx="172" cy="240" r="14" stroke="#90CECA" strokeWidth="2" fill="white" opacity="0.95" />
-        <circle cx="172" cy="240" r="6" fill="#79B8B3" opacity="0.8" />
+        <circle cx="172" cy="240" r="6" fill="#7DB9B5" opacity="0.8" />
         <circle cx="388" cy="240" r="14" stroke="#90CECA" strokeWidth="2" fill="white" opacity="0.95" />
-        <circle cx="388" cy="240" r="6" fill="#79B8B3" opacity="0.8" />
+        <circle cx="388" cy="240" r="6" fill="#7DB9B5" opacity="0.8" />
         <circle cx="280" cy="360" r="14" stroke="#90CECA" strokeWidth="2" fill="white" opacity="0.95" />
-        <circle cx="280" cy="360" r="6" fill="#79B8B3" opacity="0.8" />
+        <circle cx="280" cy="360" r="6" fill="#7DB9B5" opacity="0.8" />
 
         {/* Movement vectors */}
         <line x1="158" y1="254" x2="120" y2="300" stroke="#90CECA" strokeWidth="1.5" strokeLinecap="round" opacity="0.4" />
@@ -75,7 +75,7 @@ function HeroVisual() {
         <circle cx="450" cy="100" r="3" fill="#90CECA" opacity="0.25" />
         <circle cx="470" cy="120" r="2" fill="#90CECA" opacity="0.18" />
         <circle cx="430" cy="130" r="2.5" fill="#90CECA" opacity="0.18" />
-        <circle cx="490" cy="150" r="2" fill="#79B8B3" opacity="0.15" />
+        <circle cx="490" cy="150" r="2" fill="#7DB9B5" opacity="0.15" />
         <circle cx="80" cy="380" r="3" fill="#90CECA" opacity="0.22" />
         <circle cx="60" cy="400" r="2" fill="#90CECA" opacity="0.15" />
         <circle cx="100" cy="410" r="2.5" fill="#90CECA" opacity="0.15" />
@@ -87,7 +87,7 @@ function HeroVisual() {
         {/* Outer dashed arc */}
         <path
           d="M 60 260 A 220 220 0 0 1 500 260"
-          stroke="#79B8B3"
+          stroke="#7DB9B5"
           strokeWidth="1"
           strokeLinecap="round"
           strokeDasharray="3 12"
@@ -99,7 +99,7 @@ function HeroVisual() {
       <div className="absolute top-6 right-2 md:right-0 bg-white rounded-xl shadow-[0_4px_20px_rgba(31,37,36,0.08)] p-3 flex items-center gap-2.5 border border-[#EEF5F4]">
         <div className="w-8 h-8 bg-[#EEF5F4] rounded-lg flex items-center justify-center">
           <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
-            <path d="M8 2L9.6 6.4H14L10.7 8.9L12 13.4L8 10.8L4 13.4L5.3 8.9L2 6.4H6.4L8 2Z" fill="#79B8B3" />
+            <path d="M8 2L9.6 6.4H14L10.7 8.9L12 13.4L8 10.8L4 13.4L5.3 8.9L2 6.4H6.4L8 2Z" fill="#7DB9B5" />
           </svg>
         </div>
         <div>
@@ -111,8 +111,8 @@ function HeroVisual() {
       <div className="absolute bottom-10 left-2 md:left-0 bg-white rounded-xl shadow-[0_4px_20px_rgba(31,37,36,0.08)] p-3 flex items-center gap-2.5 border border-[#EEF5F4]">
         <div className="w-8 h-8 bg-[#EEF5F4] rounded-lg flex items-center justify-center">
           <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
-            <circle cx="8" cy="6" r="3" stroke="#79B8B3" strokeWidth="1.5" />
-            <path d="M2 14C2 11.2 4.7 9 8 9C11.3 9 14 11.2 14 14" stroke="#79B8B3" strokeWidth="1.5" strokeLinecap="round" />
+            <circle cx="8" cy="6" r="3" stroke="#7DB9B5" strokeWidth="1.5" />
+            <path d="M2 14C2 11.2 4.7 9 8 9C11.3 9 14 11.2 14 14" stroke="#7DB9B5" strokeWidth="1.5" strokeLinecap="round" />
           </svg>
         </div>
         <div>
@@ -129,7 +129,7 @@ export default function HeroSection() {
 
   return (
     <section
-      className="relative pt-28 md:pt-32 pb-16 md:pb-24 overflow-hidden"
+      className="relative pt-32 md:pt-36 pb-16 md:pb-24 overflow-hidden"
       style={{ background: "#F7FAF9" }}
       aria-labelledby="hero-title"
     >
@@ -147,7 +147,7 @@ export default function HeroSection() {
         <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
           {/* Text */}
           <div className="order-2 lg:order-1">
-            <p className="mb-4 text-[0.8125rem] font-semibold uppercase tracking-widest text-[#79B8B3]">
+            <p className="mb-4 text-[0.8125rem] font-semibold uppercase tracking-widest text-[#7DB9B5]">
               {t.hero.tag}
             </p>
 
@@ -169,7 +169,7 @@ export default function HeroSection() {
             <div className="flex flex-col sm:flex-row gap-3 mb-10">
               <a
                 href="#kontaktai"
-                className="inline-flex items-center justify-center gap-2 px-6 py-3.5 bg-[#79B8B3] text-white text-[0.9375rem] font-semibold rounded-xl hover:bg-[#6AA9A4] transition-all duration-200 shadow-[0_4px_16px_rgba(121,184,179,0.3)] hover:shadow-[0_6px_20px_rgba(121,184,179,0.4)] hover:-translate-y-0.5"
+                className="inline-flex items-center justify-center gap-2 px-6 py-3.5 bg-[#7DB9B5] text-white text-[0.9375rem] font-semibold rounded-xl hover:bg-[#68A7A2] transition-all duration-200 shadow-[0_4px_16px_rgba(121,184,179,0.3)] hover:shadow-[0_6px_20px_rgba(121,184,179,0.4)] hover:-translate-y-0.5"
               >
                 {t.hero.cta1}
                 <ArrowRight size={17} strokeWidth={2.5} />

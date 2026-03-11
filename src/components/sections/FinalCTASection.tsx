@@ -35,7 +35,7 @@ export default function FinalCTASection() {
               <div className="flex flex-col sm:flex-row gap-3">
                 <a
                   href={`tel:${t.contact.phone.replace(/\s/g, "")}`}
-                  className="inline-flex items-center justify-center gap-2 px-7 py-3.5 bg-[#79B8B3] text-white text-[0.9375rem] font-bold rounded-xl hover:bg-[#6AA9A4] transition-colors duration-200 shadow-[0_4px_20px_rgba(121,184,179,0.3)]"
+                  className="inline-flex items-center justify-center gap-2 px-7 py-3.5 bg-[#7DB9B5] text-white text-[0.9375rem] font-bold rounded-xl hover:bg-[#68A7A2] transition-colors duration-200 shadow-[0_4px_20px_rgba(121,184,179,0.3)]"
                 >
                   {t.cta.btn1}
                   <ArrowRight size={17} strokeWidth={2.5} />

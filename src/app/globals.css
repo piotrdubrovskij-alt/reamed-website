@@ -3,26 +3,21 @@
 @theme inline {
   --font-sans: var(--font-poppins);
 
-  /* Brand */
-  --color-brand: #90CECA;          /* ReaMed Mint — logo/brand */
-  --color-brand-ui: #79B8B3;       /* UI Mint — кнопки, hover, interactive */
-  --color-brand-dark: #6AA9A4;     /* Hover/pressed state */
-  --color-brand-light: #EEF5F4;    /* Soft mint секционный фон */
-  --color-brand-subtle: #F7FAF9;   /* Основной фон страницы */
+  --color-brand: #90CECA;
+  --color-brand-ui: #7DB9B5;
+  --color-brand-hover: #68A7A2;
+  --color-brand-light: #EEF5F4;
 
-  /* Graphite */
   --color-graphite: #505251;
   --color-graphite-mid: #6B6D6C;
 
-  /* Text */
-  --color-foreground: #1F2524;     /* Основной текст */
-  --color-secondary: #3D4442;      /* Тёмный вторичный */
-  --color-muted: #5E6765;          /* Muted текст */
+  --color-foreground: #1F2524;
+  --color-secondary: #3A3F3E;
+  --color-muted: #5F6866;
 
-  /* Surfaces */
-  --color-surface: #EEF5F4;        /* Лёгкий mint-gray фон секций */
-  --color-border: #DDE9E8;
-  --color-border-light: #EAF1F0;
+  --color-surface: #EEF5F4;
+  --color-border: #D8E6E4;
+  --color-border-light: #E8F0EF;
 }
 
 body {
