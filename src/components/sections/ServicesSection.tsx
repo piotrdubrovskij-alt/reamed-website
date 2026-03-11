@@ -36,7 +36,7 @@ export default function ServicesSection() {
           </h2>
           <a
             href="#kontaktai"
-            className="text-[0.9rem] font-semibold text-brand hover:text-brand-dark flex items-center gap-1.5 transition-colors duration-200 flex-shrink-0"
+            className="text-[0.9rem] font-semibold text-[#79B8B3] hover:text-[#6AA9A4] flex items-center gap-1.5 transition-colors duration-200 flex-shrink-0"
           >
             {t.services.cta} →
           </a>
@@ -46,15 +46,10 @@ export default function ServicesSection() {
           {t.services.items.map((service, i) => (
             <div
               key={service.title}
-              className={`group bg-white rounded-2xl border border-border p-6 hover:border-brand hover:shadow-[0_6px_28px_rgba(26,86,160,0.1)] transition-all duration-200 hover:-translate-y-0.5 ${
-                i === t.services.items.length - 1 &&
-                t.services.items.length % 3 !== 0
-                  ? "sm:col-span-2 lg:col-span-1"
-                  : ""
-              }`}
+              className="group bg-white rounded-2xl border border-[#DDE9E8] p-6 hover:border-[#90CECA] hover:shadow-[0_6px_28px_rgba(144,206,202,0.12)] transition-all duration-200 hover:-translate-y-0.5"
             >
               <div className="flex items-start gap-4">
-                <div className="flex-shrink-0 w-10 h-10 rounded-xl bg-brand-light flex items-center justify-center text-brand group-hover:bg-brand group-hover:text-white transition-colors duration-200 mt-0.5">
+                <div className="flex-shrink-0 w-10 h-10 rounded-xl bg-[#EEF5F4] flex items-center justify-center text-[#79B8B3] group-hover:bg-[#79B8B3] group-hover:text-white transition-colors duration-200 mt-0.5">
                   {serviceIcons[i]}
                 </div>
                 <div>

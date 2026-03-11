@@ -8,7 +8,8 @@ export default function WhatWeTreatSection() {
 
   return (
     <section
-      className="section-padding bg-surface"
+      className="section-padding"
+      style={{ background: "#EEF5F4" }}
       aria-labelledby="what-we-treat-title"
     >
       <div className="container-xl">
@@ -26,15 +27,15 @@ export default function WhatWeTreatSection() {
             <a
               key={item.title}
               href="#kontaktai"
-              className="group bg-white rounded-2xl border border-border p-5 hover:border-brand hover:shadow-[0_6px_24px_rgba(26,86,160,0.1)] transition-all duration-200 hover:-translate-y-0.5"
+              className="group bg-white rounded-2xl border border-[#DDE9E8] p-5 hover:border-[#90CECA] hover:shadow-[0_6px_24px_rgba(144,206,202,0.12)] transition-all duration-200 hover:-translate-y-0.5"
             >
               <div className="flex items-center justify-between mb-2.5">
-                <h3 className="text-[0.9375rem] font-semibold text-foreground group-hover:text-brand transition-colors duration-200 leading-snug">
+                <h3 className="text-[0.9375rem] font-semibold text-foreground group-hover:text-[#6AA9A4] transition-colors duration-200 leading-snug">
                   {item.title}
                 </h3>
                 <ChevronRight
                   size={16}
-                  className="text-border group-hover:text-brand transition-colors duration-200 flex-shrink-0 ml-2"
+                  className="text-[#DDE9E8] group-hover:text-[#90CECA] transition-colors duration-200 flex-shrink-0 ml-2"
                   strokeWidth={2}
                 />
               </div>

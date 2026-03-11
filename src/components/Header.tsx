@@ -29,12 +29,13 @@ export default function Header() {
     <header
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
         scrolled
-          ? "bg-white/95 backdrop-blur-md shadow-[0_1px_24px_0_rgba(13,27,46,0.08)]"
+          ? "bg-white/96 backdrop-blur-md shadow-[0_1px_20px_0_rgba(31,37,36,0.07)]"
           : "bg-white/90 backdrop-blur-sm"
       }`}
     >
       <div className="container-xl">
-        <div className="flex items-center justify-between h-16 md:h-18">
+        <div className="flex items-center justify-between h-16 md:h-[68px]">
+
           {/* Logo */}
           <a href="#" className="flex items-center flex-shrink-0" aria-label="ReaMed — pradžia">
             <Image
@@ -53,7 +54,7 @@ export default function Header() {
               <a
                 key={item.href}
                 href={item.href}
-                className="text-[0.875rem] font-medium text-secondary hover:text-brand transition-colors duration-200"
+                className="text-[0.875rem] font-medium text-secondary hover:text-[#79B8B3] transition-colors duration-200"
               >
                 {item.label}
               </a>
@@ -64,7 +65,7 @@ export default function Header() {
           <div className="hidden lg:flex items-center gap-4">
             <a
               href={`tel:${t.header.phone.replace(/\s/g, "")}`}
-              className="flex items-center gap-1.5 text-[0.875rem] font-medium text-secondary hover:text-brand transition-colors duration-200"
+              className="flex items-center gap-1.5 text-[0.875rem] font-medium text-muted hover:text-[#79B8B3] transition-colors duration-200"
             >
               <Phone size={15} strokeWidth={2} />
               {t.header.phone}
@@ -78,7 +79,7 @@ export default function Header() {
                   onClick={() => setLang(l)}
                   className={`px-2.5 py-1 transition-colors duration-150 cursor-pointer ${
                     lang === l
-                      ? "bg-brand text-white"
+                      ? "bg-[#79B8B3] text-white"
                       : "text-muted hover:text-foreground"
                   } ${i === 0 ? "" : "border-l border-border"}`}
                   aria-label={`Kalba: ${l.toUpperCase()}`}
@@ -90,7 +91,7 @@ export default function Header() {
 
             <a
               href="#kontaktai"
-              className="px-5 py-2 bg-brand text-white text-[0.875rem] font-semibold rounded-lg hover:bg-brand-dark transition-colors duration-200 shadow-sm"
+              className="px-5 py-2 bg-[#79B8B3] text-white text-[0.875rem] font-semibold rounded-lg hover:bg-[#6AA9A4] transition-colors duration-200 shadow-[0_2px_12px_rgba(121,184,179,0.3)]"
             >
               {t.header.register}
             </a>
@@ -100,13 +101,13 @@ export default function Header() {
           <div className="flex lg:hidden items-center gap-3">
             <a
               href="#kontaktai"
-              className="px-4 py-1.5 bg-brand text-white text-[0.8rem] font-semibold rounded-lg hover:bg-brand-dark transition-colors duration-200"
+              className="px-4 py-1.5 bg-[#79B8B3] text-white text-[0.8rem] font-semibold rounded-lg hover:bg-[#6AA9A4] transition-colors duration-200"
             >
               {t.header.register}
             </a>
             <button
               onClick={() => setMobileOpen(!mobileOpen)}
-              className="p-2 text-foreground hover:text-brand transition-colors duration-200"
+              className="p-2 text-foreground hover:text-[#79B8B3] transition-colors duration-200"
               aria-label={mobileOpen ? "Uždaryti meniu" : "Atidaryti meniu"}
               aria-expanded={mobileOpen}
             >
@@ -128,7 +129,7 @@ export default function Header() {
               key={item.href}
               href={item.href}
               onClick={() => setMobileOpen(false)}
-              className="py-2.5 text-[0.9375rem] font-medium text-secondary hover:text-brand transition-colors duration-200"
+              className="py-2.5 text-[0.9375rem] font-medium text-secondary hover:text-[#79B8B3] transition-colors duration-200"
             >
               {item.label}
             </a>
@@ -136,7 +137,7 @@ export default function Header() {
           <div className="pt-3 mt-1 border-t border-border flex items-center justify-between">
             <a
               href={`tel:${t.header.phone.replace(/\s/g, "")}`}
-              className="flex items-center gap-2 text-[0.875rem] font-medium text-muted hover:text-brand transition-colors duration-200"
+              className="flex items-center gap-2 text-[0.875rem] font-medium text-muted hover:text-[#79B8B3] transition-colors duration-200"
             >
               <Phone size={15} strokeWidth={2} />
               {t.header.phone}
@@ -148,7 +149,7 @@ export default function Header() {
                   onClick={() => setLang(l)}
                   className={`px-2.5 py-1 transition-colors duration-150 cursor-pointer ${
                     lang === l
-                      ? "bg-brand text-white"
+                      ? "bg-[#79B8B3] text-white"
                       : "text-muted hover:text-foreground"
                   } ${i === 0 ? "" : "border-l border-border"}`}
                 >

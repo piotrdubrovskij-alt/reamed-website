@@ -29,7 +29,8 @@ export default function QuickAccessSection() {
   return (
     <section
       id="ka-gydome"
-      className="section-padding bg-surface"
+      className="section-padding"
+      style={{ background: "#EEF5F4" }}
       aria-labelledby="quick-access-title"
     >
       <div className="container-xl">
@@ -47,10 +48,10 @@ export default function QuickAccessSection() {
             <a
               key={item.label}
               href="#kontaktai"
-              className="group flex items-center gap-3 bg-white rounded-xl px-4 py-4 border border-border hover:border-brand hover:shadow-[0_4px_20px_rgba(26,86,160,0.1)] transition-all duration-200 hover:-translate-y-0.5"
+              className="group flex items-center gap-3 bg-white rounded-xl px-4 py-4 border border-[#DDE9E8] hover:border-[#90CECA] hover:shadow-[0_4px_20px_rgba(144,206,202,0.15)] transition-all duration-200 hover:-translate-y-0.5"
               aria-label={item.label}
             >
-              <span className="flex-shrink-0 w-9 h-9 rounded-lg bg-brand-light flex items-center justify-center text-brand group-hover:bg-brand group-hover:text-white transition-colors duration-200">
+              <span className="flex-shrink-0 w-9 h-9 rounded-lg bg-[#EEF5F4] flex items-center justify-center text-[#79B8B3] group-hover:bg-[#79B8B3] group-hover:text-white transition-colors duration-200">
                 {iconMap[item.icon]}
               </span>
               <span className="text-[0.875rem] font-medium text-secondary group-hover:text-foreground transition-colors duration-200 leading-snug">

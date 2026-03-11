@@ -17,13 +17,14 @@ export default function Footer() {
   ];
 
   return (
-    <footer className="bg-foreground text-white" aria-label="Footer">
+    <footer style={{ background: "#505251" }} className="text-white" aria-label="Footer">
       <div className="container-xl">
         {/* Main footer */}
         <div className="py-14 md:py-16 grid sm:grid-cols-2 lg:grid-cols-4 gap-10">
+
           {/* Brand */}
           <div className="lg:col-span-1">
-            <a href="#" className="inline-block mb-4" aria-label="ReaMed — pradžia">
+            <a href="#" className="inline-block mb-5" aria-label="ReaMed — pradžia">
               <Image
                 src="/logo.png"
                 alt="ReaMed klinika"
@@ -32,20 +33,20 @@ export default function Footer() {
                 className="h-14 w-auto object-contain rounded-lg"
               />
             </a>
-            <p className="text-[0.875rem] text-white/50 leading-relaxed mb-5">
+            <p className="text-[0.875rem] text-white/45 leading-relaxed mb-5">
               {t.footer.tagline}
             </p>
             {/* Language toggle */}
-            <div className="flex items-center border border-white/15 rounded-md overflow-hidden text-[0.8rem] font-semibold w-fit">
+            <div className="flex items-center border border-white/12 rounded-md overflow-hidden text-[0.8rem] font-semibold w-fit">
               {(["lt", "en"] as Language[]).map((l, i) => (
                 <button
                   key={l}
                   onClick={() => setLang(l)}
                   className={`px-3 py-1.5 transition-colors duration-150 cursor-pointer ${
                     lang === l
-                      ? "bg-brand text-white"
-                      : "text-white/40 hover:text-white/70"
-                  } ${i === 0 ? "" : "border-l border-white/15"}`}
+                      ? "bg-[#79B8B3] text-white"
+                      : "text-white/35 hover:text-white/65"
+                  } ${i === 0 ? "" : "border-l border-white/12"}`}
                   aria-label={`Kalba: ${l.toUpperCase()}`}
                 >
                   {l.toUpperCase()}
@@ -56,7 +57,7 @@ export default function Footer() {
 
           {/* Navigation */}
           <div>
-            <h3 className="text-[0.8125rem] font-semibold uppercase tracking-wider text-white/40 mb-5">
+            <h3 className="text-[0.8125rem] font-semibold uppercase tracking-wider text-[#90CECA]/70 mb-5">
               Navigacija
             </h3>
             <ul className="flex flex-col gap-2.5">
@@ -64,7 +65,7 @@ export default function Footer() {
                 <li key={item.href}>
                   <a
                     href={item.href}
-                    className="text-[0.9rem] text-white/65 hover:text-white transition-colors duration-200"
+                    className="text-[0.9rem] text-white/55 hover:text-white transition-colors duration-200"
                   >
                     {item.label}
                   </a>
@@ -73,9 +74,9 @@ export default function Footer() {
             </ul>
           </div>
 
-          {/* Specialistai */}
+          {/* Specialists */}
           <div>
-            <h3 className="text-[0.8125rem] font-semibold uppercase tracking-wider text-white/40 mb-5">
+            <h3 className="text-[0.8125rem] font-semibold uppercase tracking-wider text-[#90CECA]/70 mb-5">
               {t.nav.specialists}
             </h3>
             <ul className="flex flex-col gap-2.5">
@@ -83,7 +84,7 @@ export default function Footer() {
                 <li key={s.name}>
                   <a
                     href="#specialistai"
-                    className="text-[0.9rem] text-white/65 hover:text-white transition-colors duration-200"
+                    className="text-[0.9rem] text-white/55 hover:text-white transition-colors duration-200"
                   >
                     {s.name}
                   </a>
@@ -94,7 +95,7 @@ export default function Footer() {
 
           {/* Contacts */}
           <div>
-            <h3 className="text-[0.8125rem] font-semibold uppercase tracking-wider text-white/40 mb-5">
+            <h3 className="text-[0.8125rem] font-semibold uppercase tracking-wider text-[#90CECA]/70 mb-5">
               {t.nav.contacts}
             </h3>
             <ul className="flex flex-col gap-3.5">
@@ -103,27 +104,27 @@ export default function Footer() {
                   href="https://maps.google.com/?q=Olimpieciu+g.+1A-7,+Vilnius"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex items-start gap-2.5 text-[0.875rem] text-white/65 hover:text-white transition-colors duration-200"
+                  className="flex items-start gap-2.5 text-[0.875rem] text-white/55 hover:text-white transition-colors duration-200"
                 >
-                  <MapPin size={15} strokeWidth={1.8} className="mt-0.5 flex-shrink-0" />
+                  <MapPin size={15} strokeWidth={1.8} className="mt-0.5 flex-shrink-0 text-[#90CECA]" />
                   {t.footer.address}
                 </a>
               </li>
               <li>
                 <a
                   href={`tel:${t.footer.phone.replace(/\s/g, "")}`}
-                  className="flex items-center gap-2.5 text-[0.875rem] text-white/65 hover:text-white transition-colors duration-200"
+                  className="flex items-center gap-2.5 text-[0.875rem] text-white/55 hover:text-white transition-colors duration-200"
                 >
-                  <Phone size={15} strokeWidth={1.8} className="flex-shrink-0" />
+                  <Phone size={15} strokeWidth={1.8} className="flex-shrink-0 text-[#90CECA]" />
                   {t.footer.phone}
                 </a>
               </li>
               <li>
                 <a
                   href={`mailto:${t.footer.email}`}
-                  className="flex items-center gap-2.5 text-[0.875rem] text-white/65 hover:text-white transition-colors duration-200"
+                  className="flex items-center gap-2.5 text-[0.875rem] text-white/55 hover:text-white transition-colors duration-200"
                 >
-                  <Mail size={15} strokeWidth={1.8} className="flex-shrink-0" />
+                  <Mail size={15} strokeWidth={1.8} className="flex-shrink-0 text-[#90CECA]" />
                   {t.footer.email}
                 </a>
               </li>
@@ -132,11 +133,11 @@ export default function Footer() {
         </div>
 
         {/* Bottom bar */}
-        <div className="py-5 border-t border-white/10 flex flex-col sm:flex-row items-center justify-between gap-3">
-          <p className="text-[0.8125rem] text-white/35">
+        <div className="py-5 border-t border-white/8 flex flex-col sm:flex-row items-center justify-between gap-3">
+          <p className="text-[0.8125rem] text-white/30">
             {t.footer.copyright}
           </p>
-          <p className="text-[0.8125rem] text-white/25">
+          <p className="text-[0.8125rem] text-white/20">
             reamed.lt
           </p>
         </div>

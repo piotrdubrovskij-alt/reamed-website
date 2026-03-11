@@ -28,24 +28,17 @@ export default function SpecialistsSection() {
           {t.specialists.items.map((spec) => (
             <div
               key={spec.name}
-              className="group bg-white rounded-2xl border border-border overflow-hidden hover:border-brand hover:shadow-[0_8px_32px_rgba(26,86,160,0.1)] transition-all duration-300"
+              className="group bg-white rounded-2xl border border-[#DDE9E8] overflow-hidden hover:border-[#90CECA] hover:shadow-[0_8px_32px_rgba(144,206,202,0.12)] transition-all duration-300"
             >
-              {/* Avatar area */}
-              <div className="h-[160px] bg-gradient-to-br from-brand-light to-[#D6E8F9] flex items-center justify-center relative overflow-hidden">
-                <div className="w-20 h-20 rounded-full bg-white shadow-[0_4px_16px_rgba(26,86,160,0.15)] flex items-center justify-center">
-                  <span className="text-[1.375rem] font-bold text-brand">
+              {/* Avatar */}
+              <div className="h-[152px] bg-gradient-to-br from-[#EEF5F4] to-[#D4EDEB] flex items-center justify-center relative overflow-hidden">
+                <div className="w-20 h-20 rounded-full bg-white shadow-[0_4px_16px_rgba(144,206,202,0.2)] flex items-center justify-center">
+                  <span className="text-[1.375rem] font-bold text-[#79B8B3]">
                     {spec.initials}
                   </span>
                 </div>
-                {/* Decorative circles */}
-                <div
-                  className="absolute -top-6 -right-6 w-24 h-24 rounded-full border border-brand/10"
-                  aria-hidden="true"
-                />
-                <div
-                  className="absolute -bottom-8 -left-4 w-20 h-20 rounded-full border border-brand/10"
-                  aria-hidden="true"
-                />
+                <div className="absolute -top-6 -right-6 w-24 h-24 rounded-full border border-[#90CECA]/15" aria-hidden="true" />
+                <div className="absolute -bottom-8 -left-4 w-20 h-20 rounded-full border border-[#90CECA]/15" aria-hidden="true" />
               </div>
 
               {/* Content */}
@@ -53,7 +46,7 @@ export default function SpecialistsSection() {
                 <h3 className="text-[1rem] font-bold text-foreground mb-1 leading-snug">
                   {spec.name}
                 </h3>
-                <p className="text-[0.8125rem] font-medium text-brand mb-3 leading-snug">
+                <p className="text-[0.8125rem] font-medium text-[#79B8B3] mb-3 leading-snug">
                   {spec.role}
                 </p>
                 <p className="text-[0.8125rem] text-muted leading-relaxed">
@@ -66,7 +59,7 @@ export default function SpecialistsSection() {
 
         <a
           href="#kontaktai"
-          className="inline-flex items-center gap-2 px-5 py-2.5 border-2 border-brand text-brand text-[0.875rem] font-semibold rounded-xl hover:bg-brand-light transition-colors duration-200"
+          className="inline-flex items-center gap-2 px-5 py-2.5 border-2 border-[#90CECA] text-[#5E6765] text-[0.875rem] font-semibold rounded-xl hover:bg-[#EEF5F4] transition-colors duration-200"
         >
           {t.specialists.cta} →
         </a>

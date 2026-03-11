@@ -1,6 +1,6 @@
 "use client";
 
-import { Dumbbell, ArrowUpRight, SplineIcon, Activity } from "lucide-react";
+import { Dumbbell, ArrowUpRight, Activity, SplineIcon } from "lucide-react";
 import { useLanguage } from "@/contexts/LanguageContext";
 
 const directionIcons = [
@@ -8,8 +8,6 @@ const directionIcons = [
   <Activity size={26} strokeWidth={1.6} />,
   <SplineIcon size={26} strokeWidth={1.6} />,
 ];
-
-const directionAccents = ["#1A56A0", "#2E6BB8", "#3472BA"];
 
 export default function MainDirectionsSection() {
   const { t } = useLanguage();
@@ -33,18 +31,15 @@ export default function MainDirectionsSection() {
           {t.mainDirections.items.map((item, i) => (
             <div
               key={item.title}
-              className="group relative bg-white rounded-2xl border border-border p-8 hover:border-brand hover:shadow-[0_8px_32px_rgba(26,86,160,0.12)] transition-all duration-300 hover:-translate-y-1 overflow-hidden"
+              className="group relative bg-white rounded-2xl border border-[#DDE9E8] p-8 hover:border-[#90CECA] hover:shadow-[0_8px_32px_rgba(144,206,202,0.15)] transition-all duration-300 hover:-translate-y-1 overflow-hidden"
             >
-              {/* Background accent */}
+              {/* Top accent line */}
               <div
-                className="absolute top-0 left-0 right-0 h-1 rounded-t-2xl"
-                style={{ background: directionAccents[i] }}
+                className="absolute top-0 left-0 right-0 h-[3px] rounded-t-2xl bg-[#90CECA] opacity-0 group-hover:opacity-100 transition-opacity duration-300"
                 aria-hidden="true"
               />
 
-              <div
-                className="w-12 h-12 rounded-xl bg-brand-light flex items-center justify-center text-brand mb-6 group-hover:bg-brand group-hover:text-white transition-colors duration-300"
-              >
+              <div className="w-12 h-12 rounded-xl bg-[#EEF5F4] flex items-center justify-center text-[#79B8B3] mb-6 group-hover:bg-[#79B8B3] group-hover:text-white transition-colors duration-300">
                 {directionIcons[i]}
               </div>
 
@@ -57,7 +52,7 @@ export default function MainDirectionsSection() {
 
               <a
                 href="#kontaktai"
-                className="inline-flex items-center gap-1.5 text-[0.875rem] font-semibold text-brand hover:gap-2 transition-all duration-200"
+                className="inline-flex items-center gap-1.5 text-[0.875rem] font-semibold text-[#79B8B3] hover:gap-2 transition-all duration-200"
                 aria-label={`Registruotis: ${item.title}`}
               >
                 Registruotis
