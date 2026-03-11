@@ -1,7 +1,8 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { Phone, Menu, X, ChevronDown } from "lucide-react";
+import Image from "next/image";
+import { Phone, Menu, X } from "lucide-react";
 import { useLanguage } from "@/contexts/LanguageContext";
 import type { Language } from "@/lib/translations";
 
@@ -35,10 +36,15 @@ export default function Header() {
       <div className="container-xl">
         <div className="flex items-center justify-between h-16 md:h-18">
           {/* Logo */}
-          <a href="#" className="flex items-center gap-2 flex-shrink-0" aria-label="ReaMed — pradžia">
-            <span className="text-[1.4rem] font-bold tracking-tight text-foreground">
-              Rea<span className="text-brand">Med</span>
-            </span>
+          <a href="#" className="flex items-center flex-shrink-0" aria-label="ReaMed — pradžia">
+            <Image
+              src="/logo.png"
+              alt="ReaMed klinika"
+              width={120}
+              height={68}
+              className="h-11 w-auto object-contain rounded-lg"
+              priority
+            />
           </a>
 
           {/* Desktop nav */}

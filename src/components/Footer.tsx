@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import { MapPin, Phone, Mail } from "lucide-react";
 import { useLanguage } from "@/contexts/LanguageContext";
 import type { Language } from "@/lib/translations";
@@ -23,9 +24,13 @@ export default function Footer() {
           {/* Brand */}
           <div className="lg:col-span-1">
             <a href="#" className="inline-block mb-4" aria-label="ReaMed — pradžia">
-              <span className="text-[1.5rem] font-bold tracking-tight text-white">
-                Rea<span className="text-brand-mid">Med</span>
-              </span>
+              <Image
+                src="/logo.png"
+                alt="ReaMed klinika"
+                width={120}
+                height={68}
+                className="h-14 w-auto object-contain rounded-lg"
+              />
             </a>
             <p className="text-[0.875rem] text-white/50 leading-relaxed mb-5">
               {t.footer.tagline}

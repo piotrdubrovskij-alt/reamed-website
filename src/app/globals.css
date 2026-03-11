@@ -3,11 +3,11 @@
 @theme inline {
   --font-sans: var(--font-poppins);
 
-  --color-brand: #1A56A0;
-  --color-brand-dark: #134285;
-  --color-brand-mid: #2E6BB8;
-  --color-brand-light: #EBF3FC;
-  --color-brand-subtle: #F4F8FD;
+  --color-brand: #5BBFBA;
+  --color-brand-dark: #48A9A4;
+  --color-brand-mid: #6CCBC5;
+  --color-brand-light: #EBF8F7;
+  --color-brand-subtle: #F3FAFA;
 
   --color-foreground: #0D1B2E;
   --color-secondary: #2D3748;
