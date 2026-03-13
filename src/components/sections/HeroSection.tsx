@@ -47,7 +47,7 @@ export default function HeroSection() {
               {t.hero.title}
             </h1>
 
-            <p className="text-[1rem] text-secondary leading-relaxed mb-3 max-w-[460px]">
+            <p className="text-[0.9375rem] text-secondary leading-relaxed mb-3 max-w-[540px]">
               {t.hero.subtitle}
             </p>
 
