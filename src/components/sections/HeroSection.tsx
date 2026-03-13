@@ -12,12 +12,15 @@ export default function HeroSection() {
       style={{ paddingTop: "104px" }}
       aria-labelledby="hero-title"
     >
-      {/* Full photo — no cropping */}
-      <img
-        src="/hero.jpg"
-        alt="ReaMed klinikos komanda"
-        className="w-full h-auto block"
-      />
+      {/* Full photo — bottom trimmed to hide watermark */}
+      <div className="w-full overflow-hidden">
+        <img
+          src="/hero.jpg"
+          alt="ReaMed klinikos komanda"
+          className="w-full h-auto block"
+          style={{ marginBottom: "-6%" }}
+        />
+      </div>
 
       {/* Overlay for text — covers left portion */}
       <div
