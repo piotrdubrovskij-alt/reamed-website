@@ -8,56 +8,41 @@ export default function HeroSection() {
 
   return (
     <section
-      className="relative min-h-[580px] md:min-h-[680px] lg:min-h-[720px] flex items-center overflow-hidden"
+      className="relative flex min-h-[620px] md:min-h-[680px] overflow-hidden"
       style={{ paddingTop: "104px" }}
       aria-labelledby="hero-title"
     >
-      {/* Background image */}
-      <div className="absolute inset-0 z-0">
-        <img
-          src="/hero.jpg"
-          alt=""
-          className="w-full h-full object-cover object-center"
-          aria-hidden="true"
-        />
-        {/* Left gradient overlay for text readability */}
+      {/* Left — text block */}
+      <div
+        className="relative z-10 flex items-center w-full lg:w-[48%] xl:w-[44%] flex-shrink-0"
+        style={{ background: "#F7FAF9" }}
+      >
+        {/* Soft right edge blending into photo */}
         <div
-          className="absolute inset-0"
+          className="hidden lg:block absolute top-0 right-0 w-20 h-full z-10 pointer-events-none"
           style={{
-            background:
-              "linear-gradient(90deg, rgba(247,250,249,0.97) 0%, rgba(247,250,249,0.93) 30%, rgba(247,250,249,0.7) 55%, rgba(247,250,249,0.0) 80%)",
+            background: "linear-gradient(to right, #F7FAF9, transparent)",
           }}
           aria-hidden="true"
         />
-        {/* Bottom fade */}
-        <div
-          className="absolute bottom-0 left-0 right-0 h-16"
-          style={{
-            background: "linear-gradient(to bottom, transparent, #F7FAF9)",
-          }}
-          aria-hidden="true"
-        />
-      </div>
 
-      {/* Content */}
-      <div className="container-xl relative z-10 py-16 md:py-20">
-        <div className="max-w-[580px]">
+        <div className="px-6 md:px-10 xl:px-14 py-14 md:py-20 max-w-[560px]">
           <p className="mb-4 text-[0.8125rem] font-semibold uppercase tracking-widest text-[#7DB9B5]">
             {t.hero.tag}
           </p>
 
           <h1
             id="hero-title"
-            className="text-[2.25rem] sm:text-[2.75rem] lg:text-[3.25rem] font-bold leading-[1.1] text-foreground mb-5"
+            className="text-[2.1rem] sm:text-[2.6rem] lg:text-[3rem] font-bold leading-[1.1] text-foreground mb-5"
           >
             {t.hero.title}
           </h1>
 
-          <p className="text-[1.0625rem] text-secondary leading-relaxed mb-4 max-w-[500px]">
+          <p className="text-[1.0625rem] text-secondary leading-relaxed mb-4">
             {t.hero.subtitle}
           </p>
 
-          <p className="text-[0.9375rem] text-muted leading-relaxed mb-8 max-w-[480px]">
+          <p className="text-[0.9375rem] text-muted leading-relaxed mb-8">
             {t.hero.description}
           </p>
 
@@ -96,6 +81,31 @@ export default function HeroSection() {
             ))}
           </div>
         </div>
+      </div>
+
+      {/* Right — full photo, all specialists visible */}
+      <div className="hidden lg:block flex-1 relative">
+        <img
+          src="/hero.jpg"
+          alt="ReaMed klinikos komanda"
+          className="absolute inset-0 w-full h-full object-cover object-left"
+        />
+      </div>
+
+      {/* Mobile: photo below text */}
+      <div className="lg:hidden absolute bottom-0 left-0 right-0 h-48 overflow-hidden">
+        <img
+          src="/hero.jpg"
+          alt="ReaMed klinikos komanda"
+          className="w-full h-full object-cover object-center"
+        />
+        <div
+          className="absolute inset-0"
+          style={{
+            background: "linear-gradient(to bottom, #F7FAF9 0%, transparent 40%)",
+          }}
+          aria-hidden="true"
+        />
       </div>
     </section>
   );
