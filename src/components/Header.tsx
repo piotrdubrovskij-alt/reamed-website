@@ -32,16 +32,13 @@ export default function Header() {
         <div className="container-xl">
           <div className="flex items-center justify-between h-9">
 
-            {/* Left */}
-            <span className="hidden sm:flex items-center gap-1.5 text-[0.72rem] text-white/50">
-              <Clock size={11} strokeWidth={2} className="text-[#90CECA]" />
-              I–V 8:00–19:00
-            </span>
+            {/* Left — empty spacer */}
+            <div />
 
             {/* Right */}
             <div className="flex items-center gap-4 md:gap-5">
-              {/* Hours — hidden on small mobile, shown on md+ */}
-              <span className="hidden md:flex items-center gap-1.5 text-[0.72rem] text-white/50">
+              {/* Hours */}
+              <span className="hidden sm:flex items-center gap-1.5 text-[0.72rem] text-white/50">
                 <Clock size={11} strokeWidth={2} className="text-[#90CECA]" />
                 I–V 8:00–19:00
               </span>
