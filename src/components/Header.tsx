@@ -43,15 +43,6 @@ export default function Header() {
                 I–V 8:00–19:00
               </span>
 
-              {/* Phone */}
-              <a
-                href="tel:+37060134304"
-                className="flex items-center gap-1.5 text-[0.8rem] text-white/75 hover:text-white transition-colors duration-150"
-              >
-                <Phone size={12} strokeWidth={2} className="text-[#90CECA]" />
-                +370 601 34304
-              </a>
-
               {/* Language */}
               <div className="flex items-center text-[0.75rem] font-semibold">
                 {(["lt", "en"] as Language[]).map((l, i) => (
@@ -114,8 +105,15 @@ export default function Header() {
               ))}
             </nav>
 
-            {/* Desktop CTA */}
-            <div className="hidden lg:flex items-center">
+            {/* Desktop right: phone + CTA */}
+            <div className="hidden lg:flex items-center gap-4">
+              <a
+                href="tel:+37060134304"
+                className="flex items-center gap-2 text-[0.875rem] font-medium text-muted hover:text-[#7DB9B5] transition-colors duration-200"
+              >
+                <Phone size={15} strokeWidth={2} className="text-[#90CECA]" />
+                +370 601 34304
+              </a>
               <a
                 href="#kontaktai"
                 className="px-5 py-2.5 bg-[#7DB9B5] text-white text-[0.875rem] font-semibold rounded-lg hover:bg-[#68A7A2] transition-colors duration-200 shadow-[0_2px_12px_rgba(125,185,181,0.28)]"
