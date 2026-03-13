@@ -18,7 +18,7 @@ export default function HeroSection() {
           src="/hero.jpg"
           alt="ReaMed klinikos komanda"
           className="w-full h-auto block"
-          style={{ marginBottom: "-6%" }}
+          style={{ marginBottom: "-6%", filter: "blur(1.5px) brightness(1.03) saturate(0.9)" }}
         />
       </div>
 
