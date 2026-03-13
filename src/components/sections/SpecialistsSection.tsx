@@ -33,13 +33,13 @@ export default function SpecialistsSection() {
               className="group bg-white rounded-2xl border border-[#DDE9E8] overflow-hidden hover:border-[#90CECA] hover:shadow-[0_8px_32px_rgba(144,206,202,0.12)] transition-all duration-300"
             >
               {/* Avatar */}
-              <div className="h-[200px] bg-gradient-to-br from-[#EEF5F4] to-[#D4EDEB] flex items-center justify-center relative overflow-hidden">
+              <div className="h-[300px] bg-gradient-to-br from-[#EEF5F4] to-[#D4EDEB] flex items-center justify-center relative overflow-hidden">
                 {photo ? (
                   <img
                     src={photo}
                     alt={spec.name}
-                    className="w-full h-full object-cover object-top"
-                    style={{ marginBottom: "-8%" }}
+                    className="w-full h-full object-cover"
+                    style={{ objectPosition: "center 10%" }}
                   />
                 ) : (
                   <>
