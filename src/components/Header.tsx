@@ -1,7 +1,6 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import Image from "next/image";
 import { Phone, Clock, Menu, X } from "lucide-react";
 import { useLanguage } from "@/contexts/LanguageContext";
 import type { Language } from "@/lib/translations";
@@ -91,13 +90,10 @@ export default function Header() {
               className="flex-shrink-0"
               aria-label="ReaMed — pradžia"
             >
-              <Image
-                src="/logo-text.png"
+              <img
+                src="/logo.svg"
                 alt="ReaMed"
-                width={160}
-                height={60}
-                className="h-10 w-auto object-contain"
-                priority
+                className="h-8 w-auto"
               />
             </a>
 
