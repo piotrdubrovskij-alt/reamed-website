@@ -38,29 +38,29 @@ export default function Header() {
             {/* Right */}
             <div className="flex items-center gap-4 md:gap-5">
               {/* Hours */}
-              <span className="hidden sm:flex items-center gap-1.5 text-[0.72rem] text-white/50">
-                <Clock size={11} strokeWidth={2} className="text-[#90CECA]" />
+              <span className="hidden sm:flex items-center gap-1.5 text-[0.8rem] text-white/75">
+                <Clock size={12} strokeWidth={2} className="text-[#90CECA]" />
                 I–V 8:00–19:00
               </span>
 
               {/* Phone */}
               <a
                 href="tel:+37060134304"
-                className="flex items-center gap-1.5 text-[0.72rem] text-white/60 hover:text-white transition-colors duration-150"
+                className="flex items-center gap-1.5 text-[0.8rem] text-white/75 hover:text-white transition-colors duration-150"
               >
-                <Phone size={11} strokeWidth={2} className="text-[#90CECA]" />
+                <Phone size={12} strokeWidth={2} className="text-[#90CECA]" />
                 +370 601 34304
               </a>
 
               {/* Language */}
-              <div className="flex items-center text-[0.7rem] font-semibold">
+              <div className="flex items-center text-[0.75rem] font-semibold">
                 {(["lt", "en"] as Language[]).map((l, i) => (
                   <button
                     key={l}
                     onClick={() => setLang(l)}
                     className={`px-1.5 py-0.5 transition-colors duration-150 cursor-pointer ${
-                      lang === l ? "text-[#90CECA]" : "text-white/35 hover:text-white/60"
-                    } ${i === 0 ? "border-r border-white/15 pr-1.5" : "pl-1.5"}`}
+                      lang === l ? "text-[#90CECA]" : "text-white/50 hover:text-white/80"
+                    } ${i === 0 ? "border-r border-white/20 pr-1.5" : "pl-1.5"}`}
                     aria-label={`Kalba: ${l.toUpperCase()}`}
                   >
                     {l.toUpperCase()}
