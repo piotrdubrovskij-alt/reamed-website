@@ -26,7 +26,10 @@ export default function SpecialistsSection() {
 
         <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-5 md:gap-6 mb-8">
           {t.specialists.items.map((spec) => {
-            const photo = spec.initials === "EJ" ? "/specialist-erikas.jpg" : null;
+            const photo =
+              spec.initials === "EJ" ? "/specialist-erikas.jpg" :
+              spec.initials === "KK" ? "/specialist-kotryna.jpg" :
+              null;
             return (
             <div
               key={spec.name}
