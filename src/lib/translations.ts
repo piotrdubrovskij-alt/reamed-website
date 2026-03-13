@@ -175,7 +175,7 @@ export const translations = {
       items: [
         {
           name: "Piotr Dubrovskij",
-          role: "Kineziterapeutas, manualinės terapijos specialistas",
+          role: "Kineziterapeutas, osteopatas, manualinės terapijos specialistas",
           description:
             "Stuburo ir kaklo problemos, sudėtingesni judamojo aparato sutrikimai, ūmios būklės, pooperacinis atsistatymas.",
           initials: "PD",
@@ -196,7 +196,7 @@ export const translations = {
         },
         {
           name: "Mangirdas Kazačenko",
-          role: "Kineziterapeutas",
+          role: "Kineziterapeutas, manualinės terapijos specialistas",
           description:
             "Judamojo aparato problemos, manualinė terapija, funkcinis atsistatymas.",
           initials: "MK",
@@ -418,7 +418,7 @@ export const translations = {
       items: [
         {
           name: "Piotr Dubrovskij",
-          role: "Physiotherapist, manual therapy specialist",
+          role: "Physiotherapist, osteopath, manual therapy specialist",
           description:
             "Spine and neck problems, complex musculoskeletal conditions, acute cases, post-surgical recovery.",
           initials: "PD",
@@ -439,7 +439,7 @@ export const translations = {
         },
         {
           name: "Mangirdas Kazačenko",
-          role: "Physiotherapist",
+          role: "Physiotherapist, manual therapy specialist",
           description:
             "Musculoskeletal problems, manual therapy, functional recovery.",
           initials: "MK",
