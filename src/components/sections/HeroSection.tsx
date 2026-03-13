@@ -32,8 +32,8 @@ export default function HeroSection() {
         aria-hidden="true"
       />
 
-      {/* Text content */}
-      <div className="absolute inset-0 flex items-center" style={{ top: 0 }}>
+      {/* Text content — starts below header (104px) */}
+      <div className="absolute left-0 right-0 bottom-0 flex items-center" style={{ top: "104px" }}>
         <div className="container-xl w-full">
           <div className="max-w-[520px]">
             <p className="mb-3 text-[0.8125rem] font-semibold uppercase tracking-widest text-[#7DB9B5]">
@@ -42,7 +42,7 @@ export default function HeroSection() {
 
             <h1
               id="hero-title"
-              className="text-[1.9rem] sm:text-[2.4rem] lg:text-[2.9rem] font-bold leading-[1.1] text-foreground mb-4"
+              className="text-[1.7rem] sm:text-[2rem] lg:text-[2.4rem] font-bold leading-[1.15] text-foreground mb-4"
             >
               {t.hero.title}
             </h1>
