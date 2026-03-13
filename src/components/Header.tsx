@@ -33,16 +33,17 @@ export default function Header() {
           <div className="flex items-center justify-between h-9">
 
             {/* Left */}
-            <span className="text-[0.75rem] font-medium text-white/60 tracking-wide">
-              ReaMed Klinika
+            <span className="hidden sm:flex items-center gap-1.5 text-[0.72rem] text-white/50">
+              <Clock size={11} strokeWidth={2} className="text-[#90CECA]" />
+              I–V 8:00–19:00
             </span>
 
             {/* Right */}
             <div className="flex items-center gap-4 md:gap-5">
-              {/* Hours — hidden on small mobile */}
-              <span className="hidden sm:flex items-center gap-1.5 text-[0.72rem] text-white/50">
+              {/* Hours — hidden on small mobile, shown on md+ */}
+              <span className="hidden md:flex items-center gap-1.5 text-[0.72rem] text-white/50">
                 <Clock size={11} strokeWidth={2} className="text-[#90CECA]" />
-                I–V 9:00–19:00
+                I–V 8:00–19:00
               </span>
 
               {/* Phone */}
@@ -169,7 +170,7 @@ export default function Header() {
           {/* Phone in mobile menu */}
           <div className="pt-3 mt-1 flex items-center gap-2 text-[0.875rem] text-muted">
             <Clock size={13} className="text-[#90CECA]" strokeWidth={2} />
-            <span>I–V 9:00–19:00</span>
+            <span>I–V 8:00–19:00</span>
             <span className="mx-1 text-[#D8E6E4]">·</span>
             <a href="tel:+37060134304" className="hover:text-[#7DB9B5] transition-colors duration-200">
               +370 601 34304
