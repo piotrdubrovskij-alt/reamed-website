@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
+import Image from "next/image";
 import { Phone, Clock, Menu, X } from "lucide-react";
 import { useLanguage } from "@/contexts/LanguageContext";
 import type { Language } from "@/lib/translations";
@@ -87,10 +88,17 @@ export default function Header() {
             {/* Wordmark */}
             <a
               href="#"
-              className="flex-shrink-0 text-[1.375rem] font-bold tracking-tight text-foreground hover:text-[#7DB9B5] transition-colors duration-200"
+              className="flex-shrink-0"
               aria-label="ReaMed — pradžia"
             >
-              Rea<span className="text-[#7DB9B5]">Med</span>
+              <Image
+                src="/logo-text.png"
+                alt="ReaMed"
+                width={160}
+                height={60}
+                className="h-10 w-auto object-contain"
+                priority
+              />
             </a>
 
             {/* Desktop nav */}
