@@ -25,6 +25,7 @@ export const translations = {
       trustLine: [
         "Kineziterapija",
         "Manualinė terapija",
+        "Osteopatija",
         "Sporto traumų reabilitacija",
         "Pooperacinis atsistatymas",
       ],
@@ -267,6 +268,7 @@ export const translations = {
       trustLine: [
         "Physiotherapy",
         "Manual therapy",
+        "Osteopathy",
         "Sports injury rehabilitation",
         "Post-surgical recovery",
       ],
