@@ -29,6 +29,7 @@ export default function SpecialistsSection() {
             const photo =
               spec.initials === "EJ" ? "/specialist-erikas.jpg" :
               spec.initials === "KK" ? "/specialist-kotryna.jpg" :
+              spec.initials === "MK" ? "/specialist-mangirdas.jpg" :
               null;
             return (
             <div
