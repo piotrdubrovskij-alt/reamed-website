@@ -75,18 +75,22 @@ export default function HeroSection() {
             {/* Trust line */}
             <div className="flex flex-wrap items-center gap-x-3 gap-y-2">
               {t.hero.trustLine.map((item, i) => (
-                <span
-                  key={i}
-                  className="flex items-center gap-2 text-[0.78rem] text-muted font-medium"
-                >
-                  {i > 0 && (
+                <>
+                  {/* Force line break after 3rd item (Osteopatija) */}
+                  {i === 3 && <div key="break" className="w-full h-0" />}
+                  <span
+                    key={i}
+                    className="flex items-center gap-2 text-[0.78rem] text-muted font-medium"
+                  >
+                  {i > 0 && i !== 3 && (
                     <span
                       className="w-1 h-1 rounded-full bg-[#90CECA] inline-block"
                       aria-hidden="true"
                     />
                   )}
-                  {item}
-                </span>
+                    {item}
+                  </span>
+                </>
               ))}
             </div>
           </div>
