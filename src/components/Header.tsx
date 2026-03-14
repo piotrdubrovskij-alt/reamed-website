@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
+import { usePathname } from "next/navigation";
 import { Phone, Clock, Menu, X } from "lucide-react";
 import { useLanguage } from "@/contexts/LanguageContext";
 import type { Language } from "@/lib/translations";
@@ -9,6 +10,7 @@ export default function Header() {
   const { lang, setLang, t } = useLanguage();
   const [mobileOpen, setMobileOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const pathname = usePathname();
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 8);
@@ -16,12 +18,15 @@ export default function Header() {
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
+  const onSubPage = pathname === "/kainos" || pathname === "/kontaktai" || pathname.startsWith("/specialistai");
+  const prefix = onSubPage ? "/" : "";
+
   const navItems = [
-    { label: t.nav.services, href: "#paslaugos" },
-    { label: t.nav.whatWeTreat, href: "#ka-gydome" },
-    { label: t.nav.specialists, href: "#specialistai" },
+    { label: t.nav.services, href: `${prefix}#paslaugos` },
+    { label: t.nav.whatWeTreat, href: `${prefix}#ka-gydome` },
+    { label: t.nav.specialists, href: `${prefix}#specialistai` },
     { label: t.nav.prices, href: "/kainos" },
-    { label: t.nav.contacts, href: "#kontaktai" },
+    { label: t.nav.contacts, href: "/kontaktai" },
   ];
 
   return (
@@ -77,7 +82,7 @@ export default function Header() {
 
             {/* Wordmark */}
             <a
-              href="#"
+              href="/"
               className="flex-shrink-0"
               aria-label="ReaMed — pradžia"
             >

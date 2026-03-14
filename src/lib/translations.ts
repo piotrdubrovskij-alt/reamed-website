@@ -15,11 +15,10 @@ export const translations = {
     },
     hero: {
       tag: "Kineziterapijos klinika · Vilnius",
-      title: "Šiuolaikinė kineziterapijos ir reabilitacijos klinika Vilniuje",
+      title: "Grąžinsime judesio laisvę — be skausmo ir apribojimų",
       subtitle:
-        "Padedame gydyti stuburo ir kaklo skausmus, sporto traumas, sąnarių problemas ir kryptingai atsistatyti po ortopedinių operacijų.",
-      description:
-        "ReaMed klinikoje deriname klinikinį ištyrimą, manualinę terapiją ir aktyvią reabilitaciją, kad padėtume mažinti simptomus, atkurti funkciją ir saugiai grįžti į aktyvų gyvenimą.",
+        "Deriname kineziterapiją, manualinę terapiją ir osteopatiją, kad padėtume grįžti į aktyvų gyvenimą.",
+      description: "",
       cta1: "Registruotis vizitui",
       cta2: "Pasirinkti specialistą",
       trustLine: [
@@ -264,11 +263,10 @@ export const translations = {
     },
     hero: {
       tag: "Physiotherapy clinic · Vilnius",
-      title: "Modern physiotherapy and rehabilitation clinic in Vilnius",
+      title: "We'll restore freedom of movement — without pain or limitations",
       subtitle:
-        "We help treat back and neck pain, sports injuries, joint problems and guide targeted recovery after orthopaedic surgery.",
-      description:
-        "At ReaMed we combine clinical assessment, manual therapy and active rehabilitation to help reduce symptoms, restore function and safely return to an active life.",
+        "We combine physiotherapy, manual therapy and osteopathy to help you return to an active life.",
+      description: "",
       cta1: "Book a visit",
       cta2: "Choose a specialist",
       trustLine: [

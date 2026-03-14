@@ -48,15 +48,11 @@ export default function HeroSection() {
               {t.hero.title}
             </h1>
 
-            <p className="text-[0.9375rem] text-secondary leading-relaxed mb-3 max-w-[540px]">
+            <p className="text-[0.9375rem] text-secondary leading-relaxed mb-7 max-w-[480px]">
               {t.hero.subtitle}
             </p>
 
-            <p className="text-[0.9rem] text-muted leading-relaxed mb-7 max-w-[440px]">
-              {t.hero.description}
-            </p>
-
-            <div className="flex flex-col sm:flex-row gap-3 mb-8">
+            <div className="flex flex-col sm:flex-row gap-3 mb-4">
               <a
                 href="#kontaktai"
                 className="inline-flex items-center justify-center gap-2 px-6 py-3 bg-[#7DB9B5] text-white text-[0.9rem] font-semibold rounded-xl hover:bg-[#68A7A2] transition-all duration-200 shadow-[0_4px_16px_rgba(125,185,181,0.32)] hover:-translate-y-0.5"
@@ -72,6 +68,7 @@ export default function HeroSection() {
                 <ChevronRight size={16} strokeWidth={2.5} />
               </a>
             </div>
+
 
             {/* Trust line */}
             <div className="flex flex-wrap items-center gap-x-3 gap-y-2">

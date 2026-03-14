@@ -1,6 +1,14 @@
 "use client";
 
+import { ArrowRight } from "lucide-react";
 import { useLanguage } from "@/contexts/LanguageContext";
+
+const slugMap: Record<string, string> = {
+  PD: "piotr-dubrovskij",
+  KK: "kotryna-kairyte",
+  EJ: "erikas-jatkauskas",
+  MK: "mangirdas-kazacenko",
+};
 
 export default function SpecialistsSection() {
   const { t } = useLanguage();
@@ -32,13 +40,15 @@ export default function SpecialistsSection() {
               spec.initials === "EJ" ? "/specialist-erikas.jpg" :
               spec.initials === "MK" ? "/specialist-mangirdas.jpg" :
               null;
+            const slug = slugMap[spec.initials];
+            const firstName = spec.name.split(" ")[0];
             return (
             <div
               key={spec.name}
-              className="group bg-white rounded-2xl border border-[#DDE9E8] overflow-hidden hover:border-[#90CECA] hover:shadow-[0_8px_32px_rgba(144,206,202,0.12)] transition-all duration-300"
+              className="group bg-white rounded-2xl border border-[#DDE9E8] overflow-hidden hover:border-[#90CECA] hover:shadow-[0_8px_32px_rgba(144,206,202,0.12)] transition-all duration-300 flex flex-col"
             >
               {/* Avatar */}
-              <div className="h-[300px] bg-gradient-to-br from-[#EEF5F4] to-[#D4EDEB] flex items-center justify-center relative overflow-hidden">
+              <a href={`/specialistai/${slug}`} className="block h-[300px] bg-gradient-to-br from-[#EEF5F4] to-[#D4EDEB] flex items-center justify-center relative overflow-hidden">
                 {photo ? (
                   <img
                     src={photo}
@@ -57,19 +67,28 @@ export default function SpecialistsSection() {
                     <div className="absolute -bottom-8 -left-4 w-20 h-20 rounded-full border border-[#90CECA]/15" aria-hidden="true" />
                   </>
                 )}
-              </div>
+              </a>
 
               {/* Content */}
-              <div className="p-5">
-                <h3 className="text-[1rem] font-bold text-foreground mb-1 leading-snug">
-                  {spec.name}
-                </h3>
+              <div className="p-5 flex flex-col flex-1">
+                <a href={`/specialistai/${slug}`} className="hover:text-[#7DB9B5] transition-colors duration-200">
+                  <h3 className="text-[1rem] font-bold text-foreground mb-1 leading-snug">
+                    {spec.name}
+                  </h3>
+                </a>
                 <p className="text-[0.8125rem] font-medium text-[#7DB9B5] mb-3 leading-snug">
                   {spec.role}
                 </p>
-                <p className="text-[0.8125rem] text-muted leading-relaxed">
+                <p className="text-[0.8125rem] text-muted leading-relaxed flex-1">
                   {spec.description}
                 </p>
+                <a
+                  href={`/specialistai/${slug}#registruotis`}
+                  className="mt-4 inline-flex items-center gap-1.5 text-[0.8125rem] font-semibold text-[#7DB9B5] hover:text-[#68A7A2] hover:gap-2 transition-all duration-200"
+                >
+                  Registruotis pas {firstName}
+                  <ArrowRight size={14} strokeWidth={2.5} />
+                </a>
               </div>
             </div>
             );
