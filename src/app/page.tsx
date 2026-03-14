@@ -16,10 +16,10 @@ export default function Home() {
       <Header />
       <main>
         <HeroSection />
+        <ServicesSection />
         <QuickAccessSection />
         <MainDirectionsSection />
         <HowWeWorkSection />
-        <ServicesSection />
         <WhatWeTreatSection />
         <SpecialistsSection />
         <ReviewsSection />

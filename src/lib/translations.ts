@@ -107,21 +107,27 @@ export const translations = {
         {
           title: "Manualinė terapija",
           description:
-            "Tikslingai taikoma manualinė terapija kaip viena gydymo plano dalių.",
+            "Tikslingai taikoma manualinė terapija kaip viena gydymo plano dalių, siekiant mažinti simptomus ir gerinti judesį.",
+        },
+        {
+          title: "Osteopatija",
+          description:
+            "Švelnios manualinės technikos, taikomos atsižvelgiant į žmogaus būklę, simptomus ir bendrą gydymo kryptį.",
+        },
+        {
+          title: "Sporto reabilitacija",
+          description:
+            "Reabilitacija po traumų, perkrovų ir kryptingas grįžimas į aktyvumą ar sportą.",
         },
         {
           title: "Pooperacinė reabilitacija",
           description:
-            "Reabilitacija po ortopedinių ir traumatologinių operacijų.",
+            "Atsistatymas po ortopedinių ir stuburo operacijų, parenkant gydymą pagal konkretų reabilitacijos etapą.",
         },
         {
-          title: "Sporto reabilitacija",
-          description: "Gydymas po traumų, perkrovų ir grįžimas į sportą.",
-        },
-        {
-          title: "Pirminė konsultacija ir ištyrimas",
+          title: "Gydomasis masažas",
           description:
-            "Būklės įvertinimas, problemos analizė ir gydymo krypties parinkimas.",
+            "Pagalbinė priemonė esant raumenų įtampai, perkrovoms ir atsistatymo poreikiui.",
         },
       ],
     },
@@ -350,22 +356,27 @@ export const translations = {
         {
           title: "Manual therapy",
           description:
-            "Targeted manual therapy as one component of the treatment plan.",
+            "Targeted manual therapy as one component of the treatment plan, aimed at reducing symptoms and improving movement.",
         },
         {
-          title: "Post-surgical rehabilitation",
+          title: "Osteopathy",
           description:
-            "Rehabilitation after orthopaedic and trauma surgery.",
+            "Gentle manual techniques applied according to the person's condition, symptoms and overall treatment direction.",
         },
         {
           title: "Sports rehabilitation",
           description:
-            "Treatment after injuries, overuse conditions and return to sport.",
+            "Rehabilitation after injuries, overuse conditions and directed return to activity or sport.",
         },
         {
-          title: "Initial consultation and assessment",
+          title: "Post-surgical rehabilitation",
           description:
-            "Condition evaluation, problem analysis and treatment direction selection.",
+            "Recovery after orthopaedic and spinal surgery, with treatment tailored to each specific rehabilitation stage.",
+        },
+        {
+          title: "Therapeutic massage",
+          description:
+            "A supportive measure for muscle tension, overuse conditions and recovery needs.",
         },
       ],
     },

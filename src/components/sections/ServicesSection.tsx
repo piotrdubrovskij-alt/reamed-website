@@ -3,18 +3,20 @@
 import {
   Activity,
   HandMetal,
-  Stethoscope,
+  Waves,
   Dumbbell,
-  ClipboardList,
+  Stethoscope,
+  Heart,
 } from "lucide-react";
 import { useLanguage } from "@/contexts/LanguageContext";
 
 const serviceIcons = [
   <Activity size={22} strokeWidth={1.7} />,
   <HandMetal size={22} strokeWidth={1.7} />,
-  <Stethoscope size={22} strokeWidth={1.7} />,
+  <Waves size={22} strokeWidth={1.7} />,
   <Dumbbell size={22} strokeWidth={1.7} />,
-  <ClipboardList size={22} strokeWidth={1.7} />,
+  <Stethoscope size={22} strokeWidth={1.7} />,
+  <Heart size={22} strokeWidth={1.7} />,
 ];
 
 export default function ServicesSection() {
@@ -42,7 +44,8 @@ export default function ServicesSection() {
           </a>
         </div>
 
-        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-5">
+        {/* 3×2 desktop, 2×3 tablet, 1 col mobile */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-5">
           {t.services.items.map((service, i) => (
             <div
               key={service.title}
