@@ -20,7 +20,7 @@ export default function Header() {
     { label: t.nav.services, href: "#paslaugos" },
     { label: t.nav.whatWeTreat, href: "#ka-gydome" },
     { label: t.nav.specialists, href: "#specialistai" },
-    { label: t.nav.prices, href: "#kainos" },
+    { label: t.nav.prices, href: "/kainos" },
     { label: t.nav.contacts, href: "#kontaktai" },
   ];
 
