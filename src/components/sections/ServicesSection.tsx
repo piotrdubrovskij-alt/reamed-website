@@ -45,6 +45,23 @@ export default function ServicesSection() {
             </div>
           ))}
         </div>
+        {/* Bottom note */}
+        <div className="mt-10 md:mt-12 flex flex-col sm:flex-row sm:items-center gap-5 p-6 md:p-8 rounded-2xl bg-[#EEF5F4] border border-[#D8E6E4]">
+          <div className="flex-1">
+            <p className="text-[0.9375rem] font-semibold text-foreground mb-1.5">
+              Nuo ko pradėti?
+            </p>
+            <p className="text-[0.9rem] text-muted leading-relaxed">
+              Dažniausiai gydymas prasideda nuo pirminės konsultacijos ir ištyrimo. Vizito metu įvertiname būklę, aptariame simptomus ir parenkame tinkamiausią gydymo kryptį.
+            </p>
+          </div>
+          <a
+            href="#kontaktai"
+            className="flex-shrink-0 inline-flex items-center justify-center gap-2 px-6 py-3 bg-[#7DB9B5] text-white text-[0.875rem] font-semibold rounded-xl hover:bg-[#68A7A2] transition-colors duration-200 shadow-[0_2px_12px_rgba(125,185,181,0.25)]"
+          >
+            Registruotis
+          </a>
+        </div>
       </div>
     </section>
   );
