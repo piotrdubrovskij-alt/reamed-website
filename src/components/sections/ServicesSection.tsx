@@ -3,6 +3,11 @@
 import { ArrowRight } from "lucide-react";
 import { useLanguage } from "@/contexts/LanguageContext";
 
+const serviceLinkMap: Record<string, string> = {
+  Kineziterapija: "/paslaugos/kineziterapija",
+  Kinesiology: "/paslaugos/kineziterapija",
+};
+
 export default function ServicesSection() {
   const { t } = useLanguage();
 
@@ -36,7 +41,7 @@ export default function ServicesSection() {
                 {service.description}
               </p>
               <a
-                href="#kontaktai"
+                href={serviceLinkMap[service.title] ?? "#kontaktai"}
                 className="inline-flex items-center gap-1.5 text-[0.8125rem] font-semibold text-[#7DB9B5] hover:text-[#68A7A2] hover:gap-2 transition-all duration-200"
               >
                 Sužinoti daugiau
