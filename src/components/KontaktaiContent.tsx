@@ -12,7 +12,7 @@ const WA_ICON = (
 type FormState = "idle" | "sending" | "success";
 
 export default function KontaktaiContent() {
-  const [form, setForm] = useState({ name: "", phone: "", email: "", message: "", contact: "phone" });
+  const [form, setForm] = useState({ name: "", contactDetail: "", message: "", contact: "phone" as "phone" | "email" });
   const [state, setState] = useState<FormState>("idle");
 
   function handleChange(e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) {
@@ -23,9 +23,10 @@ export default function KontaktaiContent() {
     e.preventDefault();
     setState("sending");
     const contactLabel = form.contact === "phone" ? "Telefonu" : "El. paštu";
+    const detailLabel = form.contact === "phone" ? "Telefonas" : "El. paštas";
     const subject = encodeURIComponent(`Registracija vizitui — ${form.name}`);
     const body = encodeURIComponent(
-      `Vardas: ${form.name}\nTelefonas: ${form.phone}${form.email ? `\nEl. paštas: ${form.email}` : ""}\nPageidaujamas susisiekimas: ${contactLabel}\n\nŽinutė:\n${form.message}`
+      `Vardas: ${form.name}\n${detailLabel}: ${form.contactDetail}\nPageidaujamas susisiekimas: ${contactLabel}\n\nŽinutė:\n${form.message}`
     );
     window.location.href = `mailto:info@reamed.lt?subject=${subject}&body=${body}`;
     setTimeout(() => setState("success"), 400);
@@ -39,13 +40,20 @@ export default function KontaktaiContent() {
         <h1 className="text-[1.875rem] md:text-[2.375rem] font-bold text-foreground mb-2.5 leading-tight">
           Kontaktai
         </h1>
-        <p className="text-[0.9375rem] text-muted max-w-[480px] leading-relaxed mb-6">
-          Susisiekite su mumis telefonu, el. paštu arba užpildykite užklausos formą — atsakysime kaip įmanoma greičiau.
+        <p className="text-[0.9375rem] text-muted max-w-[520px] leading-relaxed mb-6">
+          Susisiekite su mumis telefonu, el. paštu arba užpildykite užklausos formą — atsakysime per 24 val. darbo dienomis.
         </p>
         <div className="flex flex-wrap gap-2.5">
           <a
-            href="tel:+37060134304"
+            href="#forma"
             className="inline-flex items-center gap-2 px-5 py-2.5 bg-[#7DB9B5] text-white text-[0.875rem] font-semibold rounded-xl hover:bg-[#68A7A2] transition-colors duration-200 shadow-[0_3px_12px_rgba(125,185,181,0.25)]"
+          >
+            <ArrowRight size={14} strokeWidth={2.2} />
+            Registruotis vizitui
+          </a>
+          <a
+            href="tel:+37060134304"
+            className="inline-flex items-center gap-2 px-5 py-2.5 bg-white border-2 border-[#DDE9E8] text-secondary text-[0.875rem] font-semibold rounded-xl hover:border-[#90CECA] hover:text-[#7DB9B5] transition-colors duration-200"
           >
             <Phone size={14} strokeWidth={2.2} />
             Paskambinti
@@ -54,17 +62,10 @@ export default function KontaktaiContent() {
             href="https://wa.me/37060134304"
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 px-5 py-2.5 bg-[#25D366] text-white text-[0.875rem] font-semibold rounded-xl hover:bg-[#1ebe5b] transition-colors duration-200 shadow-[0_3px_12px_rgba(37,211,102,0.2)]"
+            className="inline-flex items-center gap-2 px-5 py-2.5 bg-white border-2 border-[#DDE9E8] text-secondary text-[0.875rem] font-semibold rounded-xl hover:border-[#25D366] hover:text-[#1ebe5b] transition-colors duration-200"
           >
             {WA_ICON}
             WhatsApp
-          </a>
-          <a
-            href="#forma"
-            className="inline-flex items-center gap-2 px-5 py-2.5 bg-white border-2 border-[#DDE9E8] text-secondary text-[0.875rem] font-semibold rounded-xl hover:border-[#90CECA] hover:text-[#7DB9B5] transition-colors duration-200"
-          >
-            <ArrowRight size={14} strokeWidth={2.2} />
-            Registruotis vizitui
           </a>
           <a
             href="mailto:info@reamed.lt"
@@ -94,6 +95,12 @@ export default function KontaktaiContent() {
                     Olimpiečių g. 1A-7, Vilnius
                   </span>
                 </a>
+                <div className="mt-3 rounded-lg bg-[#F7FAF9] border border-[#EEF5F4] px-3 py-2 overflow-x-auto">
+                  <p className="text-[0.75rem] sm:text-[0.8125rem] text-secondary leading-snug whitespace-nowrap">
+                    <span className="font-semibold text-foreground">Įėjimas į kliniką:</span>{" "}
+                    atskiras įėjimas pirmame pastato aukšte, iš Sporto rūmų pusės.
+                  </p>
+                </div>
               </li>
 
               <li>
@@ -149,17 +156,31 @@ export default function KontaktaiContent() {
           </div>
 
           {/* Map */}
-          <div className="rounded-2xl border border-[#DDE9E8] overflow-hidden bg-white" style={{ minHeight: "340px" }}>
+          <div className="flex flex-col rounded-2xl border border-[#DDE9E8] overflow-hidden bg-white">
             <iframe
               title="ReaMed klinikos vieta žemėlapyje"
               src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2304.5!2d25.2783!3d54.7244!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x46dd9167a75aaaab%3A0x4aa6e885cf94558f!2sReaMed!5e0!3m2!1slt!2slt!4v1710000000000!5m2!1slt!2slt"
               width="100%"
-              height="100%"
-              style={{ border: 0, minHeight: "340px", display: "block" }}
+              height="340"
+              style={{ border: 0, display: "block", minHeight: "340px" }}
               allowFullScreen
               loading="lazy"
               referrerPolicy="no-referrer-when-downgrade"
             />
+            <div className="px-4 py-3 border-t border-[#EEF5F4] flex items-center justify-between gap-3">
+              <p className="text-[0.8125rem] text-muted">Olimpiečių g. 1A-7, Vilnius</p>
+              <a
+                href="https://www.google.com/maps/dir/?api=1&destination=Olimpiečių+g.+1A-7,+Vilnius"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-1.5 px-3.5 py-1.5 bg-[#7DB9B5] text-white text-[0.8rem] font-semibold rounded-lg hover:bg-[#68A7A2] transition-colors duration-200 flex-shrink-0 shadow-[0_2px_8px_rgba(125,185,181,0.25)]"
+              >
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+                  <polygon points="3 11 22 2 13 21 11 13 3 11"/>
+                </svg>
+                Naviguoti
+              </a>
+            </div>
           </div>
 
         </div>
@@ -169,17 +190,10 @@ export default function KontaktaiContent() {
 
           {/* Form */}
           <div className="bg-white rounded-2xl border border-[#DDE9E8] p-6">
-            <h2 className="text-[1rem] font-bold text-foreground mb-0.5">Užklausos forma</h2>
-            <div className="flex items-center gap-2 mb-4">
-              <p className="text-[0.8375rem] text-muted leading-relaxed">
-                Jei turite klausimų ar norite, kad su jumis susisiektume, užpildykite formą.
-              </p>
-            </div>
-            {/* Response time badge */}
-            <div className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-[#EEF5F4] border border-[#D8E6E4] mb-5">
-              <span className="w-1.5 h-1.5 rounded-full bg-[#7DB9B5] animate-pulse" />
-              <span className="text-[0.78rem] font-semibold text-[#68A7A2]">Atsakome per 24 val.</span>
-            </div>
+            <h2 className="text-[1rem] font-bold text-foreground mb-2">Palikite užklausą</h2>
+            <p className="text-[0.8375rem] text-muted leading-relaxed mb-5">
+              Jei norite užsiregistruoti ar turite klausimų, užpildykite formą — susisieksime su Jumis per 24 val. darbo dienomis.
+            </p>
 
             {state === "success" ? (
               <div className="flex flex-col items-center gap-3 py-8 text-center">
@@ -189,7 +203,7 @@ export default function KontaktaiContent() {
                   El. pašto programa atidaryta su paruošta žinute — išsiųskite ją ir mes susisieksime.
                 </p>
                 <button
-                  onClick={() => { setState("idle"); setForm({ name: "", phone: "", email: "", message: "", contact: "phone" }); }}
+                  onClick={() => { setState("idle"); setForm({ name: "", contactDetail: "", message: "", contact: "phone" }); }}
                   className="mt-1 text-[0.8125rem] font-semibold text-[#7DB9B5] hover:text-[#68A7A2] transition-colors duration-200"
                 >
                   Siųsti naują užklausą
@@ -206,25 +220,19 @@ export default function KontaktaiContent() {
                     className="w-full px-4 py-2.5 rounded-xl border border-[#DDE9E8] text-[0.9rem] text-foreground placeholder:text-muted/40 bg-[#F7FAF9] focus:outline-none focus:border-[#90CECA] focus:bg-white transition-colors duration-200"
                   />
                 </div>
-                <div>
-                  <label className="block text-[0.8rem] font-medium text-muted mb-1.5" htmlFor="phone">Telefono numeris *</label>
-                  <input
-                    id="phone" name="phone" type="tel" required
-                    value={form.phone} onChange={handleChange}
-                    placeholder="+370 600 00000"
-                    className="w-full px-4 py-2.5 rounded-xl border border-[#DDE9E8] text-[0.9rem] text-foreground placeholder:text-muted/40 bg-[#F7FAF9] focus:outline-none focus:border-[#90CECA] focus:bg-white transition-colors duration-200"
-                  />
-                </div>
-
                 {/* Contact method toggle */}
                 <div>
                   <label className="block text-[0.8rem] font-medium text-muted mb-1.5">Pageidaujamas susisiekimo būdas</label>
                   <div className="flex gap-2">
-                    {[{ val: "phone", label: "Telefonu" }, { val: "email", label: "El. paštu" }].map(({ val, label }) => (
+                    {([{ val: "phone" as const, label: "Telefonu" }, { val: "email" as const, label: "El. paštu" }]).map(({ val, label }) => (
                       <button
                         key={val}
                         type="button"
-                        onClick={() => setForm((f) => ({ ...f, contact: val }))}
+                        onClick={() =>
+                          setForm((f) =>
+                            f.contact === val ? f : { ...f, contact: val, contactDetail: "" }
+                          )
+                        }
                         className={`flex-1 py-2 text-[0.8375rem] font-medium rounded-lg border-2 transition-colors duration-200 ${
                           form.contact === val
                             ? "border-[#90CECA] bg-[#EEF5F4] text-[#7DB9B5]"
@@ -237,20 +245,22 @@ export default function KontaktaiContent() {
                   </div>
                 </div>
 
-                {/* Email field — appears when "El. paštu" is selected */}
-                {form.contact === "email" && (
-                  <div>
-                    <label className="block text-[0.8rem] font-medium text-muted mb-1.5" htmlFor="email">
-                      El. paštas *
-                    </label>
-                    <input
-                      id="email" name="email" type="email" required={form.contact === "email"}
-                      value={form.email} onChange={handleChange}
-                      placeholder="jusu@pastas.lt"
-                      className="w-full px-4 py-2.5 rounded-xl border border-[#DDE9E8] text-[0.9rem] text-foreground placeholder:text-muted/40 bg-[#F7FAF9] focus:outline-none focus:border-[#90CECA] focus:bg-white transition-colors duration-200"
-                    />
-                  </div>
-                )}
+                <div>
+                  <label className="block text-[0.8rem] font-medium text-muted mb-1.5" htmlFor="contactDetail">
+                    Kontaktiniai duomenys *
+                  </label>
+                  <input
+                    id="contactDetail"
+                    name="contactDetail"
+                    type={form.contact === "email" ? "email" : "tel"}
+                    required
+                    value={form.contactDetail}
+                    onChange={handleChange}
+                    placeholder={form.contact === "email" ? "vardas@email.com" : "+370 600 00000"}
+                    autoComplete={form.contact === "email" ? "email" : "tel"}
+                    className="w-full px-4 py-2.5 rounded-xl border border-[#DDE9E8] text-[0.9rem] text-foreground placeholder:text-muted/40 bg-[#F7FAF9] focus:outline-none focus:border-[#90CECA] focus:bg-white transition-colors duration-200"
+                  />
+                </div>
 
                 <div>
                   <label className="block text-[0.8rem] font-medium text-muted mb-1.5" htmlFor="message">Žinutė / klausimas</label>
@@ -276,6 +286,9 @@ export default function KontaktaiContent() {
                     +370 601 34304
                   </a>
                 </p>
+                <p className="text-[0.6875rem] text-muted/45 text-center leading-relaxed mt-3 max-w-[320px] mx-auto">
+                  Pateikta informacija bus naudojama tik susisiekti su Jumis dėl registracijos ar konsultacijos.
+                </p>
               </form>
             )}
           </div>
@@ -285,26 +298,78 @@ export default function KontaktaiContent() {
 
             <div className="bg-white rounded-2xl border border-[#DDE9E8] p-6 flex flex-col gap-4">
               <h2 className="text-[1rem] font-bold text-foreground">Kaip mus rasti</h2>
-              {[
-                {
-                  icon: "🚗",
-                  title: "Automobiliu",
-                  text: "Olimpiečių g. 1A-7. Šalia pastato yra nemokama automobilių stovėjimo aikštelė.",
-                },
-                {
-                  icon: "🚌",
-                  title: "Viešuoju transportu",
-                  text: "Artimiausia stotelė — \u201eOlimpiečių g.\u201c Patogu atvykti maršrutais 2G, 3G, 6. Nuo stotelės iki klinikos — kelios minutės pėsčiomis.",
-                },
-              ].map(({ icon, title, text }) => (
-                <div key={title} className="flex items-start gap-4 p-4 rounded-xl bg-[#F7FAF9] border border-[#EEF5F4]">
-                  <span className="text-[1.25rem] leading-none mt-0.5">{icon}</span>
-                  <div>
-                    <p className="text-[0.875rem] font-semibold text-foreground mb-0.5">{title}</p>
-                    <p className="text-[0.8125rem] text-muted leading-relaxed">{text}</p>
+
+              {/* Parkavimas */}
+              <div className="flex items-start gap-4 p-4 rounded-xl bg-[#F7FAF9] border border-[#EEF5F4]">
+                <span className="text-[1.25rem] leading-none mt-0.5">🚗</span>
+                <div className="min-w-0 flex-1">
+                  <p className="text-[0.875rem] font-semibold text-foreground mb-2">Automobiliu · parkavimas</p>
+                  <ul className="text-[0.8125rem] text-muted space-y-1.5 list-none pl-0 mb-3">
+                    <li className="flex gap-2">
+                      <span className="text-[#7DB9B5] flex-shrink-0">•</span>
+                      <span>Prie klinikos parkavimo vietų nėra.</span>
+                    </li>
+                    <li className="flex gap-2">
+                      <span className="text-[#7DB9B5] flex-shrink-0">•</span>
+                      <span>Artimiausias stovėjimas — prie Energetikos ir technikos muziejaus.</span>
+                    </li>
+                    <li className="flex gap-2">
+                      <span className="text-[#7DB9B5] flex-shrink-0">•</span>
+                      <span>Taip pat galima statyti automobilį UNIPARK aikštelėse netoliese.</span>
+                    </li>
+                  </ul>
+                  <div className="flex flex-wrap gap-2">
+                    <a
+                      href="https://www.google.com/maps/search/?api=1&query=M7RQ%2B27+Vilnius"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center gap-1 px-2.5 py-1 text-[0.75rem] font-medium text-[#7DB9B5] border border-[#D8E6E4] rounded-lg hover:bg-[#EEF5F4] transition-colors duration-200"
+                    >
+                      <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+                      Muziejus
+                    </a>
+                    <a
+                      href="https://www.google.com/maps/search/?api=1&query=M7RV%2B98+Vilnius"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center gap-1 px-2.5 py-1 text-[0.75rem] font-medium text-[#7DB9B5] border border-[#D8E6E4] rounded-lg hover:bg-[#EEF5F4] transition-colors duration-200"
+                    >
+                      <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+                      UNIPARK UP060
+                    </a>
+                    <a
+                      href="https://www.google.com/maps/search/?api=1&query=M7VQ%2BCM+Vilnius"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center gap-1 px-2.5 py-1 text-[0.75rem] font-medium text-[#7DB9B5] border border-[#D8E6E4] rounded-lg hover:bg-[#EEF5F4] transition-colors duration-200"
+                    >
+                      <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+                      UNIPARK UP071
+                    </a>
                   </div>
                 </div>
-              ))}
+              </div>
+
+              {/* Viešasis transportas */}
+              <div className="flex items-start gap-4 p-4 rounded-xl bg-[#F7FAF9] border border-[#EEF5F4]">
+                <span className="text-[1.25rem] leading-none mt-0.5">🚌</span>
+                <div className="min-w-0 flex-1">
+                  <p className="text-[0.875rem] font-semibold text-foreground mb-2">Viešuoju transportu</p>
+                  <p className="text-[0.8125rem] text-muted leading-relaxed">
+                    Artimiausia viešojo transporto stotelė —{" "}
+                    <a
+                      href="https://www.google.com/maps/search/?api=1&query=M7RQ%2B2F+Vilnius"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-[#7DB9B5] font-medium hover:text-[#68A7A2] underline underline-offset-2"
+                    >
+                      „Žvejų st.“ (M7RQ+2F Vilnius)
+                    </a>
+                    . Autobusai: <span className="font-medium text-secondary">33</span> ir{" "}
+                    <span className="font-medium text-secondary">89</span>.
+                  </p>
+                </div>
+              </div>
             </div>
 
             {/* Pirmas vizitas info block */}
@@ -312,9 +377,9 @@ export default function KontaktaiContent() {
               <div className="flex items-start gap-3">
                 <span className="text-[1.25rem] leading-none mt-0.5">📋</span>
                 <div>
-                  <p className="text-[0.9rem] font-bold text-foreground mb-1.5">Pirmas vizitas</p>
+                  <p className="text-[0.9rem] font-bold text-foreground mb-1.5">Prieš pirmą vizitą</p>
                   <p className="text-[0.8375rem] text-secondary leading-relaxed">
-                    Pirmojo vizito trukmė — ~60 min. Pasiimkite medicininius dokumentus, jei turite.
+                    Prašome atvykti 5–10 min. anksčiau ir vilkėti patogią aprangą. Jei turite, atsineškite atliktų tyrimų atsakymus, gydytojų rekomendacijas ar kitą su jūsų būkle susijusią medicininę informaciją.
                   </p>
                 </div>
               </div>
