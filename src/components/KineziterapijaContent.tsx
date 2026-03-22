@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from "react";
 import { ArrowRight, ChevronDown, ChevronUp, Phone } from "lucide-react";
+import Link from "next/link";
 import { useLanguage } from "@/contexts/LanguageContext";
 
 /* ── BILINGUAL CONTENT ───────────────────────────────────────── */
@@ -554,9 +555,9 @@ export default function KineziterapijaContent() {
               </div>
             </div>
             <div className="flex flex-col gap-2 sm:pt-8">
-              <a href="/kainos" className="inline-flex items-center gap-2 px-5 py-2.5 border-2 border-[#DDE9E8] text-secondary text-[0.875rem] font-semibold rounded-xl hover:border-[#90CECA] hover:text-[#7DB9B5] transition-colors duration-200 whitespace-nowrap">
+              <Link href="/kainos" className="inline-flex items-center gap-2 px-5 py-2.5 border-2 border-[#DDE9E8] text-secondary text-[0.875rem] font-semibold rounded-xl hover:border-[#90CECA] hover:text-[#7DB9B5] transition-colors duration-200 whitespace-nowrap">
                 {c.allPrices} <ArrowRight size={14} strokeWidth={2.5} />
-              </a>
+              </Link>
               <p className="text-[0.75rem] text-muted/40 text-center">{c.packagesNote}</p>
             </div>
           </div>
@@ -618,9 +619,9 @@ export default function KineziterapijaContent() {
             <a href="tel:+37060134304" className="inline-flex items-center gap-2 px-7 py-3 bg-[#7DB9B5] text-white text-[0.9rem] font-bold rounded-xl hover:bg-[#68A7A2] transition-colors duration-200 shadow-[0_4px_16px_rgba(125,185,181,0.28)]">
               {c.ctaBtn} <ArrowRight size={15} strokeWidth={2.5} />
             </a>
-            <a href="/kontaktai" className="inline-flex items-center gap-2 px-7 py-3 border-2 border-[#DDE9E8] text-secondary text-[0.9rem] font-semibold rounded-xl hover:border-[#90CECA] hover:text-[#7DB9B5] transition-colors duration-200">
+            <Link href="/kontaktai" className="inline-flex items-center gap-2 px-7 py-3 border-2 border-[#DDE9E8] text-secondary text-[0.9rem] font-semibold rounded-xl hover:border-[#90CECA] hover:text-[#7DB9B5] transition-colors duration-200">
               <Phone size={14} strokeWidth={2} /> {c.ctaContact}
-            </a>
+            </Link>
           </div>
           <p className="text-[0.78rem] text-muted/45">+370 601 34304 · info@reamed.lt</p>
         </div>

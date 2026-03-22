@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import { ChevronRight } from "lucide-react";
 import { useLanguage } from "@/contexts/LanguageContext";
 
@@ -17,11 +18,11 @@ const conditionLinkMap: Record<string, string> = {
   "Back pain": "/ka-gydome/nugaros-skausmas",
   "Neck pain": "/ka-gydome/kaklo-skausmas",
   "Shoulder problems": "/ka-gydome/peties-problemos",
-  "Knee pain & injuries": "/ka-gydome/kelio-skausmas",
+  "Knee pain and injuries": "/ka-gydome/kelio-skausmas",
   "Sports injuries": "/ka-gydome/sporto-traumos",
-  "Post-operative recovery": "/ka-gydome/atsistatymas-po-operaciju",
-  "Radiating pain & numbness": "/ka-gydome/plintantis-skausmas",
-  "Tendinopathies & overuse": "/ka-gydome/tendinopatijos",
+  "Recovery after surgery": "/ka-gydome/atsistatymas-po-operaciju",
+  "Radiating pain and numbness": "/ka-gydome/plintantis-skausmas",
+  "Tendinopathies and overuse": "/ka-gydome/tendinopatijos",
 };
 
 export default function WhatWeTreatSection() {
@@ -46,7 +47,7 @@ export default function WhatWeTreatSection() {
 
         <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-8">
           {t.whatWeTreat.items.map((item) => (
-            <a
+            <Link
               key={item.title}
               href={conditionLinkMap[item.title] ?? "#kontaktai"}
               className="group bg-white rounded-2xl border border-[#DDE9E8] p-5 hover:border-[#90CECA] hover:shadow-[0_6px_24px_rgba(144,206,202,0.12)] transition-all duration-200 hover:-translate-y-0.5"
@@ -64,7 +65,7 @@ export default function WhatWeTreatSection() {
               <p className="text-[0.8125rem] text-muted leading-relaxed">
                 {item.description}
               </p>
-            </a>
+            </Link>
           ))}
         </div>
 
