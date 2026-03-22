@@ -34,7 +34,7 @@ export default function SpecialistPageContent({ specialist: s }: { specialist: S
 
           {/* Photo */}
           <div className="w-full md:w-[280px] flex-shrink-0">
-            <div className="rounded-2xl overflow-hidden bg-gradient-to-br from-[#EEF5F4] to-[#D4EDEB] aspect-[3/4] md:aspect-auto md:h-[360px]">
+            <div className="rounded-2xl overflow-hidden bg-gradient-to-br from-[#EEF5F4] to-[#D4EDEB] h-[260px] sm:h-[300px] md:h-[300px]">
               {s.photo ? (
                 <img
                   src={s.photo}
