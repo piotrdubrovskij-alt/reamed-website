@@ -3,11 +3,33 @@
 import { ChevronRight } from "lucide-react";
 import { useLanguage } from "@/contexts/LanguageContext";
 
+const conditionLinkMap: Record<string, string> = {
+  // Lithuanian
+  "Nugaros skausmas": "/ka-gydome/nugaros-skausmas",
+  "Kaklo skausmas": "/ka-gydome/kaklo-skausmas",
+  "Peties problemos": "/ka-gydome/peties-problemos",
+  "Kelio skausmas ir traumos": "/ka-gydome/kelio-skausmas",
+  "Sporto traumos": "/ka-gydome/sporto-traumos",
+  "Atsistatymas po operacijų": "/ka-gydome/atsistatymas-po-operaciju",
+  "Plintantis skausmas ir tirpimas": "#kontaktai",
+  "Tendinopatijos ir perkrovos": "#kontaktai",
+  // English
+  "Back pain": "/ka-gydome/nugaros-skausmas",
+  "Neck pain": "/ka-gydome/kaklo-skausmas",
+  "Shoulder problems": "/ka-gydome/peties-problemos",
+  "Knee pain & injuries": "/ka-gydome/kelio-skausmas",
+  "Sports injuries": "/ka-gydome/sporto-traumos",
+  "Post-operative recovery": "/ka-gydome/atsistatymas-po-operaciju",
+  "Radiating pain & numbness": "#kontaktai",
+  "Tendinopathies & overuse": "#kontaktai",
+};
+
 export default function WhatWeTreatSection() {
   const { t } = useLanguage();
 
   return (
     <section
+      id="ka-gydome"
       className="section-padding"
       style={{ background: "#EEF5F4" }}
       aria-labelledby="what-we-treat-title"
@@ -26,7 +48,7 @@ export default function WhatWeTreatSection() {
           {t.whatWeTreat.items.map((item) => (
             <a
               key={item.title}
-              href="#kontaktai"
+              href={conditionLinkMap[item.title] ?? "#kontaktai"}
               className="group bg-white rounded-2xl border border-[#DDE9E8] p-5 hover:border-[#90CECA] hover:shadow-[0_6px_24px_rgba(144,206,202,0.12)] transition-all duration-200 hover:-translate-y-0.5"
             >
               <div className="flex items-center justify-between mb-2.5">
