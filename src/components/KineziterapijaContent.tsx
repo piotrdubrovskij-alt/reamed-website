@@ -84,7 +84,7 @@ const faqs = [
   },
   {
     q: "Ar reikės atlikti pratimus namuose?",
-    a: "Dažniausiai — taip, bet ne dėl to, kad taip „privalu". Namų programa padeda greičiau pasiekti rezultatą ir išlaikyti pažangą tarp vizitų. Pratimai parenkami pagal jūsų realų laiką ir galimybes — ne per sudėtingi, ne per daug.",
+    a: "Dažniausiai — taip, bet ne dėl to, kad taip \u201eprivalu\u201c. Namų programa padeda greičiau pasiekti rezultatą ir išlaikyti pažangą tarp vizitų. Pratimai parenkami pagal jūsų realų laiką ir galimybes — ne per sudėtingi, ne per daug.",
   },
 ];
 
