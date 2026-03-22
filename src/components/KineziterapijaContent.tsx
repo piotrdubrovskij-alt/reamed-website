@@ -64,7 +64,7 @@ function AnchorNav() {
 const faqs = [
   {
     q: "Ar kineziterapija tinka, jei jaučiu skausmą?",
-    a: "Taip — ir dažniausiai būtent dėl skausmo ir pradedama. Mes neskubame „per prievartą judinti": pirmojo vizito metu įvertiname, kokio intensyvumo ir pobūdžio jūsų skausmas, ir pagal tai parenkame saugų, kryptingą gydymo tempą.",
+    a: "Taip — ir dažniausiai būtent dėl skausmo ir pradedama. Mes neskubame \u201eper prievartą judinti\u201c: pirmojo vizito metu įvertiname, kokio intensyvumo ir pobūdžio jūsų skausmas, ir pagal tai parenkame saugų, kryptingą gydymo tempą.",
   },
   {
     q: "Ar reikia siuntimo iš gydytojo?",
