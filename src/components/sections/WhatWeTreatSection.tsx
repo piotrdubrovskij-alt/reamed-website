@@ -11,8 +11,8 @@ const conditionLinkMap: Record<string, string> = {
   "Kelio skausmas ir traumos": "/ka-gydome/kelio-skausmas",
   "Sporto traumos": "/ka-gydome/sporto-traumos",
   "Atsistatymas po operacijų": "/ka-gydome/atsistatymas-po-operaciju",
-  "Plintantis skausmas ir tirpimas": "#kontaktai",
-  "Tendinopatijos ir perkrovos": "#kontaktai",
+  "Plintantis skausmas ir tirpimas": "/ka-gydome/plintantis-skausmas",
+  "Tendinopatijos ir perkrovos": "/ka-gydome/tendinopatijos",
   // English
   "Back pain": "/ka-gydome/nugaros-skausmas",
   "Neck pain": "/ka-gydome/kaklo-skausmas",
@@ -20,8 +20,8 @@ const conditionLinkMap: Record<string, string> = {
   "Knee pain & injuries": "/ka-gydome/kelio-skausmas",
   "Sports injuries": "/ka-gydome/sporto-traumos",
   "Post-operative recovery": "/ka-gydome/atsistatymas-po-operaciju",
-  "Radiating pain & numbness": "#kontaktai",
-  "Tendinopathies & overuse": "#kontaktai",
+  "Radiating pain & numbness": "/ka-gydome/plintantis-skausmas",
+  "Tendinopathies & overuse": "/ka-gydome/tendinopatijos",
 };
 
 export default function WhatWeTreatSection() {
