@@ -11,6 +11,13 @@ const poppins = Poppins({
 });
 
 export const metadata: Metadata = {
+  icons: {
+    icon: [
+      { url: "/favicon.svg", type: "image/svg+xml" },
+    ],
+    shortcut: "/favicon.svg",
+    apple: "/favicon.svg",
+  },
   title: "ReaMed — Kineziterapijos ir reabilitacijos klinika Vilniuje",
   description:
     "ReaMed — šiuolaikinė kineziterapijos ir reabilitacijos klinika Vilniuje. Stuburo ir kaklo skausmai, sporto traumos, sąnarių problemos, pooperacinis atsistatymas.",
