@@ -8,6 +8,8 @@ const serviceLinkMap: Record<string, string> = {
   Kinesiology: "/paslaugos/kineziterapija",
   "Manualinė terapija": "/paslaugos/manualine-terapija",
   "Manual therapy": "/paslaugos/manualine-terapija",
+  "Gydomasis masažas": "/paslaugos/gydomasis-masazas",
+  "Therapeutic massage": "/paslaugos/gydomasis-masazas",
 };
 
 export default function ServicesSection() {
