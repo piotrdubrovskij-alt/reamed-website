@@ -14,6 +14,8 @@ const serviceLinkMap: Record<string, string> = {
   "Osteopathy": "/paslaugos/osteopatija",
   "Sporto reabilitacija": "/paslaugos/sporto-reabilitacija",
   "Sports rehabilitation": "/paslaugos/sporto-reabilitacija",
+  "Pooperacinė reabilitacija": "/paslaugos/pooperacine-reabilitacija",
+  "Post-operative rehabilitation": "/paslaugos/pooperacine-reabilitacija",
 };
 
 export default function ServicesSection() {
