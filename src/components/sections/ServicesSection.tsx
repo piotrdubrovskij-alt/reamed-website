@@ -6,6 +6,8 @@ import { useLanguage } from "@/contexts/LanguageContext";
 const serviceLinkMap: Record<string, string> = {
   Kineziterapija: "/paslaugos/kineziterapija",
   Kinesiology: "/paslaugos/kineziterapija",
+  "Manualinė terapija": "/paslaugos/manualine-terapija",
+  "Manual therapy": "/paslaugos/manualine-terapija",
 };
 
 export default function ServicesSection() {
