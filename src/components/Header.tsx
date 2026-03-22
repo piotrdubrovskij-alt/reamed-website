@@ -18,7 +18,7 @@ export default function Header() {
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
-  const onSubPage = pathname === "/kainos" || pathname === "/kontaktai" || pathname.startsWith("/specialistai");
+  const onSubPage = pathname === "/kainos" || pathname === "/kontaktai" || pathname.startsWith("/specialistai") || pathname.startsWith("/paslaugos") || pathname.startsWith("/ka-gydome");
   const prefix = onSubPage ? "/" : "";
 
   const navItems = [

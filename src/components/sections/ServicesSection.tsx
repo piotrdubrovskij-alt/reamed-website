@@ -40,24 +40,22 @@ export default function ServicesSection() {
         {/* 3×2 desktop, 2×3 tablet, 1 col mobile */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-5">
           {t.services.items.map((service) => (
-            <div
+            <a
               key={service.title}
-              className="group bg-white rounded-2xl border border-[#DDE9E8] p-6 hover:border-[#90CECA] hover:shadow-[0_6px_28px_rgba(144,206,202,0.12)] transition-all duration-200 hover:-translate-y-0.5 flex flex-col"
+              href={serviceLinkMap[service.title] ?? "#kontaktai"}
+              className="group bg-white rounded-2xl border border-[#DDE9E8] p-6 hover:border-[#90CECA] hover:shadow-[0_6px_28px_rgba(144,206,202,0.12)] transition-all duration-200 hover:-translate-y-0.5 flex flex-col cursor-pointer"
             >
-              <h3 className="text-[1rem] font-semibold text-foreground mb-2 leading-snug">
+              <h3 className="text-[1rem] font-semibold text-foreground mb-2 leading-snug group-hover:text-[#68A7A2] transition-colors duration-200">
                 {service.title}
               </h3>
               <p className="text-[0.875rem] text-muted leading-relaxed flex-1 mb-5">
                 {service.description}
               </p>
-              <a
-                href={serviceLinkMap[service.title] ?? "#kontaktai"}
-                className="inline-flex items-center gap-1.5 text-[0.8125rem] font-semibold text-[#7DB9B5] hover:text-[#68A7A2] hover:gap-2 transition-all duration-200"
-              >
+              <span className="inline-flex items-center gap-1.5 text-[0.8125rem] font-semibold text-[#7DB9B5] group-hover:text-[#68A7A2] group-hover:gap-2 transition-all duration-200">
                 Sužinoti daugiau
                 <ArrowRight size={14} strokeWidth={2.5} />
-              </a>
-            </div>
+              </span>
+            </a>
           ))}
         </div>
         {/* Bottom note */}
