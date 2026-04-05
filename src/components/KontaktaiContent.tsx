@@ -152,10 +152,8 @@ export default function KontaktaiContent() {
     } catch (err: unknown) {
       clearTimeout(timeout);
       setState("idle");
-      const isNotConfigured = err instanceof Error && err.message === "SMTP not configured";
-      alert(isNotConfigured
-        ? "SMTP не настроен. Заполните SMTP_HOST / SMTP_USER / SMTP_PASS в .env.local"
-        : lang === "en"
+      alert(
+        lang === "en"
           ? "Failed to send. Please call us: +370 601 34304"
           : "Nepavyko išsiųsti. Skambinkite: +370 601 34304"
       );
