@@ -57,7 +57,6 @@ const content = {
     // Online booking block
     onlineDivider: "arba registruokitės internetu",
     bookOnline: "Registruotis internetu",
-    viewProfile: "profilis →",
 
     // Fallback form
     formTitle: "Neradote tinkamo laiko?",
@@ -93,7 +92,6 @@ const content = {
 
     onlineDivider: "or book online",
     bookOnline: "Book online",
-    viewProfile: "profile →",
 
     formTitle: "Can't find a suitable time?",
     formText: "Write to us — we will do our best to find a time that works for you with your preferred specialist.",
@@ -263,22 +261,9 @@ export default function RegistracijaContent() {
                   />
                 </a>
                 <div className="flex-1 min-w-0">
-                  <a
-                    href={spec.mdUrl}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="block text-[0.9375rem] font-bold text-foreground hover:text-[#7DB9B5] transition-colors duration-200 leading-tight mb-0.5"
-                  >
-                    {spec.name}
-                  </a>
+                  <p className="text-[0.9375rem] font-bold text-foreground leading-tight mb-0.5">{spec.name}</p>
                   <p className="text-[0.78rem] text-[#7DB9B5] font-medium leading-snug">{spec.role[lang]}</p>
                 </div>
-                <Link
-                  href={`/specialistai/${spec.slug}`}
-                  className="hidden sm:block flex-shrink-0 text-[0.75rem] text-muted/40 hover:text-[#7DB9B5] transition-colors duration-200"
-                >
-                  {c.viewProfile}
-                </Link>
               </div>
 
               {/* Widget */}
