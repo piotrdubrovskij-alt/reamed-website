@@ -62,12 +62,6 @@ const content = {
     publicAnd: "ir",
     firstVisitTitle: "Prieš pirmą vizitą",
     firstVisitText: "Prašome atvykti 5–10 min. anksčiau ir vilkėti patogią aprangą. Jei turite, atsineškite atliktų tyrimų atsakymus, gydytojų rekomendacijas ar kitą su jūsų būkle susijusią medicininę informaciją.",
-    emailSubject: (name: string) => `Registracija vizitui — ${name}`,
-    emailBody: (name: string, detail: string, contact: "phone" | "email", message: string) => {
-      const contactLabel = contact === "phone" ? "Telefonu" : "El. paštu";
-      const detailLabel = contact === "phone" ? "Telefonas" : "El. paštas";
-      return `Vardas: ${name}\n${detailLabel}: ${detail}\nPageidaujamas susisiekimas: ${contactLabel}\n\nŽinutė:\n${message}`;
-    },
   },
   en: {
     pageTitle: "Contact Us",
@@ -120,12 +114,6 @@ const content = {
     publicAnd: "and",
     firstVisitTitle: "Before your first visit",
     firstVisitText: "Please arrive 5–10 minutes early and wear comfortable clothing. If available, bring any test results, doctors' recommendations or other medical information related to your condition.",
-    emailSubject: (name: string) => `Appointment request — ${name}`,
-    emailBody: (name: string, detail: string, contact: "phone" | "email", message: string) => {
-      const contactLabel = contact === "phone" ? "By phone" : "By email";
-      const detailLabel = contact === "phone" ? "Phone" : "Email";
-      return `Name: ${name}\n${detailLabel}: ${detail}\nPreferred contact: ${contactLabel}\n\nMessage:\n${message}`;
-    },
   },
 } as const;
 
@@ -143,13 +131,35 @@ export default function KontaktaiContent() {
     setForm((f) => ({ ...f, [e.target.name]: e.target.value }));
   }
 
-  function handleSubmit(e: React.FormEvent) {
+  async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
     setState("sending");
-    const subject = encodeURIComponent(c.emailSubject(form.name));
-    const body = encodeURIComponent(c.emailBody(form.name, form.contactDetail, form.contact, form.message));
-    window.location.href = `mailto:info@reamed.lt?subject=${subject}&body=${body}`;
-    setTimeout(() => setState("success"), 400);
+    const controller = new AbortController();
+    const timeout = setTimeout(() => controller.abort(), 15000);
+    try {
+      const res = await fetch("/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ ...form, lang }),
+        signal: controller.signal,
+      });
+      clearTimeout(timeout);
+      if (!res.ok) {
+        const data = await res.json().catch(() => ({}));
+        throw new Error(data.error ?? "send failed");
+      }
+      setState("success");
+    } catch (err: unknown) {
+      clearTimeout(timeout);
+      setState("idle");
+      const isNotConfigured = err instanceof Error && err.message === "SMTP not configured";
+      alert(isNotConfigured
+        ? "SMTP не настроен. Заполните SMTP_HOST / SMTP_USER / SMTP_PASS в .env.local"
+        : lang === "en"
+          ? "Failed to send. Please call us: +370 601 34304"
+          : "Nepavyko išsiųsti. Skambinkite: +370 601 34304"
+      );
+    }
   }
 
   return (
