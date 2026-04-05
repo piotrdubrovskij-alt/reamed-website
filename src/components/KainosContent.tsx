@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import { ArrowRight, Phone } from "lucide-react";
 import { useLanguage } from "@/contexts/LanguageContext";
 
@@ -221,12 +222,12 @@ export default function KainosContent() {
             </div>
             <div className="flex sm:flex-col items-center sm:items-end gap-4 sm:gap-2 flex-shrink-0">
               <p className="text-[1.875rem] font-bold text-[#90CECA] leading-none">100 €</p>
-              <a
-                href="tel:+37060134304"
+              <Link
+                href="/registracija"
                 className="inline-flex items-center gap-1.5 px-4 py-1 bg-[#7DB9B5] text-white text-[0.8rem] font-semibold rounded-lg hover:bg-[#68A7A2] transition-colors duration-200"
               >
                 {c.register} <ArrowRight size={12} strokeWidth={2.5} />
-              </a>
+              </Link>
             </div>
           </div>
         </div>

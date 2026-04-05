@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Poppins } from "next/font/google";
+import Script from "next/script";
 import { Providers } from "./providers";
 import "./globals.css";
 
@@ -85,9 +86,17 @@ export default function RootLayout({
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
         />
+        <link
+          rel="stylesheet"
+          href="https://www.manodaktaras.lt/widget/css/mydocwidget.css"
+        />
       </head>
       <body className={`${poppins.variable} font-sans antialiased`}>
         <Providers>{children}</Providers>
+        <Script
+          src="https://www.manodaktaras.lt/widget/js/mydocwidget.js"
+          strategy="afterInteractive"
+        />
       </body>
     </html>
   );
