@@ -12,6 +12,7 @@ const specialists = [
     role: { lt: "Kineziterapeutas, osteopatas, manualinės terapijos specialistas", en: "Physiotherapist, osteopath, manual therapy specialist" },
     photo: "/specialist-piotr.jpg",
     slug: "piotr-dubrovskij",
+    mdUrl: "https://www.manodaktaras.lt/gydytojas/14780",
   },
   {
     doctorId: "14781",
@@ -19,6 +20,7 @@ const specialists = [
     role: { lt: "Kineziterapeutė", en: "Physiotherapist" },
     photo: "/specialist-kotryna.jpg",
     slug: "kotryna-kairyte",
+    mdUrl: "https://www.manodaktaras.lt/gydytojas/14781",
   },
   {
     doctorId: "15169",
@@ -26,6 +28,7 @@ const specialists = [
     role: { lt: "Kineziterapeutas", en: "Physiotherapist" },
     photo: "/specialist-erikas.jpg",
     slug: "erikas-jatkauskas",
+    mdUrl: "https://www.manodaktaras.lt/gydytojas/15169",
   },
   {
     doctorId: "13439",
@@ -33,6 +36,7 @@ const specialists = [
     role: { lt: "Kineziterapeutas, manualinės terapijos specialistas, masažuotojas", en: "Physiotherapist, manual therapy specialist, massage therapist" },
     photo: "/specialist-mangirdas.jpg",
     slug: "mangirdas-kazacenko",
+    mdUrl: "https://www.manodaktaras.lt/gydytojas/13439",
   },
 ];
 
@@ -245,8 +249,10 @@ export default function RegistracijaContent() {
 
               {/* Specialist identity */}
               <div className="flex items-center gap-4 px-5 pt-5 pb-4">
-                <Link
-                  href={`/specialistai/${spec.slug}`}
+                <a
+                  href={spec.mdUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
                   className="w-14 h-14 rounded-xl overflow-hidden flex-shrink-0 bg-gradient-to-br from-[#EEF5F4] to-[#D4EDEB] hover:opacity-90 transition-opacity duration-200"
                 >
                   <img
@@ -255,14 +261,16 @@ export default function RegistracijaContent() {
                     className="w-full h-full object-cover"
                     style={{ objectPosition: "center 10%" }}
                   />
-                </Link>
+                </a>
                 <div className="flex-1 min-w-0">
-                  <Link
-                    href={`/specialistai/${spec.slug}`}
+                  <a
+                    href={spec.mdUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
                     className="block text-[0.9375rem] font-bold text-foreground hover:text-[#7DB9B5] transition-colors duration-200 leading-tight mb-0.5"
                   >
                     {spec.name}
-                  </Link>
+                  </a>
                   <p className="text-[0.78rem] text-[#7DB9B5] font-medium leading-snug">{spec.role[lang]}</p>
                 </div>
                 <Link
