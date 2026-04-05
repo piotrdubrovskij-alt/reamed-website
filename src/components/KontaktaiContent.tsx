@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { MapPin, Phone, Mail, Clock, ArrowRight, CheckCircle } from "lucide-react";
+import { useLanguage } from "@/contexts/LanguageContext";
 
 const WA_ICON = (
   <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
@@ -9,11 +10,134 @@ const WA_ICON = (
   </svg>
 );
 
+const content = {
+  lt: {
+    pageTitle: "Kontaktai",
+    pageSubtitle: "Susisiekite su mumis telefonu, el. paštu arba užpildykite užklausos formą — atsakysime per 24 val. darbo dienomis.",
+    btnRegister: "Registruotis vizitui",
+    btnCall: "Paskambinti",
+    btnEmail: "El. paštas",
+    contactTitle: "Kontaktinė informacija",
+    labelAddress: "Adresas",
+    entranceNote: "Įėjimas į kliniką:",
+    entranceText: "atskiras įėjimas pirmame pastato aukšte, iš Sporto rūmų pusės.",
+    labelPhone: "Telefonas",
+    labelEmail: "El. paštas",
+    labelHours: "Darbo laikas",
+    weekdays: "Pirmadienis–Penktadienis",
+    saturday: "Šeštadienis",
+    saturdayHours: "Pagal susitarimą",
+    saturdayBadge: "Dirba",
+    sunday: "Sekmadienis",
+    sundayClosed: "Nedirbame",
+    mapCaption: "Olimpiečių g. 1A-7, Vilnius",
+    mapClickHint: "Spustelėkite norėdami atidaryti žemėlapį",
+    formTitle: "Palikite užklausą",
+    formSubtitle: "Jei norite užsiregistruoti ar turite klausimų, užpildykite formą — susisieksime su Jumis per 24 val. darbo dienomis.",
+    successTitle: "Ačiū!",
+    successText: "El. pašto programa atidaryta su paruošta žinute — išsiųskite ją ir mes susisieksime.",
+    successBtn: "Siųsti naują užklausą",
+    labelName: "Vardas *",
+    placeholderName: "Jūsų vardas",
+    labelContactMethod: "Pageidaujamas susisiekimo būdas",
+    byPhone: "Telefonu",
+    byEmail: "El. paštu",
+    labelContactDetails: "Kontaktiniai duomenys *",
+    placeholderEmail: "vardas@email.com",
+    placeholderPhone: "+370 600 00000",
+    labelMessage: "Žinutė / klausimas",
+    placeholderMessage: "Trumpai aprašykite savo situaciją arba klausimą...",
+    sending: "Siunčiama...",
+    submit: "Siųsti užklausą",
+    callDirect: "Arba skambinkite tiesiai:",
+    privacy: "Pateikta informacija bus naudojama tik susisiekti su Jumis dėl registracijos ar konsultacijos.",
+    howToFindTitle: "Kaip mus rasti",
+    carTitle: "Automobiliu · parkavimas",
+    carBullet1: "Prie klinikos parkavimo vietų nėra.",
+    carBullet2: "Artimiausias stovėjimas — prie Energetikos ir technikos muziejaus.",
+    carBullet3: "Taip pat galima statyti automobilį UNIPARK aikštelėse netoliese.",
+    publicTitle: "Viešuoju transportu",
+    publicStopLabel: "Artimiausia viešojo transporto stotelė —",
+    publicBusesLabel: "Autobusai:",
+    publicAnd: "ir",
+    firstVisitTitle: "Prieš pirmą vizitą",
+    firstVisitText: "Prašome atvykti 5–10 min. anksčiau ir vilkėti patogią aprangą. Jei turite, atsineškite atliktų tyrimų atsakymus, gydytojų rekomendacijas ar kitą su jūsų būkle susijusią medicininę informaciją.",
+    emailSubject: (name: string) => `Registracija vizitui — ${name}`,
+    emailBody: (name: string, detail: string, contact: "phone" | "email", message: string) => {
+      const contactLabel = contact === "phone" ? "Telefonu" : "El. paštu";
+      const detailLabel = contact === "phone" ? "Telefonas" : "El. paštas";
+      return `Vardas: ${name}\n${detailLabel}: ${detail}\nPageidaujamas susisiekimas: ${contactLabel}\n\nŽinutė:\n${message}`;
+    },
+  },
+  en: {
+    pageTitle: "Contact Us",
+    pageSubtitle: "Reach us by phone, email or fill in the enquiry form — we will respond within 24 working hours.",
+    btnRegister: "Book a visit",
+    btnCall: "Call us",
+    btnEmail: "Email",
+    contactTitle: "Contact information",
+    labelAddress: "Address",
+    entranceNote: "Clinic entrance:",
+    entranceText: "separate entrance on the ground floor, from the Sports Palace side.",
+    labelPhone: "Phone",
+    labelEmail: "Email",
+    labelHours: "Working hours",
+    weekdays: "Monday–Friday",
+    saturday: "Saturday",
+    saturdayHours: "By appointment",
+    saturdayBadge: "Open",
+    sunday: "Sunday",
+    sundayClosed: "Closed",
+    mapCaption: "Olimpiečių g. 1A-7, Vilnius",
+    mapClickHint: "Click to open map",
+    formTitle: "Leave a request",
+    formSubtitle: "If you'd like to book or have any questions, fill in the form — we'll get back to you within 24 working hours.",
+    successTitle: "Thank you!",
+    successText: "Your email client has opened with a pre-filled message — please send it and we will be in touch.",
+    successBtn: "Send another request",
+    labelName: "Name *",
+    placeholderName: "Your name",
+    labelContactMethod: "Preferred contact method",
+    byPhone: "By phone",
+    byEmail: "By email",
+    labelContactDetails: "Contact details *",
+    placeholderEmail: "name@email.com",
+    placeholderPhone: "+370 600 00000",
+    labelMessage: "Message / question",
+    placeholderMessage: "Briefly describe your situation or question...",
+    sending: "Sending...",
+    submit: "Send request",
+    callDirect: "Or call us directly:",
+    privacy: "The information provided will only be used to contact you regarding your booking or consultation.",
+    howToFindTitle: "How to find us",
+    carTitle: "By car · parking",
+    carBullet1: "There is no parking directly at the clinic.",
+    carBullet2: "The nearest parking is at the Energy and Technology Museum.",
+    carBullet3: "You can also park at the nearby UNIPARK car parks.",
+    publicTitle: "By public transport",
+    publicStopLabel: "The nearest public transport stop is",
+    publicBusesLabel: "Buses:",
+    publicAnd: "and",
+    firstVisitTitle: "Before your first visit",
+    firstVisitText: "Please arrive 5–10 minutes early and wear comfortable clothing. If available, bring any test results, doctors' recommendations or other medical information related to your condition.",
+    emailSubject: (name: string) => `Appointment request — ${name}`,
+    emailBody: (name: string, detail: string, contact: "phone" | "email", message: string) => {
+      const contactLabel = contact === "phone" ? "By phone" : "By email";
+      const detailLabel = contact === "phone" ? "Phone" : "Email";
+      return `Name: ${name}\n${detailLabel}: ${detail}\nPreferred contact: ${contactLabel}\n\nMessage:\n${message}`;
+    },
+  },
+} as const;
+
 type FormState = "idle" | "sending" | "success";
 
 export default function KontaktaiContent() {
+  const { lang } = useLanguage();
+  const c = content[lang];
+
   const [form, setForm] = useState({ name: "", contactDetail: "", message: "", contact: "phone" as "phone" | "email" });
   const [state, setState] = useState<FormState>("idle");
+  const [mapLoaded, setMapLoaded] = useState(false);
 
   function handleChange(e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) {
     setForm((f) => ({ ...f, [e.target.name]: e.target.value }));
@@ -22,12 +146,8 @@ export default function KontaktaiContent() {
   function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
     setState("sending");
-    const contactLabel = form.contact === "phone" ? "Telefonu" : "El. paštu";
-    const detailLabel = form.contact === "phone" ? "Telefonas" : "El. paštas";
-    const subject = encodeURIComponent(`Registracija vizitui — ${form.name}`);
-    const body = encodeURIComponent(
-      `Vardas: ${form.name}\n${detailLabel}: ${form.contactDetail}\nPageidaujamas susisiekimas: ${contactLabel}\n\nŽinutė:\n${form.message}`
-    );
+    const subject = encodeURIComponent(c.emailSubject(form.name));
+    const body = encodeURIComponent(c.emailBody(form.name, form.contactDetail, form.contact, form.message));
     window.location.href = `mailto:info@reamed.lt?subject=${subject}&body=${body}`;
     setTimeout(() => setState("success"), 400);
   }
@@ -38,10 +158,10 @@ export default function KontaktaiContent() {
       {/* ── HERO ── */}
       <div className="container-xl pt-8 pb-7 md:pt-10 md:pb-8 border-b border-[#DDE9E8]">
         <h1 className="text-[1.875rem] md:text-[2.375rem] font-bold text-foreground mb-2.5 leading-tight">
-          Kontaktai
+          {c.pageTitle}
         </h1>
         <p className="text-[0.9375rem] text-muted max-w-[520px] leading-relaxed mb-6">
-          Susisiekite su mumis telefonu, el. paštu arba užpildykite užklausos formą — atsakysime per 24 val. darbo dienomis.
+          {c.pageSubtitle}
         </p>
         <div className="flex flex-wrap gap-2.5">
           <a
@@ -49,14 +169,14 @@ export default function KontaktaiContent() {
             className="inline-flex items-center gap-2 px-5 py-2.5 bg-[#7DB9B5] text-white text-[0.875rem] font-semibold rounded-xl hover:bg-[#68A7A2] transition-colors duration-200 shadow-[0_3px_12px_rgba(125,185,181,0.25)]"
           >
             <ArrowRight size={14} strokeWidth={2.2} />
-            Registruotis vizitui
+            {c.btnRegister}
           </a>
           <a
             href="tel:+37060134304"
             className="inline-flex items-center gap-2 px-5 py-2.5 bg-white border-2 border-[#DDE9E8] text-secondary text-[0.875rem] font-semibold rounded-xl hover:border-[#90CECA] hover:text-[#7DB9B5] transition-colors duration-200"
           >
             <Phone size={14} strokeWidth={2.2} />
-            Paskambinti
+            {c.btnCall}
           </a>
           <a
             href="https://wa.me/37060134304"
@@ -72,7 +192,7 @@ export default function KontaktaiContent() {
             className="inline-flex items-center gap-2 px-5 py-2.5 bg-white border-2 border-[#DDE9E8] text-secondary text-[0.875rem] font-semibold rounded-xl hover:border-[#90CECA] hover:text-[#7DB9B5] transition-colors duration-200"
           >
             <Mail size={14} strokeWidth={2.2} />
-            El. paštas
+            {c.btnEmail}
           </a>
         </div>
       </div>
@@ -84,11 +204,11 @@ export default function KontaktaiContent() {
 
           {/* Contact info */}
           <div className="bg-white rounded-2xl border border-[#DDE9E8] p-6 flex flex-col">
-            <h2 className="text-[1rem] font-bold text-foreground mb-5">Kontaktinė informacija</h2>
+            <h2 className="text-[1rem] font-bold text-foreground mb-5">{c.contactTitle}</h2>
             <ul className="flex flex-col gap-5 flex-1">
 
               <li>
-                <p className="text-[0.72rem] font-semibold uppercase tracking-widest text-muted/50 mb-1.5">Adresas</p>
+                <p className="text-[0.72rem] font-semibold uppercase tracking-widest text-muted/50 mb-1.5">{c.labelAddress}</p>
                 <a href="https://maps.google.com/?q=Olimpieciu+g.+1A-7,+Vilnius" target="_blank" rel="noopener noreferrer" className="inline-flex items-start gap-2.5 group">
                   <MapPin size={15} strokeWidth={1.8} className="text-[#7DB9B5] mt-0.5 flex-shrink-0" />
                   <span className="text-[0.9375rem] font-medium text-secondary group-hover:text-[#7DB9B5] transition-colors duration-200">
@@ -97,14 +217,14 @@ export default function KontaktaiContent() {
                 </a>
                 <div className="mt-3 rounded-lg bg-[#F7FAF9] border border-[#EEF5F4] px-3 py-2 overflow-x-auto">
                   <p className="text-[0.75rem] sm:text-[0.8125rem] text-secondary leading-snug whitespace-nowrap">
-                    <span className="font-semibold text-foreground">Įėjimas į kliniką:</span>{" "}
-                    atskiras įėjimas pirmame pastato aukšte, iš Sporto rūmų pusės.
+                    <span className="font-semibold text-foreground">{c.entranceNote}</span>{" "}
+                    {c.entranceText}
                   </p>
                 </div>
               </li>
 
               <li>
-                <p className="text-[0.72rem] font-semibold uppercase tracking-widest text-muted/50 mb-1.5">Telefonas</p>
+                <p className="text-[0.72rem] font-semibold uppercase tracking-widest text-muted/50 mb-1.5">{c.labelPhone}</p>
                 <a href="tel:+37060134304" className="inline-flex items-center gap-2.5 group">
                   <Phone size={15} strokeWidth={1.8} className="text-[#7DB9B5] flex-shrink-0" />
                   <span className="text-[0.9375rem] font-medium text-secondary group-hover:text-[#7DB9B5] transition-colors duration-200">
@@ -114,7 +234,7 @@ export default function KontaktaiContent() {
               </li>
 
               <li>
-                <p className="text-[0.72rem] font-semibold uppercase tracking-widest text-muted/50 mb-1.5">El. paštas</p>
+                <p className="text-[0.72rem] font-semibold uppercase tracking-widest text-muted/50 mb-1.5">{c.labelEmail}</p>
                 <a href="mailto:info@reamed.lt" className="inline-flex items-center gap-2.5 group">
                   <Mail size={15} strokeWidth={1.8} className="text-[#7DB9B5] flex-shrink-0" />
                   <span className="text-[0.9375rem] font-medium text-secondary group-hover:text-[#7DB9B5] transition-colors duration-200">
@@ -124,29 +244,26 @@ export default function KontaktaiContent() {
               </li>
 
               <li>
-                <p className="text-[0.72rem] font-semibold uppercase tracking-widest text-muted/50 mb-1.5">Darbo laikas</p>
+                <p className="text-[0.72rem] font-semibold uppercase tracking-widest text-muted/50 mb-1.5">{c.labelHours}</p>
                 <div className="flex items-start gap-2.5">
                   <Clock size={15} strokeWidth={1.8} className="text-[#7DB9B5] mt-0.5 flex-shrink-0" />
                   <div className="flex flex-col gap-1.5">
-                    {/* Mon–Fri */}
                     <div className="flex gap-3 text-[0.875rem]">
-                      <span className="text-muted w-[176px] flex-shrink-0">Pirmadienis–Penktadienis</span>
+                      <span className="text-muted w-[176px] flex-shrink-0">{c.weekdays}</span>
                       <span className="font-medium text-secondary">8:00–19:00</span>
                     </div>
-                    {/* Saturday — highlighted */}
                     <div className="flex gap-3 text-[0.875rem] items-center">
-                      <span className="text-muted w-[176px] flex-shrink-0">Šeštadienis</span>
+                      <span className="text-muted w-[176px] flex-shrink-0">{c.saturday}</span>
                       <span className="inline-flex items-center gap-1.5 font-semibold text-[#7DB9B5]">
-                        Pagal susitarimą
+                        {c.saturdayHours}
                         <span className="text-[0.65rem] font-bold uppercase tracking-wider bg-[#EEF5F4] text-[#68A7A2] px-1.5 py-0.5 rounded-full">
-                          Dirba
+                          {c.saturdayBadge}
                         </span>
                       </span>
                     </div>
-                    {/* Sunday */}
                     <div className="flex gap-3 text-[0.875rem]">
-                      <span className="text-muted w-[176px] flex-shrink-0">Sekmadienis</span>
-                      <span className="font-medium text-muted/40">Nedirbame</span>
+                      <span className="text-muted w-[176px] flex-shrink-0">{c.sunday}</span>
+                      <span className="font-medium text-muted/40">{c.sundayClosed}</span>
                     </div>
                   </div>
                 </div>
@@ -155,32 +272,50 @@ export default function KontaktaiContent() {
             </ul>
           </div>
 
-          {/* Map */}
-          <div className="flex flex-col rounded-2xl border border-[#DDE9E8] overflow-hidden bg-white">
-            <iframe
-              title="ReaMed klinikos vieta žemėlapyje"
-              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2304.5!2d25.2783!3d54.7244!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x46dd9167a75aaaab%3A0x4aa6e885cf94558f!2sReaMed!5e0!3m2!1slt!2slt!4v1710000000000!5m2!1slt!2slt"
-              width="100%"
-              height="340"
-              style={{ border: 0, display: "block", minHeight: "340px" }}
-              allowFullScreen
-              loading="lazy"
-              referrerPolicy="no-referrer-when-downgrade"
-            />
-            <div className="px-4 py-3 border-t border-[#EEF5F4] flex items-center justify-between gap-3">
-              <p className="text-[0.8125rem] text-muted">Olimpiečių g. 1A-7, Vilnius</p>
-              <a
-                href="https://www.google.com/maps/dir/?api=1&destination=Olimpiečių+g.+1A-7,+Vilnius"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center gap-1.5 px-3.5 py-1.5 bg-[#7DB9B5] text-white text-[0.8rem] font-semibold rounded-lg hover:bg-[#68A7A2] transition-colors duration-200 flex-shrink-0 shadow-[0_2px_8px_rgba(125,185,181,0.25)]"
+          {/* Map — click to load */}
+          <div
+            className="relative rounded-2xl border border-[#DDE9E8] overflow-hidden bg-white transition-all duration-300 hover:border-[#90CECA] hover:shadow-[0_6px_24px_rgba(125,185,181,0.14)]"
+            style={{ minHeight: "340px" }}
+          >
+            {mapLoaded ? (
+              <iframe
+                title="ReaMed klinikos vieta žemėlapyje"
+                src="https://maps.google.com/maps?q=M7RQ%2B2X+Vilnius,+Vilniaus+m.+sav.&output=embed"
+                width="100%"
+                height="340"
+                style={{ border: 0, display: "block" }}
+                allowFullScreen
+                loading="lazy"
+                referrerPolicy="no-referrer-when-downgrade"
+              />
+            ) : (
+              <button
+                type="button"
+                onClick={() => setMapLoaded(true)}
+                aria-label="Atidaryti žemėlapį su ReaMed klinikos vieta"
+                className="group absolute inset-0 w-full flex flex-col items-center justify-center gap-4 cursor-pointer bg-[#F3F8F7]"
               >
-                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-                  <polygon points="3 11 22 2 13 21 11 13 3 11"/>
-                </svg>
-                Naviguoti
-              </a>
-            </div>
+                {/* Pulse ring + icon */}
+                <div className="relative flex items-center justify-center">
+                  <div className="absolute w-20 h-20 rounded-full bg-[#7DB9B5]/10 group-hover:scale-110 transition-transform duration-300" />
+                  <div className="relative w-14 h-14 rounded-full bg-white shadow-[0_4px_20px_rgba(125,185,181,0.25)] flex items-center justify-center group-hover:shadow-[0_6px_28px_rgba(125,185,181,0.4)] transition-shadow duration-300">
+                    <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#7DB9B5" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+                      <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/>
+                      <circle cx="12" cy="10" r="3"/>
+                    </svg>
+                  </div>
+                </div>
+
+                {/* Label */}
+                <div className="text-center px-4">
+                  <p className="text-[0.9375rem] font-bold text-foreground mb-0.5">ReaMed</p>
+                  <p className="text-[0.8125rem] text-muted mb-2">{c.mapCaption}</p>
+                  <p className="text-[0.78rem] text-[#7DB9B5] font-medium group-hover:underline underline-offset-2 transition-all">
+                    {c.mapClickHint}
+                  </p>
+                </div>
+              </button>
+            )}
           </div>
 
         </div>
@@ -190,49 +325,40 @@ export default function KontaktaiContent() {
 
           {/* Form */}
           <div className="bg-white rounded-2xl border border-[#DDE9E8] p-6">
-            <h2 className="text-[1rem] font-bold text-foreground mb-2">Palikite užklausą</h2>
-            <p className="text-[0.8375rem] text-muted leading-relaxed mb-5">
-              Jei norite užsiregistruoti ar turite klausimų, užpildykite formą — susisieksime su Jumis per 24 val. darbo dienomis.
-            </p>
+            <h2 className="text-[1rem] font-bold text-foreground mb-2">{c.formTitle}</h2>
+            <p className="text-[0.8375rem] text-muted leading-relaxed mb-5">{c.formSubtitle}</p>
 
             {state === "success" ? (
               <div className="flex flex-col items-center gap-3 py-8 text-center">
                 <CheckCircle size={38} strokeWidth={1.5} className="text-[#7DB9B5]" />
-                <p className="text-[1rem] font-semibold text-foreground">Ačiū!</p>
-                <p className="text-[0.875rem] text-muted max-w-[280px]">
-                  El. pašto programa atidaryta su paruošta žinute — išsiųskite ją ir mes susisieksime.
-                </p>
+                <p className="text-[1rem] font-semibold text-foreground">{c.successTitle}</p>
+                <p className="text-[0.875rem] text-muted max-w-[280px]">{c.successText}</p>
                 <button
                   onClick={() => { setState("idle"); setForm({ name: "", contactDetail: "", message: "", contact: "phone" }); }}
                   className="mt-1 text-[0.8125rem] font-semibold text-[#7DB9B5] hover:text-[#68A7A2] transition-colors duration-200"
                 >
-                  Siųsti naują užklausą
+                  {c.successBtn}
                 </button>
               </div>
             ) : (
               <form onSubmit={handleSubmit} className="flex flex-col gap-4">
                 <div>
-                  <label className="block text-[0.8rem] font-medium text-muted mb-1.5" htmlFor="name">Vardas *</label>
+                  <label className="block text-[0.8rem] font-medium text-muted mb-1.5" htmlFor="name">{c.labelName}</label>
                   <input
                     id="name" name="name" type="text" required
                     value={form.name} onChange={handleChange}
-                    placeholder="Jūsų vardas"
+                    placeholder={c.placeholderName}
                     className="w-full px-4 py-2.5 rounded-xl border border-[#DDE9E8] text-[0.9rem] text-foreground placeholder:text-muted/40 bg-[#F7FAF9] focus:outline-none focus:border-[#90CECA] focus:bg-white transition-colors duration-200"
                   />
                 </div>
-                {/* Contact method toggle */}
                 <div>
-                  <label className="block text-[0.8rem] font-medium text-muted mb-1.5">Pageidaujamas susisiekimo būdas</label>
+                  <label className="block text-[0.8rem] font-medium text-muted mb-1.5">{c.labelContactMethod}</label>
                   <div className="flex gap-2">
-                    {([{ val: "phone" as const, label: "Telefonu" }, { val: "email" as const, label: "El. paštu" }]).map(({ val, label }) => (
+                    {([{ val: "phone" as const, label: c.byPhone }, { val: "email" as const, label: c.byEmail }]).map(({ val, label }) => (
                       <button
                         key={val}
                         type="button"
-                        onClick={() =>
-                          setForm((f) =>
-                            f.contact === val ? f : { ...f, contact: val, contactDetail: "" }
-                          )
-                        }
+                        onClick={() => setForm((f) => f.contact === val ? f : { ...f, contact: val, contactDetail: "" })}
                         className={`flex-1 py-2 text-[0.8375rem] font-medium rounded-lg border-2 transition-colors duration-200 ${
                           form.contact === val
                             ? "border-[#90CECA] bg-[#EEF5F4] text-[#7DB9B5]"
@@ -247,7 +373,7 @@ export default function KontaktaiContent() {
 
                 <div>
                   <label className="block text-[0.8rem] font-medium text-muted mb-1.5" htmlFor="contactDetail">
-                    Kontaktiniai duomenys *
+                    {c.labelContactDetails}
                   </label>
                   <input
                     id="contactDetail"
@@ -256,18 +382,18 @@ export default function KontaktaiContent() {
                     required
                     value={form.contactDetail}
                     onChange={handleChange}
-                    placeholder={form.contact === "email" ? "vardas@email.com" : "+370 600 00000"}
+                    placeholder={form.contact === "email" ? c.placeholderEmail : c.placeholderPhone}
                     autoComplete={form.contact === "email" ? "email" : "tel"}
                     className="w-full px-4 py-2.5 rounded-xl border border-[#DDE9E8] text-[0.9rem] text-foreground placeholder:text-muted/40 bg-[#F7FAF9] focus:outline-none focus:border-[#90CECA] focus:bg-white transition-colors duration-200"
                   />
                 </div>
 
                 <div>
-                  <label className="block text-[0.8rem] font-medium text-muted mb-1.5" htmlFor="message">Žinutė / klausimas</label>
+                  <label className="block text-[0.8rem] font-medium text-muted mb-1.5" htmlFor="message">{c.labelMessage}</label>
                   <textarea
                     id="message" name="message" rows={3}
                     value={form.message} onChange={handleChange}
-                    placeholder="Trumpai aprašykite savo situaciją arba klausimą..."
+                    placeholder={c.placeholderMessage}
                     className="w-full px-4 py-2.5 rounded-xl border border-[#DDE9E8] text-[0.9rem] text-foreground placeholder:text-muted/40 bg-[#F7FAF9] focus:outline-none focus:border-[#90CECA] focus:bg-white transition-colors duration-200 resize-none"
                   />
                 </div>
@@ -277,17 +403,17 @@ export default function KontaktaiContent() {
                   disabled={state === "sending"}
                   className="inline-flex items-center justify-center gap-2 px-6 py-3 bg-[#7DB9B5] text-white text-[0.9rem] font-bold rounded-xl hover:bg-[#68A7A2] transition-colors duration-200 shadow-[0_3px_12px_rgba(125,185,181,0.25)] disabled:opacity-60"
                 >
-                  {state === "sending" ? "Siunčiama..." : "Siųsti užklausą"}
+                  {state === "sending" ? c.sending : c.submit}
                   {state !== "sending" && <ArrowRight size={15} strokeWidth={2.5} />}
                 </button>
                 <p className="text-[0.75rem] text-muted/50 text-center">
-                  Arba skambinkite tiesiai:{" "}
+                  {c.callDirect}{" "}
                   <a href="tel:+37060134304" className="text-[#7DB9B5] font-medium hover:text-[#68A7A2] transition-colors duration-200">
                     +370 601 34304
                   </a>
                 </p>
                 <p className="text-[0.6875rem] text-muted/45 text-center leading-relaxed mt-3 max-w-[320px] mx-auto">
-                  Pateikta informacija bus naudojama tik susisiekti su Jumis dėl registracijos ar konsultacijos.
+                  {c.privacy}
                 </p>
               </form>
             )}
@@ -297,52 +423,28 @@ export default function KontaktaiContent() {
           <div className="flex flex-col gap-5">
 
             <div className="bg-white rounded-2xl border border-[#DDE9E8] p-6 flex flex-col gap-4">
-              <h2 className="text-[1rem] font-bold text-foreground">Kaip mus rasti</h2>
+              <h2 className="text-[1rem] font-bold text-foreground">{c.howToFindTitle}</h2>
 
               {/* Parkavimas */}
               <div className="flex items-start gap-4 p-4 rounded-xl bg-[#F7FAF9] border border-[#EEF5F4]">
                 <span className="text-[1.25rem] leading-none mt-0.5">🚗</span>
                 <div className="min-w-0 flex-1">
-                  <p className="text-[0.875rem] font-semibold text-foreground mb-2">Automobiliu · parkavimas</p>
+                  <p className="text-[0.875rem] font-semibold text-foreground mb-2">{c.carTitle}</p>
                   <ul className="text-[0.8125rem] text-muted space-y-1.5 list-none pl-0 mb-3">
-                    <li className="flex gap-2">
-                      <span className="text-[#7DB9B5] flex-shrink-0">•</span>
-                      <span>Prie klinikos parkavimo vietų nėra.</span>
-                    </li>
-                    <li className="flex gap-2">
-                      <span className="text-[#7DB9B5] flex-shrink-0">•</span>
-                      <span>Artimiausias stovėjimas — prie Energetikos ir technikos muziejaus.</span>
-                    </li>
-                    <li className="flex gap-2">
-                      <span className="text-[#7DB9B5] flex-shrink-0">•</span>
-                      <span>Taip pat galima statyti automobilį UNIPARK aikštelėse netoliese.</span>
-                    </li>
+                    <li className="flex gap-2"><span className="text-[#7DB9B5] flex-shrink-0">•</span><span>{c.carBullet1}</span></li>
+                    <li className="flex gap-2"><span className="text-[#7DB9B5] flex-shrink-0">•</span><span>{c.carBullet2}</span></li>
+                    <li className="flex gap-2"><span className="text-[#7DB9B5] flex-shrink-0">•</span><span>{c.carBullet3}</span></li>
                   </ul>
                   <div className="flex flex-wrap gap-2">
-                    <a
-                      href="https://www.google.com/maps/search/?api=1&query=M7RQ%2B27+Vilnius"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="inline-flex items-center gap-1 px-2.5 py-1 text-[0.75rem] font-medium text-[#7DB9B5] border border-[#D8E6E4] rounded-lg hover:bg-[#EEF5F4] transition-colors duration-200"
-                    >
+                    <a href="https://www.google.com/maps/search/?api=1&query=M7RQ%2B27+Vilnius" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-1 px-2.5 py-1 text-[0.75rem] font-medium text-[#7DB9B5] border border-[#D8E6E4] rounded-lg hover:bg-[#EEF5F4] transition-colors duration-200">
                       <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
                       Muziejus
                     </a>
-                    <a
-                      href="https://www.google.com/maps/search/?api=1&query=M7RV%2B98+Vilnius"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="inline-flex items-center gap-1 px-2.5 py-1 text-[0.75rem] font-medium text-[#7DB9B5] border border-[#D8E6E4] rounded-lg hover:bg-[#EEF5F4] transition-colors duration-200"
-                    >
+                    <a href="https://www.google.com/maps/search/?api=1&query=M7RV%2B98+Vilnius" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-1 px-2.5 py-1 text-[0.75rem] font-medium text-[#7DB9B5] border border-[#D8E6E4] rounded-lg hover:bg-[#EEF5F4] transition-colors duration-200">
                       <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
                       UNIPARK UP060
                     </a>
-                    <a
-                      href="https://www.google.com/maps/search/?api=1&query=M7VQ%2BCM+Vilnius"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="inline-flex items-center gap-1 px-2.5 py-1 text-[0.75rem] font-medium text-[#7DB9B5] border border-[#D8E6E4] rounded-lg hover:bg-[#EEF5F4] transition-colors duration-200"
-                    >
+                    <a href="https://www.google.com/maps/search/?api=1&query=M7VQ%2BCM+Vilnius" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-1 px-2.5 py-1 text-[0.75rem] font-medium text-[#7DB9B5] border border-[#D8E6E4] rounded-lg hover:bg-[#EEF5F4] transition-colors duration-200">
                       <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
                       UNIPARK UP071
                     </a>
@@ -354,33 +456,31 @@ export default function KontaktaiContent() {
               <div className="flex items-start gap-4 p-4 rounded-xl bg-[#F7FAF9] border border-[#EEF5F4]">
                 <span className="text-[1.25rem] leading-none mt-0.5">🚌</span>
                 <div className="min-w-0 flex-1">
-                  <p className="text-[0.875rem] font-semibold text-foreground mb-2">Viešuoju transportu</p>
+                  <p className="text-[0.875rem] font-semibold text-foreground mb-2">{c.publicTitle}</p>
                   <p className="text-[0.8125rem] text-muted leading-relaxed">
-                    Artimiausia viešojo transporto stotelė —{" "}
+                    {c.publicStopLabel}{" "}
                     <a
                       href="https://www.google.com/maps/search/?api=1&query=M7RQ%2B2F+Vilnius"
                       target="_blank"
                       rel="noopener noreferrer"
                       className="text-[#7DB9B5] font-medium hover:text-[#68A7A2] underline underline-offset-2"
                     >
-                      „Žvejų st.“ (M7RQ+2F Vilnius)
+                      „Žvejų st." (M7RQ+2F Vilnius)
                     </a>
-                    . Autobusai: <span className="font-medium text-secondary">33</span> ir{" "}
+                    . {c.publicBusesLabel} <span className="font-medium text-secondary">33</span> {c.publicAnd}{" "}
                     <span className="font-medium text-secondary">89</span>.
                   </p>
                 </div>
               </div>
             </div>
 
-            {/* Pirmas vizitas info block */}
+            {/* Pirmas vizitas */}
             <div className="rounded-2xl border border-[#D8E6E4] bg-[#EEF5F4] p-5">
               <div className="flex items-start gap-3">
                 <span className="text-[1.25rem] leading-none mt-0.5">📋</span>
                 <div>
-                  <p className="text-[0.9rem] font-bold text-foreground mb-1.5">Prieš pirmą vizitą</p>
-                  <p className="text-[0.8375rem] text-secondary leading-relaxed">
-                    Prašome atvykti 5–10 min. anksčiau ir vilkėti patogią aprangą. Jei turite, atsineškite atliktų tyrimų atsakymus, gydytojų rekomendacijas ar kitą su jūsų būkle susijusią medicininę informaciją.
-                  </p>
+                  <p className="text-[0.9rem] font-bold text-foreground mb-1.5">{c.firstVisitTitle}</p>
+                  <p className="text-[0.8375rem] text-secondary leading-relaxed">{c.firstVisitText}</p>
                 </div>
               </div>
             </div>
