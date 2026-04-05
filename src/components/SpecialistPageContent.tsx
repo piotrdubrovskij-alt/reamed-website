@@ -96,7 +96,7 @@ export default function SpecialistPageContent({ specialist: s }: { specialist: S
             {/* CTA buttons */}
             <div id="registruotis" className="flex flex-col sm:flex-row gap-3">
               <a
-                href="tel:+37060134304"
+                href="/registracija"
                 className="inline-flex items-center justify-center gap-2 px-6 py-3 bg-[#7DB9B5] text-white text-[0.9rem] font-bold rounded-xl hover:bg-[#68A7A2] transition-all duration-200 shadow-[0_4px_16px_rgba(125,185,181,0.28)] hover:-translate-y-0.5"
               >
                 {isLt ? `Registruotis pas ${firstNameAcc}` : `Book with ${firstName}`}
@@ -267,7 +267,7 @@ export default function SpecialistPageContent({ specialist: s }: { specialist: S
               </a>
             </div>
             <a
-              href="tel:+37060134304"
+              href="/registracija"
               className="inline-flex items-center justify-center gap-2 w-full py-2.5 bg-[#7DB9B5] text-white text-[0.875rem] font-bold rounded-xl hover:bg-[#68A7A2] transition-colors duration-200"
             >
               {isLt ? "Registruotis vizitui" : "Book a visit"}
@@ -316,7 +316,7 @@ export default function SpecialistPageContent({ specialist: s }: { specialist: S
             </p>
             <div className="flex flex-col sm:flex-row gap-3">
               <a
-                href="tel:+37060134304"
+                href="/registracija"
                 className="inline-flex items-center justify-center gap-2 px-7 py-3 bg-[#7DB9B5] text-white text-[0.9rem] font-bold rounded-xl hover:bg-[#68A7A2] transition-all duration-200 shadow-[0_4px_16px_rgba(125,185,181,0.25)] hover:-translate-y-0.5"
               >
                 {isLt ? "Registruotis vizitui" : "Book a visit"}

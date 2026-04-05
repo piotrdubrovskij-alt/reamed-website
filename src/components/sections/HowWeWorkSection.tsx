@@ -56,7 +56,7 @@ export default function HowWeWorkSection() {
         {/* CTA after steps */}
         <div className="mt-10 md:mt-12 flex justify-center">
           <a
-            href="#kontaktai"
+            href="/registracija"
             className="inline-flex items-center gap-2 px-6 py-3 bg-[#7DB9B5] text-white text-[0.9rem] font-semibold rounded-xl hover:bg-[#68A7A2] transition-all duration-200 shadow-[0_4px_16px_rgba(125,185,181,0.28)] hover:-translate-y-0.5"
           >
             Pradėti nuo pirmos konsultacijos

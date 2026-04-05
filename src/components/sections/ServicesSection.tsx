@@ -69,7 +69,7 @@ export default function ServicesSection() {
             </p>
           </div>
           <a
-            href="#kontaktai"
+            href="/registracija"
             className="flex-shrink-0 inline-flex items-center justify-center gap-2 px-6 py-3 bg-[#7DB9B5] text-white text-[0.875rem] font-semibold rounded-xl hover:bg-[#68A7A2] transition-colors duration-200 shadow-[0_2px_12px_rgba(125,185,181,0.25)]"
           >
             Registruotis

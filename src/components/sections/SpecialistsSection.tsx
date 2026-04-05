@@ -83,7 +83,7 @@ export default function SpecialistsSection() {
                   {spec.description}
                 </p>
                 <a
-                  href={`/specialistai/${slug}#registruotis`}
+                  href="/registracija"
                   className="mt-4 inline-flex items-center gap-1.5 text-[0.8125rem] font-semibold text-[#7DB9B5] hover:text-[#68A7A2] hover:gap-2 transition-all duration-200"
                 >
                   Registruotis pas {firstName}
@@ -96,7 +96,7 @@ export default function SpecialistsSection() {
         </div>
 
         <a
-          href="#kontaktai"
+          href="/registracija"
           className="inline-flex items-center gap-2 px-5 py-2.5 border-2 border-[#90CECA] text-[#5E6765] text-[0.875rem] font-semibold rounded-xl hover:bg-[#EEF5F4] transition-colors duration-200"
         >
           {t.specialists.cta} →

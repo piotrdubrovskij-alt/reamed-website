@@ -51,7 +51,7 @@ export default function MainDirectionsSection() {
               </p>
 
               <a
-                href="#kontaktai"
+                href="/registracija"
                 className="inline-flex items-center gap-1.5 text-[0.875rem] font-semibold text-[#7DB9B5] hover:gap-2 transition-all duration-200"
                 aria-label={`Registruotis: ${item.title}`}
               >

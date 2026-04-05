@@ -120,7 +120,7 @@ export default function Header() {
                 +370 601 34304
               </a>
               <a
-                href="#kontaktai"
+                href="/registracija"
                 className="px-5 py-2.5 bg-[#7DB9B5] text-white text-[0.875rem] font-semibold rounded-lg hover:bg-[#68A7A2] transition-colors duration-200 shadow-[0_2px_12px_rgba(125,185,181,0.28)]"
               >
                 {t.header.register}
@@ -130,7 +130,7 @@ export default function Header() {
             {/* Mobile controls */}
             <div className="flex lg:hidden items-center gap-3">
               <a
-                href="#kontaktai"
+                href="/registracija"
                 className="px-4 py-1.5 bg-[#7DB9B5] text-white text-[0.8rem] font-semibold rounded-lg hover:bg-[#68A7A2] transition-colors duration-200"
               >
                 {t.header.register}

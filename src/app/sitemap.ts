@@ -9,6 +9,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: BASE_URL, lastModified: now, changeFrequency: "monthly", priority: 1 },
     { url: `${BASE_URL}/kontaktai`, lastModified: now, changeFrequency: "yearly", priority: 0.8 },
     { url: `${BASE_URL}/kainos`, lastModified: now, changeFrequency: "monthly", priority: 0.8 },
+    // /registracija is noindex — intentionally excluded from sitemap
   ];
 
   const serviceRoutes: MetadataRoute.Sitemap = [

@@ -47,7 +47,7 @@ export default function QuickAccessSection() {
           {t.quickAccess.items.map((item) => (
             <a
               key={item.label}
-              href="#kontaktai"
+              href="/registracija"
               className="group flex items-center gap-3 bg-white rounded-xl px-4 py-4 border border-[#DDE9E8] hover:border-[#90CECA] hover:shadow-[0_4px_20px_rgba(144,206,202,0.15)] transition-all duration-200 hover:-translate-y-0.5"
               aria-label={item.label}
             >

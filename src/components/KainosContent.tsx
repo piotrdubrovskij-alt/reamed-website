@@ -140,7 +140,7 @@ export default function KainosContent() {
               <div className="flex items-center gap-5 p-5 sm:p-6 sm:flex-col sm:items-end sm:justify-center sm:gap-2.5">
                 <p className="text-[2.25rem] font-bold text-[#7DB9B5] leading-none">70 €</p>
                 <a
-                  href="tel:+37060134304"
+                  href="/registracija"
                   className="inline-flex items-center gap-1.5 px-4 py-1 bg-[#7DB9B5] text-white text-[0.8rem] font-semibold rounded-lg hover:bg-[#68A7A2] transition-colors duration-200"
                 >
                   {c.register} <ArrowRight size={12} strokeWidth={2.5} />
@@ -307,7 +307,7 @@ export default function KainosContent() {
           </p>
           <div className="flex flex-col sm:flex-row items-center justify-center gap-2 mb-3.5">
             <a
-              href="tel:+37060134304"
+              href="/registracija"
               className="inline-flex items-center gap-2 px-6 py-2.5 bg-[#7DB9B5] text-white text-[0.9rem] font-bold rounded-xl hover:bg-[#68A7A2] transition-colors duration-200 shadow-[0_3px_12px_rgba(125,185,181,0.25)]"
             >
               {c.ctaRegister} <ArrowRight size={15} strokeWidth={2.5} />
