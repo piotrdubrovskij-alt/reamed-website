@@ -1,46 +1,9 @@
 "use client";
 
-import { useState, useRef } from "react";
+import { useState } from "react";
 import Link from "next/link";
 import { Phone, ArrowLeft, ArrowRight, Check } from "lucide-react";
 import { useLanguage } from "@/contexts/LanguageContext";
-
-const specialists = [
-  {
-    doctorId: "14780",
-    name: "Piotr Dubrovskij",
-    role: { lt: "Kineziterapeutas, osteopatas, manualinės terapijos specialistas", en: "Physiotherapist, osteopath, manual therapy specialist" },
-    photo: "/specialist-piotr.jpg",
-    slug: "piotr-dubrovskij",
-    mdUrl: "https://www.manodaktaras.lt/gydytojas/14780",
-  },
-  {
-    doctorId: "14781",
-    name: "Kotryna Kairytė",
-    role: { lt: "Kineziterapeutė", en: "Physiotherapist" },
-    photo: "/specialist-kotryna.jpg",
-    slug: "kotryna-kairyte",
-    mdUrl: "https://www.manodaktaras.lt/gydytojas/14781",
-  },
-  {
-    doctorId: "15169",
-    name: "Erikas Jatkauskas",
-    role: { lt: "Kineziterapeutas", en: "Physiotherapist" },
-    photo: "/specialist-erikas.jpg",
-    slug: "erikas-jatkauskas",
-    mdUrl: "https://www.manodaktaras.lt/gydytojas/15169",
-  },
-  {
-    doctorId: "13439",
-    name: "Mangirdas Kazačenko",
-    role: { lt: "Kineziterapeutas, manualinės terapijos specialistas, masažuotojas", en: "Physiotherapist, manual therapy specialist, massage therapist" },
-    photo: "/specialist-mangirdas.jpg",
-    slug: "mangirdas-kazacenko",
-    mdUrl: "https://www.manodaktaras.lt/gydytojas/13439",
-  },
-];
-
-const CLINIC_ID = "2611";
 
 const content = {
   lt: {
@@ -48,75 +11,86 @@ const content = {
     tag: "Registracija vizitui",
     title: "Registracija vizitui",
 
-    // Phone-first block
+    phoneEyebrow: "Rekomenduojame",
     phoneTitle: "Patogiausia registruotis telefonu",
-    phoneText: "Skambučiu galime greičiau patvirtinti laiką ir pasiūlyti daugiau galimų vizito variantų. Ne visi laisvi laikai visada matomi internetinėje registracijoje.",
+    phoneText: "Skambučiu galime greičiau patvirtinti laiką ir pasiūlyti tinkamiausią vizito laiką. Tai greičiausias būdas susisiekti ir užsiregistruoti.",
     phoneCta: "Skambinti +370 601 34304",
-    phoneHelper: "Taip pat galite pasirinkti specialistą ir peržiūrėti šiuo metu matomus laikus internetu.",
+    phoneHours: "Darbo laikas: I–V 8:00–19:00",
 
-    // Online booking block
-    onlineDivider: "arba registruokitės internetu",
+    formEyebrow: "Užklausa",
+    formTitle: "Palikite užklausą",
+    formText: "Jei šiuo metu negalite paskambinti, užpildykite formą — susisieksime su Jumis ir padėsime suderinti vizito laiką.",
 
-    // Fallback form
-    formTitle: "Neradote tinkamo laiko?",
-    formText: "Parašykite mums – pasistengsime rasti Jums tinkamą laiką pas norimą specialistą.",
     labelName: "Vardas",
     labelPhone: "Telefono numeris",
     labelEmail: "El. paštas",
-    labelSpecialist: "Pageidaujamas specialistas",
     labelTime: "Pageidaujamas laikas / dienos",
     labelMessage: "Trumpa žinutė",
+    placeholderName: "Jūsų vardas",
+    placeholderPhone: "+370 ...",
+    placeholderEmail: "el.pastas@mail.com",
     placeholderTime: "pvz. Pirmadieniais iki 14 val.",
-    placeholderMessage: "Trumpai apibūdinkite savo problemą ar klausimą",
-    specialistAny: "Nesvarbu — pasirinkite patys",
-    contactBy: "Susisiekti",
+    placeholderMessage: "Trumpai aprašykite savo situaciją arba klausimą",
+
+    contactLabel: "Pageidaujamas susisiekimo būdas",
     contactPhone: "Telefonu",
     contactEmail: "El. paštu",
+
     submit: "Siųsti užklausą",
     sending: "Siunčiama…",
-    successTitle: "Užklausa išsiųsta",
+    required: "Privalomas laukas",
+
+    successTitle: "Užklausa gauta",
     successText: "Susisieksime su Jumis per 24 val. darbo dienomis.",
     sendAnother: "Siųsti dar vieną užklausą",
-    required: "Privalomas laukas",
+
+    errorMsg: "Nepavyko išsiųsti. Skambinkite: +370 601 34304",
   },
   en: {
     back: "Back to home",
     tag: "Book a Visit",
     title: "Book a Visit",
 
+    phoneEyebrow: "Recommended",
     phoneTitle: "Fastest way: call us",
-    phoneText: "A quick call allows us to confirm your time immediately and offer more available slots. Not all free slots are always visible in the online booking system.",
+    phoneText: "A quick call lets us confirm your time immediately and find the most convenient slot for you. It's the fastest way to book.",
     phoneCta: "Call +370 601 34304",
-    phoneHelper: "You can also browse available times online by choosing a specialist below.",
+    phoneHours: "Working hours: Mon–Fri 8:00–19:00",
 
-    onlineDivider: "or book online",
+    formEyebrow: "Request",
+    formTitle: "Leave a request",
+    formText: "If you can't call right now, fill in the form — we will get back to you and help arrange a convenient visit time.",
 
-    formTitle: "Can't find a suitable time?",
-    formText: "Write to us — we will do our best to find a time that works for you with your preferred specialist.",
-    labelName: "Name",
+    labelName: "First name",
     labelPhone: "Phone number",
     labelEmail: "Email",
-    labelSpecialist: "Preferred specialist",
     labelTime: "Preferred time / days",
     labelMessage: "Short message",
+    placeholderName: "Your name",
+    placeholderPhone: "+370 ...",
+    placeholderEmail: "your@email.com",
     placeholderTime: "e.g. Mondays before 2pm",
-    placeholderMessage: "Briefly describe your issue or question",
-    specialistAny: "No preference — choose for me",
-    contactBy: "Contact by",
-    contactPhone: "Phone",
-    contactEmail: "Email",
+    placeholderMessage: "Briefly describe your situation or question",
+
+    contactLabel: "Preferred contact method",
+    contactPhone: "By phone",
+    contactEmail: "By email",
+
     submit: "Send request",
     sending: "Sending…",
-    successTitle: "Request sent",
+    required: "Required field",
+
+    successTitle: "Request received",
     successText: "We will contact you within 24 working hours.",
     sendAnother: "Send another request",
-    required: "Required field",
+
+    errorMsg: "Failed to send. Please call: +370 601 34304",
   },
 } as const;
 
 type SendState = "idle" | "sending" | "success" | "error";
 
-const emptyFields = { name: "", phone: "", email: "", specialist: "", time: "", message: "" };
+const emptyFields = { name: "", phone: "", email: "", time: "", message: "" };
 
 export default function RegistracijaContent() {
   const { lang } = useLanguage();
@@ -125,23 +99,29 @@ export default function RegistracijaContent() {
   const [contactPref, setContactPref] = useState<"phone" | "email">("phone");
   const [fields, setFields] = useState(emptyFields);
   const [sendState, setSendState] = useState<SendState>("idle");
-  const [nameError, setNameError] = useState(false);
-  const formRef = useRef<HTMLDivElement>(null);
+  const [errors, setErrors] = useState<Partial<Record<keyof typeof emptyFields, boolean>>>({});
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
-    setFields((prev) => ({ ...prev, [e.target.name]: e.target.value }));
-    if (e.target.name === "name") setNameError(false);
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+    const { name, value } = e.target;
+    setFields((prev) => ({ ...prev, [name]: value }));
+    if (errors[name as keyof typeof emptyFields]) {
+      setErrors((prev) => ({ ...prev, [name]: false }));
+    }
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (!fields.name.trim()) { setNameError(true); return; }
+
+    const newErrors: typeof errors = {};
+    if (!fields.name.trim()) newErrors.name = true;
+    if (contactPref === "phone" && !fields.phone.trim()) newErrors.phone = true;
+    if (contactPref === "email" && !fields.email.trim()) newErrors.email = true;
+    if (Object.keys(newErrors).length > 0) { setErrors(newErrors); return; }
 
     const contactDetail = contactPref === "phone" ? fields.phone : fields.email;
-    const messageParts = [];
-    if (fields.specialist) messageParts.push(`Specialistas: ${fields.specialist}`);
-    if (fields.time) messageParts.push(`Pageidaujamas laikas: ${fields.time}`);
-    if (fields.message) messageParts.push(fields.message);
+    const parts: string[] = [];
+    if (fields.time) parts.push(`${lang === "lt" ? "Pageidaujamas laikas" : "Preferred time"}: ${fields.time}`);
+    if (fields.message) parts.push(fields.message);
 
     setSendState("sending");
     const controller = new AbortController();
@@ -153,18 +133,14 @@ export default function RegistracijaContent() {
         signal: controller.signal,
         body: JSON.stringify({
           name: fields.name,
-          contactDetail: contactDetail || "—",
+          contactDetail,
           contact: contactPref,
-          message: messageParts.join("\n"),
+          message: parts.join("\n"),
           lang,
         }),
       });
       clearTimeout(timer);
-      if (res.ok) {
-        setSendState("success");
-      } else {
-        setSendState("error");
-      }
+      setSendState(res.ok ? "success" : "error");
     } catch {
       clearTimeout(timer);
       setSendState("error");
@@ -174,8 +150,15 @@ export default function RegistracijaContent() {
   const resetForm = () => {
     setFields(emptyFields);
     setSendState("idle");
-    setNameError(false);
+    setErrors({});
   };
+
+  const inputClass = (hasError?: boolean) =>
+    `w-full px-4 py-2.5 rounded-xl border text-[0.9rem] text-foreground placeholder:text-muted/35 bg-[#F7FAF9] focus:outline-none focus:ring-2 transition-all duration-200 ${
+      hasError
+        ? "border-red-300 focus:border-red-300 focus:ring-red-100"
+        : "border-[#DDE9E8] focus:border-[#7DB9B5] focus:ring-[#7DB9B5]/20"
+    }`;
 
   return (
     <div className="min-h-screen" style={{ background: "#F7FAF9", paddingTop: "104px" }}>
@@ -195,98 +178,51 @@ export default function RegistracijaContent() {
         </h1>
       </div>
 
-      <div className="container-xl py-8 md:py-12 flex flex-col gap-12">
+      <div className="container-xl py-8 md:py-12 flex flex-col gap-8 max-w-[680px]">
 
-        {/* ── 1. PHONE-FIRST CALLOUT ── */}
-        <div className="rounded-2xl bg-[#383C3B] px-6 py-7 md:px-10 md:py-9 flex flex-col md:flex-row md:items-center gap-6 md:gap-10">
-          <div className="flex-1">
-            <div className="flex items-center gap-2 mb-3">
-              <div className="w-8 h-8 rounded-full bg-[#7DB9B5]/20 flex items-center justify-center flex-shrink-0">
-                <Phone size={15} strokeWidth={2.5} className="text-[#7DB9B5]" />
-              </div>
-              <p className="text-[0.72rem] font-bold uppercase tracking-widest text-[#7DB9B5]">
-                {lang === "lt" ? "Rekomenduojame" : "Recommended"}
-              </p>
+        {/* ── 1. PHONE PRIORITY BLOCK ── */}
+        <div className="rounded-2xl bg-[#383C3B] px-7 py-8 md:px-10 md:py-10">
+          <div className="flex items-center gap-2 mb-4">
+            <div className="w-7 h-7 rounded-full bg-[#7DB9B5]/20 flex items-center justify-center">
+              <Phone size={13} strokeWidth={2.5} className="text-[#7DB9B5]" />
             </div>
-            <h2 className="text-[1.25rem] md:text-[1.5rem] font-bold text-white mb-3 leading-snug">
-              {c.phoneTitle}
-            </h2>
-            <p className="text-[0.875rem] text-white/55 leading-relaxed max-w-[480px]">
-              {c.phoneText}
+            <p className="text-[0.68rem] font-bold uppercase tracking-widest text-[#7DB9B5]">
+              {c.phoneEyebrow}
             </p>
           </div>
-          <div className="flex flex-col items-start md:items-end gap-3 flex-shrink-0">
-            <a
-              href="tel:+37060134304"
-              className="inline-flex items-center gap-2.5 px-7 py-3.5 bg-[#7DB9B5] text-white text-[0.9375rem] font-bold rounded-xl hover:bg-[#68A7A2] transition-all duration-200 shadow-[0_4px_20px_rgba(125,185,181,0.3)] hover:-translate-y-0.5 whitespace-nowrap"
-            >
-              <Phone size={16} strokeWidth={2.5} />
-              {c.phoneCta}
-            </a>
-            <p className="text-[0.75rem] text-white/35 max-w-[260px] md:text-right leading-snug">
-              {c.phoneHelper}
-            </p>
-          </div>
-        </div>
 
-        {/* ── 2. ONLINE BOOKING DIVIDER ── */}
-        <div className="flex items-center gap-4">
-          <div className="flex-1 h-px bg-[#DDE9E8]" />
-          <p className="text-[0.75rem] font-semibold uppercase tracking-widest text-muted/40 whitespace-nowrap px-1">
-            {c.onlineDivider}
+          <h2 className="text-[1.25rem] md:text-[1.5rem] font-bold text-white mb-3 leading-snug">
+            {c.phoneTitle}
+          </h2>
+          <p className="text-[0.875rem] text-white/55 leading-relaxed mb-7 max-w-[440px]">
+            {c.phoneText}
           </p>
-          <div className="flex-1 h-px bg-[#DDE9E8]" />
+
+          <a
+            href="tel:+37060134304"
+            className="inline-flex items-center gap-2.5 px-7 py-3.5 bg-[#7DB9B5] text-white text-[0.9375rem] font-bold rounded-xl hover:bg-[#68A7A2] transition-all duration-200 shadow-[0_4px_20px_rgba(125,185,181,0.25)] hover:-translate-y-0.5"
+          >
+            <Phone size={16} strokeWidth={2.5} />
+            {c.phoneCta}
+          </a>
+
+          <p className="text-[0.75rem] text-white/30 mt-4">{c.phoneHours}</p>
         </div>
 
-        {/* ── 3. SPECIALIST CARDS WITH WIDGETS ── */}
-        <div className="flex flex-col gap-8">
-          {specialists.map((spec) => (
-            <div key={spec.doctorId} className="bg-white rounded-2xl border border-[#DDE9E8] overflow-hidden">
-
-              {/* Minimal strip: round photo + name, both link to manodaktaras */}
-              <a
-                href={spec.mdUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="flex items-center gap-3 px-5 py-3.5 border-b border-[#EEF5F4] hover:bg-[#F7FAF9] transition-colors duration-200 group"
-              >
-                <div className="w-9 h-9 rounded-full overflow-hidden flex-shrink-0 bg-gradient-to-br from-[#EEF5F4] to-[#D4EDEB] ring-2 ring-[#DDE9E8] group-hover:ring-[#90CECA] transition-all duration-200">
-                  <img
-                    src={spec.photo}
-                    alt={spec.name}
-                    className="w-full h-full object-cover"
-                    style={{ objectPosition: "center 10%" }}
-                  />
-                </div>
-                <span className="text-[0.875rem] font-semibold text-foreground group-hover:text-[#7DB9B5] transition-colors duration-200">
-                  {spec.name}
-                </span>
-              </a>
-
-              {/* Widget */}
-              <div className="p-5">
-                {/* @ts-expect-error manodaktaras custom element */}
-                <div mydoc-widget="true" mydoc-doctor={spec.doctorId} mydoc-clinic={CLINIC_ID} />
-              </div>
-
-            </div>
-          ))}
-        </div>
-
-        {/* ── 4. FALLBACK FORM ── */}
-        <div ref={formRef} className="rounded-2xl border border-[#DDE9E8] bg-white px-6 py-7 md:px-10 md:py-9">
-          <p className="text-[0.72rem] font-bold uppercase tracking-widest text-[#7DB9B5] mb-2">
-            {lang === "lt" ? "Užklausa" : "Request"}
+        {/* ── 2. REQUEST FORM ── */}
+        <div className="rounded-2xl border border-[#DDE9E8] bg-white px-7 py-8 md:px-10 md:py-10">
+          <p className="text-[0.68rem] font-bold uppercase tracking-widest text-[#7DB9B5] mb-2">
+            {c.formEyebrow}
           </p>
-          <h2 className="text-[1.375rem] md:text-[1.75rem] font-bold text-foreground mb-2 leading-snug">
+          <h2 className="text-[1.25rem] md:text-[1.5rem] font-bold text-foreground mb-2 leading-snug">
             {c.formTitle}
           </h2>
-          <p className="text-[0.9rem] text-muted leading-relaxed mb-7 max-w-[480px]">
+          <p className="text-[0.875rem] text-muted leading-relaxed mb-8 max-w-[460px]">
             {c.formText}
           </p>
 
           {sendState === "success" ? (
-            <div className="flex flex-col items-start gap-4 py-4">
+            <div className="flex flex-col items-start gap-4 py-2">
               <div className="w-10 h-10 rounded-full bg-[#EEF5F4] flex items-center justify-center">
                 <Check size={18} strokeWidth={2.5} className="text-[#7DB9B5]" />
               </div>
@@ -302,9 +238,9 @@ export default function RegistracijaContent() {
               </button>
             </div>
           ) : (
-            <form onSubmit={handleSubmit} noValidate className="flex flex-col gap-4">
+            <form onSubmit={handleSubmit} noValidate className="flex flex-col gap-5">
 
-              {/* Row 1: Name */}
+              {/* Name */}
               <div>
                 <label className="block text-[0.8rem] font-semibold text-foreground/70 mb-1.5">
                   {c.labelName} <span className="text-[#7DB9B5]">*</span>
@@ -314,70 +250,60 @@ export default function RegistracijaContent() {
                   name="name"
                   value={fields.name}
                   onChange={handleChange}
-                  placeholder="Vardas Pavardė"
-                  className={`w-full px-4 py-2.5 rounded-xl border text-[0.9rem] text-foreground placeholder:text-muted/35 bg-[#F7FAF9] focus:outline-none focus:ring-2 focus:ring-[#7DB9B5]/30 transition-all duration-200 ${nameError ? "border-red-300 focus:border-red-300" : "border-[#DDE9E8] focus:border-[#7DB9B5]"}`}
+                  placeholder={c.placeholderName}
+                  className={inputClass(errors.name)}
                 />
-                {nameError && (
-                  <p className="text-[0.75rem] text-red-400 mt-1">{c.required}</p>
-                )}
+                {errors.name && <p className="text-[0.73rem] text-red-400 mt-1">{c.required}</p>}
               </div>
 
-              {/* Row 2: Phone + Email side by side */}
+              {/* Phone + Email */}
               <div className="grid sm:grid-cols-2 gap-4">
                 <div>
-                  <label className="block text-[0.8rem] font-semibold text-foreground/70 mb-1.5">{c.labelPhone}</label>
+                  <label className="block text-[0.8rem] font-semibold text-foreground/70 mb-1.5">
+                    {c.labelPhone}
+                    {contactPref === "phone" && <span className="text-[#7DB9B5] ml-1">*</span>}
+                  </label>
                   <input
                     type="tel"
                     name="phone"
                     value={fields.phone}
                     onChange={handleChange}
-                    placeholder="+370 ..."
-                    className="w-full px-4 py-2.5 rounded-xl border border-[#DDE9E8] focus:border-[#7DB9B5] text-[0.9rem] text-foreground placeholder:text-muted/35 bg-[#F7FAF9] focus:outline-none focus:ring-2 focus:ring-[#7DB9B5]/30 transition-all duration-200"
+                    placeholder={c.placeholderPhone}
+                    className={inputClass(errors.phone)}
                   />
+                  {errors.phone && <p className="text-[0.73rem] text-red-400 mt-1">{c.required}</p>}
                 </div>
                 <div>
-                  <label className="block text-[0.8rem] font-semibold text-foreground/70 mb-1.5">{c.labelEmail}</label>
+                  <label className="block text-[0.8rem] font-semibold text-foreground/70 mb-1.5">
+                    {c.labelEmail}
+                    {contactPref === "email" && <span className="text-[#7DB9B5] ml-1">*</span>}
+                  </label>
                   <input
                     type="email"
                     name="email"
                     value={fields.email}
                     onChange={handleChange}
-                    placeholder="vardas@mail.com"
-                    className="w-full px-4 py-2.5 rounded-xl border border-[#DDE9E8] focus:border-[#7DB9B5] text-[0.9rem] text-foreground placeholder:text-muted/35 bg-[#F7FAF9] focus:outline-none focus:ring-2 focus:ring-[#7DB9B5]/30 transition-all duration-200"
+                    placeholder={c.placeholderEmail}
+                    className={inputClass(errors.email)}
                   />
+                  {errors.email && <p className="text-[0.73rem] text-red-400 mt-1">{c.required}</p>}
                 </div>
               </div>
 
-              {/* Row 3: Specialist + Preferred time */}
-              <div className="grid sm:grid-cols-2 gap-4">
-                <div>
-                  <label className="block text-[0.8rem] font-semibold text-foreground/70 mb-1.5">{c.labelSpecialist}</label>
-                  <select
-                    name="specialist"
-                    value={fields.specialist}
-                    onChange={handleChange}
-                    className="w-full px-4 py-2.5 rounded-xl border border-[#DDE9E8] focus:border-[#7DB9B5] text-[0.9rem] text-foreground bg-[#F7FAF9] focus:outline-none focus:ring-2 focus:ring-[#7DB9B5]/30 transition-all duration-200"
-                  >
-                    <option value="">{c.specialistAny}</option>
-                    {specialists.map((s) => (
-                      <option key={s.slug} value={s.name}>{s.name}</option>
-                    ))}
-                  </select>
-                </div>
-                <div>
-                  <label className="block text-[0.8rem] font-semibold text-foreground/70 mb-1.5">{c.labelTime}</label>
-                  <input
-                    type="text"
-                    name="time"
-                    value={fields.time}
-                    onChange={handleChange}
-                    placeholder={c.placeholderTime}
-                    className="w-full px-4 py-2.5 rounded-xl border border-[#DDE9E8] focus:border-[#7DB9B5] text-[0.9rem] text-foreground placeholder:text-muted/35 bg-[#F7FAF9] focus:outline-none focus:ring-2 focus:ring-[#7DB9B5]/30 transition-all duration-200"
-                  />
-                </div>
+              {/* Preferred time */}
+              <div>
+                <label className="block text-[0.8rem] font-semibold text-foreground/70 mb-1.5">{c.labelTime}</label>
+                <input
+                  type="text"
+                  name="time"
+                  value={fields.time}
+                  onChange={handleChange}
+                  placeholder={c.placeholderTime}
+                  className={inputClass()}
+                />
               </div>
 
-              {/* Row 4: Message */}
+              {/* Message */}
               <div>
                 <label className="block text-[0.8rem] font-semibold text-foreground/70 mb-1.5">{c.labelMessage}</label>
                 <textarea
@@ -386,13 +312,13 @@ export default function RegistracijaContent() {
                   onChange={handleChange}
                   rows={3}
                   placeholder={c.placeholderMessage}
-                  className="w-full px-4 py-2.5 rounded-xl border border-[#DDE9E8] focus:border-[#7DB9B5] text-[0.9rem] text-foreground placeholder:text-muted/35 bg-[#F7FAF9] focus:outline-none focus:ring-2 focus:ring-[#7DB9B5]/30 transition-all duration-200 resize-none"
+                  className={`${inputClass()} resize-none`}
                 />
               </div>
 
-              {/* Row 5: Preferred contact */}
+              {/* Contact method */}
               <div>
-                <p className="text-[0.8rem] font-semibold text-foreground/70 mb-2">{c.contactBy}</p>
+                <p className="text-[0.8rem] font-semibold text-foreground/70 mb-2">{c.contactLabel}</p>
                 <div className="flex gap-2">
                   {(["phone", "email"] as const).map((opt) => (
                     <button
@@ -412,21 +338,17 @@ export default function RegistracijaContent() {
               </div>
 
               {/* Submit */}
-              <div className="flex flex-col sm:flex-row items-start sm:items-center gap-4 pt-1">
+              <div className="flex flex-col sm:flex-row items-start sm:items-center gap-3 pt-1">
                 <button
                   type="submit"
                   disabled={sendState === "sending"}
-                  className="inline-flex items-center gap-2 px-7 py-3 bg-[#7DB9B5] text-white text-[0.9rem] font-bold rounded-xl hover:bg-[#68A7A2] transition-all duration-200 shadow-[0_4px_16px_rgba(125,185,181,0.28)] hover:-translate-y-0.5 disabled:opacity-60 disabled:cursor-not-allowed disabled:translate-y-0"
+                  className="inline-flex items-center gap-2 px-7 py-3 bg-[#7DB9B5] text-white text-[0.9rem] font-bold rounded-xl hover:bg-[#68A7A2] transition-all duration-200 shadow-[0_4px_16px_rgba(125,185,181,0.25)] hover:-translate-y-0.5 disabled:opacity-60 disabled:cursor-not-allowed disabled:translate-y-0"
                 >
                   {sendState === "sending" ? c.sending : c.submit}
                   {sendState !== "sending" && <ArrowRight size={15} strokeWidth={2.5} />}
                 </button>
                 {sendState === "error" && (
-                  <p className="text-[0.8rem] text-red-400">
-                    {lang === "lt"
-                      ? "Nepavyko išsiųsti. Pabandykite skambinti: +370 601 34304"
-                      : "Failed to send. Please call: +370 601 34304"}
-                  </p>
+                  <p className="text-[0.8rem] text-red-400">{c.errorMsg}</p>
                 )}
               </div>
 
@@ -436,9 +358,7 @@ export default function RegistracijaContent() {
 
       </div>
 
-      {/* Bottom spacing */}
       <div className="pb-16" />
-
     </div>
   );
 }
