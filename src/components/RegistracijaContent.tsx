@@ -56,7 +56,6 @@ const content = {
 
     // Online booking block
     onlineDivider: "arba registruokitės internetu",
-    bookOnline: "Registruotis internetu",
 
     // Fallback form
     formTitle: "Neradote tinkamo laiko?",
@@ -91,7 +90,6 @@ const content = {
     phoneHelper: "You can also browse available times online by choosing a specialist below.",
 
     onlineDivider: "or book online",
-    bookOnline: "Book online",
 
     formTitle: "Can't find a suitable time?",
     formText: "Write to us — we will do our best to find a time that works for you with your preferred specialist.",
@@ -245,32 +243,28 @@ export default function RegistracijaContent() {
           {specialists.map((spec) => (
             <div key={spec.doctorId} className="bg-white rounded-2xl border border-[#DDE9E8] overflow-hidden">
 
-              {/* Specialist identity */}
-              <div className="flex items-center gap-4 px-5 pt-5 pb-4">
-                <a
-                  href={spec.mdUrl}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="w-14 h-14 rounded-xl overflow-hidden flex-shrink-0 bg-gradient-to-br from-[#EEF5F4] to-[#D4EDEB] hover:opacity-90 transition-opacity duration-200"
-                >
+              {/* Minimal strip: round photo + name, both link to manodaktaras */}
+              <a
+                href={spec.mdUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center gap-3 px-5 py-3.5 border-b border-[#EEF5F4] hover:bg-[#F7FAF9] transition-colors duration-200 group"
+              >
+                <div className="w-9 h-9 rounded-full overflow-hidden flex-shrink-0 bg-gradient-to-br from-[#EEF5F4] to-[#D4EDEB] ring-2 ring-[#DDE9E8] group-hover:ring-[#90CECA] transition-all duration-200">
                   <img
                     src={spec.photo}
                     alt={spec.name}
                     className="w-full h-full object-cover"
                     style={{ objectPosition: "center 10%" }}
                   />
-                </a>
-                <div className="flex-1 min-w-0">
-                  <p className="text-[0.9375rem] font-bold text-foreground leading-tight mb-0.5">{spec.name}</p>
-                  <p className="text-[0.78rem] text-[#7DB9B5] font-medium leading-snug">{spec.role[lang]}</p>
                 </div>
-              </div>
+                <span className="text-[0.875rem] font-semibold text-foreground group-hover:text-[#7DB9B5] transition-colors duration-200">
+                  {spec.name}
+                </span>
+              </a>
 
               {/* Widget */}
-              <div className="px-5 pb-5">
-                <p className="text-[0.7rem] font-semibold uppercase tracking-widest text-muted/40 mb-3">
-                  {c.bookOnline}
-                </p>
+              <div className="p-5">
                 {/* @ts-expect-error manodaktaras custom element */}
                 <div mydoc-widget="true" mydoc-doctor={spec.doctorId} mydoc-clinic={CLINIC_ID} />
               </div>
