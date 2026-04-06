@@ -1,11 +1,10 @@
 import { NextRequest, NextResponse } from "next/server";
-import nodemailer from "nodemailer";
+import { Resend } from "resend";
 
 // ---------------------------------------------------------------------------
 // Simple in-memory rate limiter — max 5 submissions per IP per 10 minutes.
-// Good enough for a single-instance clinic site; swap for Redis on multi-node.
 // ---------------------------------------------------------------------------
-const RATE_WINDOW_MS = 10 * 60 * 1000; // 10 minutes
+const RATE_WINDOW_MS = 10 * 60 * 1000;
 const RATE_LIMIT = 5;
 const ipMap = new Map<string, { count: number; resetAt: number }>();
 
@@ -21,9 +20,6 @@ function isRateLimited(ip: string): boolean {
   return false;
 }
 
-// ---------------------------------------------------------------------------
-// HTML-escape user-supplied strings before inserting into email HTML
-// ---------------------------------------------------------------------------
 function esc(str: string): string {
   return str
     .replace(/&/g, "&amp;")
@@ -33,18 +29,15 @@ function esc(str: string): string {
     .replace(/'/g, "&#x27;");
 }
 
-// Strip control characters (CR/LF etc.) to prevent email header injection
 function stripControls(str: string): string {
   return str.replace(/[\r\n\t\0]/g, " ").trim();
 }
 
-// Basic email format check (not exhaustive — just guards replyTo header)
 function isValidEmail(value: string): boolean {
   return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value);
 }
 
 export async function POST(req: NextRequest) {
-  // ── Rate limiting ────────────────────────────────────────────────────────
   const ip =
     req.headers.get("x-forwarded-for")?.split(",")[0].trim() ??
     req.headers.get("x-real-ip") ??
@@ -56,7 +49,6 @@ export async function POST(req: NextRequest) {
     );
   }
 
-  // ── Parse & validate body ────────────────────────────────────────────────
   let body: Record<string, unknown>;
   try {
     body = await req.json();
@@ -66,7 +58,6 @@ export async function POST(req: NextRequest) {
 
   const { name, contactDetail, contact, message, lang } = body;
 
-  // Type and presence checks
   if (
     typeof name !== "string" ||
     typeof contactDetail !== "string" ||
@@ -76,52 +67,29 @@ export async function POST(req: NextRequest) {
     return NextResponse.json({ error: "Missing required fields" }, { status: 400 });
   }
 
-  // Length limits
   if (name.length > 100 || contactDetail.length > 200) {
     return NextResponse.json({ error: "Input too long" }, { status: 400 });
   }
-  const messageStr =
-    typeof message === "string" ? message.slice(0, 2000) : "";
 
-  // Validate contact method
+  const messageStr = typeof message === "string" ? message.slice(0, 2000) : "";
+
   if (contact !== "phone" && contact !== "email") {
     return NextResponse.json({ error: "Invalid contact method" }, { status: 400 });
   }
 
-  // Validate email format when contact is email (prevents replyTo injection)
-  if (contact === "email" && !isValidEmail(contactDetail)) {
+  if (contact === "email" && !isValidEmail(contactDetail as string)) {
     return NextResponse.json({ error: "Invalid email address" }, { status: 400 });
   }
 
-  // Validate lang
   const safeLang: "lt" | "en" = lang === "en" ? "en" : "lt";
 
-  // ── SMTP config check ────────────────────────────────────────────────────
-  if (
-    !process.env.SMTP_HOST ||
-    !process.env.SMTP_USER ||
-    !process.env.SMTP_PASS ||
-    process.env.SMTP_PASS === "ваш_пароль_от_почты"
-  ) {
-    console.error("SMTP not configured — set SMTP_HOST, SMTP_USER, SMTP_PASS in .env.local");
+  if (!process.env.RESEND_API_KEY) {
+    console.error("RESEND_API_KEY not configured in .env.local");
     return NextResponse.json({ error: "Service unavailable" }, { status: 503 });
   }
 
-  const transporter = nodemailer.createTransport({
-    host: process.env.SMTP_HOST,
-    port: Number(process.env.SMTP_PORT ?? 587),
-    secure: process.env.SMTP_SECURE === "true",
-    auth: {
-      user: process.env.SMTP_USER,
-      pass: process.env.SMTP_PASS,
-    },
-    connectionTimeout: 5000,
-    socketTimeout: 8000,
-  });
-
-  // ── Build email (escape all user data) ──────────────────────────────────
   const safeName = esc(stripControls(name));
-  const safeDetail = esc(stripControls(contactDetail));
+  const safeDetail = esc(stripControls(contactDetail as string));
   const safeMessage = esc(messageStr);
 
   const contactLabel =
@@ -134,7 +102,6 @@ export async function POST(req: NextRequest) {
       ? contact === "phone" ? "Phone" : "Email"
       : contact === "phone" ? "Telefonas" : "El. paštas";
 
-  // Subject: strip controls to prevent header injection
   const subject = stripControls(
     safeLang === "en"
       ? `Appointment request — ${name}`
@@ -175,13 +142,19 @@ export async function POST(req: NextRequest) {
   `;
 
   try {
-    await transporter.sendMail({
-      from: `"ReaMed forma" <${process.env.SMTP_USER}>`,
-      to: "ramedklinika@gmail.com",
-      replyTo: contact === "email" ? contactDetail : undefined,
+    const resend = new Resend(process.env.RESEND_API_KEY);
+    const { error } = await resend.emails.send({
+      from: "ReaMed forma <onboarding@resend.dev>",
+      to: "reamedklinika@gmail.com",
+      replyTo: contact === "email" ? (contactDetail as string) : undefined,
       subject,
       html,
     });
+
+    if (error) {
+      console.error("Resend error:", error);
+      return NextResponse.json({ error: "Failed to send email" }, { status: 500 });
+    }
 
     return NextResponse.json({ ok: true });
   } catch (err) {
