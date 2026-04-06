@@ -177,7 +177,7 @@ export async function POST(req: NextRequest) {
   try {
     await transporter.sendMail({
       from: `"ReaMed forma" <${process.env.SMTP_USER}>`,
-      to: "info@reamed.lt",
+      to: "ramedklinika@gmail.com",
       replyTo: contact === "email" ? contactDetail : undefined,
       subject,
       html,
