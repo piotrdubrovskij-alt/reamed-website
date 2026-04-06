@@ -1,6 +1,6 @@
 "use client";
 
-import React, { createContext, useContext, useState, useEffect, useCallback } from "react";
+import React, { createContext, useContext, useState, useEffect, useCallback, startTransition } from "react";
 import { translations, Language } from "@/lib/translations";
 
 type LanguageContextType = {
@@ -20,7 +20,7 @@ export function LanguageProvider({ children }: { children: React.ReactNode }) {
 
   useEffect(() => {
     const stored = localStorage.getItem("reamed-lang") as Language;
-    if (stored === "lt" || stored === "en") setLangState(stored);
+    if (stored === "lt" || stored === "en") startTransition(() => setLangState(stored));
   }, []);
 
   const setLang = useCallback((l: Language) => {

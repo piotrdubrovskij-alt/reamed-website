@@ -4,9 +4,9 @@ import { Dumbbell, ArrowUpRight, Activity, SplineIcon } from "lucide-react";
 import { useLanguage } from "@/contexts/LanguageContext";
 
 const directionIcons = [
-  <Dumbbell size={26} strokeWidth={1.6} />,
-  <Activity size={26} strokeWidth={1.6} />,
-  <SplineIcon size={26} strokeWidth={1.6} />,
+  <Dumbbell key="dumbbell" size={26} strokeWidth={1.6} />,
+  <Activity key="activity" size={26} strokeWidth={1.6} />,
+  <SplineIcon key="spline" size={26} strokeWidth={1.6} />,
 ];
 
 export default function MainDirectionsSection() {

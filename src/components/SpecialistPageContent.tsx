@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import Link from "next/link";
 import { ArrowRight, Phone, Mail, ChevronLeft, ChevronDown } from "lucide-react";
 import { useLanguage } from "@/contexts/LanguageContext";
 import type { Specialist } from "@/lib/specialists";
@@ -32,13 +33,13 @@ export default function SpecialistPageContent({ specialist: s }: { specialist: S
 
       {/* Back link */}
       <div className="container-xl pt-6 pb-0">
-        <a
+        <Link
           href="/#specialistai"
           className="inline-flex items-center gap-1.5 text-[0.8125rem] text-muted hover:text-[#7DB9B5] transition-colors duration-200"
         >
           <ChevronLeft size={14} strokeWidth={2} />
           {isLt ? "Visi specialistai" : "All specialists"}
-        </a>
+        </Link>
       </div>
 
       {/* ── HERO ── */}

@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import { MapPin, Phone, Mail } from "lucide-react";
 import { useLanguage } from "@/contexts/LanguageContext";
 import type { Language } from "@/lib/translations";
@@ -27,13 +28,13 @@ export default function Footer() {
 
           {/* Brand */}
           <div className="lg:col-span-1">
-            <a href="/" className="inline-block mb-3.5" aria-label="ReaMed — pradžia">
+            <Link href="/" className="inline-block mb-3.5" aria-label="ReaMed — pradžia">
               <img
                 src="/logo.svg"
                 alt="ReaMed"
                 className="h-6 w-auto brightness-0 invert opacity-60"
               />
-            </a>
+            </Link>
             <p className="text-[0.83rem] text-white/35 leading-relaxed mb-4 max-w-[200px]">
               {t.footer.tagline}
             </p>

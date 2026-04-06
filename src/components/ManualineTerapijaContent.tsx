@@ -359,7 +359,7 @@ export default function ManualineTerapijaContent() {
     <div className="min-h-screen" style={{ background: "#F7FAF9", paddingTop: "104px" }}>
       <div style={{ background: "linear-gradient(160deg, #EEF5F4 0%, #F7FAF9 60%)" }}>
         <div className="container-xl pt-6 pb-12 md:pt-10 md:pb-16">
-          <a href="/#paslaugos" className="inline-flex items-center gap-1.5 text-[0.8rem] text-muted/60 hover:text-[#7DB9B5] transition-colors duration-200 mb-4 block">{c.breadcrumb}</a>
+          <Link href="/#paslaugos" className="inline-flex items-center gap-1.5 text-[0.8rem] text-muted/60 hover:text-[#7DB9B5] transition-colors duration-200 mb-4 block">{c.breadcrumb}</Link>
           <SectionLabel>{c.serviceLabel}</SectionLabel>
           <h1 className="text-[2rem] sm:text-[2.5rem] md:text-[3rem] font-bold text-foreground leading-[1.1] mb-4 max-w-[640px]">{c.title}</h1>
           <p className="text-[1rem] md:text-[1.125rem] text-secondary leading-relaxed mb-7 max-w-[540px]">{c.subtitle}</p>

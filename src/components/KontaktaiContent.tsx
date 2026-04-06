@@ -149,7 +149,7 @@ export default function KontaktaiContent() {
         throw new Error(data.error ?? "send failed");
       }
       setState("success");
-    } catch (err: unknown) {
+    } catch {
       clearTimeout(timeout);
       setState("idle");
       alert(
@@ -473,7 +473,7 @@ export default function KontaktaiContent() {
                       rel="noopener noreferrer"
                       className="text-[#7DB9B5] font-medium hover:text-[#68A7A2] underline underline-offset-2"
                     >
-                      „Žvejų st." (M7RQ+2F Vilnius)
+                      {`„Žvejų st." (M7RQ+2F Vilnius)`}
                     </a>
                     . {c.publicBusesLabel} <span className="font-medium text-secondary">33</span> {c.publicAnd}{" "}
                     <span className="font-medium text-secondary">89</span>.

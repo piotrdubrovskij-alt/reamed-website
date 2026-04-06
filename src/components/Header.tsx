@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
+import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { Phone, Clock, Menu, X } from "lucide-react";
 import { useLanguage } from "@/contexts/LanguageContext";
@@ -81,7 +82,7 @@ export default function Header() {
           <div className="flex items-center justify-between h-16 md:h-[68px]">
 
             {/* Wordmark */}
-            <a
+            <Link
               href="/"
               className="flex-shrink-0"
               aria-label="ReaMed — pradžia"
@@ -91,7 +92,7 @@ export default function Header() {
                 alt="ReaMed"
                 className="h-8 w-auto"
               />
-            </a>
+            </Link>
 
             {/* Desktop nav */}
             <nav

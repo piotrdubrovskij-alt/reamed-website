@@ -49,7 +49,7 @@ const jsonLd = {
   description:
     "Kineziterapijos ir reabilitacijos klinika Vilniuje. Stuburo ir kaklo skausmai, sporto traumos, sąnarių problemos, pooperacinis atsistatymas.",
   url: "https://reamed.lt",
-  telephone: "+370601343040",
+  telephone: "+37060134304",
   email: "info@reamed.lt",
   address: {
     "@type": "PostalAddress",
