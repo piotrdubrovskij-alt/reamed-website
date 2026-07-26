@@ -17,6 +17,16 @@ const cspHeader = [
 
 const nextConfig: NextConfig = {
   output: "standalone",
+  async redirects() {
+    return [
+      {
+        source: "/:path*",
+        has: [{ type: "host", value: "www.reamed.lt" }],
+        destination: "https://reamed.lt/:path*",
+        permanent: true,
+      },
+    ];
+  },
   async headers() {
     return [
       {
