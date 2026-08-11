@@ -129,7 +129,7 @@ export async function POST(req: NextRequest) {
     return NextResponse.json({ error: "Invalid request body" }, { status: 400 });
   }
 
-  const { name, contactDetail, contact, message, lang } = body;
+  const { name, contactDetail, contact, message, lang, phone, email } = body;
 
   if (
     typeof name !== "string" ||
@@ -156,6 +156,19 @@ export async function POST(req: NextRequest) {
 
   const safeLang: "lt" | "en" = lang === "en" ? "en" : "lt";
 
+  // The form may send a phone and an email independently of the preferred
+  // contact method, so collect both instead of relying on contactDetail alone.
+  const extraPhone = typeof phone === "string" ? stripControls(phone).slice(0, 200) : "";
+  const extraEmail = typeof email === "string" ? stripControls(email).slice(0, 200) : "";
+  const detail = stripControls(contactDetail as string);
+
+  const clientEmail = isValidEmail(extraEmail)
+    ? extraEmail
+    : isValidEmail(detail)
+      ? detail
+      : "";
+  const clientPhone = extraPhone || (isValidEmail(detail) ? "" : detail);
+
   if (!process.env.RESEND_API_KEY && !smtpConfigured()) {
     console.error(
       "Email not configured — set RESEND_API_KEY or SMTP_HOST/SMTP_USER/SMTP_PASS"
@@ -164,24 +177,34 @@ export async function POST(req: NextRequest) {
   }
 
   const safeName = esc(stripControls(name));
-  const safeDetail = esc(stripControls(contactDetail as string));
   const safeMessage = esc(messageStr);
+  const safeEmail = esc(clientEmail);
+  const safePhone = esc(clientPhone);
 
   const contactLabel =
     safeLang === "en"
       ? contact === "phone" ? "By phone" : "By email"
       : contact === "phone" ? "Telefonu" : "El. paštu";
 
-  const detailLabel =
+  const label =
     safeLang === "en"
-      ? contact === "phone" ? "Phone" : "Email"
-      : contact === "phone" ? "Telefonas" : "El. paštas";
+      ? { phone: "Phone", email: "Email", reply: "Reply to client", call: "Call client" }
+      : { phone: "Telefonas", email: "El. paštas", reply: "Atsakyti klientui", call: "Skambinti klientui" };
 
   const subject = stripControls(
     safeLang === "en"
       ? `Appointment request — ${name}`
       : `Registracija vizitui — ${name}`
   );
+
+  const linkStyle = "color: #2f7d78; font-weight: 600; text-decoration: none;";
+  const buttonStyle =
+    "display: inline-block; background: #7DB9B5; color: #ffffff; font-size: 14px; font-weight: 600; text-decoration: none; padding: 10px 20px; border-radius: 8px;";
+
+  const replyHref = clientEmail
+    ? `mailto:${safeEmail}?subject=${encodeURIComponent(`Re: ${subject}`)}`
+    : "";
+  const callHref = clientPhone ? `tel:${clientPhone.replace(/[^\d+]/g, "")}` : "";
 
   const html = `
     <div style="font-family: sans-serif; max-width: 520px; color: #1a2120;">
@@ -196,10 +219,16 @@ export async function POST(req: NextRequest) {
             <td style="padding: 8px 0; font-size: 13px; color: #6b7c7a; width: 140px;">${safeLang === "en" ? "Name" : "Vardas"}</td>
             <td style="padding: 8px 0; font-size: 14px; font-weight: 600; color: #1a2120;">${safeName}</td>
           </tr>
+          ${safePhone ? `
           <tr>
-            <td style="padding: 8px 0; font-size: 13px; color: #6b7c7a;">${detailLabel}</td>
-            <td style="padding: 8px 0; font-size: 14px; font-weight: 600; color: #1a2120;">${safeDetail}</td>
-          </tr>
+            <td style="padding: 8px 0; font-size: 13px; color: #6b7c7a;">${label.phone}</td>
+            <td style="padding: 8px 0; font-size: 14px;"><a href="${callHref}" style="${linkStyle}">${safePhone}</a></td>
+          </tr>` : ""}
+          ${safeEmail ? `
+          <tr>
+            <td style="padding: 8px 0; font-size: 13px; color: #6b7c7a;">${label.email}</td>
+            <td style="padding: 8px 0; font-size: 14px;"><a href="${replyHref}" style="${linkStyle}">${safeEmail}</a></td>
+          </tr>` : ""}
           <tr>
             <td style="padding: 8px 0; font-size: 13px; color: #6b7c7a;">${safeLang === "en" ? "Preferred contact" : "Susisiekimas"}</td>
             <td style="padding: 8px 0; font-size: 14px; color: #1a2120;">${contactLabel}</td>
@@ -212,6 +241,11 @@ export async function POST(req: NextRequest) {
             </td>
           </tr>` : ""}
         </table>
+        ${replyHref || callHref ? `
+        <div style="margin-top: 20px; padding-top: 18px; border-top: 1px solid #dde9e8;">
+          ${replyHref ? `<a href="${replyHref}" style="${buttonStyle}">${label.reply}</a>` : ""}
+          ${callHref ? `<a href="${callHref}" style="${buttonStyle} background: #ffffff; color: #2f7d78; border: 1px solid #90ceca; margin-left: ${replyHref ? "8px" : "0"};">${label.call}</a>` : ""}
+        </div>` : ""}
       </div>
     </div>
   `;
@@ -219,7 +253,7 @@ export async function POST(req: NextRequest) {
   const mailParams = {
     subject,
     html,
-    replyTo: contact === "email" ? (contactDetail as string) : undefined,
+    replyTo: clientEmail || undefined,
   };
 
   try {

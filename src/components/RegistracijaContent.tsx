@@ -135,6 +135,8 @@ export default function RegistracijaContent() {
           name: fields.name,
           contactDetail,
           contact: contactPref,
+          phone: fields.phone,
+          email: fields.email,
           message: parts.join("\n"),
           lang,
         }),
