@@ -188,8 +188,20 @@ export async function POST(req: NextRequest) {
 
   const label =
     safeLang === "en"
-      ? { phone: "Phone", email: "Email", reply: "Reply to client", call: "Call client" }
-      : { phone: "Telefonas", email: "El. paštas", reply: "Atsakyti klientui", call: "Skambinti klientui" };
+      ? {
+          phone: "Phone",
+          email: "Email",
+          call: "Call client",
+          replyHint:
+            "Just hit Reply — your answer goes straight to the client, in this same thread.",
+        }
+      : {
+          phone: "Telefonas",
+          email: "El. paštas",
+          call: "Skambinti klientui",
+          replyHint:
+            "Tiesiog spauskite „Atsakyti“ — atsakymas bus išsiųstas klientui toje pačioje susirašinėjimo gijoje.",
+        };
 
   const subject = stripControls(
     safeLang === "en"
@@ -201,9 +213,6 @@ export async function POST(req: NextRequest) {
   const buttonStyle =
     "display: inline-block; background: #7DB9B5; color: #ffffff; font-size: 14px; font-weight: 600; text-decoration: none; padding: 10px 20px; border-radius: 8px;";
 
-  const replyHref = clientEmail
-    ? `mailto:${safeEmail}?subject=${encodeURIComponent(`Re: ${subject}`)}`
-    : "";
   const callHref = clientPhone ? `tel:${clientPhone.replace(/[^\d+]/g, "")}` : "";
 
   const html = `
@@ -227,7 +236,7 @@ export async function POST(req: NextRequest) {
           ${safeEmail ? `
           <tr>
             <td style="padding: 8px 0; font-size: 13px; color: #6b7c7a;">${label.email}</td>
-            <td style="padding: 8px 0; font-size: 14px;"><a href="${replyHref}" style="${linkStyle}">${safeEmail}</a></td>
+            <td style="padding: 8px 0; font-size: 14px; font-weight: 600; color: #1a2120;">${safeEmail}</td>
           </tr>` : ""}
           <tr>
             <td style="padding: 8px 0; font-size: 13px; color: #6b7c7a;">${safeLang === "en" ? "Preferred contact" : "Susisiekimas"}</td>
@@ -241,10 +250,10 @@ export async function POST(req: NextRequest) {
             </td>
           </tr>` : ""}
         </table>
-        ${replyHref || callHref ? `
+        ${safeEmail || callHref ? `
         <div style="margin-top: 20px; padding-top: 18px; border-top: 1px solid #dde9e8;">
-          ${replyHref ? `<a href="${replyHref}" style="${buttonStyle}">${label.reply}</a>` : ""}
-          ${callHref ? `<a href="${callHref}" style="${buttonStyle} background: #ffffff; color: #2f7d78; border: 1px solid #90ceca; margin-left: ${replyHref ? "8px" : "0"};">${label.call}</a>` : ""}
+          ${safeEmail ? `<p style="margin: 0 0 ${callHref ? "14px" : "0"}; font-size: 13px; color: #6b7c7a; line-height: 1.5;">${label.replyHint}</p>` : ""}
+          ${callHref ? `<a href="${callHref}" style="${buttonStyle}">${label.call}</a>` : ""}
         </div>` : ""}
       </div>
     </div>

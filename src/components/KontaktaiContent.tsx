@@ -42,7 +42,9 @@ const content = {
     labelContactMethod: "Pageidaujamas susisiekimo būdas",
     byPhone: "Telefonu",
     byEmail: "El. paštu",
-    labelContactDetails: "Kontaktiniai duomenys *",
+    formLabelEmail: "El. paštas *",
+    formLabelPhone: "Telefonas",
+    emailHint: "Reikalingas, kad galėtume atsakyti į Jūsų užklausą",
     placeholderEmail: "vardas@email.com",
     placeholderPhone: "+370 600 00000",
     labelMessage: "Žinutė / klausimas",
@@ -94,7 +96,9 @@ const content = {
     labelContactMethod: "Preferred contact method",
     byPhone: "By phone",
     byEmail: "By email",
-    labelContactDetails: "Contact details *",
+    formLabelEmail: "Email *",
+    formLabelPhone: "Phone",
+    emailHint: "We need it so we can reply to your request",
     placeholderEmail: "name@email.com",
     placeholderPhone: "+370 600 00000",
     labelMessage: "Message / question",
@@ -123,7 +127,7 @@ export default function KontaktaiContent() {
   const { lang } = useLanguage();
   const c = content[lang];
 
-  const [form, setForm] = useState({ name: "", contactDetail: "", message: "", contact: "phone" as "phone" | "email" });
+  const [form, setForm] = useState({ name: "", phone: "", email: "", message: "", contact: "phone" as "phone" | "email" });
   const [state, setState] = useState<FormState>("idle");
   const [mapLoaded, setMapLoaded] = useState(false);
 
@@ -140,7 +144,11 @@ export default function KontaktaiContent() {
       const res = await fetch("/api/contact", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ ...form, lang }),
+        body: JSON.stringify({
+          ...form,
+          contactDetail: form.contact === "phone" ? form.phone : form.email,
+          lang,
+        }),
         signal: controller.signal,
       });
       clearTimeout(timeout);
@@ -342,7 +350,7 @@ export default function KontaktaiContent() {
                 <p className="text-[1rem] font-semibold text-foreground">{c.successTitle}</p>
                 <p className="text-[0.875rem] text-muted max-w-[280px]">{c.successText}</p>
                 <button
-                  onClick={() => { setState("idle"); setForm({ name: "", contactDetail: "", message: "", contact: "phone" }); }}
+                  onClick={() => { setState("idle"); setForm({ name: "", phone: "", email: "", message: "", contact: "phone" }); }}
                   className="mt-1 text-[0.8125rem] font-semibold text-[#7DB9B5] hover:text-[#68A7A2] transition-colors duration-200"
                 >
                   {c.successBtn}
@@ -366,7 +374,7 @@ export default function KontaktaiContent() {
                       <button
                         key={val}
                         type="button"
-                        onClick={() => setForm((f) => f.contact === val ? f : { ...f, contact: val, contactDetail: "" })}
+                        onClick={() => setForm((f) => (f.contact === val ? f : { ...f, contact: val }))}
                         className={`flex-1 py-2 text-[0.8375rem] font-medium rounded-lg border-2 transition-colors duration-200 ${
                           form.contact === val
                             ? "border-[#90CECA] bg-[#EEF5F4] text-[#7DB9B5]"
@@ -380,18 +388,37 @@ export default function KontaktaiContent() {
                 </div>
 
                 <div>
-                  <label className="block text-[0.8rem] font-medium text-muted mb-1.5" htmlFor="contactDetail">
-                    {c.labelContactDetails}
+                  <label className="block text-[0.8rem] font-medium text-muted mb-1.5" htmlFor="email">
+                    {c.formLabelEmail}
                   </label>
                   <input
-                    id="contactDetail"
-                    name="contactDetail"
-                    type={form.contact === "email" ? "email" : "tel"}
+                    id="email"
+                    name="email"
+                    type="email"
                     required
-                    value={form.contactDetail}
+                    value={form.email}
                     onChange={handleChange}
-                    placeholder={form.contact === "email" ? c.placeholderEmail : c.placeholderPhone}
-                    autoComplete={form.contact === "email" ? "email" : "tel"}
+                    placeholder={c.placeholderEmail}
+                    autoComplete="email"
+                    className="w-full px-4 py-2.5 rounded-xl border border-[#DDE9E8] text-[0.9rem] text-foreground placeholder:text-muted/40 bg-[#F7FAF9] focus:outline-none focus:border-[#90CECA] focus:bg-white transition-colors duration-200"
+                  />
+                  <p className="text-[0.72rem] text-muted/60 mt-1">{c.emailHint}</p>
+                </div>
+
+                <div>
+                  <label className="block text-[0.8rem] font-medium text-muted mb-1.5" htmlFor="phone">
+                    {c.formLabelPhone}
+                    {form.contact === "phone" && <span className="ml-0.5">*</span>}
+                  </label>
+                  <input
+                    id="phone"
+                    name="phone"
+                    type="tel"
+                    required={form.contact === "phone"}
+                    value={form.phone}
+                    onChange={handleChange}
+                    placeholder={c.placeholderPhone}
+                    autoComplete="tel"
                     className="w-full px-4 py-2.5 rounded-xl border border-[#DDE9E8] text-[0.9rem] text-foreground placeholder:text-muted/40 bg-[#F7FAF9] focus:outline-none focus:border-[#90CECA] focus:bg-white transition-colors duration-200"
                   />
                 </div>

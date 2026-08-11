@@ -39,6 +39,8 @@ const content = {
     submit: "Siųsti užklausą",
     sending: "Siunčiama…",
     required: "Privalomas laukas",
+    invalidEmail: "Neteisingas el. pašto adresas",
+    emailHint: "Reikalingas, kad galėtume atsakyti į Jūsų užklausą",
 
     successTitle: "Užklausa gauta",
     successText: "Susisieksime su Jumis per 24 val. darbo dienomis.",
@@ -79,6 +81,8 @@ const content = {
     submit: "Send request",
     sending: "Sending…",
     required: "Required field",
+    invalidEmail: "Invalid email address",
+    emailHint: "We need it so we can reply to your request",
 
     successTitle: "Request received",
     successText: "We will contact you within 24 working hours.",
@@ -91,6 +95,10 @@ const content = {
 type SendState = "idle" | "sending" | "success" | "error";
 
 const emptyFields = { name: "", phone: "", email: "", time: "", message: "" };
+
+// The email is always required: it is the only way to answer a request by
+// replying inside the same email thread.
+const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
 export default function RegistracijaContent() {
   const { lang } = useLanguage();
@@ -115,7 +123,7 @@ export default function RegistracijaContent() {
     const newErrors: typeof errors = {};
     if (!fields.name.trim()) newErrors.name = true;
     if (contactPref === "phone" && !fields.phone.trim()) newErrors.phone = true;
-    if (contactPref === "email" && !fields.email.trim()) newErrors.email = true;
+    if (!EMAIL_RE.test(fields.email.trim())) newErrors.email = true;
     if (Object.keys(newErrors).length > 0) { setErrors(newErrors); return; }
 
     const contactDetail = contactPref === "phone" ? fields.phone : fields.email;
@@ -278,7 +286,7 @@ export default function RegistracijaContent() {
                 <div>
                   <label className="block text-[0.8rem] font-semibold text-foreground/70 mb-1.5">
                     {c.labelEmail}
-                    {contactPref === "email" && <span className="text-[#7DB9B5] ml-1">*</span>}
+                    <span className="text-[#7DB9B5] ml-1">*</span>
                   </label>
                   <input
                     type="email"
@@ -288,7 +296,13 @@ export default function RegistracijaContent() {
                     placeholder={c.placeholderEmail}
                     className={inputClass(errors.email)}
                   />
-                  {errors.email && <p className="text-[0.73rem] text-red-400 mt-1">{c.required}</p>}
+                  {errors.email ? (
+                    <p className="text-[0.73rem] text-red-400 mt-1">
+                      {fields.email.trim() ? c.invalidEmail : c.required}
+                    </p>
+                  ) : (
+                    <p className="text-[0.73rem] text-muted/70 mt-1">{c.emailHint}</p>
+                  )}
                 </div>
               </div>
 
