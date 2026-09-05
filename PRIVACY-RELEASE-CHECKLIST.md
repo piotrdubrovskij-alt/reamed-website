@@ -6,14 +6,14 @@ Existing mail delivery settings and domain/MX settings have not been changed.
 
 Before publishing:
 
-1. Re-authorize deployment to the existing ReaMed Google Cloud project. The old
-   gcloud identity was renamed; reauthentication currently requires the user's
-   approval for the standard broad Cloud CLI scopes. Do not use another account.
-2. Confirm the reception camera's actual 72-hour overwrite and disabled audio.
-   Replace the draft's reference to the entrance notice with the confirmed
-   duration; ensure the notice itself exists. Local SD-card storage does not
-   prove remote access is exclusively local: check the Xiaomi remote-access
-   arrangements and applicable processor/transfer safeguards.
+1. DONE: Cloud CLI authentication restored as info@reamed.lt for the existing
+   reamed-site project. Existing mail and MX settings are unchanged.
+2. DONE: On 2026-09-06 the owner explicitly confirmed disabled audio and
+   deletion/overwrite no later than 72 hours. This is owner-confirmed, not a
+   remote camera inspection. The printable notice has been finalized; the owner
+   must place it before entry into the monitored area. The policy discloses
+   remote application access and does not claim exclusively local processing.
+   Review the remote-access provider's processor/transfer safeguards separately.
 3. Agree the medical-record classification and retention implementation. The
    025/a outpatient history schedule is 15 years after attendance ceases, not
    15 years after a signature. The form app has no last-visit integration. Do not
@@ -22,9 +22,8 @@ Before publishing:
    ReaMed patient shared drive; confirm irreversible deletion behavior first.
 4. Verify provider agreements/transfer safeguards for Workspace, form hosting,
    email and surveillance. Do not claim EEA-only storage from a plan name.
-5. Resolve the existing WhatsApp button on `/kontaktai`: the latest confirmed
-   clinic workflow does not use WhatsApp. It is an existing website inconsistency,
-   not permission to add WhatsApp to the patient form or privacy workflow.
+5. DONE: Removed the WhatsApp button on `/kontaktai`, matching the confirmed
+   clinic workflow. WhatsApp was not added to the patient form.
 6. Archive the released policy edition with the consent template; retain future
    editions without retroactively changing signed documents.
 
