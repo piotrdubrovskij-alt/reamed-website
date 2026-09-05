@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import Link from "next/link";
 import { MapPin, Phone, Mail, Clock, ArrowRight, CheckCircle } from "lucide-react";
 import { useLanguage } from "@/contexts/LanguageContext";
 
@@ -448,7 +449,8 @@ export default function KontaktaiContent() {
                   </a>
                 </p>
                 <p className="text-[0.6875rem] text-muted/45 text-center leading-relaxed mt-3 max-w-[320px] mx-auto">
-                  {c.privacy}
+                  {lang === "lt" ? "Duomenis naudojame atsakyti į užklausą. Čia nesiųskite sveikatos informacijos. " : "We use your details to answer your request. Do not send health information here. "}
+                  <Link href="/privatumas" className="underline underline-offset-2 text-[#427974]">{lang === "lt" ? "Privatumo politika" : "Privacy policy"}</Link>
                 </p>
               </form>
             )}

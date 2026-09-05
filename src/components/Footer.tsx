@@ -135,7 +135,9 @@ export default function Footer() {
         {/* Bottom bar */}
         <div className="py-4 border-t border-white/8 flex flex-col sm:flex-row items-center justify-between gap-2">
           <p className="text-[0.78rem] text-white/25">{t.footer.copyright}</p>
-          <p className="text-[0.78rem] text-white/15">reamed.lt</p>
+          <Link href="/privatumas" className="text-[0.78rem] text-white/60 hover:text-white underline underline-offset-4">
+            {lang === "lt" ? "Privatumo politika" : "Privacy policy"}
+          </Link>
         </div>
 
       </div>

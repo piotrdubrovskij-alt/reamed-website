@@ -354,6 +354,10 @@ export default function RegistracijaContent() {
               </div>
 
               {/* Submit */}
+              <p className="text-xs leading-6 text-muted">
+                {lang === "lt" ? "Duomenis naudojame susisiekti dėl vizito. Čia nesiųskite sveikatos informacijos. " : "We use your details to contact you about an appointment. Do not send health information here. "}
+                <Link href="/privatumas" className="underline underline-offset-2 text-[#427974]">{lang === "lt" ? "Privatumo politika" : "Privacy policy"}</Link>
+              </p>
               <div className="flex flex-col sm:flex-row items-start sm:items-center gap-3 pt-1">
                 <button
                   type="submit"
