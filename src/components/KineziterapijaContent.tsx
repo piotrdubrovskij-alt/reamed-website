@@ -542,13 +542,13 @@ export default function KineziterapijaContent() {
               <div className="flex flex-col sm:flex-row gap-5 sm:gap-8">
                 <div className="flex-1 bg-[#F7FAF9] rounded-xl border border-[#DDE9E8] p-4">
                   <p className="text-[0.75rem] font-semibold text-muted/60 uppercase tracking-wide mb-2">{c.priceFirst}</p>
-                  <p className="text-[1.875rem] font-bold text-[#7DB9B5] leading-none mb-1.5">70 €</p>
+                  <p className="text-[1.875rem] font-bold text-[#7DB9B5] leading-none mb-1.5">80 €</p>
                   <p className="text-[0.78rem] text-muted/50 mb-3">60 min</p>
                   <p className="text-[0.8125rem] text-secondary leading-snug">{c.priceFirstDesc}</p>
                 </div>
                 <div className="flex-1 bg-[#F7FAF9] rounded-xl border border-[#DDE9E8] p-4">
                   <p className="text-[0.75rem] font-semibold text-muted/60 uppercase tracking-wide mb-2">{c.priceRepeat}</p>
-                  <p className="text-[1.875rem] font-bold text-[#7DB9B5] leading-none mb-1.5">60 €</p>
+                  <p className="text-[1.875rem] font-bold text-[#7DB9B5] leading-none mb-1.5">70 €</p>
                   <p className="text-[0.78rem] text-muted/50 mb-3">45 min</p>
                   <p className="text-[0.8125rem] text-secondary leading-snug">{c.priceRepeatDesc}</p>
                 </div>

@@ -139,7 +139,7 @@ export default function KainosContent() {
                 <p className="text-[0.8125rem] text-muted/75">{c.startDuration}</p>
               </div>
               <div className="flex items-center gap-5 p-5 sm:p-6 sm:flex-col sm:items-end sm:justify-center sm:gap-2.5">
-                <p className="text-[2.25rem] font-bold text-[#7DB9B5] leading-none">70 €</p>
+                <p className="text-[2.25rem] font-bold text-[#7DB9B5] leading-none">80 €</p>
                 <a
                   href="/registracija"
                   className="inline-flex items-center gap-1.5 px-4 py-1 bg-[#7DB9B5] text-white text-[0.8rem] font-semibold rounded-lg hover:bg-[#68A7A2] transition-colors duration-200"
@@ -161,10 +161,10 @@ export default function KainosContent() {
               <h3 className="text-[1.0625rem] font-bold text-foreground mb-1">{c.cardKinezi.title}</h3>
               <p className="text-[0.78rem] text-muted leading-snug mb-0.5 min-h-[2.4rem]">{c.cardKinezi.desc}</p>
               <p className="text-[0.72rem] text-muted/60 mb-3">{c.cardKinezi.duration}</p>
-              <p className="text-[2.25rem] font-bold text-[#7DB9B5] leading-none mb-0.5">60 €</p>
+              <p className="text-[2.25rem] font-bold text-[#7DB9B5] leading-none mb-0.5">70 €</p>
               <p className="text-[0.72rem] text-muted/55 mb-4">{c.cardKinezi.priceLabel}</p>
               <div className="border-t border-[#EEF5F4] pt-3 mt-auto">
-                <PackageRows rows={[[c.pkg3, "170 €"], [c.pkg5, "270 €"], [c.pkg10, "510 €"]]} />
+                <PackageRows rows={[[c.pkg5, "325 €"], [c.pkg10, "600 €"]]} />
               </div>
             </div>
 
@@ -178,10 +178,10 @@ export default function KainosContent() {
               <h3 className="text-[1.0625rem] font-bold text-foreground mb-1 mt-1.5">{c.cardKomplex.title}</h3>
               <p className="text-[0.78rem] text-muted leading-snug mb-0.5 min-h-[2.4rem]">{c.cardKomplex.desc}</p>
               <p className="text-[0.72rem] text-muted/60 mb-3">{c.cardKomplex.duration}</p>
-              <p className="text-[2.25rem] font-bold text-[#7DB9B5] leading-none mb-0.5">70 €</p>
+              <p className="text-[2.25rem] font-bold text-[#7DB9B5] leading-none mb-0.5">85 €</p>
               <p className="text-[0.72rem] text-muted/55 mb-4">{c.cardKomplex.priceLabel}</p>
               <div className="border-t border-[#EEF5F4] pt-3 mt-auto">
-                <PackageRows rows={[[c.pkg3, "195 €"], [c.pkg5, "315 €"], [c.pkg10, "595 €"]]} />
+                <PackageRows rows={[[c.pkg5, "400 €"], [c.pkg10, "750 €"]]} />
               </div>
             </div>
 
@@ -190,10 +190,10 @@ export default function KainosContent() {
               <h3 className="text-[1.0625rem] font-bold text-foreground mb-1">{c.cardExtended.title}</h3>
               <p className="text-[0.78rem] text-muted leading-snug mb-0.5 min-h-[2.4rem]">{c.cardExtended.desc}</p>
               <p className="text-[0.72rem] text-muted/60 mb-3">{c.cardExtended.duration}</p>
-              <p className="text-[2.25rem] font-bold text-[#7DB9B5] leading-none mb-0.5">85 €</p>
+              <p className="text-[2.25rem] font-bold text-[#7DB9B5] leading-none mb-0.5">100 €</p>
               <p className="text-[0.72rem] text-muted/55 mb-4">{c.cardExtended.priceLabel}</p>
               <div className="border-t border-[#EEF5F4] pt-3 mt-auto">
-                <PackageRows rows={[[c.pkg3, "240 €"], [c.pkg5, "380 €"], [c.pkg10, "720 €"]]} />
+                <PackageRows rows={[[c.pkg5, "475 €"], [c.pkg10, "900 €"]]} />
               </div>
             </div>
 
@@ -241,7 +241,7 @@ export default function KainosContent() {
             <div className="bg-white rounded-2xl border border-[#DDE9E8] p-5">
               <h3 className="text-[1rem] font-bold text-foreground mb-0.5">{c.moduleTitle}</h3>
               <p className="text-[0.78rem] text-muted mb-2">{c.moduleDuration}</p>
-              <p className="text-[1.875rem] font-bold text-[#7DB9B5] leading-none mb-3">18 €</p>
+              <p className="text-[1.875rem] font-bold text-[#7DB9B5] leading-none mb-3">20 €</p>
               <p className="text-[0.7rem] font-bold uppercase tracking-wider text-muted/70 mb-1.5">{c.moduleExamplesLabel}</p>
               <div className="grid grid-cols-2 gap-x-3 gap-y-1">
                 {c.moduleExamples.map((item) => (
