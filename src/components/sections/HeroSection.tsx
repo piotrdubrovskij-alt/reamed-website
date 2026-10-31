@@ -13,19 +13,11 @@ export default function HeroSection() {
       style={{ paddingTop: "104px" }}
       aria-labelledby="hero-title"
     >
-      {/* Full photo — bottom trimmed to hide watermark */}
-      <div className="w-full overflow-hidden">
-        <img
-          src="/hero.jpg"
-          alt="ReaMed klinikos komanda"
-          className="w-full h-auto block"
-          style={{ marginBottom: "-6%", filter: "blur(1.5px) brightness(1.03) saturate(0.9)" }}
-        />
-      </div>
-
-      {/* Overlay for text — covers left portion */}
+      {/* Overlay for text — covers left portion (text overlays the photo from md up only).
+          Explicit z-index: the photo's blur filter below gives it its own stacking context,
+          which would otherwise paint above these siblings once the photo moved later in the DOM. */}
       <div
-        className="absolute inset-0 flex items-center"
+        className="hidden md:block md:absolute md:inset-0 md:z-10"
         style={{
           background:
             "linear-gradient(100deg, rgba(247,250,249,0.95) 0%, rgba(247,250,249,0.88) 28%, rgba(247,250,249,0.5) 50%, transparent 70%)",
@@ -33,9 +25,9 @@ export default function HeroSection() {
         aria-hidden="true"
       />
 
-      {/* Text content — starts below header (104px) */}
-      <div className="absolute left-0 right-0 bottom-0 flex items-center" style={{ top: "104px" }}>
-        <div className="container-xl w-full">
+      {/* Text content — normal flow under the header on mobile; overlaid on the photo from md up */}
+      <div className="relative md:absolute md:left-0 md:right-0 md:bottom-0 md:top-[104px] md:z-10 md:flex md:items-center">
+        <div className="container-xl w-full py-8 md:py-0">
           <div className="max-w-[520px]">
             <p className="mb-3 text-[0.8125rem] font-semibold uppercase tracking-widest text-[#7DB9B5]">
               {t.hero.tag}
@@ -86,6 +78,16 @@ export default function HeroSection() {
             </div>
           </div>
         </div>
+      </div>
+
+      {/* Full photo — bottom trimmed to hide watermark */}
+      <div className="w-full overflow-hidden">
+        <img
+          src="/hero.jpg"
+          alt="ReaMed klinikos komanda"
+          className="w-full h-auto block"
+          style={{ marginBottom: "-6%", filter: "blur(1.5px) brightness(1.03) saturate(0.9)" }}
+        />
       </div>
     </section>
   );
