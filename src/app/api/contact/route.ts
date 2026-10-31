@@ -1,5 +1,8 @@
 import { NextRequest, NextResponse } from "next/server";
+import nodemailer from "nodemailer";
 import { Resend } from "resend";
+
+const RECIPIENT = "reamedklinika@gmail.com";
 
 // ---------------------------------------------------------------------------
 // Simple in-memory rate limiter — max 5 submissions per IP per 10 minutes.
@@ -35,6 +38,76 @@ function stripControls(str: string): string {
 
 function isValidEmail(value: string): boolean {
   return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value);
+}
+
+function smtpConfigured(): boolean {
+  return Boolean(
+    process.env.SMTP_HOST &&
+      process.env.SMTP_USER &&
+      process.env.SMTP_PASS &&
+      process.env.SMTP_PASS !== "ваш_пароль_от_почты"
+  );
+}
+
+async function sendViaResend(params: {
+  subject: string;
+  html: string;
+  replyTo?: string;
+}): Promise<boolean> {
+  if (!process.env.RESEND_API_KEY) return false;
+
+  const resend = new Resend(process.env.RESEND_API_KEY);
+  const from =
+    process.env.RESEND_FROM ?? "ReaMed forma <onboarding@resend.dev>";
+
+  const { error } = await resend.emails.send({
+    from,
+    to: RECIPIENT,
+    replyTo: params.replyTo,
+    subject: params.subject,
+    html: params.html,
+  });
+
+  if (error) {
+    console.error("Resend error:", error);
+    return false;
+  }
+
+  return true;
+}
+
+async function sendViaSmtp(params: {
+  subject: string;
+  html: string;
+  replyTo?: string;
+}): Promise<boolean> {
+  if (!smtpConfigured()) return false;
+
+  const transporter = nodemailer.createTransport({
+    host: process.env.SMTP_HOST,
+    port: Number(process.env.SMTP_PORT ?? 587),
+    secure: process.env.SMTP_SECURE === "true",
+    auth: {
+      user: process.env.SMTP_USER,
+      pass: process.env.SMTP_PASS,
+    },
+    connectionTimeout: 5000,
+    socketTimeout: 8000,
+  });
+
+  try {
+    await transporter.sendMail({
+      from: `"ReaMed forma" <${process.env.SMTP_USER}>`,
+      to: RECIPIENT,
+      replyTo: params.replyTo,
+      subject: params.subject,
+      html: params.html,
+    });
+    return true;
+  } catch (err) {
+    console.error("SMTP error:", err);
+    return false;
+  }
 }
 
 export async function POST(req: NextRequest) {
@@ -83,8 +156,10 @@ export async function POST(req: NextRequest) {
 
   const safeLang: "lt" | "en" = lang === "en" ? "en" : "lt";
 
-  if (!process.env.RESEND_API_KEY) {
-    console.error("RESEND_API_KEY not configured in .env.local");
+  if (!process.env.RESEND_API_KEY && !smtpConfigured()) {
+    console.error(
+      "Email not configured — set RESEND_API_KEY or SMTP_HOST/SMTP_USER/SMTP_PASS"
+    );
     return NextResponse.json({ error: "Service unavailable" }, { status: 503 });
   }
 
@@ -141,18 +216,17 @@ export async function POST(req: NextRequest) {
     </div>
   `;
 
-  try {
-    const resend = new Resend(process.env.RESEND_API_KEY);
-    const { error } = await resend.emails.send({
-      from: "ReaMed forma <onboarding@resend.dev>",
-      to: "reamedklinika@gmail.com",
-      replyTo: contact === "email" ? (contactDetail as string) : undefined,
-      subject,
-      html,
-    });
+  const mailParams = {
+    subject,
+    html,
+    replyTo: contact === "email" ? (contactDetail as string) : undefined,
+  };
 
-    if (error) {
-      console.error("Resend error:", error);
+  try {
+    const sent =
+      (await sendViaResend(mailParams)) || (await sendViaSmtp(mailParams));
+
+    if (!sent) {
       return NextResponse.json({ error: "Failed to send email" }, { status: 500 });
     }
 

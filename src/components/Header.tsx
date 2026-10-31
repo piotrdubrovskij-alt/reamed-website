@@ -19,7 +19,7 @@ export default function Header() {
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
-  const onSubPage = pathname === "/kainos" || pathname === "/kontaktai" || pathname.startsWith("/specialistai") || pathname.startsWith("/paslaugos") || pathname.startsWith("/ka-gydome");
+  const onSubPage = pathname === "/kainos" || pathname === "/kontaktai" || pathname === "/registracija" || pathname.startsWith("/specialistai") || pathname.startsWith("/paslaugos") || pathname.startsWith("/ka-gydome");
   const prefix = onSubPage ? "/" : "";
 
   const navItems = [
@@ -129,7 +129,14 @@ export default function Header() {
             </div>
 
             {/* Mobile controls */}
-            <div className="flex lg:hidden items-center gap-3">
+            <div className="flex lg:hidden items-center gap-2">
+              <a
+                href="tel:+37060134304"
+                className="flex items-center justify-center w-9 h-9 rounded-lg border border-[#D8E6E4] text-[#7DB9B5] hover:bg-[#EEF5F4] transition-colors duration-200"
+                aria-label="Skambinti"
+              >
+                <Phone size={16} strokeWidth={2} />
+              </a>
               <a
                 href="/registracija"
                 className="px-4 py-1.5 bg-[#7DB9B5] text-white text-[0.8rem] font-semibold rounded-lg hover:bg-[#68A7A2] transition-colors duration-200"
