@@ -1,10 +1,13 @@
 # Privacy page release gate — 2026-09-06
 
-The LT/EN `/privatumas` page and footer/form notices are prepared locally, but
-have NOT been published. Production build and TypeScript checks passed.
+The LT/EN `/privatumas` page and footer/form notices were published on 2026-09-06.
+Verified HTTP 200, the 72-hour/no-audio text, canonical link, contact address,
+and absence of the superseded Ukmergės address. Production build and TypeScript
+checks passed. Released source: 17f8f4d0ce8ecbe8eae520ef9966de8c7b071faf;
+Cloud Run revision: reamed-site-00020-k9m (100% of traffic).
 Existing mail delivery settings and domain/MX settings have not been changed.
 
-Before publishing:
+Publication checks and remaining operational duties before patient use:
 
 1. DONE: Cloud CLI authentication restored as info@reamed.lt for the existing
    reamed-site project. Existing mail and MX settings are unchanged.
