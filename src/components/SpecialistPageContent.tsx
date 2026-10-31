@@ -4,6 +4,8 @@ import { useState } from "react";
 import Link from "next/link";
 import { ArrowRight, Phone, Mail, ChevronLeft, ChevronDown } from "lucide-react";
 import { useLanguage } from "@/contexts/LanguageContext";
+import ReviewsBlock from "@/components/reviews/ReviewsBlock";
+import type { SpecialistSlug } from "@/data/reviews";
 import type { Specialist } from "@/lib/specialists";
 
 const COURSES_PREVIEW = 6;
@@ -297,6 +299,14 @@ export default function SpecialistPageContent({ specialist: s }: { specialist: S
 
         </div>
       </div>
+
+      {/* ── REVIEWS ── */}
+      <ReviewsBlock
+        specialist={s.slug as SpecialistSlug}
+        min={1}
+        title={isLt ? `Pacientų atsiliepimai apie ${firstNameAcc}` : `What patients say about ${firstName}`}
+        className="container-xl pb-10 md:pb-14"
+      />
 
       {/* ── BOTTOM CTA ── */}
       <div className="container-xl pb-14 md:pb-16">

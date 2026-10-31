@@ -214,20 +214,6 @@ export const translations = {
       subtitle:
         "Pacientai vertina ne tik simptomų mažėjimą, bet ir aiškų planą, suprantamą paaiškinimą bei kryptingą atsistatymą.",
       cta: "Daugiau atsiliepimų",
-      items: [
-        {
-          text: "Po kelio operacijos ieškojau vietos, kur būtų aiškus planas ir tikras vedimas per visą atsistatymą. ReaMed būtent tai ir gavau.",
-          author: "Pacientas",
-        },
-        {
-          text: "Patiko, kad vizito metu buvo ne tik gydymas, bet ir labai aiškus paaiškinimas, kas vyksta ir ką daryti toliau.",
-          author: "Pacientas",
-        },
-        {
-          text: "Atėjau dėl kaklo ir nugaros problemų, o gavau ne tik pagalbą simptomams, bet ir aiškesnį supratimą, kaip judėti toliau.",
-          author: "Pacientas",
-        },
-      ],
     },
     cta: {
       title: "Registruokitės vizitui ReaMed klinikoje",
@@ -462,20 +448,6 @@ export const translations = {
       subtitle:
         "Patients value not only symptom reduction, but also a clear plan, understandable explanation and directed recovery.",
       cta: "More reviews",
-      items: [
-        {
-          text: "After knee surgery I was looking for a place with a clear plan and real guidance through the whole recovery. That is exactly what I got at ReaMed.",
-          author: "Patient",
-        },
-        {
-          text: "I appreciated that the visit involved not only treatment but also a very clear explanation of what is happening and what to do next.",
-          author: "Patient",
-        },
-        {
-          text: "I came for neck and back problems, and got not only help with symptoms but also a clearer understanding of how to move forward.",
-          author: "Patient",
-        },
-      ],
     },
     cta: {
       title: "Book a visit at ReaMed clinic",

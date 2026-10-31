@@ -4,6 +4,7 @@ import { useState, useEffect } from "react";
 import { ArrowRight, ChevronDown, ChevronUp, Phone } from "lucide-react";
 import Link from "next/link";
 import { useLanguage } from "@/contexts/LanguageContext";
+import ReviewsBlock from "@/components/reviews/ReviewsBlock";
 
 /* ── BILINGUAL CONTENT ───────────────────────────────────────── */
 const content = {
@@ -605,6 +606,7 @@ export default function KineziterapijaContent() {
         </div>
 
         {/* FAQ */}
+        <ReviewsBlock service="kineziterapija" />
         <div id="duk" className="scroll-mt-32">
           <SectionLabel>{c.faqLabel}</SectionLabel>
           <SectionTitle>{c.faqTitle}</SectionTitle>

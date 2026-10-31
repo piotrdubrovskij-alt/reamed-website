@@ -4,6 +4,7 @@ import { useState, useEffect } from "react";
 import { ArrowRight, ChevronDown, ChevronUp, Phone } from "lucide-react";
 import Link from "next/link";
 import { useLanguage } from "@/contexts/LanguageContext";
+import ReviewsBlock from "@/components/reviews/ReviewsBlock";
 
 const content = {
   lt: {
@@ -441,6 +442,7 @@ export default function ManualineTerapijaContent() {
           </div>
         </div>
         <div className="rounded-2xl border border-[#D8E6E4] bg-[#EEF5F4] p-6 md:p-8"><div className="flex items-start gap-4"><span className="text-[1.5rem] leading-none mt-0.5 flex-shrink-0">📋</span><div><h2 className="text-[1.125rem] font-bold text-foreground mb-2">{c.beforeLabel}</h2><ul className="flex flex-col gap-1.5">{c.beforeItems.map((item) => (<li key={item} className="flex items-start gap-2.5"><span className="w-1.5 h-1.5 rounded-full bg-[#7DB9B5] mt-1.5 flex-shrink-0" /><span className="text-[0.9rem] text-secondary">{item}</span></li>))}</ul></div></div></div>
+        <ReviewsBlock service="manualine-terapija" />
         <div id="duk" className="scroll-mt-32"><SectionLabel>{c.faqLabel}</SectionLabel><SectionTitle>{c.faqTitle}</SectionTitle><FAQ items={c.faqs} /></div>
         <div id="registruotis" className="rounded-2xl border border-[#DDE9E8] bg-white p-7 md:p-10 text-center">
           <h2 className="text-[1.5rem] md:text-[2rem] font-bold text-foreground mb-3">{c.ctaTitle}</h2>
