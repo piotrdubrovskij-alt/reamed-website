@@ -1,21 +1,20 @@
 "use client";
 
-import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useLanguage } from "@/contexts/LanguageContext";
 
-// Booking block and footer in one graphite block, shared by every page.
+// Booking block and footer in one graphite block, shared by every page. No logo, no rules.
 export default function Footer() {
   const { t, setLang } = useLanguage();
   const pathname = usePathname();
 
   const navItems = [
-    { label: t.nav.whatWeTreat, href: "/#ka-gydome" },
-    { label: t.nav.services, href: "/#paslaugos" },
-    { label: t.nav.specialists, href: "/#specialistai" },
-    { label: t.nav.prices, href: "/kainos" },
-    { label: t.footer.privacy, href: "/privatumas" },
+    { label: t.nav.whatWeTreat, href: "/#ka-gydome", always: false },
+    { label: t.nav.services, href: "/#paslaugos", always: false },
+    { label: t.nav.specialists, href: "/#specialistai", always: false },
+    { label: t.nav.prices, href: "/kainos", always: false },
+    { label: t.footer.privacy, href: "/privatumas", always: true },
   ];
 
   return (
@@ -25,65 +24,65 @@ export default function Footer() {
       className="bg-graphite text-white pt-section md:pt-section-md pb-10 [&_:focus-visible]:outline-mint"
     >
       <div className="wrap">
-        <div className="grid gap-10 md:grid-cols-[7fr_5fr] md:gap-[72px] md:items-end">
+        <div className="grid gap-10 desk:grid-cols-[7fr_5fr] desk:gap-[72px] desk:items-start">
           <div>
             <h2 id="footer-h" className="text-h2 text-mint text-balance">
               {t.booking.title}
             </h2>
-            <a
-              href={t.contact.phoneHref}
-              className="block mt-6 py-1 text-h1-m md:text-h1 tracking-[-0.03em] leading-none whitespace-nowrap hover:text-mint"
-            >
-              {t.contact.phone}
-            </a>
             {pathname !== "/registracija" && (
-              <Link href="/registracija" className="btn btn-mint text-body mt-7">
+              <Link href="/registracija" className="btn btn-mint text-body mt-7 w-full desk:w-auto">
                 {t.booking.online}
               </Link>
             )}
           </div>
-          <dl className="grid grid-cols-[auto_1fr] items-baseline gap-x-7 gap-y-2.5 text-body">
-            <dt className="text-on-dark">{t.booking.address}</dt>
-            <dd className="font-medium">{t.contact.address}</dd>
-            <dt className="text-on-dark">{t.booking.hours}</dt>
-            <dd className="font-medium">{t.booking.hoursValue}</dd>
-            <dt className="text-on-dark">{t.booking.email}</dt>
-            <dd>
-              <a href={`mailto:${t.contact.email}`} className="link-action inline-flex items-center min-h-11">
+          {/* Values share one column; links stretch to 44px without moving the rows. */}
+          <dl className="grid grid-cols-[auto_1fr] items-baseline gap-x-7 gap-y-3">
+            <dt className="text-small text-on-dark">{t.booking.phone}</dt>
+            <dd className="text-body font-medium">
+              <a href={t.contact.phoneHref} className="inline-flex items-center min-h-11 -my-2 whitespace-nowrap hover:text-mint">
+                {t.contact.phone}
+              </a>
+            </dd>
+            <dt className="text-small text-on-dark">{t.booking.address}</dt>
+            <dd className="text-body font-medium">{t.contact.address}</dd>
+            <dt className="text-small text-on-dark">{t.booking.hours}</dt>
+            <dd className="text-body font-medium">{t.booking.hoursValue}</dd>
+            <dt className="text-small text-on-dark">{t.booking.email}</dt>
+            <dd className="text-body font-medium">
+              <a href={`mailto:${t.contact.email}`} className="inline-flex items-center min-h-11 -my-2 hover:text-mint">
                 {t.contact.email}
               </a>
             </dd>
           </dl>
         </div>
 
-        <div className="mt-14 flex flex-wrap items-end justify-between gap-x-10 gap-y-8 md:mt-12">
-          <Image
-            src="/brand/reamed-lockup-for-dark.svg"
-            alt="ReaMed"
-            width={1376}
-            height={384}
-            className="w-60 md:w-90 h-auto"
-          />
-          <div className="flex flex-col gap-2 text-small text-on-dark md:items-end">
-            <nav aria-label={t.footer.menu} className="flex flex-wrap gap-x-[26px] md:justify-end">
-              {navItems.map((item) => (
-                <a key={item.href} href={item.href} className="inline-flex items-center min-h-11 hover:underline">
-                  {item.label}
-                </a>
-              ))}
-              <button
-                type="button"
-                onClick={() => setLang(t.footer.otherLanguageCode)}
-                lang={t.footer.otherLanguageCode}
-                className="inline-flex items-center min-h-11 hover:underline cursor-pointer"
+        <div className="mt-14 flex flex-wrap items-center justify-between gap-x-10 text-small text-on-dark desk:mt-16">
+          {/* Phone: only privacy and language, the rest is in the header menu. */}
+          <nav aria-label={t.footer.menu} className="flex flex-nowrap items-center whitespace-nowrap gap-x-[26px]">
+            {navItems.map((item) => (
+              <a
+                key={item.href}
+                href={item.href}
+                className={`${item.always ? "inline-flex" : "hidden desk:inline-flex"} items-center min-h-11 hover:underline`}
               >
-                {t.footer.otherLanguage}
-              </button>
-            </nav>
-            <p>
-              © {new Date().getFullYear()} {t.footer.company}
-            </p>
-          </div>
+                {item.label}
+              </a>
+            ))}
+            <span aria-hidden="true" className="desk:hidden -mx-3.5">
+              ·
+            </span>
+            <button
+              type="button"
+              onClick={() => setLang(t.footer.otherLanguageCode)}
+              lang={t.footer.otherLanguageCode}
+              className="inline-flex items-center min-h-11 hover:underline cursor-pointer"
+            >
+              {t.footer.otherLanguage}
+            </button>
+          </nav>
+          <p className="w-full desk:w-auto">
+            © {new Date().getFullYear()} {t.footer.company}
+          </p>
         </div>
       </div>
     </footer>

@@ -5,6 +5,7 @@
 
   /* Redesign G (01.11.2026), compacted 01.11.2026. Mint text only large and only on graphite. */
   --color-ground: #ECEDEB;
+  --color-ground-hover: #E2E4E1;
   --color-paper: #F7F7F6;
   --color-ink: #2B2C2B;
   --color-graphite: #5F605F;
@@ -38,6 +39,8 @@
   --text-h3-m--line-height: 1.25;
   --text-lead: 20px;
   --text-lead--line-height: 1.5;
+  --text-lead-m: 18px;
+  --text-lead-m--line-height: 1.5;
   --text-body: 18px;
   --text-body--line-height: 1.55;
   --text-small: 16px;

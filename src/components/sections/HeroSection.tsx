@@ -28,20 +28,20 @@ export default function HeroSection() {
     <section aria-labelledby="hero-h" className="relative overflow-hidden bg-ground desk:h-[640px]">
       <div className="wrap relative h-full">
         {/* Desktop: text stays in the left half of the container, 48px short of the middle. */}
-        <div className="relative z-10 flex flex-col gap-[22px] pt-10 desk:gap-7 desk:pt-24 desk:max-w-[calc(50%-48px)]">
+        <div className="relative z-10 flex flex-col gap-[18px] pt-6 desk:gap-7 desk:pt-24 desk:max-w-[calc(50%-48px)]">
           <h1 id="hero-h" className="text-h1-m desk:text-h1 text-balance">
             {t.hero.title}
           </h1>
-          <p className="text-lead">{t.hero.lead}</p>
-          <div className="flex flex-wrap items-center gap-x-7 gap-y-4">
-            <Link href="/registracija" className="btn btn-dark text-body w-full sm:w-auto">
+          <p className="text-lead-m desk:text-lead">{t.hero.lead}</p>
+          <div className="flex flex-wrap items-center gap-x-4 gap-y-2 desk:gap-x-7">
+            <Link href="/registracija" className="btn btn-dark text-body">
               {t.hero.cta}
             </Link>
             <a
               href={GOOGLE_REVIEWS.url}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 min-h-11 text-small text-graphite hover:text-ink"
+              className="inline-flex items-center gap-1.5 min-h-11 text-small text-graphite hover:text-ink"
             >
               <Star size={18} className="fill-current" aria-hidden="true" />
               <span>
@@ -51,14 +51,15 @@ export default function HeroSection() {
           </div>
         </div>
 
-        {/* Mint circle. Phone: 120vw, only its top 78vw shows above the section's
-            bottom edge. Desktop: left edge at the container middle + 24px; at least
+        {/* Desktop: mint circle, left edge at the container middle + 24px; at least
             1040px (taller than the 640px screen) and always wider than what is left
             of the viewport, so the right edge cuts it. */}
-        <div className="relative mt-12 -ml-[10vw] -mb-[42vw] size-[120vw] rounded-full overflow-hidden bg-mint desk:absolute desk:m-0 desk:left-[calc(50%+24px)] desk:-top-[160px] desk:size-[max(1040px,calc(50vw+120px))]">
-          {/* Phone: centred on the screen, 39vw below the circle's top, 60vw wide. */}
-          <Hands className="desk:hidden top-[39vw] w-[60vw] left-[calc(60vw-var(--spacing-gutter))] md:left-[calc(60vw-var(--spacing-gutter-md))]" />
-        </div>
+        <div className="hidden desk:block absolute left-[calc(50%+24px)] -top-[160px] size-[max(1040px,calc(50vw+120px))] rounded-full bg-mint" />
+      </div>
+
+      {/* Phone: a 200px mint band, edge to edge, closes the first screen. Hands 140px high. */}
+      <div className="desk:hidden relative mt-6 h-[200px] bg-mint">
+        <Hands className="top-1/2 left-1/2 w-[212px]" />
       </div>
 
       {/* Desktop: centred in the visible part of the circle (container middle + 24px
