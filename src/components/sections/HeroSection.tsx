@@ -41,7 +41,8 @@ export default function HeroSection() {
         {/* Phone: full-bleed circle cut by the section's bottom edge.
             Desktop: left edge at the container middle + 24px; at least 1040px
             (taller than the 780px screen) and always wider than what is left
-            of the viewport, so the right edge cuts it. */}
+            of the viewport, so the right edge cuts it. Only its left part is
+            visible there, so the frame moves right (73%) to keep the people in view. */}
         <div className="relative mt-12 -ml-[10vw] -mb-[42vw] size-[120vw] rounded-full overflow-hidden bg-graphite/15 desk:absolute desk:m-0 desk:left-[calc(50%+24px)] desk:-top-[90px] desk:size-[max(1040px,calc(50vw+120px))]">
           <Image
             src="/photos/clinic.jpg"
@@ -49,7 +50,7 @@ export default function HeroSection() {
             fill
             priority
             sizes="(min-width: 821px) max(1040px, calc(50vw + 120px)), 120vw"
-            className="object-cover object-[63%_50%]"
+            className="object-cover object-[63%_50%] desk:object-[73%_50%]"
           />
         </div>
       </div>
