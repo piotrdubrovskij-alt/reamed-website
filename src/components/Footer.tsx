@@ -30,9 +30,9 @@ export default function Footer() {
           <div className="lg:col-span-1">
             <Link href="/" className="inline-block mb-3.5" aria-label="ReaMed — pradžia">
               <img
-                src="/logo.svg"
+                src="/brand/reamed-wordmark-mint.svg"
                 alt="ReaMed"
-                className="h-6 w-auto brightness-0 invert opacity-60"
+                className="h-6 w-auto"
               />
             </Link>
             <p className="text-[0.83rem] text-white/35 leading-relaxed mb-4 max-w-[200px]">

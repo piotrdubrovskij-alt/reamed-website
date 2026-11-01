@@ -88,7 +88,7 @@ export default function Header() {
               aria-label="ReaMed — pradžia"
             >
               <img
-                src="/logo.svg"
+                src="/brand/reamed-wordmark-graphite.svg"
                 alt="ReaMed"
                 className="h-8 w-auto"
               />
