@@ -84,8 +84,10 @@
    - переключатель LT/EN сохранить, мобильное меню сохранить;
    - тёмную верхнюю полосу с часами убрать: часы есть в блоке записи.
 2. **Первый экран** (изменён после утверждения макета, `index.html` его не показывает):
-   - h1 «Jūsų sveikata mūsų rankose»;
-   - lead «Kineziterapija Vilniuje. Išsiaiškiname, kodėl skauda, ir kartu sudarome planą, kaip judėti laisviau.»;
+   - h1 «Kineziterapijos klinika Vilniuje» (EN «Physiotherapy clinic in Vilnius»), не больше двух строк на любой ширине,
+     на узких «Kineziterapijos / klinika Vilniuje»; размер — обычный h1 из шкалы (на телефоне `h1-m`), с ним помещается от 320 px;
+   - lead «ReaMed klinikoje padedame žmonėms, kuriems skauda nugarą, kaklą ar sąnarius, taip pat atsigaunantiems po traumų
+     ir operacijų. Jau per pirmąjį vizitą įvertiname jūsų būklę, sudarome planą ir pradedame gydymą.»;
    - строки цены нет: цена — в «Pirmasis vizitas»;
    - кнопка «Registruotis vizitui» и ссылка «★ 5,0 Google» (оценка из `GOOGLE_REVIEWS.rating`, ссылка на `GOOGLE_REVIEWS.url`);
    - сплошной мятный круг (mint) без фото, внутри белые руки из логотипа (`public/brand/reamed-hands-white.svg`,
