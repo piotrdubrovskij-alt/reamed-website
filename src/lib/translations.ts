@@ -132,10 +132,12 @@ export const translations = {
     reviews: {
       title: "Atsiliepimai",
       stars: "5 iš 5 žvaigždučių",
+      about: "apie",
+      // `name`: the specialist after `about` (accusative in LT).
       // `sentences`: cut after whole sentences, never paraphrase.
       quotes: [
-        { review: "dominykas-d-2026-10", specialist: "erikas-jatkauskas", about: "apie Eriką Jatkauską", sentences: 3 },
-        { review: "ilja-c-2024", specialist: "kotryna-kairyte", about: "apie Kotryną Kairytę", sentences: 2 },
+        { review: "dominykas-d-2026-10", specialist: "erikas-jatkauskas", name: "Eriką Jatkauską", sentences: 3 },
+        { review: "ilja-c-2024", specialist: "kotryna-kairyte", name: "Kotryną Kairytę", sentences: 2 },
       ],
     },
     booking: {
@@ -288,9 +290,10 @@ export const translations = {
     reviews: {
       title: "Reviews",
       stars: "5 out of 5 stars",
+      about: "about",
       quotes: [
-        { review: "dominykas-d-2026-10", specialist: "erikas-jatkauskas", about: "about Erikas Jatkauskas", sentences: 3 },
-        { review: "ilja-c-2024", specialist: "kotryna-kairyte", about: "about Kotryna Kairytė", sentences: 2 },
+        { review: "dominykas-d-2026-10", specialist: "erikas-jatkauskas", name: "Erikas Jatkauskas", sentences: 3 },
+        { review: "ilja-c-2024", specialist: "kotryna-kairyte", name: "Kotryna Kairytė", sentences: 2 },
       ],
     },
     booking: {
