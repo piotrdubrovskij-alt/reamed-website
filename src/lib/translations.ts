@@ -22,6 +22,8 @@ export const translations = {
       openMenu: "Atidaryti meniu",
       closeMenu: "Uždaryti meniu",
       language: "Kalba",
+      call: "Skambinti",
+      book: "Registruotis vizitui",
     },
     hero: {
       title: "Kineziterapijos klinika Vilniuje",
@@ -29,7 +31,7 @@ export const translations = {
       cta: "Registruotis vizitui",
     },
     areas: {
-      title: "Kur skauda?",
+      title: "Kada galime padėti?",
       register: "Registruotis",
       more: "Plačiau apie tai",
       items: [
@@ -110,7 +112,6 @@ export const translations = {
       ],
     },
     booking: {
-      title: "Registruokitės vizitui",
       online: "Registruotis internetu",
       phone: "Telefonas",
       address: "Adresas",
@@ -121,9 +122,8 @@ export const translations = {
     footer: {
       menu: "Apačios meniu",
       privacy: "Privatumo politika",
-      otherLanguage: "English",
-      otherLanguageCode: "en",
-      company: "UAB Modernios manualinės terapijos klinika",
+      map: "Atidaryti žemėlapį",
+      mapLabel: "Atidaryti ReaMed vietą Google Maps",
     },
     contact: {
       address: "Olimpiečių g. 1A-7, Vilnius",
@@ -148,6 +148,8 @@ export const translations = {
       openMenu: "Open menu",
       closeMenu: "Close menu",
       language: "Language",
+      call: "Call",
+      book: "Book a visit",
     },
     hero: {
       title: "Physiotherapy clinic in Vilnius",
@@ -155,7 +157,7 @@ export const translations = {
       cta: "Book a visit",
     },
     areas: {
-      title: "Where does it hurt?",
+      title: "When can we help?",
       register: "Book a visit",
       more: "Read more",
       items: [
@@ -234,7 +236,6 @@ export const translations = {
       ],
     },
     booking: {
-      title: "Book a visit",
       online: "Book online",
       phone: "Phone",
       address: "Address",
@@ -245,9 +246,8 @@ export const translations = {
     footer: {
       menu: "Footer menu",
       privacy: "Privacy policy",
-      otherLanguage: "Lietuviškai",
-      otherLanguageCode: "lt",
-      company: "UAB Modernios manualinės terapijos klinika",
+      map: "Open map",
+      mapLabel: "Open ReaMed on Google Maps",
     },
     contact: {
       address: "Olimpiečių g. 1A-7, Vilnius",

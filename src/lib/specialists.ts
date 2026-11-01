@@ -322,8 +322,8 @@ export const specialists: Specialist[] = [
     photo: "/photos/specialist-mangirdas-kazacenko.jpg",
     role: "Kineziterapeutas, manualinės terapijos specialistas, masažuotojas",
     roleEn: "Physiotherapist, manual therapy specialist, massage therapist",
-    tagline: "Nugaros, kaklo ir sąnarių skausmai, manualinė terapija, funkcinis atsistatymas",
-    taglineEn: "Back, neck and joint pain, manual therapy, functional recovery",
+    tagline: "Nugaros, kaklo ir sąnarių skausmai, manualinė terapija, atsistatymas po ortopedinių operacijų",
+    taglineEn: "Back, neck and joint pain, manual therapy, recovery after orthopaedic surgery",
     about: [
       "Mangirdas Kazačenko – kineziterapeutas, manualinės terapijos specialistas ir masažuotojas, dirbantis su pacientais, turinčiais įvairių griaučių-raumenų sistemos sutrikimų.",
       "Savo darbe jis taiko individualų ir integruotą požiūrį, siekdamas ne tik sumažinti simptomus, bet ir padėti pacientui kuo greičiau bei saugiau grįžti į visavertį kasdienį gyvenimą.",
