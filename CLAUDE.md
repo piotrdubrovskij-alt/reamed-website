@@ -36,6 +36,26 @@
   URL не меняется, `<html lang>` всегда `lt`. Переход на `/en/...` — пункт плана.
   На телефоне (до lg) язык переключается в шапке: кнопка «LT ▾» со списком; в мобильном меню и футере переключателя нет.
 
+## Запись онлайн: `/rezervacija` (ноябрь 2026)
+
+- Движок — система клиники (репозиторий `klinika-system`, боевой сервер Cloud Run `klinika`): каталог, свободное время,
+  удержание, Paysera, письма, запись в календари. План и правила — там: `docs/WEBSITE_BOOKING.md`, `AGENTS.md`
+  («Online booking»). Сайт ничего не считает сам: цены, длительности и правила приходят с сервера.
+- Код: `src/app/rezervacija/**` (страница, `rezultatas` — возврат из Paysera, `uzsakymas?t=` — заказ по ссылке из письма,
+  `mano-vizitai` — вход по коду на email, `salygos` — условия), `src/components/booking/*`, `src/lib/booking/*`.
+  Единственная дверь к системе — `src/app/api/booking/[...path]/route.ts`: прокси с белым списком маршрутов, ключ
+  `X-Website-Key` и адрес системы только на сервере; сессия пациента — HttpOnly-cookie `reamed_patient`
+  (Path `/api/booking`), токен в браузер не попадает.
+- Переменные: `KLINIKA_API_ORIGIN`, `WEBSITE_API_KEY` (секрет `klinika-website-api-key` в проекте reamed-site; подключается
+  `scripts/cloud-booking-env.sh` в Cloud Shell). Без них страница говорит «registracija internetu dar neįjungta».
+- Локально без системы: `node scripts/mock-booking-api.mjs` и `KLINIKA_API_ORIGIN=http://127.0.0.1:4100
+  WEBSITE_API_KEY=mock-website-key-0123456789abcdef0123 npm run dev` (код входа 123456, фальшивая страница Paysera).
+- До запуска страницы `noindex`, в меню и футере не ссылаются; `/registracija` с формой остаётся. Замена — после
+  сквозной проверки (klinika-system, этап 3). Тексты условий на `/rezervacija/salygos` — утверждённая редакция
+  условий системы клиники (12 часов, 15 €, Paysera); менять только через `docs/DECISIONS.md` там.
+- Все времена показываем по Вильнюсу (`Europe/Vilnius`), независимо от устройства. Ошибки сервера — литовские;
+  английские варианты — отдельная задача.
+
 ## Отзывы
 
 - `src/data/reviews.ts` — настоящие отзывы из Google-карточки ReaMed, отобраны вручную.
