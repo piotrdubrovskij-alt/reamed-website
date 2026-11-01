@@ -77,7 +77,11 @@ const jsonLd = {
   ],
   medicalSpecialty: "PhysicalTherapy",
   image: "https://reamed.lt/logo.png",
-  sameAs: ["https://www.google.com/maps?cid=5379242466351535503"],
+  sameAs: [
+    "https://www.google.com/maps?cid=5379242466351535503",
+    "https://www.instagram.com/reamedklinika/",
+    "https://www.facebook.com/reamedklinika/",
+  ],
 };
 
 export default function RootLayout({

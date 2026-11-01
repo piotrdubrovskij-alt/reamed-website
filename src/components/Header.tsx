@@ -1,10 +1,10 @@
 "use client";
 
-import { useEffect, useState, type MouseEvent } from "react";
+import { useEffect, useRef, useState, type MouseEvent } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { Menu, X } from "lucide-react";
+import { CalendarDays, Check, ChevronDown, Menu, Phone, X } from "lucide-react";
 import { useLanguage } from "@/contexts/LanguageContext";
 import type { Language } from "@/lib/translations";
 
@@ -26,6 +26,88 @@ function LanguageSwitch({ className = "" }: { className?: string }) {
           {l.toUpperCase()}
         </button>
       ))}
+    </div>
+  );
+}
+
+// Language names stay in their own language whichever one is on.
+const languageNames: Record<Language, string> = { lt: "Lietuvių", en: "English" };
+
+// Below lg: one 44px button with the current language and a list under it.
+function LanguageMenu() {
+  const { lang, setLang, t } = useLanguage();
+  const [open, setOpen] = useState(false);
+  const root = useRef<HTMLDivElement>(null);
+  const button = useRef<HTMLButtonElement>(null);
+
+  const close = (refocus: boolean) => {
+    setOpen(false);
+    if (refocus) button.current?.focus();
+  };
+
+  useEffect(() => {
+    if (!open) return;
+    const onPointer = (e: PointerEvent) => {
+      if (!root.current?.contains(e.target as Node)) setOpen(false);
+    };
+    document.addEventListener("pointerdown", onPointer);
+    return () => document.removeEventListener("pointerdown", onPointer);
+  }, [open]);
+
+  return (
+    <div
+      ref={root}
+      className="relative lg:hidden"
+      onKeyDown={(e) => {
+        if (open && e.key === "Escape") {
+          // Close the list only, not the mobile menu around it.
+          e.stopPropagation();
+          close(true);
+        }
+      }}
+      onBlur={(e) => {
+        if (open && !root.current?.contains(e.relatedTarget as Node | null)) setOpen(false);
+      }}
+    >
+      <button
+        ref={button}
+        type="button"
+        onClick={() => setOpen((o) => !o)}
+        aria-expanded={open}
+        aria-controls="language-menu"
+        className="inline-flex items-center justify-center gap-0.5 min-w-11 h-11 px-1 rounded-full text-small font-medium text-ink cursor-pointer"
+      >
+        <span className="sr-only">{t.header.language}: </span>
+        {lang.toUpperCase()}
+        <ChevronDown
+          size={16}
+          aria-hidden="true"
+          className={`transition-transform duration-200 motion-reduce:transition-none ${open ? "rotate-180" : ""}`}
+        />
+      </button>
+      <ul
+        id="language-menu"
+        hidden={!open}
+        className="absolute left-0 top-full mt-1 z-10 w-44 py-1 bg-white border border-ground-hover rounded-2xl"
+      >
+        {(["lt", "en"] as Language[]).map((l) => (
+          <li key={l}>
+            <button
+              type="button"
+              lang={l}
+              aria-current={lang === l ? "true" : undefined}
+              onClick={() => {
+                setLang(l);
+                close(true);
+              }}
+              className="flex w-full items-center justify-between gap-3 min-h-11 px-4 text-left text-small font-medium text-ink hover:bg-ground cursor-pointer"
+            >
+              {languageNames[l]}
+              {lang === l && <Check size={18} aria-hidden="true" className="shrink-0" />}
+            </button>
+          </li>
+        ))}
+      </ul>
     </div>
   );
 }
@@ -63,7 +145,7 @@ export default function Header() {
 
   return (
     <header className="sticky top-0 z-50 bg-ground">
-      <div className="wrap flex items-center justify-between gap-6 h-header lg:h-header-lg">
+      <div className="wrap flex items-center justify-between gap-3 lg:gap-6 h-header lg:h-header-lg">
         <Link href="/" onClick={goHome} aria-label={t.header.home} className="shrink-0 inline-flex items-center min-h-11">
           <Image
             src="/brand/reamed-wordmark-graphite.svg"
@@ -71,7 +153,7 @@ export default function Header() {
             width={150}
             height={31}
             priority
-            className="w-[124px] lg:w-[150px] h-auto"
+            className="w-[96px] min-[360px]:w-[124px] lg:w-[150px] h-auto"
           />
         </Link>
 
@@ -90,12 +172,28 @@ export default function Header() {
           </ul>
         </nav>
 
-        <div className="flex items-center gap-2 lg:gap-[22px] text-small font-medium">
+        {/* Below lg: language, phone, booking and menu as 44px zones with no gaps between them. */}
+        <div className="flex items-center lg:gap-[22px] text-small font-medium">
           <LanguageSwitch className="hidden lg:flex" />
+          <LanguageMenu />
           <a href={t.contact.phoneHref} className="hidden xl:inline-flex items-center min-h-11 whitespace-nowrap">
             {t.contact.phone}
           </a>
-          <Link href="/registracija" className="btn btn-dark min-h-11 lg:min-h-[46px] px-[18px] lg:px-[22px] text-small">
+          <a
+            href={t.contact.phoneHref}
+            aria-label={`${t.header.call} ${t.contact.phone}`}
+            className="lg:hidden inline-flex items-center justify-center size-11 rounded-full text-ink"
+          >
+            <Phone size={22} aria-hidden="true" />
+          </a>
+          <Link
+            href="/registracija"
+            aria-label={t.header.book}
+            className="lg:hidden inline-flex items-center justify-center size-11 rounded-full bg-graphite text-white hover:bg-ink transition-colors duration-150"
+          >
+            <CalendarDays size={22} aria-hidden="true" />
+          </Link>
+          <Link href="/registracija" className="max-lg:hidden btn btn-dark min-h-[46px] px-[22px] text-small">
             {t.header.register}
           </Link>
           <button
@@ -126,11 +224,10 @@ export default function Header() {
               </li>
             ))}
           </ul>
-          <div className="mt-4 flex items-center justify-between gap-4 text-small font-medium">
+          <div className="mt-4 text-small font-medium">
             <a href={t.contact.phoneHref} className="inline-flex items-center min-h-11">
               {t.contact.phone}
             </a>
-            <LanguageSwitch className="-mr-2" />
           </div>
         </nav>
       </div>
