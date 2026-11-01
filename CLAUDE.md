@@ -18,7 +18,9 @@
 
 - Next.js 16 (App Router, Turbopack), React 19, TypeScript, Tailwind CSS v4, lucide-react.
 - `output: "standalone"`, `Dockerfile` (node:20-alpine). Деплой только через GitHub → Cloud Build.
-- Шрифт Poppins через `next/font/google` (`src/app/layout.tsx`); на сборке нужен доступ к Google Fonts.
+- Шрифт Onest через `next/font/google` (`src/app/layout.tsx`), переменный, наборы `latin` + `latin-ext`;
+  на сборке нужен доступ к Google Fonts. Для русской версии добавить `cyrillic`.
+  В CSS не писать `var(--font-sans)`: при `@theme inline` такой переменной нет — брать `var(--font-onest)` или класс `font-sans`.
 - Форма записи: `src/app/api/contact/route.ts` — Resend, запасной вариант SMTP (nodemailer).
   Переменные — в `.env.local` (не в git), образец — `.env.example`.
 
@@ -51,7 +53,8 @@
 - Основной текст не меньше 16 px, зоны нажатия не меньше 44 px.
 - Не добавлять надписи капсом над заголовками, нумерованные плитки 01–04, эмодзи вместо иконок,
   длинные тире в литовских текстах.
-- Шрифт: решение (оставить Poppins или заменить) ещё не принято — см. `docs/plan.md`.
+- Шрифт сайта — Onest (решение Piotr, 01.11.2026). Литовские и русские буквы в нём полные.
+  Название клиники как знак — не шрифтом, а файлом логотипа.
 - Цвета редизайна (решено 01.11.2026): графит `#5F605F`, мята `#9DD0CB`, светло-серый `#ECEDEB`;
   пары — мята на графите и графит на светло-сером (см. «Знак ReaMed»). Макет выбора направления ещё открыт.
 

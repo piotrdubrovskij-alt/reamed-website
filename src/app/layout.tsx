@@ -1,12 +1,12 @@
 import type { Metadata } from "next";
-import { Poppins } from "next/font/google";
+import { Onest } from "next/font/google";
 import { Providers } from "./providers";
 import "./globals.css";
 
-const poppins = Poppins({
-  variable: "--font-poppins",
-  subsets: ["latin"],
-  weight: ["300", "400", "500", "600", "700", "800"],
+// Onest: variable font (one file for all weights); latin-ext covers ąčęėįšųūž.
+const onest = Onest({
+  variable: "--font-onest",
+  subsets: ["latin", "latin-ext"],
   display: "swap",
 });
 
@@ -93,7 +93,7 @@ export default function RootLayout({
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
         />
       </head>
-      <body className={`${poppins.variable} font-sans antialiased`}>
+      <body className={`${onest.variable} font-sans antialiased`}>
         <Providers>{children}</Providers>
       </body>
     </html>

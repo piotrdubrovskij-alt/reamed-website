@@ -1,7 +1,7 @@
 @import "tailwindcss";
 
 @theme inline {
-  --font-sans: var(--font-poppins);
+  --font-sans: var(--font-onest);
 
   --color-brand: #90CECA;
   --color-brand-ui: #7DB9B5;
@@ -23,7 +23,7 @@
 body {
   background: #F7FAF9;
   color: #1F2524;
-  font-family: var(--font-sans), system-ui, sans-serif;
+  font-family: var(--font-onest), system-ui, sans-serif;
 }
 
 * {
