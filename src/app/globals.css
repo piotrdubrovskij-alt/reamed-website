@@ -3,26 +3,69 @@
 @theme inline {
   --font-sans: var(--font-onest);
 
-  --color-brand: #90CECA;
-  --color-brand-ui: #7DB9B5;
-  --color-brand-hover: #68A7A2;
-  --color-brand-light: #EEF5F4;
+  /* Redesign G (01.11.2026). Mint text only large and only on graphite. */
+  --color-ground: #ECEDEB;
+  --color-paper: #F7F7F6;
+  --color-ink: #2B2C2B;
+  --color-graphite: #5F605F;
+  --color-mint: #9DD0CB;
+  --color-mint-light: #B5DDD8;
+  --color-on-dark: #E9EBEA;
+  --color-focus: #437571;
 
-  --color-graphite: #505251;
-  --color-graphite-mid: #6B6D6C;
+  /* Older names, still used by the problem and service pages. */
+  --color-foreground: var(--color-ink);
+  --color-secondary: var(--color-ink);
+  --color-muted: var(--color-graphite);
 
-  --color-foreground: #1F2524;
-  --color-secondary: #3A3F3E;
-  --color-muted: #5F6866;
+  /* Type scale. No other sizes. `-m` = phone. */
+  --text-h1: clamp(46px, 6vw, 88px);
+  --text-h1--line-height: 1.02;
+  --text-h1--letter-spacing: -0.025em;
+  --text-h1--font-weight: 500;
+  --text-h1-m: clamp(36px, 10vw, 46px);
+  --text-h1-m--line-height: 1.02;
+  --text-h1-m--letter-spacing: -0.025em;
+  --text-h1-m--font-weight: 500;
+  --text-h2: clamp(34px, 3.9vw, 56px);
+  --text-h2--line-height: 1.02;
+  --text-h2--letter-spacing: -0.025em;
+  --text-h2--font-weight: 500;
+  --text-h3: clamp(26px, 2.4vw, 34px);
+  --text-h3--line-height: 1.12;
+  --text-h3--letter-spacing: -0.015em;
+  --text-h3-m: 22px;
+  --text-h3-m--line-height: 1.25;
+  --text-lead: clamp(20px, 1.6vw, 24px);
+  --text-lead--line-height: 1.42;
+  --text-body: 18px;
+  --text-body--line-height: 1.55;
+  --text-small: 16px;
+  --text-small--line-height: 1.45;
 
-  --color-surface: #EEF5F4;
-  --color-border: #D8E6E4;
-  --color-border-light: #E8F0EF;
+  /* Layout */
+  --container-page: 1376px;
+  --spacing-gutter: 20px;
+  --spacing-gutter-md: 32px;
+  --spacing-section: 104px;
+  --spacing-section-md: 168px;
+  --spacing-header: 72px;
+  --spacing-header-lg: 88px;
+}
+
+:root {
+  --header-h: var(--spacing-header);
+}
+
+@media (min-width: 1024px) {
+  :root {
+    --header-h: var(--spacing-header-lg);
+  }
 }
 
 body {
-  background: #F7FAF9;
-  color: #1F2524;
+  background: var(--color-ground);
+  color: var(--color-ink);
   font-family: var(--font-onest), system-ui, sans-serif;
 }
 
@@ -32,6 +75,79 @@ body {
 
 html {
   scroll-behavior: smooth;
+  scroll-padding-top: var(--header-h);
+}
+
+:focus-visible {
+  outline: 3px solid var(--color-focus);
+  outline-offset: 3px;
+}
+
+/* Page container: 1376px, gutters 20 / 32px. */
+@utility wrap {
+  max-width: var(--container-page);
+  margin-inline: auto;
+  padding-inline: var(--spacing-gutter);
+  @media (min-width: 768px) {
+    padding-inline: var(--spacing-gutter-md);
+  }
+}
+
+/* Space between sections: 104 / 168px. */
+@utility section-y {
+  padding-block: var(--spacing-section);
+  @media (min-width: 768px) {
+    padding-block: var(--spacing-section-md);
+  }
+}
+
+/* Pill button, 52px high. Pair with btn-dark or btn-mint. */
+@utility btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  min-height: 52px;
+  padding-inline: 28px;
+  border-radius: 999px;
+  font-size: var(--text-body);
+  font-weight: 500;
+  line-height: 1.2;
+  text-decoration: none;
+  transition: background-color 0.18s ease, transform 0.18s ease;
+  &:active {
+    transform: translateY(1px);
+  }
+}
+
+/* On light grounds: graphite, white text, ink on hover. */
+@utility btn-dark {
+  background: var(--color-graphite);
+  color: #fff;
+  &:hover {
+    background: var(--color-ink);
+  }
+}
+
+/* On graphite: mint, ink text. */
+@utility btn-mint {
+  background: var(--color-mint);
+  color: var(--color-ink);
+  &:hover {
+    background: var(--color-mint-light);
+  }
+}
+
+/* Action link: 2px mint underline, offset 5px. */
+@utility link-action {
+  font-weight: 500;
+  text-decoration: underline;
+  text-decoration-thickness: 2px;
+  text-underline-offset: 5px;
+  text-decoration-color: var(--color-mint);
+  &:hover {
+    text-decoration-color: currentColor;
+  }
 }
 
 @layer utilities {

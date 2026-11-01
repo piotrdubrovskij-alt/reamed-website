@@ -482,6 +482,11 @@ export const reviews: Review[] = [
   },
 ];
 
+/** One review by id, or undefined if it is missing or on hold. */
+export function getReviewById(id: string): Review | undefined {
+  return reviews.find((r) => r.id === id && !r.hold);
+}
+
 type ReviewFilter = {
   condition?: ConditionSlug;
   service?: ServiceSlug;

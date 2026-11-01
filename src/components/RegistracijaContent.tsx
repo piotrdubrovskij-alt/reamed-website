@@ -171,7 +171,7 @@ export default function RegistracijaContent() {
     }`;
 
   return (
-    <div className="min-h-screen" style={{ background: "#F7FAF9", paddingTop: "104px" }}>
+    <div className="min-h-screen" style={{ background: "#F7FAF9" }}>
 
       {/* ── PAGE HEADER ── */}
       <div className="container-xl pt-8 pb-8 md:pt-10 md:pb-10 border-b border-[#DDE9E8]">

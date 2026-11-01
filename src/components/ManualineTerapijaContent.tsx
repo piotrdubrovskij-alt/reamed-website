@@ -142,8 +142,8 @@ const content = {
     ctaBtn: "Registruotis vizitui",
     ctaContact: "Susisiekti",
     specialists: [
-      { name: "Piotr Dubrovskij", role: "Kineziterapeutas, osteopatas, manualinės terapijos specialistas", focus: "Nugaros ir sąnarių skausmai, manualinis gydymas", photo: "/specialist-piotr.jpg", slug: "piotr-dubrovskij" },
-      { name: "Mangirdas Kazačenko", role: "Kineziterapeutas, manualinės terapijos specialistas", focus: "Nugaros skausmas, manualinis gydymas, funkcinis atkūrimas", photo: "/specialist-mangirdas.jpg", slug: "mangirdas-kazacenko" },
+      { name: "Piotr Dubrovskij", role: "Kineziterapeutas, osteopatas, manualinės terapijos specialistas", focus: "Nugaros ir sąnarių skausmai, manualinis gydymas", photo: "/photos/specialist-piotr-dubrovskij.jpg", slug: "piotr-dubrovskij" },
+      { name: "Mangirdas Kazačenko", role: "Kineziterapeutas, manualinės terapijos specialistas", focus: "Nugaros skausmas, manualinis gydymas, funkcinis atkūrimas", photo: "/photos/specialist-mangirdas-kazacenko.jpg", slug: "mangirdas-kazacenko" },
     ],
   },
   en: {
@@ -281,8 +281,8 @@ const content = {
     ctaBtn: "Book an appointment",
     ctaContact: "Contact us",
     specialists: [
-      { name: "Piotr Dubrovskij", role: "Physiotherapist, osteopath, manual therapy specialist", focus: "Back and joint pain, manual treatment", photo: "/specialist-piotr.jpg", slug: "piotr-dubrovskij" },
-      { name: "Mangirdas Kazačenko", role: "Physiotherapist, manual therapy specialist", focus: "Back pain, manual therapy, functional recovery", photo: "/specialist-mangirdas.jpg", slug: "mangirdas-kazacenko" },
+      { name: "Piotr Dubrovskij", role: "Physiotherapist, osteopath, manual therapy specialist", focus: "Back and joint pain, manual treatment", photo: "/photos/specialist-piotr-dubrovskij.jpg", slug: "piotr-dubrovskij" },
+      { name: "Mangirdas Kazačenko", role: "Physiotherapist, manual therapy specialist", focus: "Back pain, manual therapy, functional recovery", photo: "/photos/specialist-mangirdas-kazacenko.jpg", slug: "mangirdas-kazacenko" },
     ],
   },
 };
@@ -322,7 +322,7 @@ function AnchorNav({ links }: { links: { id: string; label: string }[] }) {
     return () => observers.forEach((o) => o.disconnect());
   }, [links]);
   return (
-    <div className="sticky z-30 bg-white/96 backdrop-blur-sm border-b border-[#DDE9E8] shadow-[0_1px_8px_rgba(0,0,0,0.04)]" style={{ top: "104px" }}>
+    <div className="sticky z-30 bg-white/96 backdrop-blur-sm border-b border-[#DDE9E8] shadow-[0_1px_8px_rgba(0,0,0,0.04)]" style={{ top: "var(--header-h)" }}>
       <div className="container-xl">
         <nav className="flex gap-0 overflow-x-auto" style={{ scrollbarWidth: "none" }}>
           {links.map(({ id, label }) => (
@@ -357,7 +357,7 @@ export default function ManualineTerapijaContent() {
   const { lang } = useLanguage();
   const c = content[lang];
   return (
-    <div className="min-h-screen" style={{ background: "#F7FAF9", paddingTop: "104px" }}>
+    <div className="min-h-screen" style={{ background: "#F7FAF9" }}>
       <div style={{ background: "linear-gradient(160deg, #EEF5F4 0%, #F7FAF9 60%)" }}>
         <div className="container-xl pt-6 pb-12 md:pt-10 md:pb-16">
           <Link href="/#paslaugos" className="inline-flex items-center gap-1.5 text-[0.8rem] text-muted/60 hover:text-[#7DB9B5] transition-colors duration-200 mb-4 block">{c.breadcrumb}</Link>

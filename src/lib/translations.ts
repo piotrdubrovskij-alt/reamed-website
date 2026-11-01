@@ -1,471 +1,324 @@
 export type Language = "lt" | "en";
 
+// Home page and shared blocks (header, footer).
+// Lithuanian copy is verbatim from docs/design/redesign-g/index.html.
+// Reviews are referenced by id from src/data/reviews.ts and shown in their original language.
+
 export const translations = {
   lt: {
     nav: {
-      services: "Paslaugos",
       whatWeTreat: "Ką gydome",
+      services: "Paslaugos",
       specialists: "Specialistai",
       prices: "Kainos",
       contacts: "Kontaktai",
     },
     header: {
-      phone: "+37060134304",
       register: "Registruotis",
+      home: "ReaMed, pradžia",
+      mainMenu: "Pagrindinis meniu",
+      mobileMenu: "Mobilusis meniu",
+      openMenu: "Atidaryti meniu",
+      closeMenu: "Uždaryti meniu",
+      language: "Kalba",
     },
     hero: {
-      tag: "Kineziterapijos klinika · Vilnius",
-      title: "Grąžinsime judesio laisvę — be skausmo ir apribojimų",
-      subtitle:
-        "Deriname kineziterapiją, manualinę terapiją ir osteopatiją, kad padėtume grįžti į aktyvų gyvenimą.",
-      description: "",
-      cta1: "Registruotis vizitui",
-      cta2: "Pasirinkti specialistą",
-      trustLine: [
-        "Kineziterapija",
-        "Manualinė terapija",
-        "Osteopatija",
-        "Sporto traumų reabilitacija",
-        "Pooperacinis atsistatymas",
-      ],
+      title: "Jūsų sveikata mūsų rankose",
+      lead: "Kineziterapijos ir reabilitacijos klinika Vilniuje: nugaros, kaklo ir sąnarių skausmas, sporto traumos, atsistatymas po operacijų.",
+      priceLabel: "Pirmasis vizitas: konsultacija, ištyrimas ir planas",
+      price: "60 min · 80 €",
+      cta: "Registruotis vizitui",
+      photoAlt: "ReaMed kineziterapeutai aptaria paciento būklę ir dirba su pacientu",
     },
-    quickAccess: {
-      title: "Pasirinkite jums aktualią sritį",
-      note: "Jei nesate tikri, nuo ko pradėti, registruokitės pirmajam vizitui — padėsime pasirinkti tinkamiausią kryptį.",
-      items: [
-        { label: "Nugaros skausmas", icon: "spine" },
-        { label: "Kaklo skausmas", icon: "neck" },
-        { label: "Sporto traumos", icon: "sport" },
-        { label: "Pooperacinė reabilitacija", icon: "recovery" },
-        { label: "Peties problemos", icon: "shoulder" },
-        { label: "Kelio problemos", icon: "knee" },
-        { label: "Tirpimas ir plintantis skausmas", icon: "nerve" },
-        { label: "Sausgyslių ir perkrovos problemos", icon: "tendon" },
-      ],
-    },
-    mainDirections: {
-      title: "Pagrindinės ReaMed kryptys",
+    areas: {
+      title: "Kur skauda?",
+      register: "Registruotis",
+      more: "Plačiau apie tai",
+      servicesLabel: "Paslaugos:",
+      reviewInOriginal: "",
       items: [
         {
-          title: "Sporto traumų gydymas ir reabilitacija",
-          description:
-            "Padedame po traumų, perkrovų ir siekiant saugaus grįžimo į aktyvumą ar sportą.",
-        },
-        {
-          title: "Atsistatymas po ortopedinių operacijų",
-          description:
-            "Vedame pacientą per skirtingus atsistatymo etapus po kelio, peties, čiurnos, stuburo ir kitų ortopedinių operacijų.",
-        },
-        {
-          title: "Stuburo ir kaklo problemų gydymas",
-          description:
-            "Dirbame su ūmiais ir lėtiniais skausmais, judesio ribotumu bei nervų dirginimo simptomais.",
-        },
-      ],
-    },
-    howWeWork: {
-      title: "Kaip dirbame",
-      intro:
-        "Mums svarbu ne procedūrų kiekis, o aiški gydymo kryptis ir realus atsistatymas.",
-      steps: [
-        {
-          number: "01",
-          title: "Įvertiname būklę",
-          description:
-            "Aiškinamės simptomus, funkciją, apkrovą ir problemos priežastis.",
-        },
-        {
-          number: "02",
-          title: "Parenkame tinkamą kelią",
-          description:
-            "Sprendžiame, ar svarbiausia manualinė terapija, aktyvi reabilitacija, krūvio korekcija ar jų derinys.",
-        },
-        {
-          number: "03",
-          title: "Dirbame pagal etapą",
-          description:
-            "Gydymas priklauso nuo to, ar tai ūmi būklė, pooperacinis laikotarpis ar ilgiau trunkanti problema.",
-        },
-        {
-          number: "04",
-          title: "Siekiame rezultato",
-          description:
-            "Tikslas — mažesnis skausmas, geresnė funkcija ir grįžimas į aktyvų gyvenimą.",
-        },
-      ],
-    },
-    services: {
-      title: "Paslaugos",
-      cta: "Visos paslaugos",
-      items: [
-        {
-          title: "Kineziterapija",
-          description:
-            "Individualiai pritaikytas gydymas ir funkcijos atkūrimas esant įvairiems judamojo aparato sutrikimams.",
-        },
-        {
-          title: "Manualinė terapija",
-          description:
-            "Tikslingai taikoma manualinė terapija kaip viena gydymo plano dalių, siekiant mažinti simptomus ir gerinti judesį.",
-        },
-        {
-          title: "Osteopatija",
-          description:
-            "Švelnios manualinės technikos, taikomos atsižvelgiant į žmogaus būklę, simptomus ir bendrą gydymo kryptį.",
-        },
-        {
-          title: "Sporto reabilitacija",
-          description:
-            "Reabilitacija po traumų, perkrovų ir kryptingas grįžimas į aktyvumą ar sportą.",
-        },
-        {
-          title: "Pooperacinė reabilitacija",
-          description:
-            "Atsistatymas po ortopedinių ir stuburo operacijų, parenkant gydymą pagal konkretų reabilitacijos etapą.",
-        },
-        {
-          title: "Gydomasis masažas",
-          description:
-            "Pagalbinė priemonė esant raumenų įtampai, perkrovoms ir atsistatymo poreikiui.",
-        },
-      ],
-    },
-    whatWeTreat: {
-      title: "Ką gydome",
-      note: "Jei nesate tikri, kas jums tinkamiausia, registruokitės pirmajam vizitui — padėsime pasirinkti kryptį.",
-      items: [
-        {
+          slug: "nugaros-skausmas",
           title: "Nugaros skausmas",
-          description:
-            "Ūmūs ir pasikartojantys nugaros skausmai, sustingimas, judesio ribotumas.",
+          text: "Ūmus ar pasikartojantis skausmas, sustingimas, judesio ribotumas. Įvertiname problemos pobūdį ir parenkame tinkamiausią gydymo kryptį.",
+          review: "urte-2026-10",
+          specialist: null,
         },
         {
+          slug: "kaklo-skausmas",
           title: "Kaklo skausmas",
-          description:
-            "Kaklo įtampa, skausmas, plintantys simptomai, pečių juostos perkrova.",
+          text: "Įtampa, skausmas, judesio ribotumas ar pojūčiai, plintantys į petį ar ranką. Įvertiname ir parenkame tinkamiausią gydymo kryptį.",
+          review: null,
+          specialist: { slug: "piotr-dubrovskij", note: "stuburo ir kaklo problemos" },
         },
         {
+          slug: "peties-problemos",
           title: "Peties problemos",
-          description:
-            "Skausmas, ribotas judesys, atsistatymas po traumos ar operacijos.",
+          text: "Skausmas, ribotas judesys, trauminė ar lėtinė būklė, trukdanti dirbti, sportuoti ir ilsėtis.",
+          review: "roman-2025-12",
+          specialist: null,
         },
         {
+          slug: "kelio-skausmas",
           title: "Kelio skausmas ir traumos",
-          description: "Raiščių, menisko, perkrovos ir pooperacinės būklės.",
+          text: "Raiščių ir menisko problemos, perkrovos, atsistatymas po kelio operacijos.",
+          review: "vita-a-2026-07",
+          specialist: null,
         },
         {
+          slug: "sporto-traumos",
           title: "Sporto traumos",
-          description: "Traumos, perkrovos, grįžimas į aktyvumą ir sportą.",
+          text: "Traumos, perkrovos ir pasikartojantis skausmas, kurie sustabdo treniruotes. Planas grįžti į krūvį saugiai.",
+          review: "ramunas-k-2020",
+          specialist: null,
         },
         {
+          slug: "atsistatymas-po-operaciju",
           title: "Atsistatymas po operacijų",
-          description: "Po ortopedinių ir traumatologinių operacijų.",
+          text: "Saugiai atkuriame judrumą, jėgą ir pasitikėjimą judesiu pagal konkretų gijimo etapą.",
+          review: "tevas-2025",
+          specialist: null,
         },
         {
+          slug: "plintantis-skausmas",
           title: "Plintantis skausmas ir tirpimas",
-          description:
-            "Nervų dirginimo simptomai, skausmo plitimas į ranką ar koją.",
+          text: "Skausmas, plintantis į ranką ar koją, tirpimas, dilgčiojimas. Įvertiname simptomų pobūdį ir parenkame kryptį.",
+          review: null,
+          specialist: { slug: "piotr-dubrovskij", note: "nervų dirginimo simptomai" },
         },
         {
+          slug: "tendinopatijos",
           title: "Tendinopatijos ir perkrovos",
-          description:
-            "Pasikartojantys sausgyslių, sąnarių ir kitų audinių skausmai.",
+          text: "Skausmas krūvio metu ar po jo, jautrumas, sumažėjusi apkrovos tolerancija.",
+          review: null,
+          specialist: { slug: "kotryna-kairyte", note: "perkrovų sindromai" },
+        },
+      ],
+      services: [
+        { slug: "kineziterapija", title: "Kineziterapija" },
+        { slug: "manualine-terapija", title: "Manualinė terapija" },
+        { slug: "osteopatija", title: "Osteopatija" },
+        { slug: "gydomasis-masazas", title: "Gydomasis masažas" },
+        { slug: "sporto-reabilitacija", title: "Sporto reabilitacija" },
+        { slug: "pooperacine-reabilitacija", title: "Pooperacinė reabilitacija" },
+      ],
+    },
+    team: {
+      title: "Dirbame su Lietuvos rinktinėmis",
+      lead: "Trys mūsų kineziterapeutai dirba su Lietuvos ledo ritulio ir futbolo rinktinėmis.",
+      people: [
+        {
+          slug: "piotr-dubrovskij",
+          fact: "Ledo ritulio rinktinių vyr. kineziterapeutas nuo 2012 m. Dėsto VU Medicinos fakultete.",
+        },
+        {
+          slug: "kotryna-kairyte",
+          fact: "Moterų futbolo rinktinė nuo 2022 m., ledo ritulio rinktinės nuo 2019 m.",
+        },
+        {
+          slug: "erikas-jatkauskas",
+          fact: "Jaunimo ledo ritulio rinktinė nuo 2022 m.",
+        },
+        {
+          slug: "mangirdas-kazacenko",
+          fact: "Kineziterapija, manualinė terapija ir masažas.",
         },
       ],
     },
-    specialists: {
-      title: "Mūsų specialistai",
-      intro:
-        "ReaMed komandoje dirba specialistai, turintys patirties sporto traumų, ortopedinių problemų, stuburo sutrikimų ir pooperacinės reabilitacijos srityse.",
-      cta: "Visi specialistai",
-      items: [
-        {
-          name: "Piotr Dubrovskij",
-          role: "Kineziterapeutas, osteopatas, manualinės terapijos specialistas",
-          description:
-            "Stuburo ir kaklo problemos, sudėtingesni judamojo aparato sutrikimai, ūmios būklės, pooperacinis atsistatymas.",
-          initials: "PD",
-        },
-        {
-          name: "Kotryna Kairytė",
-          role: "Kineziterapeutė",
-          description:
-            "Sporto traumos, ortopedinės problemos, pooperacinė reabilitacija, grįžimas į sportą.",
-          initials: "KK",
-        },
-        {
-          name: "Erikas Jatkauskas",
-          role: "Kineziterapeutas",
-          description:
-            "Kasdienės judamojo aparato problemos, skausmo mažinimas, funkcijos atkūrimas po perkrovų ir traumų.",
-          initials: "EJ",
-        },
-        {
-          name: "Mangirdas Kazačenko",
-          role: "Kineziterapeutas, manualinės terapijos specialistas",
-          description:
-            "Judamojo aparato problemos, manualinė terapija, funkcinis atsistatymas.",
-          initials: "MK",
-        },
-      ],
+    visit: {
+      title: "Pirmasis vizitas",
+      statement: "Išklausome, ištiriame judesį ir paaiškiname, kas vyksta. Išeinate su aiškiu gydymo planu.",
+      facts: ["60 min", "80 €", "I–V 8–19 val."],
+      prices: "Visos kainos ir paketai",
+      photoAlt: "Kineziterapeutas dirba su paciente",
     },
     reviews: {
-      title: "Pacientų atsiliepimai",
-      subtitle:
-        "Pacientai vertina ne tik simptomų mažėjimą, bet ir aiškų planą, suprantamą paaiškinimą bei kryptingą atsistatymą.",
-      cta: "Daugiau atsiliepimų",
+      title: "Atsiliepimai",
+      stars: "5 iš 5 žvaigždučių",
+      // `sentences`: cut after whole sentences, never paraphrase.
+      quotes: [
+        { review: "dominykas-d-2026-10", specialist: "erikas-jatkauskas", about: "apie Eriką Jatkauską", sentences: 3 },
+        { review: "ilja-c-2024", specialist: "kotryna-kairyte", about: "apie Kotryną Kairytę", sentences: 2 },
+      ],
     },
-    cta: {
-      title: "Registruokitės vizitui ReaMed klinikoje",
-      description:
-        "Jei ieškote pagalbos dėl nugaros, kaklo, sąnarių ar sporto traumų, arba norite kryptingai atsistatyti po ortopedinės operacijos — kviečiame registruotis pirmajam vizitui.",
-      btn1: "Registruotis",
-      btn2: "Susisiekti",
+    booking: {
+      title: "Registruokitės vizitui",
+      online: "Registruotis internetu",
+      address: "Adresas",
+      hours: "Darbo laikas",
+      hoursValue: "I–V 8:00–19:00",
+      firstVisit: "Pirmasis vizitas",
+      firstVisitValue: "60 min, 80 €",
     },
     footer: {
-      tagline: "Šiuolaikinė kineziterapijos ir reabilitacijos klinika Vilniuje.",
-      address: "Olimpiečių g. 1A-7, Vilnius",
-      phone: "+37060134304",
-      email: "info@reamed.lt",
-      copyright: "© 2025 ReaMed. Visos teisės saugomos.",
+      menu: "Apačios meniu",
+      privacy: "Privatumo politika",
+      otherLanguage: "English",
+      otherLanguageCode: "en",
+      company: "UAB Modernios manualinės terapijos klinika",
     },
     contact: {
       address: "Olimpiečių g. 1A-7, Vilnius",
-      phone: "+37060134304",
+      phone: "+370 601 34304",
+      phoneHref: "tel:+37060134304",
       email: "info@reamed.lt",
     },
   },
   en: {
     nav: {
-      services: "Services",
       whatWeTreat: "What we treat",
+      services: "Services",
       specialists: "Specialists",
       prices: "Prices",
       contacts: "Contacts",
     },
     header: {
-      phone: "+37060134304",
       register: "Book a visit",
+      home: "ReaMed, home",
+      mainMenu: "Main menu",
+      mobileMenu: "Mobile menu",
+      openMenu: "Open menu",
+      closeMenu: "Close menu",
+      language: "Language",
     },
     hero: {
-      tag: "Physiotherapy clinic · Vilnius",
-      title: "We'll restore freedom of movement — without pain or limitations",
-      subtitle:
-        "We combine physiotherapy, manual therapy and osteopathy to help you return to an active life.",
-      description: "",
-      cta1: "Book a visit",
-      cta2: "Choose a specialist",
-      trustLine: [
-        "Physiotherapy",
-        "Manual therapy",
-        "Osteopathy",
-        "Sports injury rehabilitation",
-        "Post-surgical recovery",
-      ],
+      title: "Your health in our hands",
+      lead: "Physiotherapy and rehabilitation clinic in Vilnius: back, neck and joint pain, sports injuries, recovery after surgery.",
+      priceLabel: "First visit: consultation, assessment and plan",
+      price: "60 min · €80",
+      cta: "Book a visit",
+      photoAlt: "ReaMed physiotherapists discussing a patient's condition and working with a patient",
     },
-    quickAccess: {
-      title: "Choose your area of concern",
-      note: "If you are not sure where to start, book an initial visit — we will help you choose the right direction.",
-      items: [
-        { label: "Back pain", icon: "spine" },
-        { label: "Neck pain", icon: "neck" },
-        { label: "Sports injuries", icon: "sport" },
-        { label: "Post-surgical rehabilitation", icon: "recovery" },
-        { label: "Shoulder problems", icon: "shoulder" },
-        { label: "Knee problems", icon: "knee" },
-        { label: "Radiating pain & numbness", icon: "nerve" },
-        { label: "Tendon & overuse problems", icon: "tendon" },
-      ],
-    },
-    mainDirections: {
-      title: "ReaMed's core specialisations",
+    areas: {
+      title: "Where does it hurt?",
+      register: "Book a visit",
+      more: "Read more",
+      servicesLabel: "Services:",
+      reviewInOriginal: "review in Lithuanian",
       items: [
         {
-          title: "Sports injury treatment and rehabilitation",
-          description:
-            "We help recovery after injuries, overuse conditions and safe return to activity or sport.",
-        },
-        {
-          title: "Recovery after orthopaedic surgery",
-          description:
-            "We guide patients through the different stages of recovery after knee, shoulder, ankle, spine and other orthopaedic operations.",
-        },
-        {
-          title: "Spine and neck problem treatment",
-          description:
-            "We work with acute and chronic pain, restricted movement and nerve irritation symptoms.",
-        },
-      ],
-    },
-    howWeWork: {
-      title: "How we work",
-      intro:
-        "What matters to us is not the number of procedures, but a clear treatment direction and real recovery.",
-      steps: [
-        {
-          number: "01",
-          title: "We assess the condition",
-          description:
-            "We clarify symptoms, function, load and the root cause of the problem.",
-        },
-        {
-          number: "02",
-          title: "We choose the right path",
-          description:
-            "We decide whether manual therapy, active rehabilitation, load correction or a combination is most important.",
-        },
-        {
-          number: "03",
-          title: "We work according to stage",
-          description:
-            "Treatment depends on whether it is an acute condition, post-surgical period or long-standing problem.",
-        },
-        {
-          number: "04",
-          title: "We aim for results",
-          description:
-            "The goal — less pain, better function and return to an active life.",
-        },
-      ],
-    },
-    services: {
-      title: "Services",
-      cta: "All services",
-      items: [
-        {
-          title: "Physiotherapy",
-          description:
-            "Individually tailored treatment and function restoration for various musculoskeletal conditions.",
-        },
-        {
-          title: "Manual therapy",
-          description:
-            "Targeted manual therapy as one component of the treatment plan, aimed at reducing symptoms and improving movement.",
-        },
-        {
-          title: "Osteopathy",
-          description:
-            "Gentle manual techniques applied according to the person's condition, symptoms and overall treatment direction.",
-        },
-        {
-          title: "Sports rehabilitation",
-          description:
-            "Rehabilitation after injuries, overuse conditions and directed return to activity or sport.",
-        },
-        {
-          title: "Post-surgical rehabilitation",
-          description:
-            "Recovery after orthopaedic and spinal surgery, with treatment tailored to each specific rehabilitation stage.",
-        },
-        {
-          title: "Therapeutic massage",
-          description:
-            "A supportive measure for muscle tension, overuse conditions and recovery needs.",
-        },
-      ],
-    },
-    whatWeTreat: {
-      title: "What we treat",
-      note: "If you are not sure what is right for you, book an initial visit — we will help you choose the direction.",
-      items: [
-        {
+          slug: "nugaros-skausmas",
           title: "Back pain",
-          description:
-            "Acute and recurring back pain, stiffness, restricted movement.",
+          text: "Acute or recurring pain, stiffness, restricted movement. We assess the nature of the problem and choose the most suitable treatment direction.",
+          review: "urte-2026-10",
+          specialist: null,
         },
         {
+          slug: "kaklo-skausmas",
           title: "Neck pain",
-          description:
-            "Neck tension, pain, radiating symptoms, shoulder girdle overload.",
+          text: "Tension, pain, restricted movement or sensations spreading to the shoulder or arm. We assess and choose the most suitable treatment direction.",
+          review: null,
+          specialist: { slug: "piotr-dubrovskij", note: "spine and neck problems" },
         },
         {
+          slug: "peties-problemos",
           title: "Shoulder problems",
-          description:
-            "Pain, restricted movement, recovery after injury or surgery.",
+          text: "Pain, restricted movement, an injury or a long-standing condition that gets in the way of work, sport and rest.",
+          review: "roman-2025-12",
+          specialist: null,
         },
         {
+          slug: "kelio-skausmas",
           title: "Knee pain and injuries",
-          description: "Ligament, meniscus, overuse and post-surgical conditions.",
+          text: "Ligament and meniscus problems, overuse, recovery after knee surgery.",
+          review: "vita-a-2026-07",
+          specialist: null,
         },
         {
+          slug: "sporto-traumos",
           title: "Sports injuries",
-          description: "Injuries, overuse conditions, return to activity and sport.",
+          text: "Injuries, overuse and recurring pain that stop your training. A plan to return to load safely.",
+          review: "ramunas-k-2020",
+          specialist: null,
         },
         {
+          slug: "atsistatymas-po-operaciju",
           title: "Recovery after surgery",
-          description: "After orthopaedic and trauma surgery.",
+          text: "We safely rebuild mobility, strength and confidence in movement, matched to your stage of healing.",
+          review: "tevas-2025",
+          specialist: null,
         },
         {
+          slug: "plintantis-skausmas",
           title: "Radiating pain and numbness",
-          description:
-            "Nerve irritation symptoms, pain radiating to arm or leg.",
+          text: "Pain spreading to the arm or leg, numbness, tingling. We assess the nature of the symptoms and choose a direction.",
+          review: null,
+          specialist: { slug: "piotr-dubrovskij", note: "nerve irritation symptoms" },
         },
         {
+          slug: "tendinopatijos",
           title: "Tendinopathies and overuse",
-          description:
-            "Recurring tendon, joint and other tissue pain.",
+          text: "Pain during or after load, tenderness, lower tolerance to load.",
+          review: null,
+          specialist: { slug: "kotryna-kairyte", note: "overuse syndromes" },
+        },
+      ],
+      services: [
+        { slug: "kineziterapija", title: "Physiotherapy" },
+        { slug: "manualine-terapija", title: "Manual therapy" },
+        { slug: "osteopatija", title: "Osteopathy" },
+        { slug: "gydomasis-masazas", title: "Therapeutic massage" },
+        { slug: "sporto-reabilitacija", title: "Sports rehabilitation" },
+        { slug: "pooperacine-reabilitacija", title: "Post-surgical rehabilitation" },
+      ],
+    },
+    team: {
+      title: "We work with Lithuania's national teams",
+      lead: "Three of our physiotherapists work with Lithuania's national ice hockey and football teams.",
+      people: [
+        {
+          slug: "piotr-dubrovskij",
+          fact: "Head physiotherapist of the national ice hockey teams since 2012. Teaches at the Vilnius University Faculty of Medicine.",
+        },
+        {
+          slug: "kotryna-kairyte",
+          fact: "Women's national football team since 2022, ice hockey teams since 2019.",
+        },
+        {
+          slug: "erikas-jatkauskas",
+          fact: "Youth national ice hockey team since 2022.",
+        },
+        {
+          slug: "mangirdas-kazacenko",
+          fact: "Physiotherapy, manual therapy and massage.",
         },
       ],
     },
-    specialists: {
-      title: "Our specialists",
-      intro:
-        "The ReaMed team includes specialists with experience in sports injuries, orthopaedic problems, spinal conditions and post-surgical rehabilitation.",
-      cta: "All specialists",
-      items: [
-        {
-          name: "Piotr Dubrovskij",
-          role: "Physiotherapist, osteopath, manual therapy specialist",
-          description:
-            "Spine and neck problems, complex musculoskeletal conditions, acute cases, post-surgical recovery.",
-          initials: "PD",
-        },
-        {
-          name: "Kotryna Kairytė",
-          role: "Physiotherapist",
-          description:
-            "Sports injuries, orthopaedic problems, post-surgical rehabilitation, return to sport.",
-          initials: "KK",
-        },
-        {
-          name: "Erikas Jatkauskas",
-          role: "Physiotherapist",
-          description:
-            "Everyday musculoskeletal problems, pain reduction, function restoration after overuse and injuries.",
-          initials: "EJ",
-        },
-        {
-          name: "Mangirdas Kazačenko",
-          role: "Physiotherapist, manual therapy specialist",
-          description:
-            "Musculoskeletal problems, manual therapy, functional recovery.",
-          initials: "MK",
-        },
-      ],
+    visit: {
+      title: "First visit",
+      statement: "We listen, assess how you move and explain what is going on. You leave with a clear treatment plan.",
+      facts: ["60 min", "€80", "Mon–Fri 8–19"],
+      prices: "All prices and packages",
+      photoAlt: "A physiotherapist working with a patient",
     },
     reviews: {
-      title: "Patient reviews",
-      subtitle:
-        "Patients value not only symptom reduction, but also a clear plan, understandable explanation and directed recovery.",
-      cta: "More reviews",
+      title: "Reviews",
+      stars: "5 out of 5 stars",
+      quotes: [
+        { review: "dominykas-d-2026-10", specialist: "erikas-jatkauskas", about: "about Erikas Jatkauskas", sentences: 3 },
+        { review: "ilja-c-2024", specialist: "kotryna-kairyte", about: "about Kotryna Kairytė", sentences: 2 },
+      ],
     },
-    cta: {
-      title: "Book a visit at ReaMed clinic",
-      description:
-        "If you are looking for help with back, neck, joint or sports injuries, or want targeted recovery after orthopaedic surgery — we invite you to book an initial visit.",
-      btn1: "Book a visit",
-      btn2: "Contact us",
+    booking: {
+      title: "Book a visit",
+      online: "Book online",
+      address: "Address",
+      hours: "Opening hours",
+      hoursValue: "Mon–Fri 8:00–19:00",
+      firstVisit: "First visit",
+      firstVisitValue: "60 min, €80",
     },
     footer: {
-      tagline: "Modern physiotherapy and rehabilitation clinic in Vilnius.",
-      address: "Olimpiečių g. 1A-7, Vilnius",
-      phone: "+37060134304",
-      email: "info@reamed.lt",
-      copyright: "© 2025 ReaMed. All rights reserved.",
+      menu: "Footer menu",
+      privacy: "Privacy policy",
+      otherLanguage: "Lietuviškai",
+      otherLanguageCode: "lt",
+      company: "UAB Modernios manualinės terapijos klinika",
     },
     contact: {
       address: "Olimpiečių g. 1A-7, Vilnius",
-      phone: "+37060134304",
+      phone: "+370 601 34304",
+      phoneHref: "tel:+37060134304",
       email: "info@reamed.lt",
     },
   },

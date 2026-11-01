@@ -164,7 +164,7 @@ export default function KontaktaiContent() {
   }
 
   return (
-    <div className="min-h-screen" style={{ background: "#F7FAF9", paddingTop: "104px" }}>
+    <div className="min-h-screen" style={{ background: "#F7FAF9" }}>
 
       {/* ── HERO ── */}
       <div className="container-xl pt-8 pb-7 md:pt-10 md:pb-8 border-b border-[#DDE9E8]">

@@ -31,7 +31,7 @@ export default function SpecialistPageContent({ specialist: s }: { specialist: S
     : courses;
 
   return (
-    <div className="min-h-screen" style={{ background: "#F7FAF9", paddingTop: "104px" }}>
+    <div className="min-h-screen" style={{ background: "#F7FAF9" }}>
 
       {/* Back link */}
       <div className="container-xl pt-6 pb-0">
