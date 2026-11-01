@@ -140,10 +140,10 @@ const content = {
     ctaBtn: "Registruotis vizitui",
     ctaContact: "Susisiekti",
     specialists: [
-      { name: "Piotr Dubrovskij", role: "Kineziterapeutas, osteopatas, manualinės terapijos specialistas", focus: "Nugaros ir sąnarių skausmai, funkcinis ištyrimas", photo: "/specialist-piotr.jpg", slug: "piotr-dubrovskij" },
-      { name: "Kotryna Kairytė", role: "Kineziterapeutė", focus: "Sporto reabilitacija, atsistatymas po traumų", photo: "/specialist-kotryna.jpg", slug: "kotryna-kairyte" },
-      { name: "Erikas Jatkauskas", role: "Kineziterapeutas", focus: "Judesio kontrolė, perkrovų gydymas", photo: "/specialist-erikas.jpg", slug: "erikas-jatkauskas" },
-      { name: "Mangirdas Kazačenko", role: "Kineziterapeutas, manualinės terapijos specialistas", focus: "Pooperacinė reabilitacija, manualinė terapija", photo: "/specialist-mangirdas.jpg", slug: "mangirdas-kazacenko" },
+      { name: "Piotr Dubrovskij", role: "Kineziterapeutas, osteopatas, manualinės terapijos specialistas", focus: "Nugaros ir sąnarių skausmai, funkcinis ištyrimas", photo: "/photos/specialist-piotr-dubrovskij.jpg", slug: "piotr-dubrovskij" },
+      { name: "Kotryna Kairytė", role: "Kineziterapeutė", focus: "Sporto reabilitacija, atsistatymas po traumų", photo: "/photos/specialist-kotryna-kairyte.jpg", slug: "kotryna-kairyte" },
+      { name: "Erikas Jatkauskas", role: "Kineziterapeutas", focus: "Judesio kontrolė, perkrovų gydymas", photo: "/photos/specialist-erikas-jatkauskas.jpg", slug: "erikas-jatkauskas" },
+      { name: "Mangirdas Kazačenko", role: "Kineziterapeutas, manualinės terapijos specialistas", focus: "Pooperacinė reabilitacija, manualinė terapija", photo: "/photos/specialist-mangirdas-kazacenko.jpg", slug: "mangirdas-kazacenko" },
     ],
   },
   en: {
@@ -278,10 +278,10 @@ const content = {
     ctaBtn: "Book an appointment",
     ctaContact: "Contact us",
     specialists: [
-      { name: "Piotr Dubrovskij", role: "Physiotherapist, osteopath, manual therapy specialist", focus: "Back and joint pain, functional assessment", photo: "/specialist-piotr.jpg", slug: "piotr-dubrovskij" },
-      { name: "Kotryna Kairytė", role: "Physiotherapist", focus: "Sports rehabilitation, recovery from injuries", photo: "/specialist-kotryna.jpg", slug: "kotryna-kairyte" },
-      { name: "Erikas Jatkauskas", role: "Physiotherapist", focus: "Movement control, overuse injury management", photo: "/specialist-erikas.jpg", slug: "erikas-jatkauskas" },
-      { name: "Mangirdas Kazačenko", role: "Physiotherapist, manual therapy specialist", focus: "Post-operative rehabilitation, manual therapy", photo: "/specialist-mangirdas.jpg", slug: "mangirdas-kazacenko" },
+      { name: "Piotr Dubrovskij", role: "Physiotherapist, osteopath, manual therapy specialist", focus: "Back and joint pain, functional assessment", photo: "/photos/specialist-piotr-dubrovskij.jpg", slug: "piotr-dubrovskij" },
+      { name: "Kotryna Kairytė", role: "Physiotherapist", focus: "Sports rehabilitation, recovery from injuries", photo: "/photos/specialist-kotryna-kairyte.jpg", slug: "kotryna-kairyte" },
+      { name: "Erikas Jatkauskas", role: "Physiotherapist", focus: "Movement control, overuse injury management", photo: "/photos/specialist-erikas-jatkauskas.jpg", slug: "erikas-jatkauskas" },
+      { name: "Mangirdas Kazačenko", role: "Physiotherapist, manual therapy specialist", focus: "Post-operative rehabilitation, manual therapy", photo: "/photos/specialist-mangirdas-kazacenko.jpg", slug: "mangirdas-kazacenko" },
     ],
   },
 };
@@ -324,7 +324,7 @@ function AnchorNav({ links }: { links: { id: string; label: string }[] }) {
     return () => observers.forEach((o) => o.disconnect());
   }, [links]);
   return (
-    <div className="sticky z-30 bg-white/96 backdrop-blur-sm border-b border-[#DDE9E8] shadow-[0_1px_8px_rgba(0,0,0,0.04)]" style={{ top: "104px" }}>
+    <div className="sticky z-30 bg-white/96 backdrop-blur-sm border-b border-[#DDE9E8] shadow-[0_1px_8px_rgba(0,0,0,0.04)]" style={{ top: "var(--header-h)" }}>
       <div className="container-xl">
         <nav className="flex gap-0 overflow-x-auto" style={{ scrollbarWidth: "none" }}>
           {links.map(({ id, label }) => (
@@ -363,7 +363,7 @@ export default function KineziterapijaContent() {
   const c = content[lang];
 
   return (
-    <div className="min-h-screen" style={{ background: "#F7FAF9", paddingTop: "104px" }}>
+    <div className="min-h-screen" style={{ background: "#F7FAF9" }}>
 
       {/* HERO */}
       <div style={{ background: "linear-gradient(160deg, #EEF5F4 0%, #F7FAF9 60%)" }}>

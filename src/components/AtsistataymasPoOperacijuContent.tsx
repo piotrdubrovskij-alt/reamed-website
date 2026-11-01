@@ -91,10 +91,10 @@ const content = {
     ctaTitle: "Norite kryptingai atsistatyti po operacijos?", ctaText: "Registruokitės pirmajam vizitui — įvertinsime jūsų būklę, reabilitacijos etapą ir parinksime tinkamiausią atsistatymo kryptį.",
     ctaBtn: "Registruotis vizitui", ctaContact: "Susisiekti",
     specialists: [
-      { name: "Piotr Dubrovskij", role: "Kineziterapeutas, osteopatas, manualinės terapijos specialistas", focus: "Pooperacinė reabilitacija, funkcijos atkūrimas", photo: "/specialist-piotr.jpg", slug: "piotr-dubrovskij" },
-      { name: "Kotryna Kairytė", role: "Kineziterapeutė", focus: "Pooperacinė reabilitacija, sporto traumos", photo: "/specialist-kotryna.jpg", slug: "kotryna-kairyte" },
-      { name: "Erikas Jatkauskas", role: "Kineziterapeutas", focus: "Etapinis atsistatymas, grįžimas į aktyvumą", photo: "/specialist-erikas.jpg", slug: "erikas-jatkauskas" },
-      { name: "Mangirdas Kazačenko", role: "Kineziterapeutas, manualinės terapijos specialistas", focus: "Pooperacinis atsistatymas, judrumo atkūrimas", photo: "/specialist-mangirdas.jpg", slug: "mangirdas-kazacenko" },
+      { name: "Piotr Dubrovskij", role: "Kineziterapeutas, osteopatas, manualinės terapijos specialistas", focus: "Pooperacinė reabilitacija, funkcijos atkūrimas", photo: "/photos/specialist-piotr-dubrovskij.jpg", slug: "piotr-dubrovskij" },
+      { name: "Kotryna Kairytė", role: "Kineziterapeutė", focus: "Pooperacinė reabilitacija, sporto traumos", photo: "/photos/specialist-kotryna-kairyte.jpg", slug: "kotryna-kairyte" },
+      { name: "Erikas Jatkauskas", role: "Kineziterapeutas", focus: "Etapinis atsistatymas, grįžimas į aktyvumą", photo: "/photos/specialist-erikas-jatkauskas.jpg", slug: "erikas-jatkauskas" },
+      { name: "Mangirdas Kazačenko", role: "Kineziterapeutas, manualinės terapijos specialistas", focus: "Pooperacinis atsistatymas, judrumo atkūrimas", photo: "/photos/specialist-mangirdas-kazacenko.jpg", slug: "mangirdas-kazacenko" },
     ],
   },
   en: {
@@ -182,10 +182,10 @@ const content = {
     ctaTitle: "Want to recover after surgery safely and in a targeted way?", ctaText: "Book your first appointment — we will assess your condition, rehabilitation stage and choose the most appropriate recovery direction.",
     ctaBtn: "Book an appointment", ctaContact: "Contact us",
     specialists: [
-      { name: "Piotr Dubrovskij", role: "Physiotherapist, osteopath, manual therapy specialist", focus: "Post-operative rehabilitation, function restoration", photo: "/specialist-piotr.jpg", slug: "piotr-dubrovskij" },
-      { name: "Kotryna Kairytė", role: "Physiotherapist", focus: "Post-operative rehabilitation, sports injuries", photo: "/specialist-kotryna.jpg", slug: "kotryna-kairyte" },
-      { name: "Erikas Jatkauskas", role: "Physiotherapist", focus: "Staged recovery, return to activity", photo: "/specialist-erikas.jpg", slug: "erikas-jatkauskas" },
-      { name: "Mangirdas Kazačenko", role: "Physiotherapist, manual therapy specialist", focus: "Post-operative recovery, mobility restoration", photo: "/specialist-mangirdas.jpg", slug: "mangirdas-kazacenko" },
+      { name: "Piotr Dubrovskij", role: "Physiotherapist, osteopath, manual therapy specialist", focus: "Post-operative rehabilitation, function restoration", photo: "/photos/specialist-piotr-dubrovskij.jpg", slug: "piotr-dubrovskij" },
+      { name: "Kotryna Kairytė", role: "Physiotherapist", focus: "Post-operative rehabilitation, sports injuries", photo: "/photos/specialist-kotryna-kairyte.jpg", slug: "kotryna-kairyte" },
+      { name: "Erikas Jatkauskas", role: "Physiotherapist", focus: "Staged recovery, return to activity", photo: "/photos/specialist-erikas-jatkauskas.jpg", slug: "erikas-jatkauskas" },
+      { name: "Mangirdas Kazačenko", role: "Physiotherapist, manual therapy specialist", focus: "Post-operative recovery, mobility restoration", photo: "/photos/specialist-mangirdas-kazacenko.jpg", slug: "mangirdas-kazacenko" },
     ],
   },
 };
@@ -196,7 +196,7 @@ function BL({ items }: { items: string[] }) { return <ul className="flex flex-co
 function AN({ links }: { links: { id: string; label: string }[] }) {
   const [active, setActive] = useState("");
   useEffect(() => { const obs: IntersectionObserver[] = []; links.forEach(({ id }) => { const el = document.getElementById(id); if (!el) return; const o = new IntersectionObserver((e) => { e.forEach((x) => { if (x.isIntersecting) setActive(id); }); }, { rootMargin: "-30% 0px -60% 0px" }); o.observe(el); obs.push(o); }); return () => obs.forEach((o) => o.disconnect()); }, [links]);
-  return <div className="sticky z-30 bg-white/96 backdrop-blur-sm border-b border-[#DDE9E8] shadow-[0_1px_8px_rgba(0,0,0,0.04)]" style={{ top: "104px" }}><div className="container-xl"><nav className="flex gap-0 overflow-x-auto" style={{ scrollbarWidth: "none" }}>{links.map(({ id, label }) => (<a key={id} href={`#${id}`} className={`whitespace-nowrap px-4 py-3.5 text-[0.8rem] font-semibold border-b-2 transition-colors duration-200 flex-shrink-0 ${active === id ? "border-[#7DB9B5] text-[#7DB9B5]" : "border-transparent text-muted/70 hover:text-foreground hover:border-[#DDE9E8]"}`}>{label}</a>))}</nav></div></div>;
+  return <div className="sticky z-30 bg-white/96 backdrop-blur-sm border-b border-[#DDE9E8] shadow-[0_1px_8px_rgba(0,0,0,0.04)]" style={{ top: "var(--header-h)" }}><div className="container-xl"><nav className="flex gap-0 overflow-x-auto" style={{ scrollbarWidth: "none" }}>{links.map(({ id, label }) => (<a key={id} href={`#${id}`} className={`whitespace-nowrap px-4 py-3.5 text-[0.8rem] font-semibold border-b-2 transition-colors duration-200 flex-shrink-0 ${active === id ? "border-[#7DB9B5] text-[#7DB9B5]" : "border-transparent text-muted/70 hover:text-foreground hover:border-[#DDE9E8]"}`}>{label}</a>))}</nav></div></div>;
 }
 function FQ({ items }: { items: { q: string; a: string }[] }) {
   const [open, setOpen] = useState<number | null>(0);
@@ -207,7 +207,7 @@ export default function AtsistataymasPoOperacijuContent() {
   const { lang } = useLanguage();
   const c = content[lang];
   return (
-    <div className="min-h-screen" style={{ background: "#F7FAF9", paddingTop: "104px" }}>
+    <div className="min-h-screen" style={{ background: "#F7FAF9" }}>
       <div style={{ background: "linear-gradient(160deg, #EEF5F4 0%, #F7FAF9 60%)" }}>
         <div className="container-xl pt-6 pb-12 md:pt-10 md:pb-16">
           <Link href="/#ka-gydome" className="inline-flex items-center gap-1.5 text-[0.8rem] text-muted/60 hover:text-[#7DB9B5] transition-colors duration-200 mb-4 block">{c.breadcrumb}</Link>

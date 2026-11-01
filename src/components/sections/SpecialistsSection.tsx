@@ -1,14 +1,10 @@
 "use client";
 
-import { ArrowRight } from "lucide-react";
+import Image from "next/image";
+import Link from "next/link";
 import { useLanguage } from "@/contexts/LanguageContext";
-
-const slugMap: Record<string, string> = {
-  PD: "piotr-dubrovskij",
-  KK: "kotryna-kairyte",
-  EJ: "erikas-jatkauskas",
-  MK: "mangirdas-kazacenko",
-};
+import type { SpecialistSlug } from "@/data/reviews";
+import { SPECIALIST_NAMES, specialistPhoto } from "@/components/reviews/format";
 
 export default function SpecialistsSection() {
   const { t } = useLanguage();
@@ -16,91 +12,39 @@ export default function SpecialistsSection() {
   return (
     <section
       id="specialistai"
-      className="section-padding bg-white"
-      aria-labelledby="specialists-title"
+      aria-labelledby="team-h"
+      className="bg-graphite text-white section-y [&_:focus-visible]:outline-mint"
     >
-      <div className="container-xl">
-        <div className="max-w-[620px] mb-10 md:mb-14">
-          <h2
-            id="specialists-title"
-            className="text-[1.875rem] md:text-[2.25rem] font-bold text-foreground mb-4"
-          >
-            {t.specialists.title}
+      <div className="wrap">
+        <div className="grid gap-10 mb-14 md:grid-cols-[7fr_5fr] md:gap-[72px] md:items-end md:mb-18">
+          <h2 id="team-h" className="text-h2 text-mint max-w-[14ch] text-balance">
+            {t.team.title}
           </h2>
-          <p className="text-[1rem] text-muted leading-relaxed">
-            {t.specialists.intro}
-          </p>
+          <p className="text-lead text-on-dark">{t.team.lead}</p>
         </div>
-
-        <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-5 md:gap-6 mb-8">
-          {t.specialists.items.map((spec) => {
-            const photo =
-              spec.initials === "PD" ? "/specialist-piotr.jpg" :
-              spec.initials === "KK" ? "/specialist-kotryna.jpg" :
-              spec.initials === "EJ" ? "/specialist-erikas.jpg" :
-              spec.initials === "MK" ? "/specialist-mangirdas.jpg" :
-              null;
-            const slug = slugMap[spec.initials];
-            const firstName = spec.name.split(" ")[0];
+        <ul className="grid grid-cols-2 gap-x-3.5 gap-y-7 md:grid-cols-4 md:gap-6">
+          {t.team.people.map((p) => {
+            const slug = p.slug as SpecialistSlug;
             return (
-            <div
-              key={spec.name}
-              className="group bg-white rounded-2xl border border-[#DDE9E8] overflow-hidden hover:border-[#90CECA] hover:shadow-[0_8px_32px_rgba(144,206,202,0.12)] transition-all duration-300 flex flex-col"
-            >
-              {/* Avatar */}
-              <a href={`/specialistai/${slug}`} className="block h-[300px] bg-gradient-to-br from-[#EEF5F4] to-[#D4EDEB] flex items-center justify-center relative overflow-hidden">
-                {photo ? (
-                  <img
-                    src={photo}
-                    alt={spec.name}
-                    className="w-full h-full object-cover"
-                    style={{ objectPosition: "center 10%" }}
+              <li key={slug}>
+                <Link href={`/specialistai/${slug}`} className="group block">
+                  <Image
+                    src={specialistPhoto(slug)}
+                    alt=""
+                    width={640}
+                    height={800}
+                    sizes="(min-width: 768px) 25vw, 50vw"
+                    className="w-full aspect-[4/5] object-cover rounded-t-full"
                   />
-                ) : (
-                  <>
-                    <div className="w-20 h-20 rounded-full bg-white shadow-[0_4px_16px_rgba(144,206,202,0.2)] flex items-center justify-center">
-                      <span className="text-[1.375rem] font-bold text-[#7DB9B5]">
-                        {spec.initials}
-                      </span>
-                    </div>
-                    <div className="absolute -top-6 -right-6 w-24 h-24 rounded-full border border-[#90CECA]/15" aria-hidden="true" />
-                    <div className="absolute -bottom-8 -left-4 w-20 h-20 rounded-full border border-[#90CECA]/15" aria-hidden="true" />
-                  </>
-                )}
-              </a>
-
-              {/* Content */}
-              <div className="p-5 flex flex-col flex-1">
-                <a href={`/specialistai/${slug}`} className="hover:text-[#7DB9B5] transition-colors duration-200">
-                  <h3 className="text-[1rem] font-bold text-foreground mb-1 leading-snug">
-                    {spec.name}
-                  </h3>
-                </a>
-                <p className="text-[0.8125rem] font-medium text-[#7DB9B5] mb-3 leading-snug">
-                  {spec.role}
-                </p>
-                <p className="text-[0.8125rem] text-muted leading-relaxed flex-1">
-                  {spec.description}
-                </p>
-                <a
-                  href="/registracija"
-                  className="mt-4 inline-flex items-center gap-1.5 text-[0.8125rem] font-semibold text-[#7DB9B5] hover:text-[#68A7A2] hover:gap-2 transition-all duration-200"
-                >
-                  Registruotis pas {firstName}
-                  <ArrowRight size={14} strokeWidth={2.5} />
-                </a>
-              </div>
-            </div>
+                  <span className="block mt-[18px] text-body md:text-lead font-medium group-hover:underline group-hover:decoration-mint group-hover:decoration-2 group-hover:underline-offset-[5px]">
+                    {SPECIALIST_NAMES[slug]}
+                  </span>
+                </Link>
+                <p className="mt-1.5 text-small text-on-dark">{p.fact}</p>
+              </li>
             );
           })}
-        </div>
-
-        <a
-          href="/registracija"
-          className="inline-flex items-center gap-2 px-5 py-2.5 border-2 border-[#90CECA] text-[#5E6765] text-[0.875rem] font-semibold rounded-xl hover:bg-[#EEF5F4] transition-colors duration-200"
-        >
-          {t.specialists.cta} →
-        </a>
+        </ul>
       </div>
     </section>
   );

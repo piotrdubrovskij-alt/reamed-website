@@ -1,0 +1,343 @@
+<!doctype html>
+<html lang="lt"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>ReaMed G · Pagrindinis</title>
+<!-- Макет редизайна G (утверждён Piotr 01.11.2026). Референс для вёрстки, не код сайта. -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="anonymous">
+<link href="https://fonts.googleapis.com/css2?family=Onest:wght@400;500;600&amp;display=swap" rel="stylesheet"><style>
+:root{--ground:#ECEDEB;--paper:#F7F7F6;--ink:#2B2C2B;--graphite:#5F605F;--graphite-2:#535453;--mint:#9DD0CB;--mint-2:#B5DDD8;--on-dark:#E9EBEA;
+--m:32px;--max:1376px;--gap:168px}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--ground);color:var(--ink);font-family:'Onest',system-ui,sans-serif;font-size:18px;line-height:1.55;-webkit-font-smoothing:antialiased}
+img{display:block;max-width:100%}
+a{color:inherit}
+:focus-visible{outline:3px solid #437571;outline-offset:3px}
+.wrap{max-width:var(--max);margin:0 auto;padding:0 var(--m)}
+h1,h2,h3{margin:0;font-weight:500;letter-spacing:-0.025em;line-height:1.02;text-wrap:balance}
+h1{font-size:clamp(46px,6vw,88px)}
+h2{font-size:clamp(34px,3.9vw,56px)}
+h3{font-size:clamp(26px,2.4vw,34px);letter-spacing:-0.015em;line-height:1.12}
+p{margin:0}
+.lead{font-size:clamp(20px,1.6vw,24px);line-height:1.42}
+.note{font-size:16px;color:var(--graphite)}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;min-height:52px;padding:0 28px;border-radius:999px;background:var(--graphite);color:#fff;text-decoration:none;font-size:18px;font-weight:500;transition:background .18s ease,transform .18s ease}
+.btn:hover{background:var(--ink)}
+.btn:active{transform:translateY(1px)}
+.btn-mint{background:var(--mint);color:var(--ink)}
+.btn-mint:hover{background:var(--mint-2)}
+.link{font-weight:500;text-decoration:underline;text-decoration-thickness:2px;text-underline-offset:5px;text-decoration-color:var(--mint)}
+.link:hover{text-decoration-color:currentColor}
+
+/* header */
+.top{background:var(--ground)}
+.nav{display:flex;align-items:center;justify-content:space-between;gap:24px;height:88px}
+.nav .brand img{width:150px;height:auto}
+.nav ul{display:flex;gap:30px;list-style:none;margin:0;padding:0;font-size:16px;font-weight:500}
+.nav ul a{text-decoration:none;padding:12px 0}
+.nav ul a:hover{text-decoration:underline;text-decoration-color:var(--mint);text-decoration-thickness:2px;text-underline-offset:6px}
+.nav .right{display:flex;align-items:center;gap:22px;font-size:16px;font-weight:500}
+.nav .right a.tel{text-decoration:none}
+.nav .btn{min-height:46px;padding:0 22px;font-size:16px}
+
+/* hero */
+.hero{position:relative;overflow:hidden;background:var(--ground);height:780px}
+.hero .wrap{position:relative;height:100%}
+.hero .copy{position:relative;z-index:2;max-width:640px;padding-top:120px;display:flex;flex-direction:column;gap:28px}
+.hero .circle{position:absolute;z-index:1;width:1040px;height:1040px;border-radius:50%;overflow:hidden;right:-300px;top:-90px;background:#d9dbd8}
+.hero .circle img{width:100%;height:100%;object-fit:cover;object-position:63% 50%}
+.hero .price{display:flex;flex-wrap:wrap;gap:6px 18px;font-size:18px}
+.hero .price b{font-weight:600}
+.hero .actions{display:flex;flex-wrap:wrap;align-items:center;gap:16px 28px}
+.rating{display:inline-flex;align-items:center;gap:8px;font-size:16px;color:var(--graphite);text-decoration:none}
+.rating svg{color:var(--graphite)}
+.rating b{color:var(--ink);font-weight:600}
+
+/* areas: the live thing */
+.areas{background:var(--paper);padding:var(--gap) 0}
+.areas .grid{display:grid;grid-template-columns:5fr 7fr;gap:72px;align-items:start}
+.areas h2{margin-bottom:36px}
+.areas input{position:absolute;opacity:0;pointer-events:none}
+.alist{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:4px}
+.alist label{display:flex;align-items:center;gap:16px;min-height:56px;padding:0 22px;margin-left:-22px;border-radius:999px;font-size:clamp(20px,1.6vw,24px);font-weight:500;cursor:pointer;transition:background .18s ease,color .18s ease}
+.alist label::before{content:"";flex:0 0 12px;height:12px;border-radius:50%;background:var(--mint)}
+.alist label:hover{background:var(--ground)}
+.panel{display:none;background:var(--ground);padding:48px;min-height:560px;flex-direction:column;gap:26px}
+.panel h3{max-width:20ch}
+.panel blockquote{margin:6px 0 0;font-size:clamp(20px,1.6vw,24px);line-height:1.42;max-width:34ch}
+.panel cite{display:block;margin-top:12px;font-style:normal;font-size:16px;color:var(--graphite)}
+.panel .who{display:flex;align-items:center;gap:16px;font-size:16px}
+.panel .who img{width:64px;height:64px;border-radius:50%;object-fit:cover;object-position:50% 18%}
+.panel .acts{display:flex;flex-wrap:wrap;gap:14px 28px;align-items:center;margin-top:auto}
+.services{margin-top:56px;font-size:16px;color:var(--graphite);display:flex;flex-wrap:wrap;gap:8px 22px}
+.services span{color:var(--ink);font-weight:500}
+#a-nugara:checked ~ .grid .alist label[for=a-nugara]{background:var(--graphite);color:#fff}
+#a-nugara:checked ~ .grid .alist label[for=a-nugara]::before{background:var(--mint)}
+#a-nugara:checked ~ .grid .p-nugara{display:flex}
+#a-nugara:focus-visible ~ .grid .alist label[for=a-nugara]{outline:3px solid #437571;outline-offset:2px}
+#a-kaklas:checked ~ .grid .alist label[for=a-kaklas]{background:var(--graphite);color:#fff}
+#a-kaklas:checked ~ .grid .alist label[for=a-kaklas]::before{background:var(--mint)}
+#a-kaklas:checked ~ .grid .p-kaklas{display:flex}
+#a-kaklas:focus-visible ~ .grid .alist label[for=a-kaklas]{outline:3px solid #437571;outline-offset:2px}
+#a-petys:checked ~ .grid .alist label[for=a-petys]{background:var(--graphite);color:#fff}
+#a-petys:checked ~ .grid .alist label[for=a-petys]::before{background:var(--mint)}
+#a-petys:checked ~ .grid .p-petys{display:flex}
+#a-petys:focus-visible ~ .grid .alist label[for=a-petys]{outline:3px solid #437571;outline-offset:2px}
+#a-kelis:checked ~ .grid .alist label[for=a-kelis]{background:var(--graphite);color:#fff}
+#a-kelis:checked ~ .grid .alist label[for=a-kelis]::before{background:var(--mint)}
+#a-kelis:checked ~ .grid .p-kelis{display:flex}
+#a-kelis:focus-visible ~ .grid .alist label[for=a-kelis]{outline:3px solid #437571;outline-offset:2px}
+#a-sportas:checked ~ .grid .alist label[for=a-sportas]{background:var(--graphite);color:#fff}
+#a-sportas:checked ~ .grid .alist label[for=a-sportas]::before{background:var(--mint)}
+#a-sportas:checked ~ .grid .p-sportas{display:flex}
+#a-sportas:focus-visible ~ .grid .alist label[for=a-sportas]{outline:3px solid #437571;outline-offset:2px}
+#a-operacija:checked ~ .grid .alist label[for=a-operacija]{background:var(--graphite);color:#fff}
+#a-operacija:checked ~ .grid .alist label[for=a-operacija]::before{background:var(--mint)}
+#a-operacija:checked ~ .grid .p-operacija{display:flex}
+#a-operacija:focus-visible ~ .grid .alist label[for=a-operacija]{outline:3px solid #437571;outline-offset:2px}
+#a-plinta:checked ~ .grid .alist label[for=a-plinta]{background:var(--graphite);color:#fff}
+#a-plinta:checked ~ .grid .alist label[for=a-plinta]::before{background:var(--mint)}
+#a-plinta:checked ~ .grid .p-plinta{display:flex}
+#a-plinta:focus-visible ~ .grid .alist label[for=a-plinta]{outline:3px solid #437571;outline-offset:2px}
+#a-sausgysles:checked ~ .grid .alist label[for=a-sausgysles]{background:var(--graphite);color:#fff}
+#a-sausgysles:checked ~ .grid .alist label[for=a-sausgysles]::before{background:var(--mint)}
+#a-sausgysles:checked ~ .grid .p-sausgysles{display:flex}
+#a-sausgysles:focus-visible ~ .grid .alist label[for=a-sausgysles]{outline:3px solid #437571;outline-offset:2px}
+
+/* team */
+.team{background:var(--graphite);color:#fff;padding:var(--gap) 0}
+.team h2{color:var(--mint);max-width:14ch}
+.team .head{display:grid;grid-template-columns:7fr 5fr;gap:72px;align-items:end;margin-bottom:72px}
+.team .head p{color:var(--on-dark)}
+.people{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:24px}
+.people figure{margin:0}
+.people img{width:100%;aspect-ratio:5/6;object-fit:cover;object-position:50% 0;border-radius:999px 999px 0 0}
+.people figcaption{margin-top:18px}
+.people b{display:block;font-size:clamp(20px,1.6vw,23px);font-weight:500}
+.people span{display:block;margin-top:6px;font-size:16px;line-height:1.45;color:var(--on-dark)}
+.team .more{margin-top:56px}
+.team .link{text-decoration-color:var(--mint)}
+
+/* first visit */
+.visit{background:var(--ground);padding:var(--gap) 0}
+.visit .grid{display:grid;grid-template-columns:6fr 6fr;gap:72px;align-items:center}
+.visit .text{display:flex;flex-direction:column;gap:32px}
+.visit .statement{font-size:clamp(26px,2.4vw,34px);line-height:1.25;letter-spacing:-0.01em;max-width:24ch}
+.facts{font-size:clamp(26px,2.4vw,34px);font-weight:500;letter-spacing:-0.02em;line-height:1.2}
+.facts span{color:var(--mint);padding:0 6px}
+.visit .disc{width:100%;max-width:560px;aspect-ratio:1;border-radius:50%;overflow:hidden;justify-self:end}
+.visit .disc img{width:100%;height:100%;object-fit:cover;object-position:100% 50%}
+
+/* reviews */
+.reviews{background:var(--paper);padding:var(--gap) 0}
+.reviews .grid{display:grid;grid-template-columns:4fr 8fr;gap:72px;align-items:start}
+.score{display:flex;flex-direction:column;gap:22px}
+.score .big{font-size:clamp(46px,6vw,88px);font-weight:500;letter-spacing:-0.04em;line-height:1}
+.score .stars{display:flex;gap:4px;color:var(--ink)}
+.quotes{display:flex;flex-direction:column;gap:64px}
+.q{display:grid;grid-template-columns:96px 1fr;gap:28px}
+.q img{width:96px;height:96px;border-radius:50%;object-fit:cover;object-position:50% 18%}
+.q blockquote{margin:0;font-size:clamp(20px,1.6vw,24px);line-height:1.45;max-width:46ch}
+.q cite{display:block;margin-top:14px;font-style:normal;font-size:16px;color:var(--graphite)}
+
+/* inner page */
+.ihero{background:var(--ground);padding:56px 0 0;position:relative;overflow:hidden}
+.ihero .grid{display:grid;grid-template-columns:7fr 5fr;gap:72px;align-items:end}
+.ihero .copy{display:flex;flex-direction:column;gap:28px;padding-bottom:120px}
+.ihero .back{font-size:16px;font-weight:500;text-decoration:none;color:var(--graphite)}
+.ihero .back:hover{color:var(--ink)}
+.ihero .disc{width:520px;height:520px;border-radius:50%;overflow:hidden;margin-bottom:-120px;justify-self:end}
+.ihero .disc img{width:100%;height:100%;object-fit:cover;object-position:50% 20%}
+.when{background:var(--paper);padding:var(--gap) 0}
+.when .grid{display:grid;grid-template-columns:5fr 7fr;gap:72px;align-items:start}
+.when .dots{margin-top:12px}
+.dots{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:1fr 1fr;gap:22px 40px;align-content:start}
+.dots li{display:flex;gap:16px;align-items:baseline;font-size:18px;line-height:1.45}
+.dots li::before{content:"";flex:0 0 12px;height:12px;border-radius:50%;background:var(--mint);transform:translateY(-2px)}
+.how{background:var(--ground);padding:var(--gap) 0}
+.how h2{margin-bottom:56px}
+.steps{display:flex;flex-direction:column;gap:18px}
+.steps p{font-size:clamp(26px,2.4vw,34px);line-height:1.12;letter-spacing:-0.02em;font-weight:500}
+.steps p span{color:var(--graphite);font-weight:400}
+.how .after{margin-top:56px;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:24px;font-size:16px}
+.how .after b{display:block;font-weight:500;margin-bottom:6px;font-size:18px}
+.urgent{background:#E2E4E1;padding:96px 0}
+.urgent .grid{display:grid;grid-template-columns:5fr 7fr;gap:72px}
+.urgent h2{font-size:clamp(26px,2.4vw,34px)}
+.urgent p{margin-top:16px}
+.urgent .dots li::before{background:var(--graphite)}
+.iquote{background:var(--paper);padding:var(--gap) 0}
+.when .arch{margin-top:48px;width:100%;max-width:440px;aspect-ratio:11/13;border-radius:999px 999px 0 0;overflow:hidden}
+.when .arch img{width:100%;height:100%;object-fit:cover;object-position:100% 0;transform:scale(1.18);transform-origin:100% 0}
+.howgrid{display:grid;grid-template-columns:7fr 5fr;gap:72px;align-items:center}
+.disc2{width:100%;max-width:480px;aspect-ratio:1;border-radius:50%;overflow:hidden;justify-self:end}
+.disc2 img{width:100%;height:100%;object-fit:cover;object-position:62% 50%}
+.iteam{background:var(--graphite);color:#fff;padding:var(--gap) 0}
+.iteam h2{color:var(--mint);margin-bottom:56px}
+.strip{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:24px}
+.strip a{text-decoration:none;display:flex;flex-direction:column;gap:6px}
+.strip img{width:100%;aspect-ratio:5/6;object-fit:cover;object-position:50% 0;border-radius:999px 999px 0 0;margin-bottom:12px}
+.strip b{font-size:clamp(20px,1.6vw,23px);font-weight:500}
+.strip span{font-size:16px;color:var(--on-dark)}
+.strip a:hover b{text-decoration:underline;text-decoration-color:var(--mint);text-decoration-thickness:2px;text-underline-offset:5px}
+.iquote .grid{display:grid;grid-template-columns:4fr 8fr;gap:72px;align-items:start}
+
+/* booking + footer */
+.close{background:var(--graphite);color:#fff;padding:var(--gap) 0 48px}
+.close h2{color:var(--mint)}
+.close .grid{display:grid;grid-template-columns:7fr 5fr;gap:72px;align-items:end}
+.close .tel{display:block;margin-top:36px;font-size:clamp(40px,6vw,88px);font-weight:500;letter-spacing:-0.03em;line-height:1;color:#fff;text-decoration:none}
+.close .tel:hover{color:var(--mint)}
+.close dl{display:grid;grid-template-columns:auto 1fr;gap:10px 28px;margin:0;font-size:18px}
+.close dt{color:var(--on-dark)}
+.close dd{margin:0;color:#fff;font-weight:500}
+.close .acts{display:flex;flex-wrap:wrap;gap:16px 28px;align-items:center;margin-top:36px}
+.mark{margin-top:144px}
+.mark img{width:100%;height:auto}
+.foot{display:flex;flex-wrap:wrap;justify-content:space-between;gap:16px 40px;margin-top:56px;font-size:16px;color:var(--on-dark)}
+.foot nav{display:flex;flex-wrap:wrap;gap:10px 26px}
+.foot a{text-decoration:none}
+.foot a:hover{text-decoration:underline}
+
+@media (max-width:600px){.dots{grid-template-columns:1fr}}
+@media (max-width:820px){
+:root{--m:20px;--gap:104px}
+body{font-size:18px}
+.nav{height:72px}
+.nav .brand img{width:124px}
+.nav ul,.nav .right .tel{display:none}
+.nav .btn{min-height:44px;padding:0 18px}
+.hero{height:auto;padding-bottom:0}
+.hero .copy{padding-top:40px;gap:22px;max-width:none}
+.hero .circle{position:relative;right:auto;top:auto;width:120vw;height:120vw;max-width:none;margin:48px 0 -42vw -10vw}
+.hero .actions .btn{width:100%}
+.areas .grid,.team .head,.visit .grid,.reviews .grid,.close .grid,.ihero .grid,.when .grid,.urgent .grid,.iquote .grid{grid-template-columns:1fr;gap:40px}
+.alist label{margin-left:-14px;padding:0 14px}
+.panel{padding:28px;min-height:0}
+.people{grid-template-columns:1fr 1fr;gap:28px 14px}
+.people b{font-size:18px}
+.visit .disc{max-width:none;justify-self:stretch}
+.visit .statement{max-width:none}
+.visit .statement,.steps p,.facts{font-size:22px}
+.q{grid-template-columns:64px 1fr;gap:18px}
+.q img{width:64px;height:64px}
+.howgrid{grid-template-columns:1fr;gap:40px}
+.strip{grid-template-columns:1fr 1fr;gap:28px 14px}
+h1{font-size:clamp(36px,10vw,46px)}
+.how .after{grid-template-columns:1fr 1fr}
+.ihero .copy{padding-bottom:0}
+.ihero .disc{width:86vw;height:86vw;margin:0 0 -30vw auto}
+.mark{margin-top:88px}
+}
+</style></head>
+<body><header class="top"><div class="wrap nav">
+  <a class="brand" href="#top" aria-label="ReaMed, pradžia"><img src="../../../public/brand/reamed-wordmark-graphite.svg" alt="ReaMed" width="150" height="31"></a>
+  <ul><li><a href="#ka-gydome">Ką gydome</a></li><li><a href="#paslaugos">Paslaugos</a></li><li><a href="#specialistai">Specialistai</a></li><li><a href="#kainos">Kainos</a></li><li><a href="#kontaktai">Kontaktai</a></li></ul>
+  <div class="right"><a class="tel" href="tel:+37060134304">+370 601 34304</a><a class="btn" href="#registracija">Registruotis</a></div>
+</div></header>
+<main id="top">
+<section class="hero" aria-labelledby="h1"><div class="wrap">
+  <div class="copy">
+    <h1 id="h1">Jūsų sveikata mūsų rankose</h1>
+    <p class="lead">Kineziterapijos ir reabilitacijos klinika Vilniuje: nugaros, kaklo ir sąnarių skausmas, sporto traumos, atsistatymas po operacijų.</p>
+    <p class="price"><span>Pirmasis vizitas: konsultacija, ištyrimas ir planas</span><span><b>60 min · 80 €</b></span></p>
+    <div class="actions"><a class="btn" href="#registracija">Registruotis vizitui</a><a class="rating" href="#atsiliepimai"><svg viewBox="0 0 20 20" width="18" height="18" aria-hidden="true" focusable="false"><path fill="currentColor" d="M10 1.6l2.6 5.3 5.8.8-4.2 4.1 1 5.8L10 14.9l-5.2 2.7 1-5.8L1.6 7.7l5.8-.8z"/></svg><b>5,0</b> · 55 atsiliepimai Google</a></div>
+  </div>
+  <div class="circle"><img src="../../../public/photos/clinic.jpg" alt="ReaMed kineziterapeutai aptaria paciento būklę ir dirba su pacientu" width="1040" height="1040"></div>
+</div></section>
+
+<section class="areas" id="ka-gydome" aria-labelledby="areas-h"><div class="wrap">
+<input type="radio" name="area" id="a-nugara" checked>
+<input type="radio" name="area" id="a-kaklas">
+<input type="radio" name="area" id="a-petys">
+<input type="radio" name="area" id="a-kelis">
+<input type="radio" name="area" id="a-sportas">
+<input type="radio" name="area" id="a-operacija">
+<input type="radio" name="area" id="a-plinta">
+<input type="radio" name="area" id="a-sausgysles">
+<div class="grid">
+  <div>
+    <h2 id="areas-h">Kur skauda?</h2>
+    <ul class="alist"><li><label for="a-nugara">Nugaros skausmas</label></li>
+<li><label for="a-kaklas">Kaklo skausmas</label></li>
+<li><label for="a-petys">Peties problemos</label></li>
+<li><label for="a-kelis">Kelio skausmas ir traumos</label></li>
+<li><label for="a-sportas">Sporto traumos</label></li>
+<li><label for="a-operacija">Atsistatymas po operacijų</label></li>
+<li><label for="a-plinta">Plintantis skausmas ir tirpimas</label></li>
+<li><label for="a-sausgysles">Tendinopatijos ir perkrovos</label></li></ul>
+  </div>
+  <div>
+    <div class="panel p-nugara" role="region" aria-label="Nugaros skausmas">
+      <h3>Nugaros skausmas</h3><p>Ūmus ar pasikartojantis skausmas, sustingimas, judesio ribotumas. Įvertiname problemos pobūdį ir parenkame tinkamiausią gydymo kryptį.</p><blockquote>Dėkoju Mangirdui už pagalbą, palaikymą ir juokelius gydant išvaržomis "nusėtą" nugarą. MVP<cite>Urtė, Google</cite></blockquote>
+      <div class="acts"><a class="btn" href="#registracija">Registruotis</a><a class="link" href="#nugaros-skausmas">Plačiau apie tai</a></div>
+    </div><div class="panel p-kaklas" role="region" aria-label="Kaklo skausmas">
+      <h3>Kaklo skausmas</h3><p>Įtampa, skausmas, judesio ribotumas ar pojūčiai, plintantys į petį ar ranką. Įvertiname ir parenkame tinkamiausią gydymo kryptį.</p><p class="who"><img src="../../../public/photos/specialist-piotr-dubrovskij.jpg" alt="" width="64" height="64">Piotr Dubrovskij: stuburo ir kaklo problemos</p>
+      <div class="acts"><a class="btn" href="#registracija">Registruotis</a><a class="link" href="#kaklo-skausmas">Plačiau apie tai</a></div>
+    </div><div class="panel p-petys" role="region" aria-label="Peties problemos">
+      <h3>Peties problemos</h3><p>Skausmas, ribotas judesys, trauminė ar lėtinė būklė, trukdanti dirbti, sportuoti ir ilsėtis.</p><blockquote>Padėjo atsikratyti peties skausmų! Dirbau su Eriku, rekomenduoju!;)<cite>Roman, Google</cite></blockquote>
+      <div class="acts"><a class="btn" href="#registracija">Registruotis</a><a class="link" href="#peties-problemos">Plačiau apie tai</a></div>
+    </div><div class="panel p-kelis" role="region" aria-label="Kelio skausmas ir traumos">
+      <h3>Kelio skausmas ir traumos</h3><p>Raiščių ir menisko problemos, perkrovos, atsistatymas po kelio operacijos.</p><blockquote>Ačiū ReaMed už profesionalią pagalbą grįžtant į pilnavertį gyvenimą po sudėtingos kelio operacijos. Užsiėmimai klinikoje, aiškus veiksmų planas, specialistų dėmesys leido pasiekti rezultatų greičiau, nei tikėjausi. Rekomenduoju!<cite>Vita A., Google</cite></blockquote>
+      <div class="acts"><a class="btn" href="#registracija">Registruotis</a><a class="link" href="#kelio-skausmas">Plačiau apie tai</a></div>
+    </div><div class="panel p-sportas" role="region" aria-label="Sporto traumos">
+      <h3>Sporto traumos</h3><p>Traumos, perkrovos ir pasikartojantis skausmas, kurie sustabdo treniruotes. Planas grįžti į krūvį saugiai.</p><blockquote>Čia dirbama nuosekliai ir užtikrintai. Man padėjo ne tik atsikratyti įvairių trauminių skausmų, bet ir paruošti kūną maratonams, ultrabėgimams.<cite>Ramūnas K., Google</cite></blockquote>
+      <div class="acts"><a class="btn" href="#registracija">Registruotis</a><a class="link" href="#sporto-traumos">Plačiau apie tai</a></div>
+    </div><div class="panel p-operacija" role="region" aria-label="Atsistatymas po operacijų">
+      <h3>Atsistatymas po operacijų</h3><p>Saugiai atkuriame judrumą, jėgą ir pasitikėjimą judesiu pagal konkretų gijimo etapą.</p><blockquote>Dėkoju Erikui už profesionalią pagalbą reabilitacijos metu po operacijos. Labai greitai padėjo atsigauti ir grįžti į sporta. Labai rekomenduoju!<cite>Tėvas, Google</cite></blockquote>
+      <div class="acts"><a class="btn" href="#registracija">Registruotis</a><a class="link" href="#atsistatymas-po-operaciju">Plačiau apie tai</a></div>
+    </div><div class="panel p-plinta" role="region" aria-label="Plintantis skausmas ir tirpimas">
+      <h3>Plintantis skausmas ir tirpimas</h3><p>Skausmas, plintantis į ranką ar koją, tirpimas, dilgčiojimas. Įvertiname simptomų pobūdį ir parenkame kryptį.</p><p class="who"><img src="../../../public/photos/specialist-piotr-dubrovskij.jpg" alt="" width="64" height="64">Piotr Dubrovskij: nervų dirginimo simptomai</p>
+      <div class="acts"><a class="btn" href="#registracija">Registruotis</a><a class="link" href="#plintantis-skausmas">Plačiau apie tai</a></div>
+    </div><div class="panel p-sausgysles" role="region" aria-label="Tendinopatijos ir perkrovos">
+      <h3>Tendinopatijos ir perkrovos</h3><p>Skausmas krūvio metu ar po jo, jautrumas, sumažėjusi apkrovos tolerancija.</p>
+      <div class="acts"><a class="btn" href="#registracija">Registruotis</a><a class="link" href="#tendinopatijos">Plačiau apie tai</a></div>
+    </div>
+  </div>
+</div>
+<p class="services" id="paslaugos"><span>Paslaugos:</span> <a href="#kineziterapija">Kineziterapija</a> <a href="#manualine-terapija">Manualinė terapija</a> <a href="#osteopatija">Osteopatija</a> <a href="#masazas">Gydomasis masažas</a> <a href="#sporto-reabilitacija">Sporto reabilitacija</a> <a href="#pooperacine">Pooperacinė reabilitacija</a></p>
+</div></section>
+
+<section class="team" id="specialistai" aria-labelledby="team-h"><div class="wrap">
+  <div class="head"><h2 id="team-h">Dirbame su Lietuvos rinktinėmis</h2><p class="lead">Trys mūsų kineziterapeutai dirba su Lietuvos ledo ritulio ir futbolo rinktinėmis.</p></div>
+  <div class="people"><figure><img src="../../../public/photos/specialist-piotr-dubrovskij.jpg" alt="Piotr Dubrovskij" width="320" height="400" loading="lazy"><figcaption><b>Piotr Dubrovskij</b><span>Ledo ritulio rinktinių vyr. kineziterapeutas nuo 2012 m. Dėsto VU Medicinos fakultete.</span></figcaption></figure>
+<figure><img src="../../../public/photos/specialist-kotryna-kairyte.jpg" alt="Kotryna Kairytė" width="320" height="400" loading="lazy"><figcaption><b>Kotryna Kairytė</b><span>Moterų futbolo rinktinė nuo 2022 m., ledo ritulio rinktinės nuo 2019 m.</span></figcaption></figure>
+<figure><img src="../../../public/photos/specialist-erikas-jatkauskas.jpg" alt="Erikas Jatkauskas" width="320" height="400" loading="lazy"><figcaption><b>Erikas Jatkauskas</b><span>Jaunimo ledo ritulio rinktinė nuo 2022 m.</span></figcaption></figure>
+<figure><img src="../../../public/photos/specialist-mangirdas-kazacenko.jpg" alt="Mangirdas Kazačenko" width="320" height="400" loading="lazy"><figcaption><b>Mangirdas Kazačenko</b><span>Kineziterapija, manualinė terapija ir masažas.</span></figcaption></figure></div>
+  <p class="more"><a class="link" href="#specialistai-visi">Visi specialistai ir jų kvalifikacija</a></p>
+</div></section>
+
+<section class="visit" id="kainos" aria-labelledby="visit-h"><div class="wrap grid">
+  <div class="text">
+    <h2 id="visit-h">Pirmasis vizitas</h2>
+    <p class="statement">Išklausome, ištiriame judesį ir paaiškiname, kas vyksta. Išeinate su aiškiu gydymo planu.</p>
+    <p class="facts">60 min <span>·</span> 80 € <span>·</span> I–V 8–19 val.</p>
+    <p><a class="link" href="#kainos-visos">Visos kainos ir paketai</a></p>
+  </div>
+  <div class="disc"><img src="../../../public/photos/clinic.jpg" alt="Kineziterapeutas dirba su paciente" width="560" height="560" loading="lazy"></div>
+</div></section>
+
+<section class="reviews" id="atsiliepimai" aria-labelledby="rev-h"><div class="wrap grid">
+  <div class="score"><h2 id="rev-h">Atsiliepimai</h2><span class="big">5,0</span><span class="stars"><svg viewBox="0 0 20 20" width="18" height="18" aria-hidden="true" focusable="false"><path fill="currentColor" d="M10 1.6l2.6 5.3 5.8.8-4.2 4.1 1 5.8L10 14.9l-5.2 2.7 1-5.8L1.6 7.7l5.8-.8z"/></svg><svg viewBox="0 0 20 20" width="18" height="18" aria-hidden="true" focusable="false"><path fill="currentColor" d="M10 1.6l2.6 5.3 5.8.8-4.2 4.1 1 5.8L10 14.9l-5.2 2.7 1-5.8L1.6 7.7l5.8-.8z"/></svg><svg viewBox="0 0 20 20" width="18" height="18" aria-hidden="true" focusable="false"><path fill="currentColor" d="M10 1.6l2.6 5.3 5.8.8-4.2 4.1 1 5.8L10 14.9l-5.2 2.7 1-5.8L1.6 7.7l5.8-.8z"/></svg><svg viewBox="0 0 20 20" width="18" height="18" aria-hidden="true" focusable="false"><path fill="currentColor" d="M10 1.6l2.6 5.3 5.8.8-4.2 4.1 1 5.8L10 14.9l-5.2 2.7 1-5.8L1.6 7.7l5.8-.8z"/></svg><svg viewBox="0 0 20 20" width="18" height="18" aria-hidden="true" focusable="false"><path fill="currentColor" d="M10 1.6l2.6 5.3 5.8.8-4.2 4.1 1 5.8L10 14.9l-5.2 2.7 1-5.8L1.6 7.7l5.8-.8z"/></svg></span><a class="link" href="#google">55 atsiliepimai Google</a></div>
+  <div class="quotes">
+    <div class="q"><img src="../../../public/photos/specialist-erikas-jatkauskas.jpg" alt="Erikas Jatkauskas" width="96" height="96" loading="lazy"><blockquote>Mano patirtis ReaMed klinikoje buvo puiki. Ypač noriu paminėti specialistą Eriką, kuris po rimtos kelio raiščių traumos tiesiogine prasme pastatė mane ant kojų. Krūvis ir pratimai buvo sudėlioti nuosekliai, atsižvelgiant į mano galimybes ir sveikimo etapą.<cite>Dominykas D., apie Eriką Jatkauską</cite></blockquote></div>
+    <div class="q"><img src="../../../public/photos/specialist-kotryna-kairyte.jpg" alt="Kotryna Kairytė" width="96" height="96" loading="lazy"><blockquote>Kaip Lietuvos ledo ritulio rinktinės žaidėjas reguliariai lankausi "ReaMed" klinikoje, kur dirbu su sporto kineziterapeute Kotryna Kairytė. Jos darbo įgūdžiai ir individualus priėjimas padeda man stiprinti raumenis ir išvengti traumų.<cite>Ilja C., apie Kotryną Kairytę</cite></blockquote></div>
+  </div>
+</div></section>
+</main>
+<section class="close" id="kontaktai" aria-labelledby="close-h"><div class="wrap">
+  <div class="grid">
+    <div>
+      <h2 id="close-h">Registruokitės vizitui</h2>
+      <a class="tel" href="tel:+37060134304">+370 601 34304</a>
+      <div class="acts"><a class="btn btn-mint" href="#registracija">Registruotis internetu</a><a class="link" href="mailto:info@reamed.lt">info@reamed.lt</a></div>
+    </div>
+    <dl>
+      <dt>Adresas</dt><dd>Olimpiečių g. 1A-7, Vilnius</dd>
+      <dt>Darbo laikas</dt><dd>I–V 8:00–19:00</dd>
+      <dt>Pirmasis vizitas</dt><dd>60 min, 80 €</dd>
+    </dl>
+  </div>
+  <div class="mark"><img src="../../../public/brand/reamed-lockup-for-dark.svg" alt="ReaMed" width="1376" height="330"></div>
+  <div class="foot"><nav aria-label="Apačios meniu"><a href="#ka-gydome">Ką gydome</a><a href="#paslaugos">Paslaugos</a><a href="#specialistai">Specialistai</a><a href="#kainos">Kainos</a><a href="#privatumas">Privatumo politika</a><a href="#en">English</a></nav><span>© 2026 UAB Modernios manualinės terapijos klinika</span></div>
+</div></section></body></html>

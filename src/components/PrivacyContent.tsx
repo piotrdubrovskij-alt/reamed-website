@@ -46,7 +46,7 @@ export default function PrivacyContent() {
   const { lang } = useLanguage();
   const copy = policy[lang];
   return (
-    <article lang={lang} className="min-h-screen bg-[#F7FAF9] px-5 pb-16 pt-32 sm:px-8">
+    <article lang={lang} className="min-h-screen bg-[#F7FAF9] px-5 pb-16 pt-16 sm:px-8">
       <div className="mx-auto max-w-3xl">
         <Link href="/" className="text-sm text-[#427974] underline underline-offset-4">{copy.back}</Link>
         <h1 className="mt-6 text-3xl font-semibold tracking-tight sm:text-4xl">{copy.title}</h1>

@@ -34,8 +34,8 @@ export function formatRating(rating: number, lang: Lang): string {
   return lang === "lt" ? s.replace(".", ",") : s;
 }
 
-/** 55 → "55 atsiliepimai „Google“" with correct Lithuanian plural */
-export function reviewsCountLabel(n: number, lang: Lang): string {
+/** 55 → "55 atsiliepimai „Google“" with correct Lithuanian plural; `quoted: false` → "… Google" */
+export function reviewsCountLabel(n: number, lang: Lang, { quoted = true } = {}): string {
   if (lang === "en") return `${n} Google reviews`;
   const last = n % 10;
   const lastTwo = n % 100;
@@ -45,5 +45,15 @@ export function reviewsCountLabel(n: number, lang: Lang): string {
       : last === 0 || (lastTwo >= 11 && lastTwo <= 19)
         ? "atsiliepimų"
         : "atsiliepimai";
-  return `${n} ${word} „Google“`;
+  return `${n} ${word} ${quoted ? "„Google“" : "Google"}`;
+}
+
+/** First `n` whole sentences, verbatim. Never paraphrase a review. */
+export function firstSentences(text: string, n: number): string {
+  return text.trim().split(/(?<=[.!?])\s+/).slice(0, n).join(" ");
+}
+
+/** Cropped portrait (640×800), see docs/design/redesign-g/README.md. */
+export function specialistPhoto(slug: SpecialistSlug): string {
+  return `/photos/specialist-${slug}.jpg`;
 }
