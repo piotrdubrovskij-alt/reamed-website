@@ -65,12 +65,14 @@
 Поле `photo` в `src/lib/specialists.ts` перевести на новые файлы. Старые удалить, если на них больше ничего не ссылается.
 
 Общее фото — `public/hero.jpg` (1024×434). Метка стоит в квадрате x 944–1012, y 356–433.
-Сделать `public/photos/clinic.jpg`: обрезать нижние 80 px, получится 1024×354. Использовать только эту версию.
-Фото низкого разрешения, его заменит фотосъёмка (п. 3 плана). Blur не нужен.
+Сделать `public/photos/clinic.jpg`: обрезать нижние 80 px, получится 1024×354. Использовать только эту версию
+и только в «Pirmasis vizitas». Фото низкого разрешения, его заменит фотосъёмка (п. 3 плана).
 
-Форма фото по макету:
-- первый экран — большой круг, обрезанный правым краем;
-- «Pirmasis vizitas» — круг, справа часть кадра с массажем;
+Форма фото и кругов:
+- первый экран — мятный круг без фото, обрезанный правым краем, с белыми руками (см. ниже);
+- «Pirmasis vizitas» — круг с `clinic.jpg`, справа часть кадра с массажем, в мятном тоне и размытый:
+  фон круга mint; у img `filter: grayscale(1) contrast(.85) brightness(1.15) blur(6px)` (на телефоне `blur(4px)`),
+  `mix-blend-mode: multiply`; img выходит на 16 px за края круга (`inset: -16px`), чтобы не было светлой каймы;
 - специалисты — арка: `border-radius: 999px 999px 0 0`, пропорция 4:5.
 
 ## Главная по секциям (сверху вниз)
@@ -81,13 +83,19 @@
    - телефон и кнопка «Registruotis» → `/registracija`;
    - переключатель LT/EN сохранить, мобильное меню сохранить;
    - тёмную верхнюю полосу с часами убрать: часы есть в блоке записи.
-2. **Первый экран:**
+2. **Первый экран** (изменён после утверждения макета, `index.html` его не показывает):
    - h1 «Jūsų sveikata mūsų rankose»;
-   - lead «Kineziterapijos ir reabilitacijos klinika Vilniuje: nugaros, kaklo ir sąnarių skausmas, sporto traumos, atsistatymas po operacijų.»;
-   - строка цены «Pirmasis vizitas: konsultacija, ištyrimas ir planas · **60 min · 80 €**»;
-   - кнопка «Registruotis vizitui» и ссылка «★ 5,0 · 55 atsiliepimai Google» (цифры из `GOOGLE_REVIEWS`);
-   - справа круг 1040px с `clinic.jpg`, `object-position: 63% 50%`;
-   - через `next/image` с `priority`.
+   - lead «Kineziterapija Vilniuje. Išsiaiškiname, kodėl skauda, ir kartu sudarome planą, kaip judėti laisviau.»;
+   - строки цены нет: цена — в «Pirmasis vizitas»;
+   - кнопка «Registruotis vizitui» и ссылка «★ 5,0 Google» (оценка из `GOOGLE_REVIEWS.rating`, ссылка на `GOOGLE_REVIEWS.url`);
+   - сплошной мятный круг (mint) без фото, внутри белые руки из логотипа (`public/brand/reamed-hands-white.svg`,
+     тот же путь, что в `reamed-hands-teal.svg`), декор: `aria-hidden`, пустой `alt`;
+   - десктоп (от 821 px): левый край круга — середина контейнера + 24 px, диаметр `max(1040px, 50vw + 120px)`,
+     верх −90 px, круг обрезается правым краем; колонка текста не шире половины контейнера минус 48 px;
+   - руки на десктопе: по центру видимой части круга (от его левого края до правого края экрана, высота секции 780 px),
+     ширина 60% этой части, но не больше 520 px;
+   - телефон: круг 120vw, видна верхняя часть высотой 78vw; руки по центру экрана, центр на 39vw от верха круга, ширина 60vw;
+   - руки всегда целиком внутри видимой части круга: их не режут ни край экрана, ни край секции, ни граница круга.
 3. **«Kur skauda?»** (paper), живой выбор:
    - слева 8 проблем: кнопки-строки с мятной точкой, выбранная — pill graphite с белым текстом;
    - справа панель (ground): название, 1–2 фразы, один настоящий отзыв по метке `conditions` дословно, кнопки «Registruotis» и «Plačiau apie tai» → `/ka-gydome/<slug>`;
@@ -104,7 +112,7 @@
 5. **Pirmasis vizitas** (ground):
    - h2, фраза «Išklausome, ištiriame judesį ir paaiškiname, kas vyksta. Išeinate su aiškiu gydymo planu.»;
    - строка «60 min · 80 € · I–V 8–19 val.», ссылка «Visos kainos ir paketai» → `/kainos`;
-   - справа круг с фото. Вместо плиток 01–04.
+   - справа круг с фото в мятном тоне (см. «Фото»). Вместо плиток 01–04.
 6. **Отзывы** (paper):
    - слева h2 «Atsiliepimai», крупно 5,0, звёзды, ссылка на Google;
    - справа две цитаты: Dominykas D. (про Eriką) и Ilja C. (про Kotryną);
