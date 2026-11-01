@@ -31,14 +31,18 @@ export default function FirstVisitSection() {
             </Link>
           </p>
         </div>
-        <div className="relative w-full aspect-square rounded-full overflow-hidden bg-graphite/15 md:max-w-[560px] md:justify-self-end">
-          <Image
-            src="/photos/clinic.jpg"
-            alt={t.visit.photoAlt}
-            fill
-            sizes="(min-width: 768px) 560px, 100vw"
-            className="object-cover object-[100%_50%]"
-          />
+        {/* The photo is low quality: toned into the mint and blurred. It overhangs the
+            circle by 16px so the blurred edge never shows as a light rim. */}
+        <div className="relative isolate w-full aspect-square rounded-full overflow-hidden bg-mint md:max-w-[560px] md:justify-self-end">
+          <div className="absolute -inset-4">
+            <Image
+              src="/photos/clinic.jpg"
+              alt={t.visit.photoAlt}
+              fill
+              sizes="(min-width: 768px) 592px, calc(100vw + 32px)"
+              className="object-cover object-[100%_50%] mix-blend-multiply [filter:grayscale(1)_contrast(.85)_brightness(1.15)_blur(4px)] desk:[filter:grayscale(1)_contrast(.85)_brightness(1.15)_blur(6px)]"
+            />
+          </div>
         </div>
       </div>
     </section>

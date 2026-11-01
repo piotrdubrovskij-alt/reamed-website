@@ -1,7 +1,7 @@
 export type Language = "lt" | "en";
 
 // Home page and shared blocks (header, footer).
-// Lithuanian copy is verbatim from docs/design/redesign-g/index.html.
+// Lithuanian copy is verbatim from docs/design/redesign-g/index.html; the hero lead was changed later by Piotr.
 // Reviews are referenced by id from src/data/reviews.ts and shown in their original language.
 
 export const translations = {
@@ -24,11 +24,8 @@ export const translations = {
     },
     hero: {
       title: "Jūsų sveikata mūsų rankose",
-      lead: "Kineziterapijos ir reabilitacijos klinika Vilniuje: nugaros, kaklo ir sąnarių skausmas, sporto traumos, atsistatymas po operacijų.",
-      priceLabel: "Pirmasis vizitas: konsultacija, ištyrimas ir planas",
-      price: "60 min · 80 €",
+      lead: "Kineziterapija Vilniuje. Išsiaiškiname, kodėl skauda, ir kartu sudarome planą, kaip judėti laisviau.",
       cta: "Registruotis vizitui",
-      photoAlt: "ReaMed kineziterapeutai aptaria paciento būklę ir dirba su pacientu",
     },
     areas: {
       title: "Kur skauda?",
@@ -183,11 +180,8 @@ export const translations = {
     },
     hero: {
       title: "Your health in our hands",
-      lead: "Physiotherapy and rehabilitation clinic in Vilnius: back, neck and joint pain, sports injuries, recovery after surgery.",
-      priceLabel: "First visit: consultation, assessment and plan",
-      price: "60 min · €80",
+      lead: "Physiotherapy in Vilnius. We find out why it hurts and work out a plan with you to move more freely.",
       cta: "Book a visit",
-      photoAlt: "ReaMed physiotherapists discussing a patient's condition and working with a patient",
     },
     areas: {
       title: "Where does it hurt?",
