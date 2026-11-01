@@ -85,8 +85,10 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  // data-scroll-behavior lets Next turn off the smooth scroll from globals.css
+  // while it moves a new page to the top.
   return (
-    <html lang="lt">
+    <html lang="lt" data-scroll-behavior="smooth">
       <head>
         <script
           type="application/ld+json"

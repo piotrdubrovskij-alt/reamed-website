@@ -1,8 +1,9 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useState, type MouseEvent } from "react";
 import Image from "next/image";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { Menu, X } from "lucide-react";
 import { useLanguage } from "@/contexts/LanguageContext";
 import type { Language } from "@/lib/translations";
@@ -32,6 +33,18 @@ function LanguageSwitch({ className = "" }: { className?: string }) {
 export default function Header() {
   const { t } = useLanguage();
   const [open, setOpen] = useState(false);
+  const pathname = usePathname();
+
+  // The logo always lands on the top of the home page. On the home page itself
+  // (also /#kontaktai) scroll up and drop the anchor; elsewhere Link opens it at the top.
+  const goHome = (e: MouseEvent<HTMLAnchorElement>) => {
+    setOpen(false);
+    if (pathname !== "/" || e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) return;
+    e.preventDefault();
+    const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    window.scrollTo({ top: 0, behavior: reduce ? "auto" : "smooth" });
+    if (window.location.hash || window.location.search) window.history.replaceState(window.history.state, "", "/");
+  };
 
   useEffect(() => {
     if (!open) return;
@@ -51,7 +64,7 @@ export default function Header() {
   return (
     <header className="sticky top-0 z-50 bg-ground">
       <div className="wrap flex items-center justify-between gap-6 h-header lg:h-header-lg">
-        <Link href="/" aria-label={t.header.home} className="shrink-0 inline-flex items-center min-h-11">
+        <Link href="/" onClick={goHome} aria-label={t.header.home} className="shrink-0 inline-flex items-center min-h-11">
           <Image
             src="/brand/reamed-wordmark-graphite.svg"
             alt=""

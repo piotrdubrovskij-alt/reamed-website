@@ -112,6 +112,7 @@ export const translations = {
     booking: {
       title: "Registruokitės vizitui",
       online: "Registruotis internetu",
+      phone: "Telefonas",
       address: "Adresas",
       hours: "Darbo laikas",
       hoursValue: "I–V 8:00–19:00",
@@ -235,6 +236,7 @@ export const translations = {
     booking: {
       title: "Book a visit",
       online: "Book online",
+      phone: "Phone",
       address: "Address",
       hours: "Opening hours",
       hoursValue: "Mon–Fri 8:00–19:00",
