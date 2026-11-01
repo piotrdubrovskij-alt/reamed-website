@@ -1,10 +1,11 @@
 "use client";
 
 import Image from "next/image";
+import Link from "next/link";
 import { Star } from "lucide-react";
 import { useLanguage } from "@/contexts/LanguageContext";
 import { GOOGLE_REVIEWS, getReviewById, type SpecialistSlug } from "@/data/reviews";
-import { SPECIALIST_NAMES, firstSentences, formatRating, reviewsCountLabel, specialistPhoto } from "@/components/reviews/format";
+import { firstSentences, formatRating, reviewsCountLabel, specialistPhoto } from "@/components/reviews/format";
 
 export default function ReviewsSection() {
   const { lang, t } = useLanguage();
@@ -40,23 +41,33 @@ export default function ReviewsSection() {
             if (!review) return null;
             const slug = q.specialist as SpecialistSlug;
             return (
-              <div key={q.review} className="grid grid-cols-[64px_1fr] gap-[18px] md:grid-cols-[96px_1fr] md:gap-7">
-                <Image
-                  src={specialistPhoto(slug)}
-                  alt={SPECIALIST_NAMES[slug]}
-                  width={96}
-                  height={96}
-                  className="size-16 md:size-24 rounded-full object-cover object-[50%_18%]"
-                />
-                <figure className="m-0">
-                  <blockquote lang={review.lang} className="text-lead leading-[1.45] max-w-[46ch]">
-                    <p>{firstSentences(review.text, q.sentences)}</p>
-                  </blockquote>
-                  <figcaption className="mt-3.5 text-small text-graphite">
-                    {review.author}, {q.about}
-                  </figcaption>
-                </figure>
-              </div>
+              <figure key={q.review} className="m-0">
+                <blockquote lang={review.lang} className="text-lead leading-[1.45] max-w-[46ch]">
+                  <p>{firstSentences(review.text, q.sentences)}</p>
+                </blockquote>
+                {/* Author first, then who the review is about. The photo is the
+                    specialist's, so it sits next to their name, not the quote. */}
+                <figcaption className="mt-3.5 flex flex-wrap items-center gap-x-2 text-small text-graphite">
+                  <span className="font-medium text-ink">{review.author}</span>
+                  <span aria-hidden="true">·</span>
+                  <span className="inline-flex items-center gap-2 whitespace-nowrap">
+                    {t.reviews.about}
+                    <Link
+                      href={`/specialistai/${slug}`}
+                      className="inline-flex items-center gap-2 min-h-11 underline underline-offset-[3px] hover:text-ink"
+                    >
+                      <Image
+                        src={specialistPhoto(slug)}
+                        alt=""
+                        width={28}
+                        height={28}
+                        className="size-7 rounded-full object-cover object-[50%_18%]"
+                      />
+                      {q.name}
+                    </Link>
+                  </span>
+                </figcaption>
+              </figure>
             );
           })}
         </div>
