@@ -1,6 +1,5 @@
 import type { Metadata } from "next";
 import { Poppins } from "next/font/google";
-import Script from "next/script";
 import { Providers } from "./providers";
 import "./globals.css";
 
@@ -60,12 +59,13 @@ const jsonLd = {
     "@type": "PostalAddress",
     streetAddress: "Olimpiečių g. 1A-7",
     addressLocality: "Vilnius",
+    postalCode: "09200",
     addressCountry: "LT",
   },
   geo: {
     "@type": "GeoCoordinates",
-    latitude: 54.6872,
-    longitude: 25.2797,
+    latitude: 54.6900422,
+    longitude: 25.2899553,
   },
   openingHoursSpecification: [
     {
@@ -77,6 +77,7 @@ const jsonLd = {
   ],
   medicalSpecialty: "PhysicalTherapy",
   image: "https://reamed.lt/logo.png",
+  sameAs: ["https://www.google.com/maps?cid=5379242466351535503"],
 };
 
 export default function RootLayout({
@@ -91,17 +92,9 @@ export default function RootLayout({
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
         />
-        <link
-          rel="stylesheet"
-          href="https://www.manodaktaras.lt/widget/css/mydocwidget.css"
-        />
       </head>
       <body className={`${poppins.variable} font-sans antialiased`}>
         <Providers>{children}</Providers>
-        <Script
-          src="https://www.manodaktaras.lt/widget/js/mydocwidget.js"
-          strategy="afterInteractive"
-        />
       </body>
     </html>
   );
