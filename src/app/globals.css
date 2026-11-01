@@ -3,7 +3,7 @@
 @theme inline {
   --font-sans: var(--font-onest);
 
-  /* Redesign G (01.11.2026). Mint text only large and only on graphite. */
+  /* Redesign G (01.11.2026), compacted 01.11.2026. Mint text only large and only on graphite. */
   --color-ground: #ECEDEB;
   --color-paper: #F7F7F6;
   --color-ink: #2B2C2B;
@@ -19,7 +19,7 @@
   --color-muted: var(--color-graphite);
 
   /* Type scale. No other sizes. `-m` = phone. */
-  --text-h1: clamp(46px, 6vw, 88px);
+  --text-h1: clamp(36px, 4.6vw, 64px);
   --text-h1--line-height: 1.02;
   --text-h1--letter-spacing: -0.025em;
   --text-h1--font-weight: 500;
@@ -27,7 +27,7 @@
   --text-h1-m--line-height: 1.02;
   --text-h1-m--letter-spacing: -0.025em;
   --text-h1-m--font-weight: 500;
-  --text-h2: clamp(34px, 3.9vw, 56px);
+  --text-h2: clamp(30px, 2.9vw, 42px);
   --text-h2--line-height: 1.02;
   --text-h2--letter-spacing: -0.025em;
   --text-h2--font-weight: 500;
@@ -36,8 +36,8 @@
   --text-h3--letter-spacing: -0.015em;
   --text-h3-m: 22px;
   --text-h3-m--line-height: 1.25;
-  --text-lead: clamp(20px, 1.6vw, 24px);
-  --text-lead--line-height: 1.42;
+  --text-lead: 20px;
+  --text-lead--line-height: 1.5;
   --text-body: 18px;
   --text-body--line-height: 1.55;
   --text-small: 16px;
@@ -48,8 +48,8 @@
   --container-page: 1376px;
   --spacing-gutter: 20px;
   --spacing-gutter-md: 32px;
-  --spacing-section: 104px;
-  --spacing-section-md: 168px;
+  --spacing-section: 64px;
+  --spacing-section-md: 96px;
   --spacing-header: 72px;
   --spacing-header-lg: 88px;
 }
@@ -94,7 +94,7 @@ html {
   }
 }
 
-/* Space between sections: 104 / 168px. */
+/* Space between sections: 64 / 96px. */
 @utility section-y {
   padding-block: var(--spacing-section);
   @media (min-width: 768px) {

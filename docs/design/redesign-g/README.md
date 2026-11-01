@@ -13,7 +13,7 @@
 | Роль | Цвет | Где |
 | --- | --- | --- |
 | ground | `#ECEDEB` | фон страницы, шапка, первый экран, «Pirmasis vizitas» |
-| paper | `#F7F7F6` | чередующиеся светлые секции: «Kur skauda?», отзывы |
+| paper | `#F7F7F6` | чередующиеся светлые секции: «Kur skauda?», услуги, отзывы |
 | ink | `#2B2C2B` | основной текст и заголовки на светлом |
 | graphite | `#5F605F` | тёмные блоки (специалисты, запись и футер), кнопки на светлом, второстепенный текст |
 | mint | `#9DD0CB` | заголовки на графите, кнопки на графите (текст на них — ink), точки-маркеры |
@@ -30,14 +30,14 @@
 
 | Роль | Размер | Начертание |
 | --- | --- | --- |
-| h1 | `clamp(46px, 6vw, 88px)` | 500, tracking −0.025em, leading 1.02 |
-| h2 | `clamp(34px, 3.9vw, 56px)` | 500 |
+| h1 | `clamp(36px, 4.6vw, 64px)` | 500, tracking −0.025em, leading 1.02 |
+| h2 | `clamp(30px, 2.9vw, 42px)` | 500 |
 | h3 и фразы | `clamp(26px, 2.4vw, 34px)` | — |
-| lead | `clamp(20px, 1.6vw, 24px)` | — |
+| lead | 20px, leading 1.5 | — |
 | текст | 18px | — |
 | мелкий | 16px | — |
 
-Других размеров не вводить. На телефоне h1 — `clamp(36px, 10vw, 46px)`, фразы — 22px.
+Шкала уменьшена 01.11.2026 (главная компактнее), `index.html` показывает прежние размеры. Других размеров не вводить. На телефоне h1 — `clamp(36px, 10vw, 46px)`, фразы — 22px.
 
 **Кнопки:** pill, `border-radius: 999px`, высота 52px (в шапке 46px).
 - На светлом фоне: фон graphite, белый текст, hover ink.
@@ -45,7 +45,7 @@
 
 **Ссылки-действия:** подчёркивание 2px мятой, offset 5px.
 
-**Отступы:** между секциями 168px на десктопе и 104px на телефоне. Поля 32 / 20px. Контейнер — 1376px.
+**Отступы:** сверху и снизу секции 96px на десктопе и 64px на телефоне. Поля 32 / 20px. Контейнер — 1376px.
 
 ## Фото
 
@@ -86,6 +86,7 @@
 2. **Первый экран** (изменён после утверждения макета, `index.html` его не показывает):
    - h1 «Kineziterapijos klinika Vilniuje» (EN «Physiotherapy clinic in Vilnius»), не больше двух строк на любой ширине,
      на узких «Kineziterapijos / klinika Vilniuje»; размер — обычный h1 из шкалы (на телефоне `h1-m`), с ним помещается от 320 px;
+   - высота первого экрана на десктопе 640 px;
    - lead «ReaMed klinikoje padedame žmonėms, kuriems skauda nugarą, kaklą ar sąnarius, taip pat atsigaunantiems po traumų
      ir operacijų. Jau per pirmąjį vizitą įvertiname jūsų būklę, sudarome planą ir pradedame gydymą.»;
    - строки цены нет: цена — в «Pirmasis vizitas»;
@@ -93,39 +94,39 @@
    - сплошной мятный круг (mint) без фото, внутри белые руки из логотипа (`public/brand/reamed-hands-white.svg`,
      тот же путь, что в `reamed-hands-teal.svg`), декор: `aria-hidden`, пустой `alt`;
    - десктоп (от 821 px): левый край круга — середина контейнера + 24 px, диаметр `max(1040px, 50vw + 120px)`,
-     верх −90 px, круг обрезается правым краем; колонка текста не шире половины контейнера минус 48 px;
-   - руки на десктопе: по центру видимой части круга (от его левого края до правого края экрана, высота секции 780 px),
+     верх −160 px, круг обрезается правым краем; колонка текста не шире половины контейнера минус 48 px;
+   - руки на десктопе: по центру видимой части круга (от его левого края до правого края экрана, высота секции 640 px),
      ширина 60% этой части, но не больше 520 px;
    - телефон: круг 120vw, видна верхняя часть высотой 78vw; руки по центру экрана, центр на 39vw от верха круга, ширина 60vw;
    - руки всегда целиком внутри видимой части круга: их не режут ни край экрана, ни край секции, ни граница круга.
 3. **«Kur skauda?»** (paper), живой выбор:
-   - слева 8 проблем: кнопки-строки с мятной точкой, выбранная — pill graphite с белым текстом;
-   - справа панель (ground): название, 1–2 фразы, один настоящий отзыв по метке `conditions` дословно, кнопки «Registruotis» и «Plačiau apie tai» → `/ka-gydome/<slug>`;
-   - тексты панелей и выбор отзывов — в `index.html`;
-   - где отзыва нет, показать специалиста с подписью из его профиля;
+   - слева 8 проблем: кнопки-строки высотой 48 px с мятной точкой, выбранная — pill graphite с белым текстом;
+   - справа панель (ground) без фиксированной высоты: название, 1–2 фразы, кнопки «Registruotis» и «Plačiau apie tai» → `/ka-gydome/<slug>`;
+   - отзыва и специалиста в панели нет;
    - сделать на `useState` с `aria-pressed`, порядок Tab естественный;
-   - на телефоне панель показывать сразу под выбранным пунктом;
-   - ниже одной строкой ссылки на 6 услуг.
-4. **Специалисты** (graphite):
-   - h2 мятой «Dirbame su Lietuvos rinktinėmis»;
-   - справа lead «Trys mūsų kineziterapeutai dirba su Lietuvos ledo ritulio ir futbolo rinktinėmis.»;
-   - 4 арки с именем и одним фактом (тексты в `index.html`, факты взяты из `src/lib/specialists.ts`);
+   - на телефоне панель показывать сразу под выбранным пунктом.
+4. **Pirmasis vizitas** (ground):
+   - h2, фраза «Išklausome, ištiriame judesį ir paaiškiname, kas vyksta. Sudarome planą ir pradedame gydymą.»;
+   - строка «60 min · 80 €» (часы — только в блоке записи);
+   - кнопка «Registruotis vizitui» → `/registracija` и ссылка «Visos kainos ir paketai» → `/kainos`;
+   - справа круг с фото в мятном тоне (см. «Фото»), до 440 px. Вместо плиток 01–04.
+5. **Услуги** (paper, `id="paslaugos"`):
+   - h2 «Kineziterapija, manualinė terapija ir osteopatija»;
+   - шесть пунктов в три колонки (на телефоне одна): название — ссылка на `/paslaugos/<slug>`, под ним одна строка;
+   - без карточек, рамок и иконок, только текст на фоне.
+6. **Специалисты** (graphite):
+   - h2 мятой «ReaMed specialistai», под ним lead «Trys mūsų kineziterapeutai dirba su Lietuvos ledo ritulio ir futbolo rinktinėmis.»;
+   - 4 арки с именем и `tagline` / `taglineEn` из `src/lib/specialists.ts` дословно;
    - ссылки на `/specialistai/<slug>`.
-5. **Pirmasis vizitas** (ground):
-   - h2, фраза «Išklausome, ištiriame judesį ir paaiškiname, kas vyksta. Išeinate su aiškiu gydymo planu.»;
-   - строка «60 min · 80 € · I–V 8–19 val.», ссылка «Visos kainos ir paketai» → `/kainos`;
-   - справа круг с фото в мятном тоне (см. «Фото»). Вместо плиток 01–04.
-6. **Отзывы** (paper):
+7. **Отзывы** (paper):
    - слева h2 «Atsiliepimai», крупно 5,0, звёзды, ссылка на Google;
    - справа две цитаты: Dominykas D. (про Eriką) и Ilja C. (про Kotryną);
-   - у каждой круглое фото специалиста 96px, подпись «Vardas P., apie …»;
+   - подпись одной строкой «Vardas P. · apie [фото 28 px] Specialisto vardas» со ссылкой на специалиста, фото декоративное;
    - данные из `src/data/reviews.ts`, текст дословный. Можно обрезать по целому предложению, без пересказа.
-7. **Запись и футер** (graphite), один блок:
-   - h2 мятой «Registruokitės vizitui», крупный телефон;
-   - кнопки: мятная «Registruotis internetu» и ссылка на email;
-   - справа адрес, часы и цена первого визита;
-   - ниже `reamed-lockup-for-dark.svg` во всю ширину контейнера;
-   - строка ссылок и копирайт, год автоматически.
+8. **Запись и футер** (graphite), один блок, на десктопе около 500 px:
+   - h2 мятой «Registruokitės vizitui», крупный телефон, мятная кнопка «Registruotis internetu»;
+   - справа адрес, часы и email;
+   - ниже `reamed-lockup-for-dark.svg` шириной 360 px (на телефоне 240 px), рядом строка ссылок и копирайт, год автоматически.
 
 С главной убрать: TrustBar, «Kaip dirbame» 01–04, сетки карточек «Ką gydome» и «Paslaugos», FinalCTA. Неиспользуемые компоненты удалить.
 

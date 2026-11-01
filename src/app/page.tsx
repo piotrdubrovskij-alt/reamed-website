@@ -3,6 +3,7 @@ import HeroSection from "@/components/sections/HeroSection";
 import AreasSection from "@/components/sections/AreasSection";
 import SpecialistsSection from "@/components/sections/SpecialistsSection";
 import FirstVisitSection from "@/components/sections/FirstVisitSection";
+import ServicesSection from "@/components/sections/ServicesSection";
 import ReviewsSection from "@/components/sections/ReviewsSection";
 import Footer from "@/components/Footer";
 
@@ -13,8 +14,9 @@ export default function Home() {
       <main>
         <HeroSection />
         <AreasSection />
-        <SpecialistsSection />
         <FirstVisitSection />
+        <ServicesSection />
+        <SpecialistsSection />
         <ReviewsSection />
       </main>
       <Footer />

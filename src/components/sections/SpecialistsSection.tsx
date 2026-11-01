@@ -3,11 +3,12 @@
 import Image from "next/image";
 import Link from "next/link";
 import { useLanguage } from "@/contexts/LanguageContext";
+import { specialists } from "@/lib/specialists";
 import type { SpecialistSlug } from "@/data/reviews";
 import { SPECIALIST_NAMES, specialistPhoto } from "@/components/reviews/format";
 
 export default function SpecialistsSection() {
-  const { t } = useLanguage();
+  const { lang, t } = useLanguage();
 
   return (
     <section
@@ -16,14 +17,14 @@ export default function SpecialistsSection() {
       className="bg-graphite text-white section-y [&_:focus-visible]:outline-mint"
     >
       <div className="wrap">
-        <div className="grid gap-10 mb-14 md:grid-cols-[7fr_5fr] md:gap-[72px] md:items-end md:mb-18">
-          <h2 id="team-h" className="text-h2 text-mint max-w-[14ch] text-balance">
+        <div className="mb-10 md:mb-14">
+          <h2 id="team-h" className="text-h2 text-mint text-balance">
             {t.team.title}
           </h2>
-          <p className="text-lead text-on-dark">{t.team.lead}</p>
+          <p className="mt-4 text-lead text-on-dark max-w-[46ch]">{t.team.lead}</p>
         </div>
         <ul className="grid grid-cols-2 gap-x-3.5 gap-y-7 md:grid-cols-4 md:gap-6">
-          {t.team.people.map((p) => {
+          {specialists.map((p) => {
             const slug = p.slug as SpecialistSlug;
             return (
               <li key={slug}>
@@ -40,7 +41,7 @@ export default function SpecialistsSection() {
                     {SPECIALIST_NAMES[slug]}
                   </span>
                 </Link>
-                <p className="mt-1.5 text-small text-on-dark">{p.fact}</p>
+                <p className="mt-1.5 text-small text-on-dark">{lang === "en" ? p.taglineEn : p.tagline}</p>
               </li>
             );
           })}
