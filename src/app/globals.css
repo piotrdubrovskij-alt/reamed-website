@@ -43,7 +43,8 @@
   --text-small: 16px;
   --text-small--line-height: 1.45;
 
-  /* Layout */
+  /* Layout. `desk:` = 821px and up, the mockup's desktop switch. */
+  --breakpoint-desk: 51.3125rem;
   --container-page: 1376px;
   --spacing-gutter: 20px;
   --spacing-gutter-md: 32px;

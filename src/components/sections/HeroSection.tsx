@@ -11,10 +11,11 @@ export default function HeroSection() {
   const { lang, t } = useLanguage();
 
   return (
-    <section aria-labelledby="hero-h" className="relative overflow-hidden bg-ground lg:h-[780px]">
+    <section aria-labelledby="hero-h" className="relative overflow-hidden bg-ground desk:h-[780px]">
       <div className="wrap relative h-full">
-        <div className="relative z-10 flex flex-col gap-[22px] pt-10 lg:gap-7 lg:pt-30 lg:max-w-[640px]">
-          <h1 id="hero-h" className="text-h1-m lg:text-h1 text-balance">
+        {/* Desktop: text stays in the left half of the container, 48px short of the middle. */}
+        <div className="relative z-10 flex flex-col gap-[22px] pt-10 desk:gap-7 desk:pt-30 desk:max-w-[calc(50%-48px)]">
+          <h1 id="hero-h" className="text-h1-m desk:text-h1 text-balance">
             {t.hero.title}
           </h1>
           <p className="text-lead">{t.hero.lead}</p>
@@ -38,14 +39,16 @@ export default function HeroSection() {
         </div>
 
         {/* Phone: full-bleed circle cut by the section's bottom edge.
-            Desktop: 1040px circle cut by the right edge. */}
-        <div className="relative mt-12 -ml-[10vw] -mb-[42vw] size-[120vw] rounded-full overflow-hidden bg-graphite/15 lg:absolute lg:m-0 lg:size-[1040px] lg:-right-[300px] lg:-top-[90px]">
+            Desktop: left edge at the container middle + 24px; at least 1040px
+            (taller than the 780px screen) and always wider than what is left
+            of the viewport, so the right edge cuts it. */}
+        <div className="relative mt-12 -ml-[10vw] -mb-[42vw] size-[120vw] rounded-full overflow-hidden bg-graphite/15 desk:absolute desk:m-0 desk:left-[calc(50%+24px)] desk:-top-[90px] desk:size-[max(1040px,calc(50vw+120px))]">
           <Image
             src="/photos/clinic.jpg"
             alt={t.hero.photoAlt}
             fill
             priority
-            sizes="(min-width: 1024px) 1040px, 120vw"
+            sizes="(min-width: 821px) max(1040px, calc(50vw + 120px)), 120vw"
             className="object-cover object-[63%_50%]"
           />
         </div>
