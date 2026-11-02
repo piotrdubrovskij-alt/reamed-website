@@ -36,8 +36,9 @@ const routes: Route[] = [
 ];
 
 function config(): { origin: string; key: string } | null {
-  const origin = process.env.KLINIKA_API_ORIGIN?.replace(/\/+$/, "");
-  const key = process.env.WEBSITE_API_KEY;
+  const origin = process.env.KLINIKA_API_ORIGIN?.trim().replace(/\/+$/, "");
+  // The shared secret may carry a trailing newline from the shell that stored it.
+  const key = process.env.WEBSITE_API_KEY?.trim();
   // Plain http only towards a mock on this machine (scripts/mock-booking-api.mjs).
   if (!origin || !key || key.length < 32 || !/^(https:\/\/|http:\/\/(127\.0\.0\.1|localhost)(:\d+)?$)/.test(origin))
     return null;
