@@ -28,6 +28,13 @@
   Дальше: подключить ключ и адрес системы (`cloud-booking-env.sh`), сквозная проверка в Test Mode Paysera, затем
   заменить `/registracija` (п. 10) и добавить ссылку в шапку/футер.
 
+- [ ] **Перевыпустить ключ Resend сайта** (решение Piotr 02.11.2026). 02.11.2026 при проверке переменных сервиса
+  `reamed-site` в Cloud Shell на экран попала часть значения `RESEND_API_KEY`. Порядок: в resend.com → API Keys создать
+  новый ключ (sending only), в Cloud Run `reamed-site` (europe-west1) заменить переменную `RESEND_API_KEY`
+  (`gcloud run services update reamed-site --region europe-west1 --update-env-vars RESEND_API_KEY=…` — значение вводит
+  Piotr в Cloud Shell, не в чат), проверить форму `/registracija`, затем удалить старый ключ в resend.com.
+  Заодно перенести ключ из обычной переменной в Secret Manager, как `WEBSITE_API_KEY`.
+
 ## P0 — сразу
 
 - [ ] **2. Контраст кнопок и ссылок.** Белый на `#7DB9B5` = 2,2:1.
