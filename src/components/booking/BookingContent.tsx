@@ -10,6 +10,7 @@ import { api } from "@/lib/booking/client";
 import { bookingCopy } from "@/lib/booking/copy";
 import {
   SPECIALIST_SLUGS,
+  bookingRole,
   clockTime,
   durationLabel,
   money,
@@ -37,22 +38,32 @@ function offers(service: CatalogueService, specialistId: string, visitType: Visi
 }
 
 function Steps({ step, labels }: { step: Step; labels: readonly string[] }) {
+  // On a phone the three steps must stay on one line (Piotr 02.11.2026): plain numbers at 14px,
+  // the one deliberate exception to the type scale. From sm up: 16px with numbered circles.
   return (
-    <ol className="flex flex-wrap items-center gap-x-3 gap-y-2 text-small">
+    <ol className="flex flex-nowrap items-center gap-x-2 sm:gap-x-3 text-[14px] sm:text-small whitespace-nowrap overflow-x-auto">
       {labels.map((label, i) => {
         const n = (i + 1) as Step;
         const state = n === step ? "current" : n < step ? "done" : "todo";
         return (
-          <li key={label} className="flex items-center gap-2" aria-current={state === "current" ? "step" : undefined}>
+          <li
+            key={label}
+            className="flex items-center gap-1 sm:gap-2"
+            aria-current={state === "current" ? "step" : undefined}
+          >
             <span
-              className={`inline-flex size-7 items-center justify-center rounded-full tabular-nums ${
-                state === "current" ? "bg-graphite text-white" : state === "done" ? "bg-mint text-ink" : "bg-ground text-graphite"
+              className={`inline-flex items-center justify-center tabular-nums sm:size-7 sm:rounded-full ${
+                state === "current"
+                  ? "text-ink font-medium sm:bg-graphite sm:text-white"
+                  : state === "done"
+                    ? "text-ink sm:bg-mint sm:text-ink"
+                    : "text-graphite sm:bg-ground"
               }`}
             >
               {n}
             </span>
             <span className={state === "todo" ? "text-graphite" : "text-ink font-medium"}>{label}</span>
-            {i < labels.length - 1 && <span aria-hidden="true" className="ml-1 h-px w-5 bg-ground-hover" />}
+            {i < labels.length - 1 && <span aria-hidden="true" className="hidden sm:block ml-1 h-px w-5 bg-ground-hover" />}
           </li>
         );
       })}
@@ -367,8 +378,8 @@ export default function BookingContent() {
                                 />
                               )}
                               <span className="px-1 text-body font-medium leading-tight">{person.name}</span>
-                              <span className={`px-1 text-small leading-snug line-clamp-2 ${chosen ? "text-on-dark" : "text-graphite"}`}>
-                                {lang === "en" ? person.roleEn : person.role}
+                              <span className={`px-1 text-small leading-snug ${chosen ? "text-on-dark" : "text-graphite"}`}>
+                                {bookingRole(id, lang) ?? (lang === "en" ? person.roleEn : person.role)}
                               </span>
                             </button>
                           </li>
@@ -483,7 +494,6 @@ export default function BookingContent() {
                     </Field>
                   ))}
                 </div>
-                <p className="text-small text-graphite">{c.noHealthData}</p>
                 <label className="flex items-start gap-3 text-small text-ink cursor-pointer">
                   <input
                     type="checkbox"
@@ -495,14 +505,15 @@ export default function BookingContent() {
                     className="mt-1 size-5 shrink-0 accent-graphite"
                   />
                   <span>
-                    {c.acceptTerms}:{" "}
+                    {c.acceptTermsBefore}
                     <Link href="/rezervacija/salygos" target="_blank" className="link-action">
-                      {c.termsLink}
+                      {c.acceptTermsLink}
                     </Link>
-                    {" · "}
+                    {c.acceptTermsBetween}
                     <Link href="/privatumas" target="_blank" className="link-action">
-                      {c.privacyLink}
+                      {c.acceptPrivacyLink}
                     </Link>
+                    {c.acceptTermsAfter}
                   </span>
                 </label>
                 {errors.terms && (
@@ -531,15 +542,15 @@ export default function BookingContent() {
                 <CardTitle>{c.paymentTitle}</CardTitle>
                 <p className="text-small text-graphite">{c.paymentLead}</p>
               </div>
-              <dl className="grid grid-cols-[auto_1fr] gap-x-6 gap-y-2 text-body">
-                <dt className="text-graphite">{c.fullName}</dt>
+              <dl className="grid grid-cols-1 gap-y-3 sm:grid-cols-[auto_1fr] sm:gap-x-6 sm:gap-y-2 text-body">
+                <dt className="text-small sm:text-body text-graphite">{c.fullName}</dt>
                 <dd className="text-ink">
                   {contacts.firstName} {contacts.lastName}
                 </dd>
-                <dt className="text-graphite">{c.phoneLabel}</dt>
+                <dt className="text-small sm:text-body text-graphite">{c.phoneLabel}</dt>
                 <dd className="text-ink">{contacts.phone}</dd>
-                <dt className="text-graphite">{c.email}</dt>
-                <dd className="text-ink break-all">{contacts.email}</dd>
+                <dt className="text-small sm:text-body text-graphite">{c.email}</dt>
+                <dd className="text-ink break-words">{contacts.email}</dd>
               </dl>
               {expired ? (
                 <Notice kind="error">{c.holdExpired}</Notice>
@@ -555,7 +566,7 @@ export default function BookingContent() {
                   {c.back}
                 </Button>
                 <Button onClick={pay} disabled={busy !== null || expired || (data ? !data.paymentsEnabled : false)}>
-                  {busy ? c.paying : `${c.payButton} · ${money(total, lang)}`}
+                  {busy ? c.paying : c.payButton}
                 </Button>
               </div>
             </Card>

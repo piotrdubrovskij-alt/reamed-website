@@ -93,6 +93,18 @@ export const SPECIALIST_SLUGS: Record<string, string> = {
   "rm-mangirdas": "mangirdas-kazacenko",
 };
 
+/** Short roles under the photos on the booking page (Piotr 02.11.2026), by clinic system id. */
+const BOOKING_ROLES: Record<string, Record<Language, string>> = {
+  "rm-piotr": { lt: "Kineziterapeutas, osteopatas", en: "Physiotherapist, osteopath" },
+  "rm-kotryna": { lt: "Kineziterapeutė", en: "Physiotherapist" },
+  "rm-erikas": { lt: "Kineziterapeutas, masažuotojas", en: "Physiotherapist, massage therapist" },
+  "rm-mangirdas": { lt: "Kineziterapeutas, manualinis terapeutas", en: "Physiotherapist, manual therapist" },
+};
+
+export function bookingRole(specialistId: string, lang: Language): string | undefined {
+  return BOOKING_ROLES[specialistId]?.[lang];
+}
+
 /** The catalogue names are Lithuanian; the English ones live here, by service id. */
 const SERVICE_NAMES_EN: Record<string, string> = {
   "reamed-consultation": "Initial consultation, assessment and plan",
