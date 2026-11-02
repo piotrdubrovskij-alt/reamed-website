@@ -38,25 +38,28 @@ function offers(service: CatalogueService, specialistId: string, visitType: Visi
 }
 
 function Steps({ step, labels }: { step: Step; labels: readonly string[] }) {
-  // On a phone the three steps must stay on one line (Piotr 02.11.2026): plain numbers at 14px,
-  // the one deliberate exception to the type scale. From sm up: 16px with numbered circles.
+  // Phone: the three steps on one line, spread left / centre / right, the current one in a mint
+  // pill (Piotr 02.11.2026); 14px is the one deliberate exception to the type scale. From sm up:
+  // 16px, numbered circles, the current one mint.
   return (
-    <ol className="flex flex-nowrap items-center gap-x-2 sm:gap-x-3 text-[14px] sm:text-small whitespace-nowrap overflow-x-auto">
+    <ol className="flex flex-nowrap items-center justify-between sm:justify-start gap-x-1 sm:gap-x-3 text-[14px] sm:text-small whitespace-nowrap">
       {labels.map((label, i) => {
         const n = (i + 1) as Step;
         const state = n === step ? "current" : n < step ? "done" : "todo";
         return (
           <li
             key={label}
-            className="flex items-center gap-1 sm:gap-2"
+            className={`flex items-center gap-1.5 sm:gap-2 rounded-full px-2.5 py-1 -mx-2.5 sm:mx-0 sm:px-0 sm:py-0 sm:bg-transparent ${
+              state === "current" ? "bg-mint text-ink" : ""
+            }`}
             aria-current={state === "current" ? "step" : undefined}
           >
             <span
               className={`inline-flex items-center justify-center tabular-nums sm:size-7 sm:rounded-full ${
                 state === "current"
-                  ? "text-ink font-medium sm:bg-graphite sm:text-white"
+                  ? "font-medium sm:bg-mint sm:text-ink"
                   : state === "done"
-                    ? "text-ink sm:bg-mint sm:text-ink"
+                    ? "text-ink sm:bg-graphite sm:text-white"
                     : "text-graphite sm:bg-ground"
               }`}
             >
@@ -350,12 +353,16 @@ export default function BookingContent() {
                 <Card className="flex flex-col gap-6">
                   <div className="flex flex-col gap-4">
                     <CardTitle>{c.specialist}</CardTitle>
-                    <ul className="grid grid-cols-2 gap-3 sm:grid-cols-4">
+                    {/* On the phone the grid bleeds to the card edge so two cards get room for a full
+                        name on one line; name and each role part are sized to the card (container units)
+                        and never wrap (Piotr 02.11.2026). */}
+                    <ul className="grid grid-cols-2 gap-2 -mx-3 sm:mx-0 sm:gap-3 sm:grid-cols-4">
                       {availableSpecialists.map((person) => {
                         const id = idOf(person.slug);
                         const chosen = specialistId === id;
+                        const role = bookingRole(id, lang) ?? (lang === "en" ? person.roleEn : person.role);
                         return (
-                          <li key={person.slug}>
+                          <li key={person.slug} className="@container">
                             <button
                               type="button"
                               aria-pressed={chosen}
@@ -363,7 +370,7 @@ export default function BookingContent() {
                                 setSpecialistId(id);
                                 setSlot(null);
                               }}
-                              className={`group flex w-full flex-col items-stretch gap-2.5 rounded-[22px] p-2.5 pb-3 text-left transition-colors ${
+                              className={`group flex w-full flex-col items-center gap-2 rounded-[22px] p-1.5 pb-3 text-center transition-colors ${
                                 chosen ? "bg-graphite text-white" : "bg-ground text-ink hover:bg-ground-hover"
                               }`}
                             >
@@ -377,9 +384,17 @@ export default function BookingContent() {
                                   className="w-full aspect-[4/5] object-cover rounded-t-full"
                                 />
                               )}
-                              <span className="px-1 text-body font-medium leading-tight">{person.name}</span>
-                              <span className={`px-1 text-small leading-snug ${chosen ? "text-on-dark" : "text-graphite"}`}>
-                                {bookingRole(id, lang) ?? (lang === "en" ? person.roleEn : person.role)}
+                              <span className="block whitespace-nowrap font-medium leading-tight text-[clamp(12px,9cqw,16px)]">
+                                {person.name}
+                              </span>
+                              <span
+                                className={`block leading-snug text-[clamp(11px,7.8cqw,14px)] ${chosen ? "text-on-dark" : "text-graphite"}`}
+                              >
+                                {role.split(", ").map((part, i) => (
+                                  <span key={part} className="block whitespace-nowrap">
+                                    {i === 0 && role.includes(", ") ? `${part},` : part}
+                                  </span>
+                                ))}
                               </span>
                             </button>
                           </li>
@@ -494,8 +509,9 @@ export default function BookingContent() {
                     </Field>
                   ))}
                 </div>
-                <label className="flex items-start gap-3 text-small text-ink cursor-pointer">
+                <div className="flex items-start gap-3 text-small text-ink">
                   <input
+                    id="booking-terms"
                     type="checkbox"
                     checked={accepted}
                     onChange={(e) => {
@@ -504,18 +520,24 @@ export default function BookingContent() {
                     }}
                     className="mt-1 size-5 shrink-0 accent-graphite"
                   />
-                  <span>
-                    {c.acceptTermsBefore}
-                    <Link href="/rezervacija/salygos" target="_blank" className="link-action">
-                      {c.acceptTermsLink}
-                    </Link>
-                    {c.acceptTermsBetween}
-                    <Link href="/privatumas" target="_blank" className="link-action">
-                      {c.acceptPrivacyLink}
-                    </Link>
-                    {c.acceptTermsAfter}
-                  </span>
-                </label>
+                  <div className="flex flex-col gap-1.5">
+                    <label htmlFor="booking-terms" className="cursor-pointer">
+                      {c.acceptTermsTitle}
+                    </label>
+                    <ul className="flex flex-col gap-1 pl-4 list-disc marker:text-mint">
+                      <li>
+                        <Link href="/rezervacija/salygos" target="_blank" className="link-action">
+                          {c.acceptTermsLink}
+                        </Link>
+                      </li>
+                      <li>
+                        <Link href="/privatumas" target="_blank" className="link-action">
+                          {c.acceptPrivacyLink}
+                        </Link>
+                      </li>
+                    </ul>
+                  </div>
+                </div>
                 {errors.terms && (
                   <p role="alert" className="text-small text-[#B3261E]">
                     {errors.terms}
