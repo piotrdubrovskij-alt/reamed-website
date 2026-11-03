@@ -62,6 +62,30 @@ export type OrderItem = {
   changeDeadline?: number;
 };
 
+/** Who the invoice is made out to: the patient (default) or a company with its details. */
+export type InvoiceBuyerInput =
+  | { type: "person"; address?: string }
+  | { type: "company"; name: string; code: string; vatCode?: string; address: string };
+
+export type InvoiceBuyer = {
+  type: "person" | "company";
+  name: string | null;
+  code: string | null;
+  vatCode: string | null;
+  address: string | null;
+};
+
+/** The issued invoice (one per paid order); the PDF is at `orders/:id/invoice.pdf`. */
+export type InvoiceInfo = {
+  series: string;
+  number: number;
+  label: string;
+  fileName: string;
+  issuedAt: number;
+  buyerType: "person" | "company";
+  totalCents: number;
+};
+
 export type OrderView = {
   id: string;
   status: OrderStatus;
@@ -77,10 +101,12 @@ export type OrderView = {
   items: OrderItem[];
   rules: { changeNoticeHours: number; holdMinutes: number };
   manageUrl: string | null;
+  invoiceBuyer?: InvoiceBuyer;
+  invoice?: InvoiceInfo | null;
 };
 
 /** The order by id alone, as the result page sees it: no contacts, no manage link. */
-export type OrderBrief = Omit<OrderView, "patient" | "manageUrl" | "visitType">;
+export type OrderBrief = Omit<OrderView, "patient" | "manageUrl" | "visitType" | "invoiceBuyer" | "invoice">;
 
 export type CartItem = { serviceId: string; specialistId: string; start: number };
 
@@ -91,6 +117,7 @@ export type OrderInput = {
   patient: { firstName: string; lastName: string; phone: string; email: string };
   items: CartItem[];
   acceptedTerms: true;
+  invoice: InvoiceBuyerInput;
 };
 
 export type ApiError = { error: string; status: number };

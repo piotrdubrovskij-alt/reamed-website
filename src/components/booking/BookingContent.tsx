@@ -17,7 +17,7 @@ import {
   serviceName,
   visitWhen,
 } from "@/lib/booking/format";
-import type { CartItem, CatalogueService, OrderView, VisitType } from "@/lib/booking/types";
+import type { CartItem, CatalogueService, InvoiceBuyerInput, OrderView, VisitType } from "@/lib/booking/types";
 import { useCatalogue } from "@/lib/booking/useCatalogue";
 import { errorText } from "./OrderItems";
 import SlotPicker, { type Slot } from "./SlotPicker";
@@ -26,7 +26,28 @@ import { Button, Card, CardTitle, Field, Notice, inputClass } from "./ui";
 type Step = 1 | 2 | 3;
 type Contacts = { firstName: string; lastName: string; phone: string; email: string };
 const emptyContacts: Contacts = { firstName: "", lastName: "", phone: "", email: "" };
+// The invoice buyer (Piotr 03.11.2026): the patient by default, or a company with its details.
+type Invoice = { type: "person" | "company"; name: string; code: string; vatCode: string; address: string };
+const emptyInvoice: Invoice = { type: "person", name: "", code: "", vatCode: "", address: "" };
+type InvoiceErrors = Partial<Record<"invoiceName" | "invoiceCode" | "invoiceVatCode" | "invoiceAddress", string>>;
 const EMAIL = /^[^\s@]{1,64}@[^\s@]{1,255}\.[^\s@.]{2,24}$/;
+const COMPANY_CODE = /^\d{7,12}$/;
+const VAT_CODE = /^[A-Z]{2}[A-Z0-9]{2,13}$/;
+
+function invoiceInput(invoice: Invoice): InvoiceBuyerInput {
+  const address = invoice.address.trim();
+  if (invoice.type === "company") {
+    const vatCode = invoice.vatCode.replace(/\s/g, "").toUpperCase();
+    return {
+      type: "company",
+      name: invoice.name.trim(),
+      code: invoice.code.replace(/\s/g, ""),
+      ...(vatCode ? { vatCode } : {}),
+      address,
+    };
+  }
+  return address ? { type: "person", address } : { type: "person" };
+}
 const MAX_ITEMS = 10;
 
 type CartLine = CartItem & { end: number; amountCents: number; durationMinutes: number };
@@ -88,7 +109,8 @@ export default function BookingContent() {
   const [selecting, setSelecting] = useState(true);
   const [contacts, setContacts] = useState<Contacts>(emptyContacts);
   const [accepted, setAccepted] = useState(false);
-  const [errors, setErrors] = useState<Partial<Record<keyof Contacts | "terms", string>>>({});
+  const [invoice, setInvoice] = useState<Invoice>(emptyInvoice);
+  const [errors, setErrors] = useState<Partial<Record<keyof Contacts | "terms", string>> & InvoiceErrors>({});
   const [order, setOrder] = useState<OrderView | null>(null);
   const [heldFor, setHeldFor] = useState<string | null>(null);
   const [busy, setBusy] = useState<"hold" | "pay" | null>(null);
@@ -170,11 +192,26 @@ export default function BookingContent() {
     if (!contacts.email.trim()) next.email = c.required;
     else if (!EMAIL.test(contacts.email.trim())) next.email = c.invalidEmail;
     if (!accepted) next.terms = c.acceptRequired;
+    if (invoice.type === "company") {
+      if (!invoice.name.trim()) next.invoiceName = c.required;
+      const code = invoice.code.replace(/\s/g, "");
+      if (!code) next.invoiceCode = c.required;
+      else if (!COMPANY_CODE.test(code)) next.invoiceCode = c.invalidCompanyCode;
+      const vatCode = invoice.vatCode.replace(/\s/g, "").toUpperCase();
+      if (vatCode && !VAT_CODE.test(vatCode)) next.invoiceVatCode = c.invalidVatCode;
+      if (!invoice.address.trim()) next.invoiceAddress = c.required;
+    }
     setErrors(next);
     return Object.keys(next).length === 0;
   };
 
-  const payloadKey = JSON.stringify({ visitType, lang, cart: cart.map((l) => [l.serviceId, l.specialistId, l.start]), contacts });
+  const payloadKey = JSON.stringify({
+    visitType,
+    lang,
+    cart: cart.map((l) => [l.serviceId, l.specialistId, l.start]),
+    contacts,
+    invoice: invoiceInput(invoice),
+  });
 
   const hold = async (): Promise<OrderView | null> => {
     if (!visitType) return null;
@@ -194,6 +231,7 @@ export default function BookingContent() {
         },
         items: cart.map(({ serviceId, specialistId, start }) => ({ serviceId, specialistId, start })),
         acceptedTerms: true,
+        invoice: invoiceInput(invoice),
       });
       setOrder(held);
       setHeldFor(payloadKey);
@@ -509,6 +547,88 @@ export default function BookingContent() {
                     </Field>
                   ))}
                 </div>
+                <fieldset className="flex flex-col gap-3 rounded-2xl bg-ground p-4">
+                  <legend className="sr-only">{c.invoiceTitle}</legend>
+                  <div className="flex flex-col gap-1">
+                    <span className="text-body font-medium text-ink">{c.invoiceTitle}</span>
+                    <span className="text-small text-graphite">{c.invoiceLead}</span>
+                  </div>
+                  <div className="flex flex-wrap gap-2">
+                    {(
+                      [
+                        ["person", c.invoicePerson, c.invoicePersonHint],
+                        ["company", c.invoiceCompany, null],
+                      ] as const
+                    ).map(([type, label, hint]) => (
+                      <label
+                        key={type}
+                        className={`inline-flex min-h-11 cursor-pointer items-center gap-2 rounded-full px-4 py-2 text-small ${
+                          invoice.type === type ? "bg-graphite text-white" : "bg-paper text-ink hover:bg-ground-hover"
+                        }`}
+                      >
+                        <input
+                          type="radio"
+                          name="booking-invoice-type"
+                          value={type}
+                          checked={invoice.type === type}
+                          onChange={() => {
+                            setInvoice((prev) => ({ ...prev, type }));
+                            setErrors((prev) => ({
+                              ...prev,
+                              invoiceName: undefined,
+                              invoiceCode: undefined,
+                              invoiceVatCode: undefined,
+                              invoiceAddress: undefined,
+                            }));
+                          }}
+                          className="sr-only"
+                        />
+                        <span className="font-medium">{label}</span>
+                        {hint && (
+                          <span className={`hidden sm:inline ${invoice.type === type ? "text-white/80" : "text-graphite"}`}>({hint})</span>
+                        )}
+                      </label>
+                    ))}
+                  </div>
+                  {invoice.type === "company" ? (
+                    <div className="grid gap-4 sm:grid-cols-2">
+                      {(
+                        [
+                          ["name", "invoiceName", c.invoiceCompanyName, "organization"],
+                          ["code", "invoiceCode", c.invoiceCompanyCode, undefined],
+                          ["vatCode", "invoiceVatCode", c.invoiceVatCode, undefined],
+                          ["address", "invoiceAddress", c.invoiceAddress, "street-address"],
+                        ] as const
+                      ).map(([key, errorKey, label, autoComplete]) => (
+                        <Field key={key} label={label} htmlFor={`booking-invoice-${key}`} error={errors[errorKey]}>
+                          <input
+                            id={`booking-invoice-${key}`}
+                            type="text"
+                            autoComplete={autoComplete}
+                            inputMode={key === "code" ? "numeric" : undefined}
+                            value={invoice[key]}
+                            onChange={(e) => {
+                              setInvoice((prev) => ({ ...prev, [key]: e.target.value }));
+                              if (errors[errorKey]) setErrors((prev) => ({ ...prev, [errorKey]: undefined }));
+                            }}
+                            className={inputClass(Boolean(errors[errorKey]))}
+                          />
+                        </Field>
+                      ))}
+                    </div>
+                  ) : (
+                    <Field label={c.invoicePersonAddress} htmlFor="booking-invoice-address">
+                      <input
+                        id="booking-invoice-address"
+                        type="text"
+                        autoComplete="street-address"
+                        value={invoice.address}
+                        onChange={(e) => setInvoice((prev) => ({ ...prev, address: e.target.value }))}
+                        className={inputClass(false)}
+                      />
+                    </Field>
+                  )}
+                </fieldset>
                 <div className="flex items-start gap-3 text-small text-ink">
                   <input
                     id="booking-terms"
@@ -573,6 +693,12 @@ export default function BookingContent() {
                 <dd className="text-ink">{contacts.phone}</dd>
                 <dt className="text-small sm:text-body text-graphite">{c.email}</dt>
                 <dd className="text-ink break-words">{contacts.email}</dd>
+                <dt className="text-small sm:text-body text-graphite">{c.invoiceSummary}</dt>
+                <dd className="text-ink break-words">
+                  {invoice.type === "company"
+                    ? `${invoice.name.trim()} (${invoice.code.replace(/\s/g, "")})`
+                    : `${contacts.firstName} ${contacts.lastName}`}
+                </dd>
               </dl>
               {expired ? (
                 <Notice kind="error">{c.holdExpired}</Notice>

@@ -156,13 +156,50 @@ function view(o, now, withPrivate) {
     rules: { changeNoticeHours: 12, holdMinutes: HOLD_MINUTES },
   };
   if (!withPrivate) return base;
+  const paid = o.status === "paid" || o.status === "paid_conflict";
   return {
     ...base,
     visitType: o.visitType,
     patient: o.patient,
     manageUrl: `${SITE}/rezervacija/uzsakymas?t=${encodeURIComponent(`${o.id}.9999999999.mock`)}`,
+    invoiceBuyer: o.invoice,
+    invoice: paid
+      ? {
+          series: "RMW",
+          number: o.invoiceNumber,
+          label: `RMW ${String(o.invoiceNumber).padStart(6, "0")}`,
+          fileName: `RMW-${String(o.invoiceNumber).padStart(6, "0")}.pdf`,
+          issuedAt: o.paidAt,
+          buyerType: o.invoice.type,
+          totalCents: o.totalCents,
+        }
+      : null,
   };
 }
+
+let invoiceCounter = 0;
+// A one-page PDF with the invoice number, enough for the download link to open something.
+const invoicePdf = (label) => {
+  const text = `BT /F1 18 Tf 72 740 Td (Saskaita faktura ${label} - MOCK) Tj ET`;
+  const objects = [
+    "<< /Type /Catalog /Pages 2 0 R >>",
+    "<< /Type /Pages /Kids [3 0 R] /Count 1 >>",
+    "<< /Type /Page /Parent 2 0 R /MediaBox [0 0 595 842] /Contents 4 0 R /Resources << /Font << /F1 5 0 R >> >> >>",
+    `<< /Length ${text.length} >>\nstream\n${text}\nendstream`,
+    "<< /Type /Font /Subtype /Type1 /BaseFont /Helvetica >>",
+  ];
+  let out = "%PDF-1.4\n";
+  const offsets = [];
+  objects.forEach((obj, i) => {
+    offsets.push(out.length);
+    out += `${i + 1} 0 obj\n${obj}\nendobj\n`;
+  });
+  const xref = out.length;
+  out += `xref\n0 ${objects.length + 1}\n0000000000 65535 f \n`;
+  for (const off of offsets) out += `${String(off).padStart(10, "0")} 00000 n \n`;
+  out += `trailer\n<< /Size ${objects.length + 1} /Root 1 0 R >>\nstartxref\n${xref}\n%%EOF\n`;
+  return Buffer.from(out, "latin1");
+};
 
 function owner(o, token, session) {
   if (typeof token === "string" && token === `${o.id}.9999999999.mock`) return "link";
@@ -194,6 +231,7 @@ const server = createServer(async (req, res) => {
         if (o.status !== "awaiting_payment") return;
         o.status = "paid";
         o.paidAt = Date.now();
+        o.invoiceNumber = ++invoiceCounter;
         for (const it of o.items) it.status = "confirmed";
       }, 2500);
       res.writeHead(303, { Location: `${SITE}/rezervacija/rezultatas?order=${o.id}` });
@@ -305,7 +343,20 @@ const server = createServer(async (req, res) => {
         expiresAt: now + HOLD_MINUTES * 60_000,
         paidAt: null,
         checkoutUrl: null,
+        invoice:
+          input.invoice?.type === "company"
+            ? {
+                type: "company",
+                name: String(input.invoice.name ?? "").trim(),
+                code: String(input.invoice.code ?? "").replace(/\s/g, ""),
+                vatCode: input.invoice.vatCode ? String(input.invoice.vatCode).toUpperCase() : null,
+                address: String(input.invoice.address ?? "").trim(),
+              }
+            : { type: "person", name: null, code: null, vatCode: null, address: input.invoice?.address ?? null },
+        invoiceNumber: 0,
       };
+      if (o.invoice.type === "company" && (!o.invoice.name || !/^\d{7,12}$/.test(o.invoice.code) || !o.invoice.address))
+        return bad(res, "Įveskite įmonės rekvizitus.");
       orders.set(o.id, o);
       return json(res, 200, view(o, now, true));
     }
@@ -319,6 +370,22 @@ const server = createServer(async (req, res) => {
       for (const it of o.items) it.status = "awaiting_payment";
       o.checkoutUrl = `http://127.0.0.1:${PORT}/paysera-mock?order=${o.id}`;
       return json(res, 200, { checkoutUrl: o.checkoutUrl, expiresAt: o.expiresAt, status: o.status });
+    }
+
+    if (req.method === "GET" && (m = /^orders\/([^/]+)\/invoice\.pdf$/.exec(route))) {
+      const o = orders.get(m[1]);
+      if (!o) return bad(res, "Užsakymas nerastas.");
+      if (!owner(o, url.searchParams.get("t"), session)) return json(res, 403, { error: "Neleista." });
+      if (!o.invoiceNumber) return bad(res, "Sąskaita dar neišrašyta.");
+      const label = `RMW ${String(o.invoiceNumber).padStart(6, "0")}`;
+      const pdf = invoicePdf(label);
+      res.writeHead(200, {
+        "Content-Type": "application/pdf",
+        "Content-Length": pdf.length,
+        "Content-Disposition": `inline; filename="${label.replace(" ", "-")}.pdf"`,
+        "Cache-Control": "private, no-store",
+      });
+      return res.end(pdf);
     }
 
     if (req.method === "GET" && (m = /^orders\/([^/]+)\/status$/.exec(route))) {

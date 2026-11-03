@@ -53,6 +53,9 @@ export const api = {
   status: (orderId: string) => call<OrderBrief>("GET", `orders/${orderId}/status`),
   order: (orderId: string, token?: string | null) =>
     call<OrderView>("GET", `orders/${orderId}${token ? `?t=${encodeURIComponent(token)}` : ""}`),
+  /** The invoice PDF opens straight from the proxy (a link, not a fetch): by the order link or the session. */
+  invoiceUrl: (orderId: string, token?: string | null) =>
+    `/api/booking/orders/${orderId}/invoice.pdf${token ? `?t=${encodeURIComponent(token)}` : ""}`,
   cancel: (orderId: string, itemId: string, token?: string | null) =>
     call<OrderView>("POST", `orders/${orderId}/items/${itemId}/cancel`, token ? { token } : {}),
   move: (orderId: string, itemId: string, start: number, token?: string | null) =>

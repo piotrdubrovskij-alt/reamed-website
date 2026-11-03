@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { CalendarDays, Check, Clock3 } from "lucide-react";
+import { CalendarDays, Check, Clock3, FileText } from "lucide-react";
 import type { Language } from "@/lib/translations";
 import { api, BookingError } from "@/lib/booking/client";
 import { bookingCopy } from "@/lib/booking/copy";
@@ -132,6 +132,19 @@ export default function OrderItems({
           );
         })}
       </ul>
+      {order.invoice && (
+        // The invoice PDF (0.9.23): one per paid order, opened straight from the proxy with the same
+        // proof of ownership as the order itself.
+        <a
+          href={api.invoiceUrl(order.id, token)}
+          target="_blank"
+          rel="noopener"
+          className="inline-flex min-h-11 w-fit items-center gap-2 rounded-full bg-white px-4 py-2 text-small font-medium text-ink hover:bg-ground-hover"
+        >
+          <FileText size={18} aria-hidden="true" />
+          {c.invoiceDownload} · {order.invoice.label}
+        </a>
+      )}
 
       {dialog?.kind === "move" && (
         <Dialog title={c.moveTitle} onClose={close} closeLabel={c.close}>

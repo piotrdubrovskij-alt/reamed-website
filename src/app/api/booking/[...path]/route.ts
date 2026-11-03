@@ -18,7 +18,7 @@ const SESSION_DAYS = 30;
 const MAX_BODY = 64 * 1024;
 const UUID = "[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}";
 
-type Route = { method: "GET" | "POST"; pattern: RegExp; query?: readonly string[] };
+type Route = { method: "GET" | "POST"; pattern: RegExp; query?: readonly string[]; file?: boolean };
 
 const routes: Route[] = [
   { method: "GET", pattern: /^catalogue$/ },
@@ -27,6 +27,7 @@ const routes: Route[] = [
   { method: "POST", pattern: new RegExp(`^orders/${UUID}/pay$`) },
   { method: "GET", pattern: new RegExp(`^orders/${UUID}/status$`) },
   { method: "GET", pattern: new RegExp(`^orders/${UUID}$`), query: ["t"] },
+  { method: "GET", pattern: new RegExp(`^orders/${UUID}/invoice\\.pdf$`), query: ["t"], file: true },
   { method: "POST", pattern: new RegExp(`^orders/${UUID}/items/${UUID}/(cancel|move)$`) },
   { method: "POST", pattern: /^sign-in\/code$/ },
   { method: "POST", pattern: /^sign-in\/verify$/ },
@@ -77,7 +78,7 @@ async function handle(req: NextRequest, params: Promise<{ path: string[] }>): Pr
 
   const headers: Record<string, string> = {
     "X-Website-Key": cfg.key,
-    Accept: "application/json",
+    Accept: matched.file ? "application/pdf, application/json" : "application/json",
   };
   const ip = clientIp(req);
   if (ip) headers["X-Website-Client-Ip"] = ip;
@@ -115,6 +116,18 @@ async function handle(req: NextRequest, params: Promise<{ path: string[] }>): Pr
     return json(503, { error: "Registracijos sistema šiuo metu nepasiekiama. Bandykite vėliau." });
   }
 
+  // A file (the invoice PDF) passes through as it is; an error about it is JSON like any other.
+  if (matched.file && upstream.ok && upstream.headers.get("content-type")?.startsWith("application/pdf")) {
+    const file = await upstream.arrayBuffer();
+    return new NextResponse(file, {
+      status: 200,
+      headers: {
+        "Content-Type": "application/pdf",
+        "Content-Disposition": upstream.headers.get("content-disposition") ?? "inline",
+        "Cache-Control": "private, no-store",
+      },
+    });
+  }
   let payload: unknown = null;
   const raw = await upstream.text();
   if (raw) {
