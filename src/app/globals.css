@@ -13,6 +13,7 @@
   --color-mint-light: #B5DDD8;
   --color-on-dark: #E9EBEA;
   --color-focus: #437571;
+  --color-rule: #D3D5D2;
 
   /* Older names, still used by the problem and service pages. */
   --color-foreground: var(--color-ink);
@@ -24,6 +25,13 @@
   --text-h1--line-height: 1.02;
   --text-h1--letter-spacing: -0.025em;
   --text-h1--font-weight: 500;
+  /* Kainos only: the big mint h1 on the graphite band, and its lead. */
+  --text-display: clamp(46px, 6vw, 88px);
+  --text-display--line-height: 1.02;
+  --text-display--letter-spacing: -0.025em;
+  --text-display--font-weight: 500;
+  --text-lead-l: clamp(20px, 1.6vw, 24px);
+  --text-lead-l--line-height: 1.42;
   --text-h1-m: clamp(36px, 10vw, 46px);
   --text-h1-m--line-height: 1.02;
   --text-h1-m--letter-spacing: -0.025em;
@@ -82,8 +90,9 @@ html {
   scroll-padding-top: var(--header-h);
 }
 
+/* Graphite blocks set --focus-ring to mint. A utility can't recolour this rule: it is unlayered. */
 :focus-visible {
-  outline: 3px solid var(--color-focus);
+  outline: 3px solid var(--focus-ring, var(--color-focus));
   outline-offset: 3px;
 }
 
@@ -152,6 +161,24 @@ html {
   &:hover {
     text-decoration-color: currentColor;
   }
+}
+
+/* Receipt: zigzag top and bottom edges, 7px bites every 20px. No radius, no shadow. */
+@utility receipt-edges {
+  -webkit-mask:
+    radial-gradient(circle at 10px 0, transparent 7px, black 7.5px) top / 20px 51% repeat-x,
+    radial-gradient(circle at 10px 100%, transparent 7px, black 7.5px) bottom / 20px 51% repeat-x;
+  mask:
+    radial-gradient(circle at 10px 0, transparent 7px, black 7.5px) top / 20px 51% repeat-x,
+    radial-gradient(circle at 10px 100%, transparent 7px, black 7.5px) bottom / 20px 51% repeat-x;
+}
+
+/* Dotted leader between a name and its price, in currentColor. Empty and aria-hidden. */
+@utility leader {
+  flex: 1 1 32px;
+  min-width: 32px;
+  height: 4px;
+  background: radial-gradient(circle, currentColor 1.3px, transparent 1.6px) 0 0 / 8px 4px repeat-x;
 }
 
 @layer utilities {

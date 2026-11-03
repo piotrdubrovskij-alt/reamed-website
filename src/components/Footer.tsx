@@ -23,7 +23,7 @@ export default function Footer() {
     <footer
       id="kontaktai"
       aria-labelledby="footer-h"
-      className="bg-graphite text-white pt-12 desk:pt-16 pb-10 [&_:focus-visible]:outline-mint"
+      className="bg-graphite text-white pt-12 desk:pt-16 pb-10 [--focus-ring:var(--color-mint)]"
     >
       <div className="wrap">
         <h2 id="footer-h" className="sr-only">
