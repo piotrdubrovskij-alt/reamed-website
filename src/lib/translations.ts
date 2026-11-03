@@ -1,3 +1,5 @@
+import { FIRST_VISIT, formatPrice } from "@/data/prices";
+
 export type Language = "lt" | "en";
 
 // Home page and shared blocks (header, footer).
@@ -95,7 +97,8 @@ export const translations = {
     visit: {
       title: "Pirmasis vizitas",
       statement: "Išklausome, ištiriame judesį ir paaiškiname, kas vyksta. Sudarome planą ir pradedame gydymą.",
-      facts: ["60 min", "80 €"],
+      // From src/data/prices.ts, so the home page and /kainos always agree.
+      facts: [FIRST_VISIT.duration, formatPrice(FIRST_VISIT.price, "lt")],
       cta: "Registruotis vizitui",
       prices: "Visos kainos ir paketai",
       photoAlt: "Kineziterapeutas dirba su paciente",
@@ -221,7 +224,7 @@ export const translations = {
     visit: {
       title: "First visit",
       statement: "We listen, assess how you move and explain what is going on. We make a plan and start treatment.",
-      facts: ["60 min", "€80"],
+      facts: [FIRST_VISIT.duration, formatPrice(FIRST_VISIT.price, "en")],
       cta: "Book a visit",
       prices: "All prices and packages",
       photoAlt: "A physiotherapist working with a patient",
