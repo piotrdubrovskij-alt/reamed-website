@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { Suspense } from "react";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import BookingHeading from "@/components/booking/BookingHeading";
@@ -20,7 +21,10 @@ export default function RezervacijaPage() {
       <main className="bg-ground">
         <div className="wrap pt-10 pb-16 md:pt-14 md:pb-24">
           <BookingHeading kind="booking" />
-          <BookingContent />
+          {/* useSearchParams (the rebook link's specialist and service) needs the boundary. */}
+          <Suspense fallback={null}>
+            <BookingContent />
+          </Suspense>
         </div>
       </main>
       <Footer />

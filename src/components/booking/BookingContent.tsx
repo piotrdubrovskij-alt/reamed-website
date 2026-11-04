@@ -3,6 +3,7 @@
 import { useEffect, useMemo, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
+import { useSearchParams } from "next/navigation";
 import { ArrowLeft, ArrowRight, CalendarDays, Phone, Plus, X } from "lucide-react";
 import { useLanguage } from "@/contexts/LanguageContext";
 import { specialists } from "@/lib/specialists";
@@ -119,12 +120,12 @@ export default function BookingContent() {
   const [now, setNow] = useState(() => Date.now());
   const [prefilled, setPrefilled] = useState(false);
   // "Registruotis dar kartą" from the order page: ?specialistas=<slug>&paslauga=<service id>,
-  // applied once the catalogue has arrived.
+  // applied once the catalogue has arrived. (Read through the router: on a client-side
+  // navigation window.location still shows the previous page when this mounts.)
+  const searchParams = useSearchParams();
   const [preselect, setPreselect] = useState<{ specialist: string; service: string } | null>(() => {
-    if (typeof window === "undefined") return null;
-    const params = new URLSearchParams(window.location.search);
-    const specialist = params.get("specialistas");
-    const service = params.get("paslauga");
+    const specialist = searchParams.get("specialistas");
+    const service = searchParams.get("paslauga");
     return specialist && service ? { specialist, service } : null;
   });
 

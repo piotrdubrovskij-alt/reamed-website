@@ -62,7 +62,7 @@
   загрузке и заполняет форму из `profile`), `me/orders` без cookie — 403. На странице заказа: конкретный срок
   переноса из `changeDeadline` (общий текст «12 valandų» на экранах остаётся), «Pridėti į kalendorių» —
   `GET orders/:id/calendar.ics?item=` через прокси как файл `text/calendar`, «Registruotis dar kartą» —
-  `/rezervacija?specialistas=<slug>&paslauga=<id>` (читается из `window.location` при первом рендере).
+  `/rezervacija?specialistas=<slug>&paslauga=<id>` (через `useSearchParams` в Suspense: при переходе по ссылке внутри сайта `window.location` ещё показывает прошлую страницу).
   Подсказка опечаток e-mail — `src/lib/booking/email-hint.ts`, только в браузере. Смена e-mail пациентом не
   предусмотрена: её делает администрация в системе клиники.
 - Все времена показываем по Вильнюсу (`Europe/Vilnius`), независимо от устройства. Ошибки сервера — литовские;
