@@ -121,3 +121,6 @@ export type OrderInput = {
 };
 
 export type ApiError = { error: string; status: number };
+
+/** The signed-in patient's contacts from the latest order, to fill the booking form (0.9.24). */
+export type Profile = { firstName: string; lastName: string; phone: string; email: string };

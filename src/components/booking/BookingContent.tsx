@@ -8,6 +8,7 @@ import { useLanguage } from "@/contexts/LanguageContext";
 import { specialists } from "@/lib/specialists";
 import { api } from "@/lib/booking/client";
 import { bookingCopy } from "@/lib/booking/copy";
+import { suggestEmail } from "@/lib/booking/email-hint";
 import {
   SPECIALIST_SLUGS,
   bookingRole,
@@ -116,6 +117,16 @@ export default function BookingContent() {
   const [busy, setBusy] = useState<"hold" | "pay" | null>(null);
   const [error, setError] = useState<string | null>(null);
   const [now, setNow] = useState(() => Date.now());
+  const [prefilled, setPrefilled] = useState(false);
+  // "Registruotis dar kartą" from the order page: ?specialistas=<slug>&paslauga=<service id>,
+  // applied once the catalogue has arrived.
+  const [preselect, setPreselect] = useState<{ specialist: string; service: string } | null>(() => {
+    if (typeof window === "undefined") return null;
+    const params = new URLSearchParams(window.location.search);
+    const specialist = params.get("specialistas");
+    const service = params.get("paslauga");
+    return specialist && service ? { specialist, service } : null;
+  });
 
   useEffect(() => {
     if (step !== 3) return;
@@ -123,8 +134,44 @@ export default function BookingContent() {
     return () => clearInterval(timer);
   }, [step]);
 
+  // A signed-in patient (Mano vizitai) gets the form filled in from the latest order (0.9.24);
+  // without a session the request answers 403 and nothing changes.
+  useEffect(() => {
+    let active = true;
+    api
+      .me()
+      .then((me) => {
+        if (!active || !me.profile) return;
+        setContacts((prev) =>
+          prev.firstName || prev.lastName || prev.phone || prev.email
+            ? prev
+            : { firstName: me.profile!.firstName, lastName: me.profile!.lastName, phone: me.profile!.phone, email: me.profile!.email },
+        );
+        setPrefilled(true);
+      })
+      .catch(() => undefined);
+    return () => {
+      active = false;
+    };
+  }, []);
+
   const data = catalogue.status === "ready" ? catalogue.data : null;
   const services = useMemo(() => data?.catalogue.services ?? [], [data]);
+
+  if (preselect && services.length) {
+    // Adjusting state while rendering (the documented pattern): once, when the catalogue is here.
+    const found = services.find((s) => s.id === preselect.service);
+    const id = Object.keys(SPECIALIST_SLUGS).find((key) => SPECIALIST_SLUGS[key] === preselect.specialist);
+    setPreselect(null);
+    if (found && id) {
+      const type: VisitType = found.category === "consultation" ? "first_visit" : "returning";
+      if (offers(found, id, type)) {
+        setVisitType(type);
+        setSpecialistId(id);
+        setServiceId(found.id);
+      }
+    }
+  }
 
   const availableSpecialists = useMemo(() => {
     if (!visitType) return [];
@@ -181,6 +228,8 @@ export default function BookingContent() {
     setCart((prev) => prev.filter((_, i) => i !== index));
     if (cart.length <= 1) setSelecting(true);
   };
+
+  const emailSuggestion = useMemo(() => suggestEmail(contacts.email), [contacts.email]);
 
   const validateContacts = (): boolean => {
     const next: typeof errors = {};
@@ -544,9 +593,22 @@ export default function BookingContent() {
                         placeholder={type === "tel" ? "+370 …" : undefined}
                         className={inputClass(Boolean(errors[key]))}
                       />
+                      {key === "email" && emailSuggestion && (
+                        <p className="mt-1 flex flex-wrap items-center gap-x-2 gap-y-1 text-small text-graphite">
+                          <span>{c.emailHint(emailSuggestion.slice(emailSuggestion.lastIndexOf("@") + 1))}</span>
+                          <button
+                            type="button"
+                            onClick={() => setContacts((prev) => ({ ...prev, email: emailSuggestion }))}
+                            className="link-action min-h-11 sm:min-h-0 font-medium"
+                          >
+                            {c.emailHintApply}
+                          </button>
+                        </p>
+                      )}
                     </Field>
                   ))}
                 </div>
+                {prefilled && <p className="text-small text-graphite">{c.prefilled}</p>}
                 <fieldset className="flex flex-col gap-3 rounded-2xl bg-ground p-4">
                   <legend className="sr-only">{c.invoiceTitle}</legend>
                   <div className="flex flex-col gap-1">

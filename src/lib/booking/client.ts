@@ -4,6 +4,7 @@ import type {
   OrderBrief,
   OrderInput,
   OrderView,
+  Profile,
 } from "./types";
 
 export class BookingError extends Error {
@@ -56,6 +57,14 @@ export const api = {
   /** The invoice PDF opens straight from the proxy (a link, not a fetch): by the order link or the session. */
   invoiceUrl: (orderId: string, token?: string | null) =>
     `/api/booking/orders/${orderId}/invoice.pdf${token ? `?t=${encodeURIComponent(token)}` : ""}`,
+  /** The calendar file (.ics) for the order or one visit, by the order link or the session (0.9.24). */
+  calendarUrl: (orderId: string, token?: string | null, itemId?: string) => {
+    const q = new URLSearchParams();
+    if (token) q.set("t", token);
+    if (itemId) q.set("item", itemId);
+    const query = q.toString();
+    return `/api/booking/orders/${orderId}/calendar.ics${query ? `?${query}` : ""}`;
+  },
   cancel: (orderId: string, itemId: string, token?: string | null) =>
     call<OrderView>("POST", `orders/${orderId}/items/${itemId}/cancel`, token ? { token } : {}),
   move: (orderId: string, itemId: string, start: number, token?: string | null) =>
@@ -65,6 +74,7 @@ export const api = {
   verifyCode: (email: string, code: string) =>
     call<{ email: string; expiresAt: number }>("POST", "sign-in/verify", { email, code }),
   signOut: () => call<{ signedOut: boolean }>("POST", "sign-in/out", {}),
-  me: () => call<{ email: string; expiresAt: number }>("GET", "me"),
+  /** The session, if any: the proxy answers with email null when the visitor is not signed in. */
+  me: () => call<{ email: string | null; expiresAt: number; profile: Profile | null }>("GET", "me"),
   myOrders: () => call<{ email: string; orders: OrderView[] }>("GET", "me/orders"),
 };

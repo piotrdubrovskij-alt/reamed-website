@@ -41,8 +41,13 @@ export default function MyVisitsContent() {
     let live = true;
     api
       .me()
-      .then(() => {
-        if (live) return loadOrders();
+      .then((me) => {
+        if (!live) return;
+        if (!me.email) {
+          setPhase("email");
+          return;
+        }
+        return loadOrders();
       })
       .catch((e: unknown) => {
         if (!live) return;

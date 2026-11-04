@@ -334,6 +334,7 @@ const server = createServer(async (req, res) => {
       const o = {
         id: randomUUID(),
         requestId: input.requestId,
+        createdAt: now,
         status: "held",
         visitType: input.visitType,
         locale: input.locale === "en" ? "en" : "lt",
@@ -386,6 +387,37 @@ const server = createServer(async (req, res) => {
         "Cache-Control": "private, no-store",
       });
       return res.end(pdf);
+    }
+
+    if (req.method === "GET" && (m = /^orders\/([^/]+)\/calendar\.ics$/.exec(route))) {
+      const o = orders.get(m[1]);
+      if (!o) return bad(res, "Užsakymas nerastas.");
+      if (!owner(o, url.searchParams.get("t"), session)) return json(res, 403, { error: "Neleista." });
+      const wanted = url.searchParams.get("item");
+      const items = o.items.filter((it) => it.status === "confirmed" && (!wanted || it.id === wanted));
+      if (!items.length) return bad(res, "Patvirtintų vizitų nėra.");
+      const stamp = (ms) => new Date(ms).toISOString().replace(/[-:]/g, "").replace(/\.\d{3}Z$/, "Z");
+      const lines = ["BEGIN:VCALENDAR", "VERSION:2.0", "PRODID:-//ReaMed//Mock//LT", "METHOD:PUBLISH"];
+      for (const it of items)
+        lines.push(
+          "BEGIN:VEVENT",
+          `UID:${it.id}@reamed.lt`,
+          `DTSTAMP:${stamp(now)}`,
+          `DTSTART:${stamp(it.start)}`,
+          `DTEND:${stamp(it.end)}`,
+          `SUMMARY:ReaMed: ${services.find((s) => s.id === it.serviceId)?.name ?? it.serviceId}`,
+          "LOCATION:ReaMed\\, Olimpiečių g. 1A-7\\, Vilnius",
+          "END:VEVENT",
+        );
+      lines.push("END:VCALENDAR");
+      const ics = Buffer.from(lines.join("\r\n") + "\r\n", "utf8");
+      res.writeHead(200, {
+        "Content-Type": "text/calendar; charset=utf-8; method=PUBLISH",
+        "Content-Length": ics.length,
+        "Content-Disposition": 'attachment; filename="reamed-vizitas.ics"',
+        "Cache-Control": "private, no-store",
+      });
+      return res.end(ics);
     }
 
     if (req.method === "GET" && (m = /^orders\/([^/]+)\/status$/.exec(route))) {
@@ -443,7 +475,7 @@ const server = createServer(async (req, res) => {
       codes.delete(email);
       const token = randomUUID().replaceAll("-", "") + randomUUID().replaceAll("-", "").slice(0, 11);
       sessions.set(token, email);
-      return json(res, 200, { token, email, expiresAt: now + 30 * 86_400_000 });
+      return json(res, 200, { token, email, expiresAt: now + 90 * 86_400_000 });
     }
     if (req.method === "POST" && route === "sign-in/out") {
       if (typeof session === "string") sessions.delete(session);
@@ -452,7 +484,14 @@ const server = createServer(async (req, res) => {
     if (req.method === "GET" && route === "me") {
       const email = typeof session === "string" && sessions.get(session);
       if (!email) return json(res, 403, { error: "Neleista." });
-      return json(res, 200, { email, expiresAt: now + 30 * 86_400_000 });
+      const latest = [...orders.values()]
+        .filter((o) => o.patient.email === email)
+        .sort((a, b) => (b.status === "paid") - (a.status === "paid") || b.createdAt - a.createdAt)[0];
+      return json(res, 200, {
+        email,
+        expiresAt: now + 90 * 86_400_000,
+        profile: latest ? { ...latest.patient, email } : null,
+      });
     }
     if (req.method === "GET" && route === "me/orders") {
       const email = typeof session === "string" && sessions.get(session);

@@ -1,11 +1,12 @@
 "use client";
 
 import { useState } from "react";
-import { CalendarDays, Check, Clock3, FileText } from "lucide-react";
+import Link from "next/link";
+import { CalendarDays, CalendarPlus, Check, Clock3, FileText, RotateCcw } from "lucide-react";
 import type { Language } from "@/lib/translations";
 import { api, BookingError } from "@/lib/booking/client";
 import { bookingCopy } from "@/lib/booking/copy";
-import { money, visitWhen } from "@/lib/booking/format";
+import { SPECIALIST_SLUGS, dateTimeWhen, money, visitWhen } from "@/lib/booking/format";
 import type { Catalogue, OrderItem, OrderView } from "@/lib/booking/types";
 import { serviceLabelFor, specialistNameFor } from "@/lib/booking/useCatalogue";
 import SlotPicker, { type Slot } from "./SlotPicker";
@@ -110,23 +111,52 @@ export default function OrderItems({
                   {visitWhen(item.start, item.end, lang)}
                 </span>
               </p>
+              {canChange && item.changeDeadline ? (
+                // The concrete deadline (Piotr 04.11.2026): only here, on the patient's own visit;
+                // general screens keep the informational "12 hours".
+                <p className="flex items-start gap-2 text-small text-graphite">
+                  <Clock3 size={18} aria-hidden="true" className="mt-0.5 shrink-0" />
+                  {c.changeUntil(dateTimeWhen(item.changeDeadline, lang))}
+                </p>
+              ) : !status.done && item.status === "confirmed" ? (
+                <p className="flex items-start gap-2 text-small text-graphite max-w-[40ch]">
+                  <Clock3 size={18} aria-hidden="true" className="mt-0.5 shrink-0" />
+                  {c.tooLate}
+                </p>
+              ) : null}
               <div className="flex flex-wrap items-center justify-between gap-3">
                 <span className="text-small text-graphite">{money(item.amountCents, lang)}</span>
-                {canChange ? (
-                  <div className="flex gap-2">
-                    <Button variant="ghost" onClick={() => setDialog({ kind: "move", item })} className="min-h-11">
-                      {c.change}
-                    </Button>
-                    <Button variant="ghost" onClick={() => setDialog({ kind: "cancel", item })} className="min-h-11">
-                      {c.cancel}
-                    </Button>
-                  </div>
-                ) : !status.done && item.status === "confirmed" ? (
-                  <p className="flex items-start gap-2 text-small text-graphite max-w-[40ch]">
-                    <Clock3 size={18} aria-hidden="true" className="mt-0.5 shrink-0" />
-                    {c.tooLate}
-                  </p>
-                ) : null}
+                <div className="flex flex-wrap gap-2">
+                  {!status.done && item.status === "confirmed" && (
+                    <a
+                      href={api.calendarUrl(order.id, token, item.id)}
+                      download="reamed-vizitas.ics"
+                      className="inline-flex min-h-11 items-center gap-2 rounded-full px-4 py-2 text-small font-medium text-ink hover:bg-ground-hover"
+                    >
+                      <CalendarPlus size={18} aria-hidden="true" />
+                      {c.addToCalendar}
+                    </a>
+                  )}
+                  {canChange && (
+                    <>
+                      <Button variant="ghost" onClick={() => setDialog({ kind: "move", item })} className="min-h-11">
+                        {c.change}
+                      </Button>
+                      <Button variant="ghost" onClick={() => setDialog({ kind: "cancel", item })} className="min-h-11">
+                        {c.cancel}
+                      </Button>
+                    </>
+                  )}
+                  {status.done && SPECIALIST_SLUGS[item.specialistId] && (
+                    <Link
+                      href={`/rezervacija?specialistas=${SPECIALIST_SLUGS[item.specialistId]}&paslauga=${encodeURIComponent(item.serviceId)}`}
+                      className="inline-flex min-h-11 items-center gap-2 rounded-full px-4 py-2 text-small font-medium text-ink hover:bg-ground-hover"
+                    >
+                      <RotateCcw size={18} aria-hidden="true" />
+                      {c.rebook}
+                    </Link>
+                  )}
+                </div>
               </div>
             </li>
           );

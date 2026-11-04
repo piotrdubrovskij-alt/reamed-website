@@ -30,7 +30,11 @@
   календарь → письма → перенос → отмена проверена на превью-ревизии. 03.11.2026 (в том же PR): счёт-фактура —
   на шаге «Jūsų duomenys» выбор «Fiziniam asmeniui / Įmonei» с реквизитами фирмы, на странице заказа кнопка
   «Atsisiųsti sąskaitą faktūrą» (PDF через прокси `orders/:id/invoice.pdf`); счёт выписывает и шлёт система
-  (с saskaitos@reamed.lt).
+  (с saskaitos@reamed.lt). 04.11.2026 (тот же PR, решение Piotr о кабинете пациента): cookie сессии 90 дней;
+  вошедшему пациенту форма заполняется из последнего заказа (`GET me` → `profile`); подсказка опечатки домена
+  e-mail («Gal turėjote omenyje gmail.com?»); на странице заказа и в «Mano vizitai» у каждого визита конкретный
+  срок «Pakeisti ar atšaukti galima iki …», «Pridėti į kalendorių» (.ics через прокси `orders/:id/calendar.ics`)
+  и «Registruotis dar kartą» (`/rezervacija?specialistas=…&paslauga=…` выбирает специалиста и услугу).
 
 - [ ] **Перевыпустить ключ Resend сайта** (решение Piotr 02.11.2026). 02.11.2026 при проверке переменных сервиса
   `reamed-site` в Cloud Shell на экран попала часть значения `RESEND_API_KEY`. Порядок: в resend.com → API Keys создать

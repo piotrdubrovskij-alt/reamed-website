@@ -14,11 +14,12 @@ export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
 
 const SESSION_COOKIE = "reamed_patient";
-const SESSION_DAYS = 30;
+// 90 days on the same device (Piotr 04.11.2026), the same as the clinic system.
+const SESSION_DAYS = 90;
 const MAX_BODY = 64 * 1024;
 const UUID = "[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}";
 
-type Route = { method: "GET" | "POST"; pattern: RegExp; query?: readonly string[]; file?: boolean };
+type Route = { method: "GET" | "POST"; pattern: RegExp; query?: readonly string[]; file?: string };
 
 const routes: Route[] = [
   { method: "GET", pattern: /^catalogue$/ },
@@ -27,7 +28,8 @@ const routes: Route[] = [
   { method: "POST", pattern: new RegExp(`^orders/${UUID}/pay$`) },
   { method: "GET", pattern: new RegExp(`^orders/${UUID}/status$`) },
   { method: "GET", pattern: new RegExp(`^orders/${UUID}$`), query: ["t"] },
-  { method: "GET", pattern: new RegExp(`^orders/${UUID}/invoice\\.pdf$`), query: ["t"], file: true },
+  { method: "GET", pattern: new RegExp(`^orders/${UUID}/invoice\\.pdf$`), query: ["t"], file: "application/pdf" },
+  { method: "GET", pattern: new RegExp(`^orders/${UUID}/calendar\\.ics$`), query: ["t", "item"], file: "text/calendar" },
   { method: "POST", pattern: new RegExp(`^orders/${UUID}/items/${UUID}/(cancel|move)$`) },
   { method: "POST", pattern: /^sign-in\/code$/ },
   { method: "POST", pattern: /^sign-in\/verify$/ },
@@ -78,15 +80,17 @@ async function handle(req: NextRequest, params: Promise<{ path: string[] }>): Pr
 
   const headers: Record<string, string> = {
     "X-Website-Key": cfg.key,
-    Accept: matched.file ? "application/pdf, application/json" : "application/json",
+    Accept: matched.file ? `${matched.file}, application/json` : "application/json",
   };
   const ip = clientIp(req);
   if (ip) headers["X-Website-Client-Ip"] = ip;
   const session = req.cookies.get(SESSION_COOKIE)?.value;
   const signedIn = Boolean(session && /^[A-Za-z0-9_-]{32,64}$/.test(session));
   if (signedIn) headers["X-Website-Session"] = session!;
-  // Nothing to ask upstream for a visitor who is not signed in.
-  if (!signedIn && (route === "me" || route === "me/orders")) return json(403, { error: "Neleista." });
+  // Nothing to ask upstream for a visitor who is not signed in: "me" says so quietly (the booking
+  // page asks it on every load), the orders list is refused.
+  if (!signedIn && route === "me") return json(200, { email: null, expiresAt: 0, profile: null });
+  if (!signedIn && route === "me/orders") return json(403, { error: "Neleista." });
 
   let body: string | undefined;
   if (method === "POST") {
@@ -116,13 +120,14 @@ async function handle(req: NextRequest, params: Promise<{ path: string[] }>): Pr
     return json(503, { error: "Registracijos sistema šiuo metu nepasiekiama. Bandykite vėliau." });
   }
 
-  // A file (the invoice PDF) passes through as it is; an error about it is JSON like any other.
-  if (matched.file && upstream.ok && upstream.headers.get("content-type")?.startsWith("application/pdf")) {
+  // A file (the invoice PDF, the calendar file) passes through as it is; an error about it is
+  // JSON like any other.
+  if (matched.file && upstream.ok && upstream.headers.get("content-type")?.startsWith(matched.file)) {
     const file = await upstream.arrayBuffer();
     return new NextResponse(file, {
       status: 200,
       headers: {
-        "Content-Type": "application/pdf",
+        "Content-Type": upstream.headers.get("content-type") ?? matched.file,
         "Content-Disposition": upstream.headers.get("content-disposition") ?? "inline",
         "Cache-Control": "private, no-store",
       },

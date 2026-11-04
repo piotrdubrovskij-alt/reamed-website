@@ -41,6 +41,18 @@ export function shortDate(ms: number, lang: Language): string {
   }).format(ms);
 }
 
+/** "lapkričio 15 d. 17:00" — a deadline or another single instant, without the weekday. */
+export function dateTimeWhen(ms: number, lang: Language): string {
+  return new Intl.DateTimeFormat(localeOf(lang), {
+    timeZone: CLINIC_TZ,
+    month: "long",
+    day: "numeric",
+    hour: "2-digit",
+    minute: "2-digit",
+    hour12: false,
+  }).format(ms);
+}
+
 export function visitWhen(start: number, end: number, lang: Language): string {
   return `${longDate(start, lang)}, ${clockTime(start, lang)}–${clockTime(end, lang)}`;
 }
