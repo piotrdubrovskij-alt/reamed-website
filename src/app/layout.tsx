@@ -74,6 +74,12 @@ const jsonLd = {
       opens: "08:00",
       closes: "19:00",
     },
+    {
+      "@type": "OpeningHoursSpecification",
+      dayOfWeek: "Saturday",
+      opens: "08:00",
+      closes: "16:00",
+    },
   ],
   medicalSpecialty: "PhysicalTherapy",
   image: "https://reamed.lt/logo.png",

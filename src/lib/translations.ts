@@ -119,7 +119,7 @@ export const translations = {
       phone: "Telefonas",
       address: "Adresas",
       hours: "Darbo laikas",
-      hoursValue: "I–V 8:00–19:00",
+      hoursValue: "I–V 8:00–19:00, VI 8:00–16:00",
       email: "El. paštas",
     },
     footer: {
@@ -243,7 +243,7 @@ export const translations = {
       phone: "Phone",
       address: "Address",
       hours: "Opening hours",
-      hoursValue: "Mon–Fri 8:00–19:00",
+      hoursValue: "Mon–Fri 8:00–19:00, Sat 8:00–16:00",
       email: "Email",
     },
     footer: {

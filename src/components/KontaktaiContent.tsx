@@ -21,8 +21,6 @@ const content = {
     labelHours: "Darbo laikas",
     weekdays: "Pirmadienis–Penktadienis",
     saturday: "Šeštadienis",
-    saturdayHours: "Pagal susitarimą",
-    saturdayBadge: "Dirba",
     sunday: "Sekmadienis",
     sundayClosed: "Nedirbame",
     mapCaption: "Olimpiečių g. 1A-7, Vilnius",
@@ -75,8 +73,6 @@ const content = {
     labelHours: "Working hours",
     weekdays: "Monday–Friday",
     saturday: "Saturday",
-    saturdayHours: "By appointment",
-    saturdayBadge: "Open",
     sunday: "Sunday",
     sundayClosed: "Closed",
     mapCaption: "Olimpiečių g. 1A-7, Vilnius",
@@ -254,14 +250,9 @@ export default function KontaktaiContent() {
                       <span className="text-muted w-[176px] flex-shrink-0">{c.weekdays}</span>
                       <span className="font-medium text-secondary">8:00–19:00</span>
                     </div>
-                    <div className="flex gap-3 text-[0.875rem] items-center">
+                    <div className="flex gap-3 text-[0.875rem]">
                       <span className="text-muted w-[176px] flex-shrink-0">{c.saturday}</span>
-                      <span className="inline-flex items-center gap-1.5 font-semibold text-[#7DB9B5]">
-                        {c.saturdayHours}
-                        <span className="text-[0.65rem] font-bold uppercase tracking-wider bg-[#EEF5F4] text-[#68A7A2] px-1.5 py-0.5 rounded-full">
-                          {c.saturdayBadge}
-                        </span>
-                      </span>
+                      <span className="font-medium text-secondary">8:00–16:00</span>
                     </div>
                     <div className="flex gap-3 text-[0.875rem]">
                       <span className="text-muted w-[176px] flex-shrink-0">{c.sunday}</span>

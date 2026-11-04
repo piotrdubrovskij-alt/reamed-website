@@ -28,7 +28,8 @@ export type SpecialistSlug =
   | "piotr-dubrovskij"
   | "kotryna-kairyte"
   | "erikas-jatkauskas"
-  | "mangirdas-kazacenko";
+  | "mangirdas-kazacenko"
+  | "edmundas-zlatkus";
 
 export interface Review {
   id: string;
