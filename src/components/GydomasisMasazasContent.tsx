@@ -111,6 +111,7 @@ const content = {
     specialists: [
       { name: "Mangirdas Kazačenko", role: "Kineziterapeutas, manualinės terapijos specialistas", focus: "Raumenų perkrovos, atsistatymas, gydomasis masažas", photo: "/photos/specialist-mangirdas-kazacenko.jpg", slug: "mangirdas-kazacenko" },
       { name: "Erikas Jatkauskas", role: "Kineziterapeutas", focus: "Gydomasis masažas, perkrovų gydymas, atsistatymas po krūvio", photo: "/photos/specialist-erikas-jatkauskas.jpg", slug: "erikas-jatkauskas" },
+      { name: "Edmundas Zlatkus", role: "Kineziterapeutas", focus: "Gydomasis masažas, raumenų perkrovos", photo: "/photos/specialist-edmundas-zlatkus.jpg", slug: "edmundas-zlatkus" },
     ],
   },
   en: {
@@ -218,6 +219,7 @@ const content = {
     specialists: [
       { name: "Mangirdas Kazačenko", role: "Physiotherapist, manual therapy specialist", focus: "Muscle overload, recovery, therapeutic massage", photo: "/photos/specialist-mangirdas-kazacenko.jpg", slug: "mangirdas-kazacenko" },
       { name: "Erikas Jatkauskas", role: "Physiotherapist", focus: "Therapeutic massage, overuse management, recovery after load", photo: "/photos/specialist-erikas-jatkauskas.jpg", slug: "erikas-jatkauskas" },
+      { name: "Edmundas Zlatkus", role: "Physiotherapist", focus: "Therapeutic massage, muscle overload", photo: "/photos/specialist-edmundas-zlatkus.jpg", slug: "edmundas-zlatkus" },
     ],
   },
 };

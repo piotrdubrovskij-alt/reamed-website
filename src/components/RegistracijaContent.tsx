@@ -15,7 +15,7 @@ const content = {
     phoneTitle: "Patogiausia registruotis telefonu",
     phoneText: "Skambučiu galime greičiau patvirtinti laiką ir pasiūlyti tinkamiausią vizito laiką. Tai greičiausias būdas susisiekti ir užsiregistruoti.",
     phoneCta: "Skambinti +370 601 34304",
-    phoneHours: "Darbo laikas: I–V 8:00–19:00",
+    phoneHours: "Darbo laikas: I–V 8:00–19:00, VI 8:00–16:00",
 
     formEyebrow: "Užklausa",
     formTitle: "Palikite užklausą",
@@ -57,7 +57,7 @@ const content = {
     phoneTitle: "Fastest way: call us",
     phoneText: "A quick call lets us confirm your time immediately and find the most convenient slot for you. It's the fastest way to book.",
     phoneCta: "Call +370 601 34304",
-    phoneHours: "Working hours: Mon–Fri 8:00–19:00",
+    phoneHours: "Working hours: Mon–Fri 8:00–19:00, Sat 8:00–16:00",
 
     formEyebrow: "Request",
     formTitle: "Leave a request",

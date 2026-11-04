@@ -199,7 +199,8 @@ export default function SpecialistPageContent({ specialist: s }: { specialist: S
               <h2 className="text-[1.125rem] font-bold text-foreground mb-5">
                 {isLt ? "Kvalifikacijos tobulinimas" : "Professional development"}
               </h2>
-              <ul className="flex flex-col gap-0">
+              {/* The date column is as wide as the longest date (subgrid), so "2022.10.27–11.02" stays on one line. */}
+              <ul className="grid grid-cols-[minmax(56px,max-content)_1fr] gap-x-4">
                 {visibleCourses.map((item, i) => {
                   const parts = item.split("|");
                   const year = parts[0] ?? "";
@@ -207,12 +208,12 @@ export default function SpecialistPageContent({ specialist: s }: { specialist: S
                   const org = parts[2];
                   const isLast = i === visibleCourses.length - 1;
                   return (
-                    <li key={i} className="flex gap-4">
-                      <div className="flex flex-col items-center flex-shrink-0 w-[56px]">
-                        <span className="text-[0.7rem] font-bold text-[#7DB9B5] leading-none mt-1 text-right w-full">{year}</span>
+                    <li key={i} className="col-span-2 grid grid-cols-subgrid">
+                      <div className="flex flex-col items-center">
+                        <span className="text-[0.7rem] font-bold text-[#7DB9B5] leading-none mt-1 text-right w-full whitespace-nowrap">{year}</span>
                         {!isLast && <div className="w-px flex-1 bg-[#EEF5F4] mt-1.5 min-h-[16px]" />}
                       </div>
-                      <div className={`flex-1 ${!isLast ? "pb-4" : ""}`}>
+                      <div className={!isLast ? "pb-4" : undefined}>
                         <p className="text-[0.875rem] font-medium text-secondary leading-snug">{title}</p>
                         {org && <p className="text-[0.78rem] text-muted/60 mt-0.5">{org}</p>}
                       </div>

@@ -94,6 +94,7 @@ const content = {
       { name: "Kotryna Kairytė", role: "Kineziterapeutė", focus: "Sporto reabilitacija, grįžimas į aktyvumą", photo: "/photos/specialist-kotryna-kairyte.jpg", slug: "kotryna-kairyte" },
       { name: "Erikas Jatkauskas", role: "Kineziterapeutas", focus: "Sporto traumos, jėgos ir kontrolės atkūrimas", photo: "/photos/specialist-erikas-jatkauskas.jpg", slug: "erikas-jatkauskas" },
       { name: "Mangirdas Kazačenko", role: "Kineziterapeutas, manualinės terapijos specialistas", focus: "Sporto traumos, manualinis gydymas", photo: "/photos/specialist-mangirdas-kazacenko.jpg", slug: "mangirdas-kazacenko" },
+      { name: "Edmundas Zlatkus", role: "Kineziterapeutas", focus: "Atsistatymas po sporto traumų, grįžimas į sportą", photo: "/photos/specialist-edmundas-zlatkus.jpg", slug: "edmundas-zlatkus" },
     ],
   },
   en: {
@@ -184,6 +185,7 @@ const content = {
       { name: "Kotryna Kairytė", role: "Physiotherapist", focus: "Sports rehabilitation, return to activity", photo: "/photos/specialist-kotryna-kairyte.jpg", slug: "kotryna-kairyte" },
       { name: "Erikas Jatkauskas", role: "Physiotherapist", focus: "Sports injuries, strength and control restoration", photo: "/photos/specialist-erikas-jatkauskas.jpg", slug: "erikas-jatkauskas" },
       { name: "Mangirdas Kazačenko", role: "Physiotherapist, manual therapy specialist", focus: "Sports injuries, manual therapy", photo: "/photos/specialist-mangirdas-kazacenko.jpg", slug: "mangirdas-kazacenko" },
+      { name: "Edmundas Zlatkus", role: "Physiotherapist", focus: "Recovery after sports injuries, return to sport", photo: "/photos/specialist-edmundas-zlatkus.jpg", slug: "edmundas-zlatkus" },
     ],
   },
 };

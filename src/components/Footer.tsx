@@ -51,7 +51,14 @@ export default function Footer() {
                 </a>
               </dd>
               <dt className="text-small text-on-dark">{t.booking.hours}</dt>
-              <dd className="text-body font-medium">{t.booking.hoursValue}</dd>
+              {/* Weekdays and Saturday on their own lines, so the row never breaks mid-range at 320px. */}
+              <dd className="text-body font-medium">
+                {t.booking.hoursValue.split(", ").map((line) => (
+                  <span key={line} className="block whitespace-nowrap">
+                    {line}
+                  </span>
+                ))}
+              </dd>
               <dt className="text-small text-on-dark">{t.booking.email}</dt>
               <dd className="text-body font-medium">
                 <a href={`mailto:${t.contact.email}`} className="inline-flex items-center min-h-11 -my-2 hover:text-mint">
