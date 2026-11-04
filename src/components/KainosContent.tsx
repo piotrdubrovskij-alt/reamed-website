@@ -1,328 +1,225 @@
 "use client";
 
+import type { ReactNode } from "react";
+import Image from "next/image";
 import Link from "next/link";
-import { ArrowRight, Phone } from "lucide-react";
 import { useLanguage } from "@/contexts/LanguageContext";
+import { getSpecialistBySlug } from "@/lib/specialists";
+import type { Language } from "@/lib/translations";
+import {
+  formatCount,
+  formatPrice,
+  priceGroups,
+  serviceMeta,
+  specialistVisit,
+  type PricedService,
+} from "@/data/prices";
 
-function PackageRows({ rows }: { rows: [string, string][] }) {
+const content = {
+  lt: {
+    title: "Kainos",
+    lead: "Pirmasis vizitas mūsų klinikoje visada prasideda nuo konsultacijos.",
+    book: "Registruotis vizitui",
+    about: "Apie Piotrą",
+    notesTitle: "Paketai ir apmokėjimas",
+    notes: [
+      { title: "Galiojimas", text: "5 kartų paketas galioja 8 savaites, 10 kartų paketas galioja 4 mėnesius." },
+      { title: "Atšaukimas", text: "Atšaukus vizitą vėliau nei prieš 24 val., jis nurašomas iš paketo." },
+      {
+        title: "Apmokėjimas ir draudimas",
+        text: "Mokėti galima grynaisiais, banko kortele arba pavedimu. Jei turite sveikatos draudimą, po vizito išrašome sąskaitą faktūrą draudimo bendrovei.",
+      },
+    ],
+  },
+  en: {
+    title: "Prices",
+    lead: "Our first visit always starts with a consultation.",
+    book: "Book a visit",
+    about: "About Piotr",
+    notesTitle: "Packages and payment",
+    notes: [
+      { title: "Validity", text: "A 5-session package is valid for 8 weeks, a 10-session package for 4 months." },
+      { title: "Cancellation", text: "If a visit is cancelled less than 24 hours in advance, it is deducted from the package." },
+      {
+        title: "Payment and insurance",
+        text: "You can pay in cash, by bank card or by bank transfer. If you have health insurance, after the visit we issue an invoice for your insurance company.",
+      },
+    ],
+  },
+} as const;
+
+// Name, dotted leader, price. The leader is empty, so reading or copying the text gives no dots.
+// Package rows never wrap; below 360px they lose the indent so "10 sessions × €60" still fits.
+function PriceRow({
+  name,
+  price,
+  sub = false,
+  dots = "text-graphite/55",
+}: {
+  name: ReactNode;
+  price: string;
+  sub?: boolean;
+  dots?: string;
+}) {
   return (
-    <div className="space-y-1">
-      {rows.map(([label, price]) => (
-        <div key={label} className="flex justify-between items-center text-[0.82rem]">
-          <span className="text-muted">{label}</span>
-          <span className="font-medium text-[#5F6866]">{price}</span>
-        </div>
-      ))}
+    <div
+      className={`flex items-end ${
+        sub ? "mt-2 pl-3.5 max-[360px]:pl-0 desk:pl-5 text-small text-graphite" : "text-body desk:text-lead leading-[1.35] font-medium"
+      }`}
+    >
+      <span className={`max-w-[78%] ${sub ? "whitespace-nowrap" : ""}`}>{name}</span>
+      <span aria-hidden="true" className={`leader mx-2.5 ${sub ? "mb-[0.4em] max-[360px]:mx-2" : "mb-[0.42em]"} ${dots}`} />
+      <span className="whitespace-nowrap tabular-nums">{price}</span>
     </div>
   );
 }
 
-const content = {
-  lt: {
-    heroTitle: "Paslaugos ir kainos",
-    heroSubtitle: "Skaidrūs įkainiai be paslėptų mokesčių. Dažniausiai gydymas prasideda nuo pirminės konsultacijos ir ištyrimo.",
-    startTitle: "Nuo ko pradėti?",
-    startService: "Pirminė konsultacija + ištyrimas + planas",
-    startDuration: "60 min · Rekomenduojamas pirmasis vizitas naujam pacientui",
-    register: "Registruotis",
-    mainTitle: "Pagrindiniai gydymo formatai",
-    cardKinezi: { title: "Kineziterapija", desc: "Individualus bazinis gydymo formatas", duration: "45 min", priceLabel: "vienas vizitas" },
-    cardKomplex: { badge: "Populiariausia", title: "Kompleksinė reabilitacija", desc: "45 min kineziterapija + 15 min papildoma priemonė pagal indikacijas", duration: "60 min", priceLabel: "vienas vizitas" },
-    cardExtended: { title: "Kompleksinė išplėstinė", desc: "45 min kineziterapija + 2 papildomos priemonės po 15 min pagal indikacijas", duration: "75 min", priceLabel: "vienas vizitas" },
-    addOnNoteTitle: "Kas yra papildoma priemonė?",
-    addOnNoteText: "Pagal indikacijas tai gali būti fizioterapija (ultragarsas, elektroterapija), minkštųjų audinių mobilizacija, masažo technikos ar teipavimas.",
-    pkg3: "3 kartai", pkg5: "5 kartai", pkg10: "10 kartų",
-    specialistTitle: "Vizitas pas specialistą",
-    specialistLabel: "Piotr Dubrovskij",
-    specialistService: "Individualus 60 min vizitas",
-    specialistNote: "Vizito pobūdis parenkamas pagal būklę. Kaina nepriklauso nuo taikomo metodo.",
-    addonsTitle: "Papildomos paslaugos",
-    moduleTitle: "Papildomas modulis",
-    moduleDuration: "15 min · tik kartu su vizitu",
-    moduleExamplesLabel: "Pavyzdžiai",
-    moduleExamples: ["Fizioterapija", "Elektroterapija", "Ultragarsas", "Mobilizacija", "Masažas", "Teipavimas"],
-    massageTitle: "Masažas",
-    massageDuration30: "30 min",
-    massageDuration60: "60 min",
-    physioTitle: "Fizioterapija",
-    physioDuration: "15–20 min · pagal indikacijas",
-    physioPerSession: "Viena procedūra",
-    rulesTitle: "Paketų taisyklės",
-    rules: [
-      "3× paketas galioja 6 savaites",
-      "5× paketas galioja 8 savaites",
-      "10× paketas galioja 4 mėnesius",
-      "Atšaukimas mažiau nei prieš 24 val. — vizitas nurašomas iš paketo",
-    ],
-    paymentTitle: "Apmokėjimas ir kompensavimas",
-    paymentText1: "Už paslaugas galite atsiskaityti grynaisiais, banko kortele arba bankiniu pavedimu.",
-    paymentText2: "Jei turite sveikatos draudimą ir norite kreiptis dėl kompensavimo, po vizito išrašome sąskaitą faktūrą, kurią galėsite pateikti savo draudimo bendrovei pagal jos nustatytą tvarką.",
-    ctaTitle: "Nežinote, nuo ko pradėti?",
-    ctaText: "Dažniausiai rekomenduojame pradėti nuo pirminės konsultacijos ir ištyrimo — vizito metu padėsime pasirinkti tinkamiausią kryptį.",
-    ctaRegister: "Registruotis",
-    ctaContact: "Susisiekti",
-  },
-  en: {
-    heroTitle: "Services & Prices",
-    heroSubtitle: "Transparent pricing with no hidden fees. Treatment usually begins with an initial consultation and assessment.",
-    startTitle: "Where to start?",
-    startService: "Initial consultation + assessment + treatment plan",
-    startDuration: "60 min · Recommended first visit for new patients",
-    register: "Book now",
-    mainTitle: "Main treatment formats",
-    cardKinezi: { title: "Physiotherapy", desc: "Individual standard treatment format", duration: "45 min", priceLabel: "per session" },
-    cardKomplex: { badge: "Most popular", title: "Combined rehabilitation", desc: "45 min physiotherapy + 15 min add-on procedure as indicated", duration: "60 min", priceLabel: "per session" },
-    cardExtended: { title: "Combined extended", desc: "45 min physiotherapy + 2 add-on procedures of 15 min each as indicated", duration: "75 min", priceLabel: "per session" },
-    addOnNoteTitle: "What is an add-on procedure?",
-    addOnNoteText: "Depending on the indication, this may include physiotherapy (ultrasound, electrotherapy), soft tissue mobilisation, massage techniques or taping.",
-    pkg3: "3 sessions", pkg5: "5 sessions", pkg10: "10 sessions",
-    specialistTitle: "Specialist visit",
-    specialistLabel: "Piotr Dubrovskij",
-    specialistService: "Individual 60-min visit",
-    specialistNote: "The nature of the visit is tailored to the condition. Price does not depend on the method used.",
-    addonsTitle: "Additional services",
-    moduleTitle: "Add-on module",
-    moduleDuration: "15 min · only combined with a visit",
-    moduleExamplesLabel: "Examples",
-    moduleExamples: ["Physiotherapy", "Electrotherapy", "Ultrasound", "Mobilisation", "Massage", "Taping"],
-    massageTitle: "Massage",
-    massageDuration30: "30 min",
-    massageDuration60: "60 min",
-    physioTitle: "Physiotherapy",
-    physioDuration: "15–20 min · as indicated",
-    physioPerSession: "Single session",
-    rulesTitle: "Package terms",
-    rules: [
-      "3× package valid for 6 weeks",
-      "5× package valid for 8 weeks",
-      "10× package valid for 4 months",
-      "Cancellation less than 24 h before — session is deducted from the package",
-    ],
-    paymentTitle: "Payment & reimbursement",
-    paymentText1: "You can pay for services in cash, by bank card or bank transfer.",
-    paymentText2: "If you have health insurance and wish to apply for reimbursement, we issue an invoice after the visit which you can submit to your insurance company according to their procedure.",
-    ctaTitle: "Not sure where to start?",
-    ctaText: "We usually recommend starting with an initial consultation and assessment — during the visit we will help you choose the most suitable direction.",
-    ctaRegister: "Book now",
-    ctaContact: "Contact us",
-  },
-} as const;
+function Service({ service, lang, onMint = false }: { service: PricedService; lang: Language; onMint?: boolean }) {
+  const meta = serviceMeta(service, lang);
+  return (
+    <>
+      <PriceRow
+        name={service.name[lang]}
+        price={formatPrice(service.price, lang)}
+        dots={onMint ? "text-graphite" : undefined}
+      />
+      {meta && <p className={`mt-1 text-small max-w-[46ch] ${onMint ? "text-ink" : "text-graphite"}`}>{meta}</p>}
+      {service.packs && (
+        <ul className={meta ? "mt-2.5" : undefined}>
+          {service.packs.map((pack) => (
+            <li key={pack.count}>
+              {/* The count sits in a fixed-width column (wider for "10 sessions"), so every "× 65 €" starts on one line. */}
+              <PriceRow
+                sub
+                name={
+                  <>
+                    <span className={`inline-block ${lang === "en" ? "min-w-[5.6em]" : "min-w-[4.6em]"}`}>
+                      {formatCount(pack.count, lang)}
+                    </span>{" "}
+                    <span>×{"\u00a0"}{formatPrice(pack.unit, lang)}</span>
+                  </>
+                }
+                price={formatPrice(pack.total, lang)}
+              />
+            </li>
+          ))}
+        </ul>
+      )}
+    </>
+  );
+}
 
+const groupTitle = "text-lead desk:text-h3-m font-medium tracking-[-0.01em] leading-[1.2]";
+const rule = "border-b-2 border-dashed border-rule";
+
+// The price list as a till receipt (mockup G, docs/design/redesign-g/kainos.html).
+// Desktop: intro, Piotr and the notes on the left, the receipt across all three rows on the right.
 export default function KainosContent() {
   const { lang } = useLanguage();
   const c = content[lang];
+  const piotr = getSpecialistBySlug(specialistVisit.slug);
 
   return (
-    <div className="min-h-screen" style={{ background: "#F7FAF9" }}>
-
-      {/* HERO */}
-      <div className="container-xl pt-8 pb-8 md:pt-10 md:pb-10 border-b border-[#DDE9E8]">
-        <h1 className="text-[2rem] md:text-[2.625rem] font-bold text-foreground mb-2.5 leading-tight">
-          {c.heroTitle}
-        </h1>
-        <p className="text-[0.9375rem] text-muted max-w-[400px] leading-relaxed">
-          {c.heroSubtitle}
-        </p>
-      </div>
-
-      <div className="container-xl py-8 md:py-10 flex flex-col gap-7 md:gap-9">
-
-        {/* 1 — NUO KO PRADĖTI */}
-        <div>
-          <h2 className="text-[1rem] font-bold text-foreground mb-3">{c.startTitle}</h2>
-          <div className="rounded-2xl border-2 border-[#90CECA] bg-white overflow-hidden">
-            <div className="flex flex-col sm:flex-row">
-              <div className="flex-1 p-5 sm:p-6 border-b sm:border-b-0 sm:border-r border-[#EEF5F4]">
-                <p className="text-[1.0625rem] font-bold text-foreground leading-snug mb-1.5">
-                  {c.startService}
-                </p>
-                <p className="text-[0.8125rem] text-muted/75">{c.startDuration}</p>
-              </div>
-              <div className="flex items-center gap-5 p-5 sm:p-6 sm:flex-col sm:items-end sm:justify-center sm:gap-2.5">
-                <p className="text-[2.25rem] font-bold text-[#7DB9B5] leading-none">80 €</p>
-                <a
-                  href="/registracija"
-                  className="inline-flex items-center gap-1.5 px-4 py-1 bg-[#7DB9B5] text-white text-[0.8rem] font-semibold rounded-lg hover:bg-[#68A7A2] transition-colors duration-200"
-                >
-                  {c.register} <ArrowRight size={12} strokeWidth={2.5} />
-                </a>
-              </div>
-            </div>
-          </div>
+    // overflow-x: clip keeps the full-bleed band from adding a horizontal scroll.
+    // 68.8125rem = 1101px; in rem so Tailwind sorts it after `desk:` (a px value would lose).
+    <div className="overflow-x-clip pb-26 desk:pb-42 tabular-nums">
+      <div className="wrap flex flex-col desk:grid desk:grid-cols-[minmax(0,1fr)_560px] desk:grid-rows-[auto_auto_1fr] desk:gap-x-14 min-[68.8125rem]:grid-cols-[minmax(0,1fr)_640px] min-[68.8125rem]:gap-x-24">
+        {/* Graphite band: the intro cell stretched past both screen edges. */}
+        <div className="relative z-0 pt-12 pb-26 text-center text-white desk:col-start-1 desk:row-start-1 desk:pt-24 desk:pb-30 desk:text-left [--focus-ring:var(--color-mint)] before:absolute before:inset-y-0 before:-inset-x-[100vmax] before:-z-10 before:bg-graphite">
+          <h1 id="kainos-h" className="text-h1-m desk:text-display text-balance text-mint">
+            {c.title}
+          </h1>
+          <p className="mt-5 mx-auto max-w-[28ch] text-lead-m desk:mt-7 desk:mx-0 desk:text-lead-l">{c.lead}</p>
+          <Link href="/registracija" className="btn btn-mint mt-7 desk:mt-10">
+            {c.book}
+          </Link>
         </div>
 
-        {/* 2 — PAGRINDINIAI */}
-        <div>
-          <h2 className="text-[1rem] font-bold text-foreground mb-3">{c.mainTitle}</h2>
-          <div className="grid md:grid-cols-3 gap-4">
-
-            {/* Kineziterapija */}
-            <div className="bg-white rounded-2xl border border-[#DDE9E8] p-5 flex flex-col hover:border-[#90CECA] hover:shadow-[0_4px_18px_rgba(144,206,202,0.1)] transition-all duration-200">
-              <h3 className="text-[1.0625rem] font-bold text-foreground mb-1">{c.cardKinezi.title}</h3>
-              <p className="text-[0.78rem] text-muted leading-snug mb-0.5 min-h-[2.4rem]">{c.cardKinezi.desc}</p>
-              <p className="text-[0.72rem] text-muted/60 mb-3">{c.cardKinezi.duration}</p>
-              <p className="text-[2.25rem] font-bold text-[#7DB9B5] leading-none mb-0.5">70 €</p>
-              <p className="text-[0.72rem] text-muted/55 mb-4">{c.cardKinezi.priceLabel}</p>
-              <div className="border-t border-[#EEF5F4] pt-3 mt-auto">
-                <PackageRows rows={[[c.pkg5, "325 €"], [c.pkg10, "600 €"]]} />
-              </div>
-            </div>
-
-            {/* Kompleksinė — popular */}
-            <div className="bg-white rounded-2xl border-2 border-[#90CECA] p-5 flex flex-col shadow-[0_4px_20px_rgba(144,206,202,0.12)] relative">
-              <div className="absolute -top-2.5 left-4">
-                <span className="text-[0.65rem] font-semibold text-[#7DB9B5] uppercase tracking-widest border border-[#90CECA] bg-white px-2 py-0.5 rounded-full">
-                  {c.cardKomplex.badge}
-                </span>
-              </div>
-              <h3 className="text-[1.0625rem] font-bold text-foreground mb-1 mt-1.5">{c.cardKomplex.title}</h3>
-              <p className="text-[0.78rem] text-muted leading-snug mb-0.5 min-h-[2.4rem]">{c.cardKomplex.desc}</p>
-              <p className="text-[0.72rem] text-muted/60 mb-3">{c.cardKomplex.duration}</p>
-              <p className="text-[2.25rem] font-bold text-[#7DB9B5] leading-none mb-0.5">85 €</p>
-              <p className="text-[0.72rem] text-muted/55 mb-4">{c.cardKomplex.priceLabel}</p>
-              <div className="border-t border-[#EEF5F4] pt-3 mt-auto">
-                <PackageRows rows={[[c.pkg5, "400 €"], [c.pkg10, "750 €"]]} />
-              </div>
-            </div>
-
-            {/* Išplėstinė */}
-            <div className="bg-white rounded-2xl border border-[#DDE9E8] p-5 flex flex-col hover:border-[#90CECA] hover:shadow-[0_4px_18px_rgba(144,206,202,0.1)] transition-all duration-200">
-              <h3 className="text-[1.0625rem] font-bold text-foreground mb-1">{c.cardExtended.title}</h3>
-              <p className="text-[0.78rem] text-muted leading-snug mb-0.5 min-h-[2.4rem]">{c.cardExtended.desc}</p>
-              <p className="text-[0.72rem] text-muted/60 mb-3">{c.cardExtended.duration}</p>
-              <p className="text-[2.25rem] font-bold text-[#7DB9B5] leading-none mb-0.5">100 €</p>
-              <p className="text-[0.72rem] text-muted/55 mb-4">{c.cardExtended.priceLabel}</p>
-              <div className="border-t border-[#EEF5F4] pt-3 mt-auto">
-                <PackageRows rows={[[c.pkg5, "475 €"], [c.pkg10, "900 €"]]} />
-              </div>
-            </div>
-
+        <article
+          aria-labelledby="kainos-h"
+          className="receipt-edges relative z-10 -mt-16 bg-white px-5 pt-12 pb-10 desk:col-start-2 desk:row-start-1 desk:row-span-3 desk:self-start desk:mt-24 desk:px-14 desk:pt-15 desk:pb-14"
+        >
+          <div className={`pb-9 ${rule}`}>
+            <Image
+              src="/brand/reamed-wordmark-graphite.svg"
+              alt="ReaMed"
+              width={132}
+              height={27}
+              className="mx-auto w-[112px] desk:w-[132px] h-auto"
+            />
           </div>
 
-          <div className="mt-3 flex items-start gap-2.5 px-4 py-3 rounded-xl bg-[#EEF5F4]/60 border border-[#DDE9E8]">
-            <span className="w-1 h-1 rounded-full bg-[#90CECA] mt-1.5 flex-shrink-0" />
-            <p className="text-[0.8125rem] text-muted leading-relaxed">
-              <span className="font-semibold text-secondary">{c.addOnNoteTitle}</span>{" "}
-              {c.addOnNoteText}
-            </p>
-          </div>
-        </div>
-
-        {/* 3 — PIOTR */}
-        <div>
-          <h2 className="text-[1rem] font-bold text-foreground mb-3">{c.specialistTitle}</h2>
-          <div
-            className="rounded-2xl px-6 py-5 flex flex-col sm:flex-row sm:items-center gap-4"
-            style={{ background: "#383C3B" }}
-          >
-            <div className="flex-1">
-              <p className="text-[0.7rem] font-semibold uppercase tracking-widest text-[#90CECA] mb-1.5">{c.specialistLabel}</p>
-              <p className="text-[1rem] font-bold text-white mb-1">{c.specialistService}</p>
-              <p className="text-[0.8rem] text-white/45 leading-relaxed max-w-[380px]">{c.specialistNote}</p>
-            </div>
-            <div className="flex sm:flex-col items-center sm:items-end gap-4 sm:gap-2 flex-shrink-0">
-              <p className="text-[1.875rem] font-bold text-[#90CECA] leading-none">100 €</p>
-              <Link
-                href="/registracija"
-                className="inline-flex items-center gap-1.5 px-4 py-1 bg-[#7DB9B5] text-white text-[0.8rem] font-semibold rounded-lg hover:bg-[#68A7A2] transition-colors duration-200"
-              >
-                {c.register} <ArrowRight size={12} strokeWidth={2.5} />
-              </Link>
-            </div>
-          </div>
-        </div>
-
-        {/* 4 — PAPILDOMOS */}
-        <div>
-          <h2 className="text-[1rem] font-bold text-foreground mb-3">{c.addonsTitle}</h2>
-          <div className="grid md:grid-cols-3 gap-4">
-
-            {/* Moduliai */}
-            <div className="bg-white rounded-2xl border border-[#DDE9E8] p-5">
-              <h3 className="text-[1rem] font-bold text-foreground mb-0.5">{c.moduleTitle}</h3>
-              <p className="text-[0.78rem] text-muted mb-2">{c.moduleDuration}</p>
-              <p className="text-[1.875rem] font-bold text-[#7DB9B5] leading-none mb-3">20 €</p>
-              <p className="text-[0.7rem] font-bold uppercase tracking-wider text-muted/70 mb-1.5">{c.moduleExamplesLabel}</p>
-              <div className="grid grid-cols-2 gap-x-3 gap-y-1">
-                {c.moduleExamples.map((item) => (
-                  <div key={item} className="flex items-center gap-1.5">
-                    <span className="w-1 h-1 rounded-full bg-[#90CECA] flex-shrink-0" />
-                    <span className="text-[0.78rem] text-muted">{item}</span>
-                  </div>
+          {priceGroups.map((group, i) => (
+            <section
+              key={group.id}
+              aria-labelledby={`price-${group.id}`}
+              className={`pt-7.5 desk:pt-9 ${i < priceGroups.length - 1 ? `pb-8.5 desk:pb-10 ${rule}` : "pb-2"}`}
+            >
+              <h2 id={`price-${group.id}`} className={groupTitle}>
+                {group.title[lang]}
+              </h2>
+              <ul className="mt-5.5 flex flex-col gap-6.5">
+                {group.services.map((service) => (
+                  <li key={service.name.lt}>
+                    <Service service={service} lang={lang} />
+                  </li>
                 ))}
-              </div>
-            </div>
+              </ul>
+            </section>
+          ))}
 
-            {/* Masažas */}
-            <div className="bg-white rounded-2xl border border-[#DDE9E8] p-5">
-              <h3 className="text-[1rem] font-bold text-foreground mb-4">{c.massageTitle}</h3>
-              <p className="text-[0.7rem] font-bold uppercase tracking-wider text-muted/70 mb-1">{c.massageDuration30}</p>
-              <p className="text-[1.875rem] font-bold text-[#7DB9B5] leading-none mb-2">40 €</p>
-              <PackageRows rows={[[c.pkg3, "114 €"], [c.pkg5, "180 €"], [c.pkg10, "340 €"]]} />
-              <div className="border-t border-[#EEF5F4] mt-4 pt-4">
-                <p className="text-[0.7rem] font-bold uppercase tracking-wider text-muted/70 mb-1">{c.massageDuration60}</p>
-                <p className="text-[1.875rem] font-bold text-[#7DB9B5] leading-none mb-2">65 €</p>
-                <PackageRows rows={[[c.pkg3, "185 €"], [c.pkg5, "290 €"], [c.pkg10, "550 €"]]} />
-              </div>
-            </div>
+          <Link href="/registracija" className="btn btn-dark mt-8 flex w-full">
+            {c.book}
+          </Link>
+        </article>
 
-            {/* Fizioterapija */}
-            <div className="bg-white rounded-2xl border border-[#DDE9E8] p-5">
-              <h3 className="text-[1rem] font-bold text-foreground mb-0.5">{c.physioTitle}</h3>
-              <p className="text-[0.78rem] text-muted mb-4">{c.physioDuration}</p>
-              <p className="text-[0.7rem] font-bold uppercase tracking-wider text-muted/70 mb-1">{c.physioPerSession}</p>
-              <p className="text-[1.875rem] font-bold text-[#7DB9B5] leading-none mb-2">20 €</p>
-              <PackageRows rows={[[c.pkg3, "57 €"], [c.pkg5, "90 €"], [c.pkg10, "170 €"]]} />
+        {/* Piotr's own slip: mint-light, the same edges; on desktop it climbs 56px onto the band. */}
+        <section
+          aria-labelledby="price-piotr"
+          className="receipt-edges relative z-10 mt-10 bg-mint-light px-5 pt-10 pb-8.5 desk:col-start-1 desk:row-start-2 desk:self-start desk:max-w-[480px] desk:-mt-14 desk:px-10 desk:pt-11 desk:pb-10"
+        >
+          <div className="flex items-center gap-4">
+            {piotr?.photo && (
+              <Image
+                src={piotr.photo}
+                alt=""
+                width={64}
+                height={64}
+                className="size-14 desk:size-16 shrink-0 rounded-full object-cover object-[50%_16%]"
+              />
+            )}
+            <div>
+              <h2 id="price-piotr" className={groupTitle}>
+                {piotr?.name}
+              </h2>
+              <p className="mt-0.5 text-small">{lang === "en" ? piotr?.roleEn : piotr?.role}</p>
             </div>
-
           </div>
-        </div>
-
-        {/* 5 — PAKETŲ TAISYKLĖS */}
-        <div className="rounded-xl bg-[#EEF5F4] border border-[#D0E2E0] px-4 py-3.5">
-          <p className="text-[0.8125rem] font-bold text-secondary mb-2.5">{c.rulesTitle}</p>
-          <div className="grid sm:grid-cols-2 gap-x-6 gap-y-1.5">
-            {c.rules.map((rule) => (
-              <div key={rule} className="flex items-start gap-2">
-                <span className="w-1 h-1 rounded-full bg-[#7DB9B5] mt-1.5 flex-shrink-0" />
-                <p className="text-[0.8125rem] text-secondary/70 leading-snug">{rule}</p>
-              </div>
-            ))}
+          <div className="mt-7">
+            <Service service={specialistVisit.service} lang={lang} onMint />
           </div>
-        </div>
+          <Link
+            href={`/specialistai/${specialistVisit.slug}`}
+            className="link-action decoration-ink inline-flex items-center min-h-11 mt-2 text-small"
+          >
+            {c.about}
+          </Link>
+        </section>
 
-        {/* 6 — APMOKĖJIMAS IR KOMPENSAVIMAS */}
-        <div className="rounded-xl bg-[#EEF5F4] border border-[#D0E2E0] px-4 py-3.5">
-          <p className="text-[0.8125rem] font-bold text-secondary mb-2.5">{c.paymentTitle}</p>
-          <p className="text-[0.8125rem] text-secondary/70 leading-relaxed mb-2">{c.paymentText1}</p>
-          <p className="text-[0.8125rem] text-secondary/70 leading-relaxed">{c.paymentText2}</p>
-        </div>
-
-        {/* 7 — CTA */}
-        <div className="rounded-2xl border border-[#DDE9E8] bg-white p-6 md:p-8 text-center">
-          <h2 className="text-[1.375rem] md:text-[1.75rem] font-bold text-foreground mb-2.5">
-            {c.ctaTitle}
+        <section
+          aria-labelledby="price-notes"
+          className="pt-14 flex flex-col gap-7 desk:col-start-1 desk:row-start-3 desk:pt-16 desk:gap-9 desk:max-w-[440px]"
+        >
+          <h2 id="price-notes" className="text-h3">
+            {c.notesTitle}
           </h2>
-          <p className="text-[0.9375rem] text-muted leading-relaxed mb-5 max-w-[400px] mx-auto">
-            {c.ctaText}
-          </p>
-          <div className="flex flex-col sm:flex-row items-center justify-center gap-2 mb-3.5">
-            <a
-              href="/registracija"
-              className="inline-flex items-center gap-2 px-6 py-2.5 bg-[#7DB9B5] text-white text-[0.9rem] font-bold rounded-xl hover:bg-[#68A7A2] transition-colors duration-200 shadow-[0_3px_12px_rgba(125,185,181,0.25)]"
-            >
-              {c.ctaRegister} <ArrowRight size={15} strokeWidth={2.5} />
-            </a>
-            <a
-              href="mailto:info@reamed.lt"
-              className="inline-flex items-center gap-2 px-6 py-2.5 border-2 border-[#DDE9E8] text-secondary text-[0.9rem] font-semibold rounded-xl hover:border-[#90CECA] hover:text-[#7DB9B5] transition-colors duration-200"
-            >
-              <Phone size={14} strokeWidth={2} /> {c.ctaContact}
-            </a>
-          </div>
-          <p className="text-[0.78rem] text-muted/45">+370 601 34304 · info@reamed.lt</p>
-        </div>
-
+          {c.notes.map((note) => (
+            <div key={note.title}>
+              <h3 className="text-body font-medium leading-[1.4]">{note.title}</h3>
+              <p className="mt-1.5 text-body">{note.text}</p>
+            </div>
+          ))}
+        </section>
       </div>
     </div>
   );

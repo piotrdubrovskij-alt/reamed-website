@@ -6,7 +6,7 @@ import KainosContent from "@/components/KainosContent";
 export const metadata: Metadata = {
   title: "Kainos — ReaMed klinika Vilniuje",
   description:
-    "ReaMed klinikos paslaugų kainos: kineziterapija, manualinė terapija, osteopatija, masažas, fizioterapija. Individuali ir paketinė kainodara.",
+    "ReaMed klinikos kainos: pirmasis vizitas, kineziterapija, kompleksinė reabilitacija, masažas, fizioterapija. Paketai 5 ir 10 kartų.",
 };
 
 export default function KainosPage() {
