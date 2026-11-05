@@ -5,6 +5,8 @@
 - `index.html` — главная.
 - `nugaros-skausmas.html` — шаблон страницы проблемы.
 - `kainos.html` — страница цен в виде чека (утверждена Piotr 03.11.2026); скриншоты `screenshots/kainos-mockup-*.jpg`.
+- `specialistas.html` — страница специалиста на примере Piotr (утверждена 05.11.2026); скриншоты `screenshots/specialistas-mockup-*.jpg`.
+  Сделана на сайте: `src/components/SpecialistPageContent.tsx`, PR #20.
 
 Открываются прямо в браузере: фото берутся из `public/`, шрифт — из Google Fonts. Ширина 1280 и 375 px
 (`kainos.html` — 1440 и 390).
@@ -202,6 +204,37 @@
 - На сайте: данные — `src/data/prices.ts`, компонент — `src/components/KainosContent.tsx`, зубчики и лидер —
   `@utility receipt-edges` и `@utility leader` в `globals.css`. Ниже 360 px строки пакетов без отступа слева,
   чтобы «10 kartų × 60 €» помещались в одну строку.
+
+## Страница специалиста (`specialistas.html`)
+
+`/specialistai/[slug]`, один компонент для всех пяти. Сверху вниз:
+
+1. **Шапка** (graphite, `padding: 16px 0 72px`; телефон 8 / 64): ссылка «‹ Visi specialistai» (on-dark, 16 px, высота 44);
+   сетка «текст | фото 256 px», колонки по центру по вертикали, между ними 96 px.
+   h1 — имя мятой, `clamp(46px, 5.4vw, 78px)` (телефон `h1-m`); под ним роль белым 24 px/500 (не шире 30ch),
+   строка «чем занимается» (tagline) on-dark 20 px, факты «● Licencija … ● Kalbos» 16 px on-dark с мятными точками,
+   кнопки: `btn-mint` «Registruotis pas {vardą}» (accusative из `nameAccusative`) и ссылка-телефон белым с мятной иконкой.
+   Фото — тот же файл и та же арка, что на главной (`rounded-t-full`, 4:5, `height:auto`).
+   Телефон: фото 256 px по левому краю, под ним текст, кнопка во всю ширину.
+2. **О специалисте** (ground, 120 px; телефон 72): первый абзац `about[0]` как фраза `clamp(26px, 2.4vw, 34px)`/500, не шире 34ch;
+   остальные абзацы 18 px, не шире 62ch. Ниже панель paper, радиус 28 px, поля 40 px (телефон 24 px, 28/20):
+   две колонки «Kuo gali padėti» (`conditions`) и «Metodai» (`expertise`), заголовки 20 px/500, пункты 18 px с мятными точками 7 px.
+   На телефоне колонки друг под другом.
+3. **Išsilavinimas ir kvalifikacija** (paper): h2; две колонки 1fr / 1.4fr. Слева «Studijos» — строки «годы | текст»
+   (колонка дат 104 px, серым 500, tabular-nums). Справа «Kvalifikacijos tobulinimas» — те же строки, между ними линия 1 px `#DFE1DE`;
+   показывать первые 6, дальше `link-action` «Rodyti visus (N)» / «Rodyti mažiau» (кнопка, `aria-expanded`).
+   Третье поле курса (организатор) — серым 16 px под названием, если есть. Нет курсов — правой колонки нет, левая на всю ширину.
+   Лицензия здесь не повторяется: она в шапке.
+4. **Atsiliepimai** (ground): h2 «Atsiliepimai apie {vardą}» (accusative), две цитаты `clamp(22px, 1.9vw, 26px)`/500,
+   подпись «Vardas P. · Google» 16 px, ниже ссылка «Visi atsiliepimai Google» на `GOOGLE_REVIEWS.url`.
+   Данные: `getReviews({ specialist, limit: 2 })`; если по специалисту меньше 2 отзывов — h2 «Atsiliepimai apie kliniką»
+   и 2 отзыва без метки специалиста. Текст дословно, обрезка только по целым предложениям (`firstSentences`), не длиннее ~3 предложений.
+5. **Kiti specialistai** (paper): заголовок h3-размера (`clamp(26px, 2.4vw, 34px)`), четыре остальных специалиста строками
+   «арка 96 px | имя 18 px/500 + роль 16 px серым», ссылка на профиль, hover — мятное подчёркивание имени. Телефон: список, арка 72 px.
+6. Футер — общий.
+
+Убрать всё старое: карточки с рамками, бейджи, «ReaMed klinika» капсом, блок «Kalbos» (языки теперь в шапке), боковую карточку
+записи и нижний CTA (запись есть в шапке и в футере).
 
 ## Не в этой задаче
 

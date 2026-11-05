@@ -109,7 +109,7 @@ export const specialists: Specialist[] = [
       '2021|New Manual Articular Approach – Spine and Pelvis (MASP)|',
       '2021|DNS Pediatric course 1|',
       '2022|DNS Pediatric course 2|',
-      '2021|DNS Pediatric course 3|',
+      '2022|DNS Pediatric course 3|',
       '2022|Fascial Manipulation Stecco, Level 1 Course|',
       '2022|Dry Needling Certification Course Level 1 & 2 (Craig Smith). Akupunktūra: jungiamojo audinio ir raumeninė technika|',
     ],
@@ -126,7 +126,7 @@ export const specialists: Specialist[] = [
       '2021|New Manual Articular Approach – Spine and Pelvis (MASP)|',
       '2021|DNS Pediatric course 1|',
       '2022|DNS Pediatric course 2|',
-      '2021|DNS Pediatric course 3|',
+      '2022|DNS Pediatric course 3|',
       '2022|Fascial Manipulation Stecco, Level 1 Course|',
       '2022|Dry Needling Certification Course Level 1 & 2 (Craig Smith)|',
     ],
@@ -191,11 +191,11 @@ export const specialists: Specialist[] = [
     license: "ASL-04527",
     languages: ["Lietuvių", "Anglų", "Rusų"],
     education: [
-      "2023 · Sporto kineziterapijos magistras, Lietuvos sveikatos mokslų universitetas",
+      "2023 · Sporto kineziterapijos magistrantūra, Lietuvos sveikatos mokslų universitetas",
       "2021 · Kineziterapijos bakalauras, Vilniaus universitetas",
     ],
     educationEn: [
-      "2023 · Master's in Sports Physiotherapy, Lithuanian University of Health Sciences",
+      "2023 · Master's studies in Sports Physiotherapy, Lithuanian University of Health Sciences",
       "2021 · Bachelor's in Physiotherapy, Vilnius University",
     ],
     courses: [
@@ -250,20 +250,18 @@ export const specialists: Specialist[] = [
     conditions: [
       "Nugaros ir kaklo skausmai",
       "Sąnarių skausmai ir judesių ribotumas",
-      "Raumenų perkrova ir įtampos sindromai",
+      "Raumenų perkrova ir įtampa",
       "Sportinės traumos ir atsistatymas po jų",
-      "Funkciniai judėjimo sutrikimai",
-      "Kasdienio fizinio krūvio sukeltos problemos",
-      "Skausmo mažinimas ir judėjimo kokybės gerinimas",
+      "Skausmas po fizinio krūvio",
+      "Laikysenos ir judėjimo sutrikimai",
     ],
     conditionsEn: [
       "Back and neck pain",
       "Joint pain and restricted movement",
-      "Muscle overuse and tension syndromes",
+      "Muscle overload and tension",
       "Sports injuries and recovery",
-      "Functional movement disorders",
-      "Problems caused by daily physical load",
-      "Pain reduction and movement quality improvement",
+      "Pain after physical exertion",
+      "Posture and movement disorders",
     ],
     expertise: [
       "Kineziterapija",
@@ -288,10 +286,10 @@ export const specialists: Specialist[] = [
     license: "ASL-14117",
     languages: ["Lietuvių", "Anglų"],
     education: [
-      "2021–2024 · Kineziterapijos bakalauro studijos, Vilniaus universitetas, Medicinos fakultetas",
+      "2021–2024 · Kineziterapijos bakalauras, Vilniaus universiteto Medicinos fakultetas",
     ],
     educationEn: [
-      "2021–2024 · Bachelor's studies in Physiotherapy, Vilnius University, Faculty of Medicine",
+      "2021–2024 · Bachelor's in Physiotherapy, Vilnius University Faculty of Medicine",
     ],
     courses: [
       '2022.10.27–11.02|Peties kineziologija ir funkcinė anatomija|',
@@ -345,7 +343,7 @@ export const specialists: Specialist[] = [
     tagline: "Nugaros, kaklo ir sąnarių skausmai, manualinė terapija, atsistatymas po ortopedinių operacijų",
     taglineEn: "Back, neck and joint pain, manual therapy, recovery after orthopaedic surgery",
     about: [
-      "Mangirdas Kazačenko – kineziterapeutas, manualinės terapijos specialistas ir masažuotojas, dirbantis su pacientais, turinčiais įvairių griaučių-raumenų sistemos sutrikimų.",
+      "Mangirdas Kazačenko – kineziterapeutas, manualinės terapijos specialistas ir masažuotojas, dirbantis su pacientais, turinčiais įvairių griaučių ir raumenų sistemos sutrikimų.",
       "Savo darbe jis taiko individualų ir integruotą požiūrį, siekdamas ne tik sumažinti simptomus, bet ir padėti pacientui kuo greičiau bei saugiau grįžti į visavertį kasdienį gyvenimą.",
       "Atsižvelgdamas į paciento būklę ir poreikius, Mangirdas taiko kineziterapiją, manualinę terapiją, gydomąjį masažą, fizioterapines priemones, o tam tikrais atvejais – ir papildomus skausmo valdymo sprendimus.",
     ],
@@ -395,13 +393,13 @@ export const specialists: Specialist[] = [
     license: "ASL-06701",
     languages: ["Lietuvių", "Anglų", "Rusų"],
     education: [
-      "2018 – Kineziterapijos profesinio bakalauro laipsnis, kineziterapeuto kvalifikacija",
+      "2018 · Kineziterapijos profesinis bakalauras, kineziterapeuto kvalifikacija",
     ],
     educationEn: [
-      "2018 – Professional Bachelor's degree in Physiotherapy",
+      "2018 · Professional bachelor's in Physiotherapy, physiotherapist qualification",
     ],
     courses: [
-      '2018|Masažo pagrindai (masažuotojo spaudai)|Vilniaus kolegija',
+      '2018|Masažo pagrindai (masažuotojo kvalifikacija)|Vilniaus kolegija',
       '2019|Stuburo degeneracinės ligos – funkcinė anatomija, reabilitacija, slauga|VšĮ RVUL',
       '2019|Maitland manualinė terapija – 1 lygis|UAB Kineziterapijos klinika',
       '2019|Galvos smegenų arterijų aneurizma – anatomija, klinika, reabilitacija, slauga|VšĮ RVUL',
@@ -409,12 +407,12 @@ export const specialists: Specialist[] = [
       '2024|Maitland manualinė terapija – 2A lygis|UAB Kineziterapijos klinika',
       '2025|Maitland manualinė terapija – 2B lygis|UAB Kineziterapijos klinika',
       '2025|Muskuloskeletinė radiologinė diagnostika: teorija ir praktika|UAB Kineziterapijos klinika',
-      '2026 sausis|Klinikinė hipnozė skausmo valdymui (pagal Giancarlo Russo)|Smart Moves Academy',
-      '2026 sausis|Professional Cupping Therapy Course|Mark Perren-Jones',
-      '2026 vasaris|Sausos adatos terapija (dry needling) TOP30 raumenų|David G. Simons akademija, Šveicarija',
+      '2026.01|Klinikinė hipnozė skausmo valdymui (pagal Giancarlo Russo)|Smart Moves Academy',
+      '2026.01|Professional Cupping Therapy Course|Mark Perren-Jones',
+      '2026.02|Sausų adatų terapija (dry needling): TOP30 raumenų|David G. Simons akademija, Šveicarija',
     ],
     coursesEn: [
-      '2018|Massage Fundamentals (pressure massage)|Vilnius College',
+      '2018|Massage basics (massage therapist qualification)|Vilnius College',
       '2019|Degenerative Spinal Diseases – Functional Anatomy, Rehabilitation, Nursing|VšĮ RVUL',
       '2019|Maitland Manual Therapy – Level 1|UAB Kineziterapijos klinika',
       '2019|Cerebral Artery Aneurysm – Anatomy, Clinic, Rehabilitation, Nursing|VšĮ RVUL',
@@ -422,9 +420,9 @@ export const specialists: Specialist[] = [
       '2024|Maitland Manual Therapy – Level 2A|UAB Kineziterapijos klinika',
       '2025|Maitland Manual Therapy – Level 2B|UAB Kineziterapijos klinika',
       '2025|Musculoskeletal Radiological Diagnostics: Theory and Practice|UAB Kineziterapijos klinika',
-      '2026 Jan|Clinical Hypnosis for Pain Management (by Giancarlo Russo)|Smart Moves Academy',
-      '2026 Jan|Professional Cupping Therapy Course|Mark Perren-Jones',
-      '2026 Feb|Dry Needling TOP30 muscles|David G. Simons Academy, Switzerland',
+      '2026.01|Clinical Hypnosis for Pain Management (by Giancarlo Russo)|Smart Moves Academy',
+      '2026.01|Professional Cupping Therapy Course|Mark Perren-Jones',
+      '2026.02|Dry Needling TOP30 muscles|David G. Simons Academy, Switzerland',
     ],
   },
   {
@@ -471,10 +469,10 @@ export const specialists: Specialist[] = [
     ],
     license: "ASL-17935",
     education: [
-      "2022–2026 · Kineziterapijos bakalauro laipsnis, Vilniaus universitetas, Medicinos fakultetas",
+      "2022–2026 · Kineziterapijos bakalauras, Vilniaus universiteto Medicinos fakultetas",
     ],
     educationEn: [
-      "2022–2026 · Bachelor's degree in Physiotherapy, Vilnius University, Faculty of Medicine",
+      "2022–2026 · Bachelor's in Physiotherapy, Vilnius University Faculty of Medicine",
     ],
   },
 ];
