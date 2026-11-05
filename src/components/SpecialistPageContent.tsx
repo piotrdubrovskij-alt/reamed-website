@@ -3,7 +3,7 @@
 import { useId, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { ChevronDown, ChevronLeft, Phone } from "lucide-react";
+import { ChevronDown, Phone } from "lucide-react";
 import { useLanguage } from "@/contexts/LanguageContext";
 import { specialists, type Specialist } from "@/lib/specialists";
 import type { Language } from "@/lib/translations";
@@ -25,7 +25,6 @@ const LANGUAGES_EN: Record<string, string> = {
 // {name}: the first name, accusative in Lithuanian where the phrase needs it.
 const copy = {
   lt: {
-    all: "Visi specialistai",
     facts: "Licencija ir kalbos",
     licence: "Licencija",
     book: "Registruotis pas {name}",
@@ -42,7 +41,6 @@ const copy = {
     others: "Kiti specialistai",
   },
   en: {
-    all: "All specialists",
     facts: "Licence and languages",
     licence: "Licence",
     book: "Book with {name}",
@@ -155,29 +153,28 @@ export default function SpecialistPageContent({ specialist: s }: { specialist: S
 
   return (
     <>
-      {/* 1. Header: graphite, name in mint, the photo arch on the right (on the phone above the text). */}
+      {/* 1. Header: graphite, name in mint, the photo arch on the right (on the phone above the text, everything centred). */}
       <section
         aria-labelledby="specialist-h"
-        className="bg-graphite text-white pt-2 pb-16 desk:pt-4 desk:pb-18 [--focus-ring:var(--color-mint)]"
+        className="bg-graphite text-white pt-8 pb-14 desk:pt-14 desk:pb-18 [--focus-ring:var(--color-mint)]"
       >
         <div className="wrap">
-          <Link href="/#specialistai" className="inline-flex items-center gap-1.5 min-h-11 text-small text-on-dark">
-            <ChevronLeft size={16} aria-hidden="true" />
-            {c.all}
-          </Link>
-          <div className="mt-3 flex flex-col-reverse gap-7 desk:mt-4 desk:grid desk:grid-cols-[minmax(0,1fr)_256px] desk:items-center desk:gap-x-14 min-[68.8125rem]:gap-x-24">
-            <div>
-              <h1 id="specialist-h" className="text-h1-m desk:text-[clamp(46px,5.4vw,78px)] text-balance text-mint">
+          <div className="flex flex-col-reverse items-center gap-6 text-center desk:grid desk:grid-cols-[minmax(0,1fr)_256px] desk:items-center desk:gap-x-14 desk:text-left min-[68.8125rem]:gap-x-24">
+            <div className="w-full">
+              <h1
+                id="specialist-h"
+                className="mx-auto max-w-[288px] text-[30px] leading-[1.1] tracking-[-0.02em] font-medium desk:mx-0 desk:max-w-none desk:text-[clamp(46px,5.4vw,78px)] desk:leading-[1.02] desk:tracking-[-0.025em] text-balance text-mint"
+              >
                 {s.name}
               </h1>
-              <p className="mt-4 desk:mt-6 max-w-[30ch] text-lead desk:text-lead-l leading-[1.35] desk:leading-[1.35] font-medium">
+              <p className="mx-auto mt-4 desk:mx-0 desk:mt-6 max-w-[30ch] text-lead desk:text-lead-l leading-[1.35] desk:leading-[1.35] font-medium">
                 {isLt ? s.role : s.roleEn}
               </p>
-              <p className="mt-3 max-w-[40ch] text-lead-m desk:text-lead leading-[1.45] desk:leading-[1.45] text-on-dark">
+              <p className="mx-auto mt-3 desk:mx-0 max-w-[40ch] text-lead-m desk:text-lead leading-[1.45] desk:leading-[1.45] text-on-dark">
                 {isLt ? s.tagline : s.taglineEn}
               </p>
               {hasFacts && (
-                <ul aria-label={c.facts} className="mt-7 flex flex-wrap gap-x-6 gap-y-2 text-small text-on-dark">
+                <ul aria-label={c.facts} className="mt-7 flex flex-wrap justify-center desk:justify-start gap-x-6 gap-y-2 text-small text-on-dark">
                   {s.license && (
                     <li className="inline-flex items-center gap-2">
                       <span aria-hidden="true" className="size-1.5 shrink-0 rounded-full bg-mint" />
@@ -192,13 +189,13 @@ export default function SpecialistPageContent({ specialist: s }: { specialist: S
                   ) : null}
                 </ul>
               )}
-              <div className="mt-7 desk:mt-10 flex flex-wrap items-center gap-x-7 gap-y-4">
+              <div className="mt-7 desk:mt-10 flex flex-wrap items-center justify-center desk:justify-start gap-x-7 gap-y-4">
                 <Link href="/registracija" className="btn btn-mint w-full desk:w-auto">
                   {nameIn(c.book)}
                 </Link>
                 <a
                   href={t.contact.phoneHref}
-                  className="inline-flex items-center gap-2.5 min-h-[52px] text-body font-medium text-white no-underline"
+                  className="inline-flex items-center justify-center gap-2.5 min-h-[52px] text-body font-medium text-white no-underline"
                 >
                   <Phone size={22} aria-hidden="true" className="text-mint" />
                   {t.contact.phone}
@@ -210,9 +207,9 @@ export default function SpecialistPageContent({ specialist: s }: { specialist: S
               alt=""
               width={640}
               height={800}
-              sizes="(min-width: 821px) 256px, 256px"
+              sizes="(min-width: 821px) 256px, 288px"
               preload
-              className="w-[min(100%,256px)] desk:w-full h-auto aspect-[4/5] object-cover rounded-t-full"
+              className="w-[min(100%,288px)] desk:w-full h-auto aspect-[4/5] object-cover rounded-t-full"
             />
           </div>
         </div>
