@@ -6,6 +6,7 @@
 - `nugaros-skausmas.html` — шаблон страницы проблемы.
 - `kainos.html` — страница цен в виде чека (утверждена Piotr 03.11.2026); скриншоты `screenshots/kainos-mockup-*.jpg`.
 - `specialistas.html` — страница специалиста на примере Piotr (утверждена 05.11.2026); скриншоты `screenshots/specialistas-mockup-*.jpg`.
+  Сделана на сайте: `src/components/SpecialistPageContent.tsx`, PR #20.
 
 Открываются прямо в браузере: фото берутся из `public/`, шрифт — из Google Fonts. Ширина 1280 и 375 px
 (`kainos.html` — 1440 и 390).

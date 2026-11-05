@@ -492,6 +492,8 @@ type ReviewFilter = {
   condition?: ConditionSlug;
   service?: ServiceSlug;
   specialist?: SpecialistSlug;
+  /** Only reviews about the clinic as a whole, with no specialist tagged. */
+  noSpecialist?: boolean;
   featured?: boolean;
   lang?: Review["lang"];
   limit?: number;
@@ -504,6 +506,7 @@ export function getReviews(f: ReviewFilter = {}): Review[] {
     .filter((r) => !f.condition || r.conditions.includes(f.condition))
     .filter((r) => !f.service || r.services.includes(f.service))
     .filter((r) => !f.specialist || r.specialists.includes(f.specialist))
+    .filter((r) => !f.noSpecialist || r.specialists.length === 0)
     .filter((r) => f.featured === undefined || !!r.featured === f.featured)
     .filter((r) => !f.lang || r.lang === f.lang)
     .sort(
