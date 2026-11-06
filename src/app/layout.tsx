@@ -23,12 +23,13 @@ export const metadata: Metadata = {
     apple: [{ url: "/apple-touch-icon.png", sizes: "180x180", type: "image/png" }],
   },
   manifest: "/site.webmanifest",
-  title: "ReaMed — Kineziterapijos ir reabilitacijos klinika Vilniuje",
+  title: "ReaMed — Kineziterapijos klinika Vilniuje",
   description:
-    "ReaMed — šiuolaikinė kineziterapijos ir reabilitacijos klinika Vilniuje. Stuburo ir kaklo skausmai, sporto traumos, sąnarių problemos, pooperacinis atsistatymas.",
+    "Privati kineziterapijos, manualinės terapijos ir osteopatijos klinika Vilniuje. Nugaros, kaklo ir sąnarių skausmai, sporto traumos, atsistatymas po operacijų.",
   keywords: [
     "kineziterapija",
-    "reabilitacija",
+    "manualinė terapija",
+    "osteopatija",
     "Vilnius",
     "stuburo skausmas",
     "sporto traumos",
@@ -38,7 +39,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "ReaMed — Kineziterapijos klinika Vilniuje",
     description:
-      "Šiuolaikinė kineziterapijos ir reabilitacijos klinika Vilniuje.",
+      "Privati kineziterapijos, manualinės terapijos ir osteopatijos klinika Vilniuje.",
     url: "https://reamed.lt",
     siteName: "ReaMed",
     locale: "lt_LT",
@@ -51,7 +52,7 @@ const jsonLd = {
   "@type": "MedicalBusiness",
   name: "ReaMed",
   description:
-    "Kineziterapijos ir reabilitacijos klinika Vilniuje. Stuburo ir kaklo skausmai, sporto traumos, sąnarių problemos, pooperacinis atsistatymas.",
+    "Privati kineziterapijos, manualinės terapijos ir osteopatijos klinika Vilniuje. Nugaros, kaklo ir sąnarių skausmai, sporto traumos, atsistatymas po operacijų.",
   url: "https://reamed.lt",
   telephone: "+37060134304",
   email: "info@reamed.lt",
