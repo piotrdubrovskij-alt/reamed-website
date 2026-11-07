@@ -136,9 +136,11 @@ export default function Header() {
   }, [open]);
 
   const navItems = [
-    // Section pages, not home-page anchors: search engines see the site's structure from the menu.
-    { label: t.nav.whatWeTreat, href: "/ka-gydome" },
-    { label: t.nav.services, href: "/paslaugos" },
+    // «Ką gydome» and «Paslaugos» go to their blocks on the home page, not to the index pages (Piotr, 07.11.2026:
+    // the index pages repeat the home page and feel heavy). /ka-gydome and /paslaugos stay for breadcrumbs,
+    // «← Paslaugos» links and the sitemap. The sticky header is offset by scroll-padding-top in globals.css.
+    { label: t.nav.whatWeTreat, href: "/#ka-gydome" },
+    { label: t.nav.services, href: "/#paslaugos" },
     { label: t.nav.specialists, href: "/specialistai" },
     { label: t.nav.prices, href: "/kainos" },
     { label: t.nav.contacts, href: "/kontaktai" },

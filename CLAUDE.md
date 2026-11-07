@@ -100,6 +100,8 @@
   Появилась более точная страница (например, disko išvarža) — перенаправить старый адрес на неё.
 - Разделы `/ka-gydome`, `/paslaugos`, `/specialistai` — `HubPageContent`; списки берутся из
   `src/content/sections.ts`, `translations.services` и `specialists.ts`, sitemap — из тех же списков.
+  В меню «Ką gydome» и «Paslaugos» ведут на блоки главной (`/#ka-gydome`, `/#paslaugos`), а не на эти страницы
+  (решение Piotr 07.11.2026: страницы-списки повторяют главную). Сами страницы остаются: «хлебные крошки», «← Paslaugos», sitemap.
 - Картинка для превью ссылок: `public/og/reamed-og.png`, пересобрать — `node scripts/build-og.mjs`.
 - Новые страницы проблем — только из данных: файл в `src/content/conditions/<slug>.ts` (тип `ConditionPage`),
   строка в `index.ts`; маршрут `src/app/ka-gydome/[slug]`, вид — `ConditionPageContent` (макет G), JSON-LD —
