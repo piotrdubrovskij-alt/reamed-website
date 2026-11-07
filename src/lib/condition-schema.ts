@@ -1,12 +1,14 @@
 import type { ConditionPage } from "@/content/conditions/types";
 import { getSpecialistBySlug } from "@/lib/specialists";
 import { SITE_URL } from "@/lib/seo";
+import { sectionInfo } from "@/content/sections";
 
 // schema.org for a problem page: the page itself (MedicalWebPage about a MedicalCondition),
-// its questions (FAQPage) and the breadcrumb. The clinic node lives in the root layout (#clinic).
+// its questions (FAQPage) and the breadcrumb through its section. The clinic node lives in the root layout (#clinic).
 export function conditionJsonLd(page: ConditionPage) {
   const url = `${SITE_URL}/ka-gydome/${page.slug}`;
   const reviewer = page.reviewed ? getSpecialistBySlug(page.reviewed.by) : undefined;
+  const section = sectionInfo(page.section);
 
   return {
     "@context": "https://schema.org",
@@ -52,11 +54,13 @@ export function conditionJsonLd(page: ConditionPage) {
       },
       {
         "@type": "BreadcrumbList",
+        // ReaMed › Ką gydome › section (when it has a page) › this page
         itemListElement: [
-          { "@type": "ListItem", position: 1, name: "ReaMed", item: SITE_URL },
-          { "@type": "ListItem", position: 2, name: "Ką gydome", item: `${SITE_URL}/ka-gydome` },
-          { "@type": "ListItem", position: 3, name: page.hero.h1, item: url },
-        ],
+          { name: "ReaMed", item: SITE_URL },
+          { name: "Ką gydome", item: `${SITE_URL}/ka-gydome` },
+          ...(section.href ? [{ name: section.title, item: `${SITE_URL}${section.href}` }] : []),
+          { name: page.navTitle, item: url },
+        ].map((crumb, i) => ({ "@type": "ListItem", position: i + 1, ...crumb })),
       },
     ],
   };

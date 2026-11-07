@@ -1,4 +1,5 @@
 import type { ConditionSlug, ServiceSlug, SpecialistSlug } from "@/data/reviews";
+import type { SectionSlug } from "@/content/sections";
 
 // One problem page (/ka-gydome/<slug>) as data. The look lives in ConditionPageContent
 // (mockup G, docs/design/redesign-g/nugaros-skausmas.html); texts live here, one file per page.
@@ -16,6 +17,12 @@ export type Source = {
 
 export type ConditionPage = {
   slug: string;
+  /** The section it belongs to (plan of 07.11.2026): breadcrumbs and the back link lead there. */
+  section: SectionSlug;
+  /** Other sections that list it too: an operation page also sits in its body zone. */
+  alsoIn?: SectionSlug[];
+  /** Short name in section lists: "Stuburo išvarža". */
+  navTitle: string;
   /** Google title and description. */
   meta: { title: string; description: string };
   /** Search phrase the page is built around, for MedicalCondition.name in schema.org. */

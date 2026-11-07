@@ -4,6 +4,8 @@ import { BACK_PAIN_CPG, BRINJIKJI_2015, CHIU_2015, RASHED_2023 } from "./sources
 // Draft of 07.11.2026, waiting for Piotr's review (Claude Doc «Пачка 1»).
 export const stuburoIsvarza: ConditionPage = {
   slug: "stuburo-isvarza",
+  section: "nugaros-skausmas",
+  navTitle: "Stuburo išvarža",
   meta: {
     title: "Stuburo išvarža: simptomai ir gydymas be operacijos Vilniuje | ReaMed",
     description:

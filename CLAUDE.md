@@ -36,8 +36,12 @@
 - Картинка для превью ссылок: `public/og/reamed-og.png`, пересобрать — `node scripts/build-og.mjs`.
 - Новые страницы проблем — только из данных: файл в `src/content/conditions/<slug>.ts` (тип `ConditionPage`),
   строка в `index.ts`; маршрут `src/app/ka-gydome/[slug]`, вид — `ConditionPageContent` (макет G), JSON-LD —
-  `src/lib/condition-schema.ts`, источники с DOI — `sources.ts`. В /ka-gydome и sitemap попадают сами.
+  `src/lib/condition-schema.ts`, источники с DOI — `sources.ts`. В sitemap попадают сами.
   `reviewed: null`, пока текст не проверил специалист; дату и автора проверки не выдумывать.
+- Раздел страницы — поле `section` (+ `alsoIn` для операций в своей зоне), разделы — `src/content/sections.ts`
+  (восемь с собственной страницей — в `translations.areas`, остальные из плана — `PLANNED_SECTIONS`).
+  Отсюда страница сама встаёт под свой раздел на `/ka-gydome`, в блок `SectionPagesBlock` на странице раздела
+  и в «хлебные крошки». Раздел без своей страницы показывается на `/ka-gydome` без ссылки, когда в нём есть страница.
 - Старые страницы проблем (8 папок в `ka-gydome/*`) и услуг (`paslaugos/*`): контент прямо в компоненте объектом
   `content = { lt, en }`, вид старый. Компоненты проблем записаны длинными однострочниками — правки делать точечно.
   Их переводим на шаблон G; новые страницы в старом виде не делать.

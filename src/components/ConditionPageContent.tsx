@@ -3,6 +3,7 @@ import Link from "next/link";
 import { ChevronDown, Phone } from "lucide-react";
 import type { ConditionPage } from "@/content/conditions/types";
 import { getSpecialistBySlug } from "@/lib/specialists";
+import { sectionInfo } from "@/content/sections";
 import { translations } from "@/lib/translations";
 import { FIRST_VISIT, formatPrice } from "@/data/prices";
 import { GOOGLE_REVIEWS, getReviews } from "@/data/reviews";
@@ -33,6 +34,7 @@ function Dots({ items, dark = false }: { items: string[]; dark?: boolean }) {
 
 export default function ConditionPageContent({ page }: { page: ConditionPage }) {
   const heroPerson = getSpecialistBySlug(page.hero.specialist);
+  const section = sectionInfo(page.section);
   const reviewer = page.reviewed ? getSpecialistBySlug(page.reviewed.by) : undefined;
   const reviews = page.reviews ? getReviews({ condition: page.reviews }) : [];
   const services = page.services
@@ -45,8 +47,9 @@ export default function ConditionPageContent({ page }: { page: ConditionPage }) 
       <section aria-labelledby="h1" className="relative overflow-hidden bg-ground">
         <div className="wrap grid gap-10 pt-8 desk:pt-14 desk:grid-cols-[7fr_5fr] desk:gap-[72px] desk:items-end">
           <div className="flex flex-col gap-6 desk:gap-7 desk:pb-30">
-            <Link href="/ka-gydome" className="self-start inline-flex items-center min-h-11 text-small font-medium text-graphite no-underline hover:text-ink">
-              ← Ką gydome
+            {/* Back to the page's section (plan of 07.11.2026); to /ka-gydome while the section has no page. */}
+            <Link href={section.href ?? "/ka-gydome"} className="self-start inline-flex items-center min-h-11 text-small font-medium text-graphite no-underline hover:text-ink">
+              ← {section.href ? section.title : "Ką gydome"}
             </Link>
             <h1 id="h1" className="text-h1-m desk:text-h1 text-balance">
               {page.hero.h1}

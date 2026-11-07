@@ -3,6 +3,7 @@ import { pageMetadata } from "@/lib/seo";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import KelioSkausmasContent from "@/components/KelioSkausmasContent";
+import SectionPagesBlock from "@/components/SectionPagesBlock";
 
 export const metadata: Metadata = {
   ...pageMetadata({
@@ -27,6 +28,7 @@ export default function KelioSkausmasPage() {
       <Header />
       <main>
         <KelioSkausmasContent />
+        <SectionPagesBlock section="kelio-skausmas" />
       </main>
       <Footer />
     </>

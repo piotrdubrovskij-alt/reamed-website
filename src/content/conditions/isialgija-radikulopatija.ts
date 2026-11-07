@@ -4,6 +4,9 @@ import { BACK_PAIN_CPG, CHIU_2015, ZHU_2025 } from "./sources";
 // Draft of 07.11.2026, waiting for Piotr's review (Claude Doc «Пачка 1»).
 export const isialgijaRadikulopatija: ConditionPage = {
   slug: "isialgija-radikulopatija",
+  section: "nugaros-skausmas",
+  alsoIn: ["plintantis-skausmas"],
+  navTitle: "Išialgija ir radikulopatija",
   meta: {
     title: "Išialgija ir radikulopatija (sėdimojo nervo uždegimas): gydymas Vilniuje | ReaMed",
     description:

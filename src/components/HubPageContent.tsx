@@ -9,7 +9,10 @@ import type { SpecialistSlug } from "@/data/reviews";
 import { SPECIALIST_NAMES, specialistPhoto } from "@/components/reviews/format";
 
 export type HubKind = "areas" | "services" | "specialists";
-export type HubLink = { slug: string; title: string; text: string };
+/** A section without a page yet has `href: null`: shown by name, without a link. */
+export type HubItem = { slug: string; title: string; text: string; href?: string | null };
+/** A page inside a section (src/content/conditions). */
+export type HubPageLink = { href: string; title: string };
 
 const content = {
   lt: {
@@ -26,7 +29,6 @@ const content = {
       lead: "Kineziterapeutai, dirbantys su Lietuvos ledo ritulio ir futbolo rinktinėmis, ir osteopatas, dėstantis Vilniaus universitete.",
     },
     more: "Plačiau",
-    conditionsTitle: "Ligos, traumos ir operacijos",
     unsure: "Nežinote, nuo ko pradėti?",
     firstVisit: "Pirmojo vizito metu įvertiname būklę ir sudarome gydymo planą",
     book: "Registruotis vizitui",
@@ -45,24 +47,55 @@ const content = {
       lead: "Physiotherapists who work with Lithuania's national ice hockey and football teams, and an osteopath who teaches at Vilnius University.",
     },
     more: "Read more",
-    conditionsTitle: "Conditions, injuries and surgery",
     unsure: "Not sure where to start?",
     firstVisit: "At the first visit we assess your condition and draw up a treatment plan",
     book: "Book a visit",
   },
 } as const;
 
-function LinkList({ items, base }: { items: readonly { slug: string; title: string; text: string }[]; base: string }) {
+function LinkList({
+  items,
+  base,
+  pages = {},
+}: {
+  items: readonly HubItem[];
+  base: string;
+  pages?: Record<string, HubPageLink[]>;
+}) {
   return (
-    <ul className="grid gap-8 md:grid-cols-2 desk:grid-cols-3 md:gap-x-[72px] md:gap-y-12">
-      {items.map((item) => (
-        <li key={item.slug}>
-          <Link href={`${base}/${item.slug}`} className="link-action inline-flex items-center min-h-11 text-lead">
-            {item.title}
-          </Link>
-          <p className="mt-1.5 text-graphite max-w-[36ch]">{item.text}</p>
-        </li>
-      ))}
+    <ul className="grid gap-10 md:grid-cols-2 desk:grid-cols-3 md:gap-x-[72px] md:gap-y-14">
+      {items.map((item) => {
+        const href = item.href === undefined ? `${base}/${item.slug}` : item.href;
+        const inside = pages[item.slug] ?? [];
+        return (
+          <li key={item.slug}>
+            {href ? (
+              <Link href={href} className="link-action inline-flex items-center min-h-11 text-lead">
+                {item.title}
+              </Link>
+            ) : (
+              <p className="flex items-center min-h-11 text-lead font-medium">{item.title}</p>
+            )}
+            <p className="mt-1.5 text-graphite max-w-[36ch]">{item.text}</p>
+            {/* The section's own pages, right under it (plan of 07.11.2026). */}
+            {inside.length > 0 && (
+              <ul className="mt-3">
+                {inside.map((pg) => (
+                  <li key={pg.href}>
+                    <Link
+                      href={pg.href}
+                      className="inline-flex items-center gap-3 min-h-11 hover:underline hover:decoration-mint hover:decoration-2 hover:underline-offset-[6px]"
+                    >
+                      <span aria-hidden="true" className="size-2.5 shrink-0 rounded-full bg-mint" />
+                      {pg.title}
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            )}
+          </li>
+        );
+      })}
     </ul>
   );
 }
@@ -98,9 +131,17 @@ function SpecialistList() {
 
 // Index page of a section: /ka-gydome, /paslaugos, /specialistai.
 // Graphite band with the title, then the list, then the first-visit offer.
-// `conditions`: pages built from src/content/conditions (Lithuanian only), passed in by the
-// server route so their texts stay out of the client bundle.
-export default function HubPageContent({ kind, conditions = [] }: { kind: HubKind; conditions?: HubLink[] }) {
+// /ka-gydome: each section with its own pages under it. `sectionPages` and `plannedSections` come
+// from the server route (src/content), so the page texts stay out of the client bundle.
+export default function HubPageContent({
+  kind,
+  sectionPages = {},
+  plannedSections = [],
+}: {
+  kind: HubKind;
+  sectionPages?: Record<string, HubPageLink[]>;
+  plannedSections?: HubItem[];
+}) {
   const { lang, t } = useLanguage();
   const c = content[lang];
   const page = c[kind];
@@ -119,12 +160,8 @@ export default function HubPageContent({ kind, conditions = [] }: { kind: HubKin
 
       <section className="bg-paper section-y">
         <div className="wrap">
-          {kind === "areas" && <LinkList items={t.areas.items} base="/ka-gydome" />}
-          {kind === "areas" && conditions.length > 0 && (
-            <>
-              <h2 className="text-h2 text-balance mt-16 desk:mt-24 mb-10 desk:mb-14">{c.conditionsTitle}</h2>
-              <LinkList items={conditions} base="/ka-gydome" />
-            </>
+          {kind === "areas" && (
+            <LinkList items={[...t.areas.items, ...plannedSections]} base="/ka-gydome" pages={sectionPages} />
           )}
           {kind === "services" && <LinkList items={t.services.items} base="/paslaugos" />}
           {kind === "specialists" && <SpecialistList />}

@@ -4,6 +4,8 @@ import { BACK_PAIN_CPG, BRINJIKJI_2015 } from "./sources";
 // Draft of 07.11.2026, waiting for Piotr's review (Claude Doc «Пачка 1»).
 export const skausmasNugarosApacioje: ConditionPage = {
   slug: "skausmas-nugaros-apacioje",
+  section: "nugaros-skausmas",
+  navTitle: "Skausmas nugaros apačioje",
   meta: {
     title: "Skauda nugaros apačią: priežastys ir gydymas Vilniuje | ReaMed",
     description:

@@ -6,6 +6,9 @@ import { MENISCUS_CONSENSUS, MENISCUS_ROOT_REHAB } from "./sources";
 // sports cases after surgery mostly Kotryna, older patients Mangirdas.
 export const reabilitacijaPoMeniskoOperacijos: ConditionPage = {
   slug: "reabilitacija-po-menisko-operacijos",
+  section: "atsistatymas-po-operaciju",
+  alsoIn: ["kelio-skausmas"],
+  navTitle: "Po menisko operacijos",
   meta: {
     title: "Reabilitacija po menisko operacijos Vilniuje: etapai ir trukmė | ReaMed",
     description:

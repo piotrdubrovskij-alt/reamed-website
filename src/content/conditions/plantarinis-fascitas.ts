@@ -5,6 +5,8 @@ import { HEEL_CPG, RIEL_2025 } from "./sources";
 // Shockwave therapy is not mentioned until the clinic has it.
 export const plantarinisFascitas: ConditionPage = {
   slug: "plantarinis-fascitas",
+  section: "ciurna-ir-peda",
+  navTitle: "Plantarinis fascitas",
   meta: {
     title: "Plantarinis fascitas ir kulno skausmas: gydymas Vilniuje | ReaMed",
     description:

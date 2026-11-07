@@ -4,6 +4,8 @@ import { BACK_PAIN_CPG, BRINJIKJI_2015 } from "./sources";
 // Draft of 07.11.2026, waiting for Piotr's review (Claude Doc «Пачка 1»).
 export const osteochondroze: ConditionPage = {
   slug: "osteochondroze",
+  section: "nugaros-skausmas",
+  navTitle: "Osteochondrozė",
   meta: {
     title: "Osteochondrozė: ką reiškia ši diagnozė ir kaip gydoma | ReaMed Vilniuje",
     description:
