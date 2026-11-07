@@ -26,6 +26,13 @@ import { slauniesDvigalvioRaumensPatempimas } from "./slaunies-dvigalvio-raumens
 import { pritraukiamujuRaumenuPatempimas } from "./pritraukiamuju-raumenu-patempimas";
 import { blauzdosRaumensPlysimas } from "./blauzdos-raumens-plysimas";
 import { grizimasISportaPoTraumos } from "./grizimas-i-sporta-po-traumos";
+import { tendinopatijos } from "./tendinopatijos";
+import { plintantisSkausmas } from "./plintantis-skausmas";
+import { tenisoAlkune } from "./teniso-alkune";
+import { achiloTendinopatija } from "./achilo-tendinopatija";
+import { soninisKlubo } from "./soninis-klubo-skausmas";
+import { riesoKanaloSindromas } from "./rieso-kanalo-sindromas";
+import { tirpstaRanka } from "./tirpsta-ranka";
 
 // Problem pages built from data (/ka-gydome/<slug>). Order = order inside each section.
 // Older section pages not yet rewritten still live in their own folders under src/app/ka-gydome/.
@@ -59,6 +66,15 @@ export const conditionPages: ConditionPage[] = [
   pritraukiamujuRaumenuPatempimas,
   blauzdosRaumensPlysimas,
   grizimasISportaPoTraumos,
+  // Batch 5: the Sausgyslės and Plintantis skausmas section pages (rebuilt, same addresses) and five topics
+  // that live in their body-zone sections (elbow and wrist, heel, hip) and are also listed in these two.
+  tendinopatijos,
+  plintantisSkausmas,
+  tenisoAlkune,
+  achiloTendinopatija,
+  soninisKlubo,
+  riesoKanaloSindromas,
+  tirpstaRanka,
 ];
 
 export function getConditionPage(slug: string): ConditionPage | undefined {
