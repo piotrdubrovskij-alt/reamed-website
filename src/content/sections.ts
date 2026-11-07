@@ -17,6 +17,8 @@ export type Section = {
   text: { lt: string; en: string };
   /** The section's own page exists (all eleven since batch 7, 07.11.2026). */
   hasPage: boolean;
+  /** H1 of the section's own page, the text of its link in the «Ką gydome» block (checked at build). */
+  pageTitle?: string;
   priority: 1 | 2 | 3;
   topics: Topic[];
 };
@@ -30,6 +32,7 @@ const SECTION_LIST = [
       en: "Rehabilitation after surgery and fractures: from a gentle start in a cast or brace to getting back to work and sport.",
     },
     hasPage: true,
+    pageTitle: "Reabilitacija po operacijų",
     priority: 1,
     topics: [
       { title: "Ankstyva reabilitacija po operacijos ir imobilizacijos (gipsas, įtvaras)", page: "ankstyva-reabilitacija-po-operacijos" },
@@ -56,6 +59,7 @@ const SECTION_LIST = [
       en: "Back pain and tension, disc herniation, sciatica and other spine problems.",
     },
     hasPage: true,
+    pageTitle: "Nugaros skausmas",
     priority: 1,
     topics: [
       { title: "Ūmus nugaros skausmas („užstrigo nugara“)", page: "umus-nugaros-skausmas" },
@@ -82,6 +86,7 @@ const SECTION_LIST = [
       en: "Neck pain and tension, restricted movement, pain into the arm and headaches coming from the neck.",
     },
     hasPage: true,
+    pageTitle: "Kaklo skausmas",
     priority: 1,
     topics: [
       { title: "Kaklo skausmas ir įtampa (cervikalgija)", page: "cervikalgija" },
@@ -102,6 +107,7 @@ const SECTION_LIST = [
       en: "Shoulder pain, tendon injuries, instability, stiffness and osteoarthritis.",
     },
     hasPage: true,
+    pageTitle: "Peties skausmas",
     priority: 1,
     topics: [
       { title: "Peties skausmas keliant ranką", page: "subakromialinis-skausmo-sindromas" },
@@ -126,6 +132,7 @@ const SECTION_LIST = [
       en: "Elbow and wrist pain, tendon overuse, stiffness after fractures.",
     },
     hasPage: true,
+    pageTitle: "Alkūnės ir riešo skausmas",
     priority: 2,
     topics: [
       { title: "Teniso alkūnė", page: "teniso-alkune" },
@@ -145,6 +152,7 @@ const SECTION_LIST = [
       en: "Ligament and meniscus injuries, fractures, restricted movement, overuse and osteoarthritis.",
     },
     hasPage: true,
+    pageTitle: "Kelio skausmas",
     priority: 1,
     topics: [
       { title: "Priekinio kryžminio raiščio plyšimas", page: "priekinio-kryzminio-raiscio-plysimas" },
@@ -171,6 +179,7 @@ const SECTION_LIST = [
       en: "Hip joint and groin pain, osteoarthritis, problems after hip replacement.",
     },
     hasPage: true,
+    pageTitle: "Klubo ir kirkšnies skausmas",
     priority: 2,
     topics: [
       { title: "Klubo sąnario artrozė" },
@@ -190,6 +199,7 @@ const SECTION_LIST = [
       en: "Heel, foot and ankle pain, ligament sprains, stress fractures.",
     },
     hasPage: true,
+    pageTitle: "Čiurnos, pėdos ir kulno skausmas",
     priority: 2,
     topics: [
       { title: "Plantarinis fascitas", page: "plantarinis-fascitas" },
@@ -212,6 +222,7 @@ const SECTION_LIST = [
       en: "Muscle and ligament injuries, fractures, return to sport and injury prevention.",
     },
     hasPage: true,
+    pageTitle: "Sporto traumos",
     priority: 1,
     topics: [
       { title: "Raumenų patempimai ir plyšimai", page: "raumenu-patempimas" },
@@ -236,6 +247,7 @@ const SECTION_LIST = [
       en: "Pain spreading from the back into the leg or from the neck into the arm, numbness.",
     },
     hasPage: true,
+    pageTitle: "Plintantis skausmas ir tirpimas",
     priority: 3,
     topics: [
       { title: "Skausmas plinta į koją (išialgija)", page: "isialgija-radikulopatija" },
@@ -253,6 +265,7 @@ const SECTION_LIST = [
       en: "Tendon inflammation and tendinopathy: pain during or after load.",
     },
     hasPage: true,
+    pageTitle: "Sausgyslių uždegimas ir tendinopatija",
     priority: 2,
     topics: [
       { title: "Teniso alkūnė", page: "teniso-alkune" },

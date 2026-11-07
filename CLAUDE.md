@@ -113,6 +113,9 @@
   Из этого файла строятся блок «Ką gydome» на главной (компьютер и телефон; до 07.11.2026 назывался «Kada galime padėti?»), `/ka-gydome`, sitemap
   и «хлебные крошки». Новая страница: файл в `src/content/conditions/`, поле `section` (свой раздел) и `page`
   у её темы в `sections.ts` (операция — в «Po operacijų» и в своей зоне). Сборка падает, если они расходятся.
+  В раскрытом разделе блока «Ką gydome» (телефон и компьютер) первой строкой под текстом — мятная ссылка на страницу
+  раздела с её заголовком H1 (`pageTitle` в `sections.ts`, сборка сверяет с `hero.h1`), потом темы, внизу «Registruotis».
+  Решение Piotr 07.11.2026: ссылка «Plačiau apie tai» в самом низу на телефоне не находилась.
 - Все страницы проблем на шаблоне G: разделы Po operacijų, Nugara, Kaklas, Petys, Kelias, Sporto traumos (пачки 1–4,
   PR #25, #27–#29), Sausgyslės и Plintantis skausmas (пачка 5, PR #30), Klubas ir kirkšnis, Čiurna pėda ir kulnas,
   Alkūnė ir riešas (пачка 7). С пачки 7 страницы есть у всех 11 разделов (`hasPage: true`).
