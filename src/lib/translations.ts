@@ -60,7 +60,8 @@ export const translations = {
     },
     visit: {
       title: "Pirmasis vizitas",
-      statement: "Išklausome, ištiriame judesį ir paaiškiname, kas vyksta. Sudarome planą ir pradedame gydymą.",
+      // Piotr, 07.11.2026: say plainly that the 60 minutes hold everything, without a long text.
+      statement: "Konsultacija, ištyrimas, gydymo planas ir gydymas: viskas viename vizite.",
       // From src/data/prices.ts, so the home page and /kainos always agree.
       facts: [FIRST_VISIT.duration, formatPrice(FIRST_VISIT.price, "lt")],
       offer: `Su paketu tolesni vizitai pigesni: kineziterapija nuo ${formatPrice(KT_FROM, "lt")} vietoj ${formatPrice(KT.price, "lt")}.`,
@@ -147,7 +148,7 @@ export const translations = {
     },
     visit: {
       title: "First visit",
-      statement: "We listen, assess how you move and explain what is going on. We make a plan and start treatment.",
+      statement: "Consultation, assessment, a treatment plan and treatment: all in one visit.",
       facts: [FIRST_VISIT.duration, formatPrice(FIRST_VISIT.price, "en")],
       offer: `Follow-up visits cost less in a package: physiotherapy from ${formatPrice(KT_FROM, "en")} instead of ${formatPrice(KT.price, "en")}.`,
       cta: "Book a visit",
