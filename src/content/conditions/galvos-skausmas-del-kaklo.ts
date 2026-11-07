@@ -85,7 +85,7 @@ export const galvosSkausmasDelKaklo: ConditionPage = {
   faq: [
     {
       q: "Kaip žinoti, ar galvos skausmas dėl kaklo?",
-      a: "Į tai rodo skausmas vienoje pusėje nuo pakaušio, susijęs su kaklo judesiais ar padėtimi, kartu su kaklo skausmu ir ribotu judesiu. Tiksliai pasakyti galima ištyrus.",
+      a: "Dažniausiai jį rodo skausmas vienoje pusėje nuo pakaušio, susijęs su kaklo judesiais ar padėtimi, kartu su kaklo skausmu ir ribotu judesiu. Tiksliai pasakyti galima ištyrus.",
     },
     {
       q: "Ar padeda kaklo masažas?",
