@@ -9,6 +9,10 @@
 Каждый push в `main` через ~4 минуты оказывается на reamed.lt
 (Cloud Build trigger `cloudrun-reamed-site-europe-west1-…` → Cloud Run `reamed-site`, europe-west1, проект `reamed-site`).
 
+- Трафик Cloud Run должен идти на последнюю ревизию («Send all traffic to the latest revision»).
+  7.11.2026 он оказался закреплён за одной ревизией, и влитые PR не выходили на сайт, хотя сборка проходила.
+  Превью через `--no-traffic --tag` после проверки возвращать командой
+  `gcloud run services update-traffic reamed-site --to-latest --region europe-west1`.
 - Никогда не коммитить и не пушить прямо в `main`.
 - Каждая задача — отдельная ветка и PR. Вливает Piotr (или по его явной просьбе).
 - Перед PR: `npx tsc --noEmit`, `npm run lint`, `npm run build` и проверка страницы в браузере на 375 px и 1280 px.

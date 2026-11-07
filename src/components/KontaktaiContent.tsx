@@ -23,6 +23,7 @@ const content = {
     saturday: "Šeštadienis",
     sunday: "Sekmadienis",
     sundayClosed: "Nedirbame",
+    privateNote: "Privati klinika: paslaugos mokamos, gydytojo siuntimo nereikia, su ligonių kasomis nedirbame.",
     mapCaption: "Olimpiečių g. 1A-7, Vilnius",
     mapClickHint: "Spustelėkite norėdami atidaryti žemėlapį",
     formTitle: "Palikite užklausą",
@@ -75,6 +76,7 @@ const content = {
     saturday: "Saturday",
     sunday: "Sunday",
     sundayClosed: "Closed",
+    privateNote: "Private clinic: services are paid, no doctor's referral is needed, we do not work with the state health insurance fund.",
     mapCaption: "Olimpiečių g. 1A-7, Vilnius",
     mapClickHint: "Click to open map",
     formTitle: "Leave a request",
@@ -258,6 +260,7 @@ export default function KontaktaiContent() {
                       <span className="text-muted w-[176px] flex-shrink-0">{c.sunday}</span>
                       <span className="font-medium text-muted/40">{c.sundayClosed}</span>
                     </div>
+                    <p className="mt-2 text-[0.875rem] leading-relaxed text-muted">{c.privateNote}</p>
                   </div>
                 </div>
               </li>
