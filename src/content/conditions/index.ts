@@ -6,9 +6,16 @@ import { skausmasNugarosApacioje } from "./skausmas-nugaros-apacioje";
 import { osteochondroze } from "./osteochondroze";
 import { plantarinisFascitas } from "./plantarinis-fascitas";
 import { reabilitacijaPoMeniskoOperacijos } from "./reabilitacija-po-menisko-operacijos";
+import { atsistatymasPoOperaciju } from "./atsistatymas-po-operaciju";
+import { ankstyvaReabilitacijaPoOperacijos } from "./ankstyva-reabilitacija-po-operacijos";
+import { reabilitacijaPoKryzminioRaiscioOperacijos } from "./reabilitacija-po-kryzminio-raiscio-operacijos";
+import { kelioSkausmas } from "./kelio-skausmas";
+import { priekinioKryzminioRaiscioPlysimas } from "./priekinio-kryzminio-raiscio-plysimas";
+import { meniskoPlysimas } from "./menisko-plysimas";
+import { patelofemoralinisSkausmas } from "./patelofemoralinis-skausmas";
 
 // Problem pages built from data (/ka-gydome/<slug>). Order = order inside each section.
-// The eight older pages still live in their own folders under src/app/ka-gydome/.
+// Older section pages not yet rewritten still live in their own folders under src/app/ka-gydome/.
 export const conditionPages: ConditionPage[] = [
   stuburoIsvarza,
   isialgijaRadikulopatija,
@@ -16,6 +23,14 @@ export const conditionPages: ConditionPage[] = [
   osteochondroze,
   plantarinisFascitas,
   reabilitacijaPoMeniskoOperacijos,
+  // Batch 2: two section pages (they replace the older ones at the same addresses) and five topics.
+  atsistatymasPoOperaciju,
+  ankstyvaReabilitacijaPoOperacijos,
+  reabilitacijaPoKryzminioRaiscioOperacijos,
+  kelioSkausmas,
+  priekinioKryzminioRaiscioPlysimas,
+  meniskoPlysimas,
+  patelofemoralinisSkausmas,
 ];
 
 export function getConditionPage(slug: string): ConditionPage | undefined {
@@ -44,6 +59,7 @@ for (const s of SECTIONS) {
   }
 }
 for (const p of conditionPages) {
+  if (p.slug === p.section) continue; // a section's own page
   if (!getSection(p.section).topics.some((t) => t.page === p.slug)) {
     throw new Error(`${p.slug}: its section ${p.section} in sections.ts does not list it`);
   }

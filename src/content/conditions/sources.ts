@@ -73,3 +73,84 @@ export const MENISCUS_ROOT_REHAB: Source = {
   year: 2023,
   doi: "10.4055/cios21231",
 };
+
+// Batch 2 (07.11.2026): Po operacijų and Kelias. All checked in PubMed.
+export const VAN_MELICK_2016: Source = {
+  authors: "van Melick N ir kt.",
+  title: "Evidence-based clinical practice update: practice guidelines for anterior cruciate ligament rehabilitation based on a systematic review and multidisciplinary consensus.",
+  journal: "Br J Sports Med",
+  year: 2016,
+  doi: "10.1136/bjsports-2015-095898",
+};
+
+export const GRINDEM_2016: Source = {
+  authors: "Grindem H ir kt.",
+  title: "Simple decision rules can reduce reinjury risk by 84% after ACL reconstruction: the Delaware-Oslo ACL cohort study.",
+  journal: "Br J Sports Med",
+  year: 2016,
+  doi: "10.1136/bjsports-2016-096031",
+};
+
+export const ARDERN_2016: Source = {
+  authors: "Ardern CL ir kt.",
+  title: "2016 Consensus statement on return to sport from the First World Congress in Sports Physical Therapy, Bern.",
+  journal: "Br J Sports Med",
+  year: 2016,
+  doi: "10.1136/bjsports-2016-096278",
+};
+
+export const ANKLE_FRACTURE_REHAB: Source = {
+  authors: "Lewis SR ir kt.",
+  title: "Rehabilitation for ankle fractures in adults.",
+  journal: "Cochrane Database Syst Rev",
+  year: 2024,
+  doi: "10.1002/14651858.CD005595.pub4",
+};
+
+export const FROBELL_2010: Source = {
+  authors: "Frobell RB ir kt.",
+  title: "A randomized trial of treatment for acute anterior cruciate ligament tears.",
+  journal: "N Engl J Med",
+  year: 2010,
+  doi: "10.1056/NEJMoa0907797",
+};
+
+export const ACL_RUPTURE_RECOMMENDATIONS: Source = {
+  authors: "Filbay SR, Grindem H.",
+  title: "Evidence-based recommendations for the management of anterior cruciate ligament (ACL) rupture.",
+  journal: "Best Pract Res Clin Rheumatol",
+  year: 2019,
+  doi: "10.1016/j.berh.2019.01.018",
+};
+
+export const KISE_2016: Source = {
+  authors: "Kise NJ ir kt.",
+  title: "Exercise therapy versus arthroscopic partial meniscectomy for degenerative meniscal tear in middle aged patients: randomised controlled trial with two year follow-up.",
+  journal: "BMJ",
+  year: 2016,
+  doi: "10.1136/bmj.i3740",
+};
+
+export const ESSKA_DEGENERATIVE_MENISCUS: Source = {
+  authors: "Beaufils P ir kt.",
+  title: "Surgical management of degenerative meniscus lesions: the 2016 ESSKA meniscus consensus.",
+  journal: "Knee Surg Sports Traumatol Arthrosc",
+  year: 2017,
+  doi: "10.1007/s00167-016-4407-4",
+};
+
+export const PFP_CPG: Source = {
+  authors: "Willy RW ir kt.",
+  title: "Patellofemoral Pain: clinical practice guidelines.",
+  journal: "J Orthop Sports Phys Ther",
+  year: 2019,
+  doi: "10.2519/jospt.2019.0302",
+};
+
+export const OARSI_2019: Source = {
+  authors: "Bannuru RR ir kt.",
+  title: "OARSI guidelines for the non-surgical management of knee, hip, and polyarticular osteoarthritis.",
+  journal: "Osteoarthritis Cartilage",
+  year: 2019,
+  doi: "10.1016/j.joca.2019.06.011",
+};

@@ -22,6 +22,8 @@ export type ConditionPage = {
   section: SectionSlug;
   /** Short name in section lists: "Stuburo išvarža". */
   navTitle: string;
+  /** Only on a section's own page (slug === section): heading over the section's topics. */
+  topicsTitle?: string;
   /** Google title and description. */
   meta: { title: string; description: string };
   /** Search phrase the page is built around, for MedicalCondition.name in schema.org. */
