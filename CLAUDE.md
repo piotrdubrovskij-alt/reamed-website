@@ -30,19 +30,22 @@
   Нынешние адреса не меняем.
 - Восемь нынешних страниц проблем становятся страницами-разделами и переписываются по шаблону G.
 
+Порядок строк — порядок разделов на сайте (главная, `/ka-gydome`), ревизия Piotr 07.11.2026.
+Операции стоят в «Po operacijų» и ещё раз в своей зоне. В коде дерево — `src/content/sections.ts`.
+
 | Раздел (адрес) | Страницы внутри | Приоритет |
 |---|---|---|
-| Po operacijų (`atsistatymas-po-operaciju`) | po PKR rekonstrukcijos; po menisko operacijos; po kelio artroskopijos; po peties artroskopijos ir rotatorių manžetės siūlės; po peties stabilizacijos; po Achilo sausgyslės plyšimo; po čiurnos lūžio ar operacijos; po riešo ir rankos lūžio; po klubo artroskopijos; po disko išvaržos operacijos; po stuburo stabilizacijos | 1, главный фокус |
-| Kelias (`kelio-skausmas`) | PKR plyšimas; menisko plyšimas; patelofemoralinis skausmas; girnelės sausgyslės tendinopatija; iliotibialinio trakto sindromas; kelio raiščių patempimas; kelio artrozė | 1 |
-| Petys (`peties-problemos`) | subakromialinis skausmas; rotatorių manžetės pažeidimas; sustingęs petys; peties išnirimas ir nestabilumas; AC sąnario trauma; kalcifikuojantis tendinitas | 1 |
-| Nugara (`nugaros-skausmas`) | stuburo (disko) išvarža; išialgija ir radikulopatija; skausmas nugaros apačioje; osteochondrozė; ūmus nugaros skausmas; stuburo kanalo stenozė; spondilolistezė; kryžkaulio ir klubo sąnario skausmas; skausmas tarp mentių; nugaros skausmas sėdint; laikysena; + операции на позвоночнике из «Po operacijų» | 1, такой же большой, как ортопедия |
-| Kaklas (`kaklo-skausmas`) | cervikalgija; kaklo radikulopatija; užstrigęs kaklas; kaklo trauma po avarijos; įtampos galvos skausmas; galvos skausmas dėl kaklo | 1 |
-| Sporto traumos (`sporto-traumos`) | šlaunies dvigalvio raumens patempimas; blauzdos raumens plyšimas; bėgimo traumos; grįžimas į sportą po traumos | 1 |
-| Sausgyslės (`tendinopatijos`, назвать «Sausgyslių uždegimas ir tendinopatija») | общая страница + ссылки на локоть, Ахилл, колено, плечо | 2 |
-| Alkūnė ir riešas (новый) | teniso alkūnė; golfo alkūnė; de Quervain; riešo kanalo sindromas | 2 |
-| Klubas ir kirkšnis (новый) | kirkšnies skausmas sportininkams; šoninis klubo skausmas; klubo FAI ir lūpos plyšimas; piriformio sindromas | 2 |
-| Čiurna ir pėda (новый) | plantarinis fascitas (приоритет 1); čiurnos patempimas; čiurnos nestabilumas; Achilo tendinopatija; blauzdos skausmas bėgikams | 2 |
-| Plintantis skausmas (`plintantis-skausmas`) | страница-симптом: ведёт на išialgiją и kaklo radikulopatiją | 3 |
+| Po operacijų (`atsistatymas-po-operaciju`) | Ankstyva reabilitacija po operacijos ir imobilizacijos (gipsas, įtvaras); Po kryžminio raiščio rekonstrukcijos; Po menisko operacijos; Po kelio artroskopijos; Po kelio lūžio operacijos; Po peties artroskopijos ir rotatorių manžetės siūlės; Po peties stabilizacijos; Po žastikaulio lūžio; Po riešo ir rankos lūžio; Po klubo artroskopijos; Po čiurnos lūžio ar operacijos; Po Achilo sausgyslės plyšimo; Po disko išvaržos operacijos; Po stuburo stabilizacijos | 1 |
+| Nugara (`nugaros-skausmas`) | Ūmus nugaros skausmas („užstrigo nugara“); Nugaros skausmas ir raumenų įtampa; Stuburo išvarža; Išialgija ir radikulopatija; Skausmas nugaros apačioje; Osteochondrozė; Stuburo kanalo stenozė; Spondilolistezė; Kryžkaulio ir klubo sąnario skausmas; Skausmas tarp mentių; Nugaros skausmas sėdint; Laikysenos problemos; Po disko išvaržos operacijos; Po stuburo stabilizacijos | 1 |
+| Kaklas (`kaklo-skausmas`) | Kaklo skausmas ir įtampa (cervikalgija); Užstrigęs kaklas; Ribotas kaklo judrumas; Kaklo osteochondrozė; Kaklo radikulopatija: skausmas plinta į ranką; Kaklo trauma po avarijos; Įtampos galvos skausmas; Galvos skausmas dėl kaklo | 1 |
+| Petys (`peties-problemos`) | Peties skausmas keliant ranką; Subakromialinis skausmo sindromas; Rotatorių manžetės pažeidimas; Dvigalvio raumens sausgyslės uždegimas; Kalcifikuojantis tendinitas; Sustingęs petys (adhezinis kapsulitas); Peties nestabilumas ir išnirimai; AC sąnario trauma; Peties sąnario artrozė; Po peties artroskopijos ir rotatorių manžetės siūlės; Po peties stabilizacijos; Po žastikaulio lūžio | 1 |
+| Alkūnė ir riešas (`alkunes-ir-rieso-skausmas`, страницы раздела пока нет) | Teniso alkūnė; Golfo alkūnė; Alkūnės sustingimas po traumos; De Quervain sindromas; Riešo kanalo sindromas; Riešo skausmas ir patempimai; Po riešo ir rankos lūžio | 2 |
+| Kelias (`kelio-skausmas`) | Priekinio kryžminio raiščio plyšimas; Užpakalinio kryžminio raiščio plyšimas; Vidinio šoninio raiščio pažeidimas; Menisko plyšimas; Kelio lūžiai; Ribotas kelio judrumas; Patelofemoralinis skausmas (bėgiko kelis); Šokėjo kelis (girnelės sausgyslės tendinopatija); Iliotibialinio trakto sindromas; Kelio artrozė; Po kryžminio raiščio rekonstrukcijos; Po menisko operacijos; Po kelio artroskopijos; Po kelio lūžio operacijos | 1 |
+| Klubas ir kirkšnis (`klubo-ir-kirksnies-skausmas`, страницы раздела пока нет) | Klubo sąnario artrozė; Skausmas ir sustingimas po klubo endoprotezavimo; Šoninis klubo skausmas (trochanterinis bursitas); Kirkšnies skausmas sportininkams; Klubo FAI ir sąnario lūpos plyšimas; Piriformio sindromas; Po klubo artroskopijos | 2 |
+| Čiurna, pėda ir kulnas (`ciurnos-ir-pedos-skausmas`, страницы раздела пока нет) | Plantarinis fascitas; Kulno atauga; Čiurnos patempimas; Čiurnos nestabilumas; Achilo tendinopatija; Stresiniai pėdos lūžiai; Čiurnos sąnario artrozė; Blauzdos skausmas bėgikams; Po čiurnos lūžio ar operacijos; Po Achilo sausgyslės plyšimo | 2 |
+| Sporto traumos (`sporto-traumos`) | Raumenų patempimai ir plyšimai; Šlaunies dvigalvio raumens patempimas; Pritraukiamųjų raumenų patempimas; Blauzdos raumens plyšimas; Raumens sumušimas; Raiščių patempimai ir plyšimai; Lūžiai ir grįžimas į sportą po lūžio; Stresiniai lūžiai; Peties išnirimas sportuojant; Bėgimo traumos; Grįžimas į sportą po traumos; Traumų prevencija | 1 |
+| Plintantis skausmas (`plintantis-skausmas`) | Skausmas plinta į koją (išialgija); Skausmas plinta į ranką iš kaklo; Tirpsta ranka ar pirštai; Riešo kanalo sindromas; Piriformio sindromas | 3 |
+| Sausgyslės (`tendinopatijos`) | Teniso alkūnė; Golfo alkūnė; Šokėjo kelis; Achilo tendinopatija; Peties sausgyslių tendinopatija; Dvigalvio raumens sausgyslės uždegimas; Sėdmenų sausgyslių tendinopatija; De Quervain sindromas | 2 |
 
 **Остальное по плану.**
 - Услуги: kineziterapija; manualinė terapija (по методу Мейтланда, Mangirdas); osteopatija (структуральная,
@@ -57,9 +60,11 @@
 - Языки: сейчас литовский; английский и русский потом, адресами `/en`, `/ru` с hreflang.
 
 **Уточнения Piotr (07.11.2026).**
-- Не берём: замены суставов, сколиоз и детей (это FitKid, старые детские адреса ведут на fitkid.lt), челюсть,
-  тазовое дно, беременных.
-- Пост-операционный фокус: передняя крестообразная, плечо, мениск и другие суставные операции.
+- Не берём: реабилитацию после замены суставов как направление «Po operacijų», сколиоз и детей (это FitKid,
+  старые детские адреса ведут на fitkid.lt), челюсть, тазовое дно, беременных. Но в «Klubas ir kirkšnis» есть тема
+  «sunkumai po klubo endoprotezavimo» и artrozė (уточнение Piotr, 07.11.2026).
+- Пост-операционный фокус: передняя крестообразная, плечо, мениск и другие суставные операции. Почти после каждой
+  ортопедической операции есть гипс или ортез — отдельная тема о ранней мягкой (пассивной) кинезитерапии.
 - «Reabilitacija» пишем открыто, но всегда рядом «privati, be siuntimo, be eilių».
 - Сколько визитов: острое состояние — несколько визитов; затянувшаяся радикулопатия — 10 и больше, по стадии;
   для коррекции — обычно не меньше 5.
