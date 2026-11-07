@@ -56,7 +56,7 @@ export const stuburoKanaloStenoze: ConditionPage = {
     ],
   },
   urgent: {
-    note: "Šiais atvejais nedelsdami kreipkitės į gydytoją ar skubiosios pagalbos skyrių.",
+    note: "Šiais atvejais pirmiausia kreipkitės į gydytoją, o sutrikus šlapinimuisi ar tuštinimuisi nedelsdami į skubiosios pagalbos skyrių.",
     items: [
       "Sutriko šlapinimasis ar tuštinimasis, nutirpo tarpvietė",
       "Greitai silpnėja koja ar pėda, kliūva pėda einant",

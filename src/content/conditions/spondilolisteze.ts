@@ -49,7 +49,7 @@ export const spondilolisteze: ConditionPage = {
       { title: "Aktyvumas:", text: "vaikščiojimas, dviratis, plaukimas, laipsniškas grįžimas prie sporto." },
     ],
     paragraphs: [
-      "Mūsų klinikoje paprastai reikia ne mažiau kaip 5 vizitų per kelias savaites. Jei skausmas plinta į kojas ir trunka seniai, gydymas trunka ilgiau. Pratimus namuose verta tęsti ir vėliau.",
+      "Mūsų klinikoje paprastai reikia ne mažiau kaip 5 vizitų per kelias savaites. Jei skausmas plinta į kojas ir tęsiasi seniai, gydymas užtrunka ilgiau. Pratimus namuose verta tęsti ir vėliau.",
     ],
   },
   urgent: {

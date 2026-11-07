@@ -54,7 +54,7 @@ export const reabilitacijaPoDiskoIsvarzosOperacijos: ConditionPage = {
       { title: "Grįžimas prie darbo ir sporto:", text: "kėlimas, ilgas sėdėjimas, bėgimas ir sporto judesiai pagal etapus." },
     ],
     paragraphs: [
-      "Tyrimuose pratimų programos dažniausiai truko 6–12 savaičių. Kiek vizitų reikės, pasakome po pirmojo vizito; namų pratimai yra tokia pat svarbi gydymo dalis kaip vizitai.",
+      "Tyrimuose pratimų programos dažniausiai truko 6–13 savaičių. Kiek vizitų reikės, pasakome po pirmojo vizito; namų pratimai yra tokia pat svarbi gydymo dalis kaip vizitai.",
     ],
   },
   urgent: {

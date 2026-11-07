@@ -23,7 +23,7 @@ export const ciurnosPatempimas: ConditionPage = {
     paragraphs: [
       "Raiščių pažeidimas gali būti nuo nedidelio patempimo iki visiško plyšimo. Patempimo sunkumą patikimiausiai įvertina apžiūra praėjus 4–5 dienoms po traumos, kai sumažėja tinimas ir skausmas.",
       "Olandų gairės nurodo, kad trumpa imobilizacija gali sumažinti skausmą ir tinimą, bet daugiausia naudos duoda teipas ar įtvaras kartu su pratimų programa. Prižiūrimi pratimai rekomenduojami labiau nei pasyvios procedūros, o operacija paliekama tiems, kuriems nepadėjo išsamus gydymas pratimais.",
-      "Amerikos kineziterapeutų gairės pabrėžia, kad dauguma žmonių atsistato, bet dalis vėliau jaučia, kad čiurna „lūžta“, ir patempimai kartojasi. Tai vadinama lėtiniu čiurnos nestabilumu, todėl pusiausvyros ir jėgos pratimai svarbūs ir tada, kai jau nebeskauda.",
+      "Amerikos kineziterapeutų gairės pabrėžia, kad dauguma žmonių atsistato, bet dalis vėliau jaučia, kad čiurna nestabili, koja vis pasisuka, ir patempimai kartojasi. Tai vadinama lėtiniu čiurnos nestabilumu, todėl pusiausvyros ir jėgos pratimai svarbūs ir tada, kai jau nebeskauda.",
     ],
   },
   when: {

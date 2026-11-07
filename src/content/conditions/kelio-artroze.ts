@@ -75,7 +75,7 @@ export const kelioArtroze: ConditionPage = {
       "Po kritimo ar traumos negalite atsiremti į koją",
       "Kelias užstrigo ir negalite jo ištiesti",
       "Staiga patino ir skauda blauzdą",
-      "Kelią stipriai skauda ramybėje ir naktį, be priežasties krenta svoris",
+      "Kelį stipriai skauda ramybėje ir naktį, be priežasties krenta svoris",
     ],
   },
   team: {

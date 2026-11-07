@@ -75,7 +75,7 @@ export const kulnoAtauga: ConditionPage = {
     },
     {
       q: "Ar atauga išnyks?",
-      a: "Ne, kaulinė atauga lieka. Bet skausmas gali visiškai praeiti, nors atauga rentgene ir lieka.",
+      a: "Ne, kaulinė atauga dažniausiai lieka. Bet skausmas gali visiškai praeiti ir su ja.",
     },
     {
       q: "Kokius batus rinktis?",
