@@ -115,7 +115,10 @@ Search Console — в аккаунте info@reamed.lt (`sc-domain:reamed.lt`), �
   и с Edmundas, литовская 404 — PR #23
 - [ ] **Исследование запросов** (Keyword Planner в Google Ads) → таблица «запрос → страница», LT/EN/RU
 - [ ] **Тексты в файлы данных** и один шаблон страницы болезни: прямой ответ, симптомы, красные флаги,
-  оценка, лечение, цена, вопросы (`FAQPage`), литература, «Peržiūrėjo»
+  оценка, лечение, цена, вопросы (`FAQPage`), литература, «Peržiūrėjo». Шаблон по макету G
+  (`ConditionPageContent`, данные в `src/content/conditions/`) и первые шесть страниц (пачка 1: stuburo išvarža,
+  išialgija, skausmas nugaros apačioje, osteochondrozė, plantarinis fascitas, po menisko operacijos) — ветка
+  `feat/condition-template`, ждёт «ок» по текстам. Следом перевести на шаблон 8 старых страниц проблем и 6 услуг
 - [ ] **Ядро LT, приоритет 1:** po operacijų (+ po stuburo operacijų), kelias, petys, nugara, kaklas
   (+ įtampos galvos skausmas), sporto traumos; услуги заново (+ kinezioteipavimas, Redcord, elektroterapija,
   ultragarsas; остеопатия — структуральная; мануальная — Мейтланд); «Privati reabilitacija be siuntimo»,

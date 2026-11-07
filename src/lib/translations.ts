@@ -36,48 +36,6 @@ export const translations = {
       title: "Kada galime padėti?",
       register: "Registruotis",
       more: "Plačiau apie tai",
-      items: [
-        {
-          slug: "nugaros-skausmas",
-          title: "Nugaros skausmas",
-          text: "Ūmus ar pasikartojantis skausmas, sustingimas, judesio ribotumas. Įvertiname problemos pobūdį ir parenkame tinkamiausią gydymo kryptį.",
-        },
-        {
-          slug: "kaklo-skausmas",
-          title: "Kaklo skausmas",
-          text: "Įtampa, skausmas, judesio ribotumas ar pojūčiai, plintantys į petį ar ranką. Įvertiname ir parenkame tinkamiausią gydymo kryptį.",
-        },
-        {
-          slug: "peties-problemos",
-          title: "Peties problemos",
-          text: "Skausmas, ribotas judesys, trauminė ar lėtinė būklė, trukdanti dirbti, sportuoti ir ilsėtis.",
-        },
-        {
-          slug: "kelio-skausmas",
-          title: "Kelio skausmas ir traumos",
-          text: "Raiščių ir menisko problemos, perkrovos, atsistatymas po kelio operacijos.",
-        },
-        {
-          slug: "sporto-traumos",
-          title: "Sporto traumos",
-          text: "Traumos, perkrovos ir pasikartojantis skausmas, kurie sustabdo treniruotes. Planas grįžti į krūvį saugiai.",
-        },
-        {
-          slug: "atsistatymas-po-operaciju",
-          title: "Atsistatymas po operacijų",
-          text: "Saugiai atkuriame judrumą, jėgą ir pasitikėjimą judesiu pagal konkretų gijimo etapą.",
-        },
-        {
-          slug: "plintantis-skausmas",
-          title: "Plintantis skausmas ir tirpimas",
-          text: "Skausmas, plintantis į ranką ar koją, tirpimas, dilgčiojimas. Įvertiname simptomų pobūdį ir parenkame kryptį.",
-        },
-        {
-          slug: "tendinopatijos",
-          title: "Tendinopatijos ir perkrovos",
-          text: "Skausmas krūvio metu ar po jo, jautrumas, sumažėjusi apkrovos tolerancija.",
-        },
-      ],
     },
     services: {
       title: "Kineziterapija, manualinė terapija ir osteopatija",
@@ -163,48 +121,6 @@ export const translations = {
       title: "When can we help?",
       register: "Book a visit",
       more: "Read more",
-      items: [
-        {
-          slug: "nugaros-skausmas",
-          title: "Back pain",
-          text: "Acute or recurring pain, stiffness, restricted movement. We assess the nature of the problem and choose the most suitable treatment direction.",
-        },
-        {
-          slug: "kaklo-skausmas",
-          title: "Neck pain",
-          text: "Tension, pain, restricted movement or sensations spreading to the shoulder or arm. We assess and choose the most suitable treatment direction.",
-        },
-        {
-          slug: "peties-problemos",
-          title: "Shoulder problems",
-          text: "Pain, restricted movement, an injury or a long-standing condition that gets in the way of work, sport and rest.",
-        },
-        {
-          slug: "kelio-skausmas",
-          title: "Knee pain and injuries",
-          text: "Ligament and meniscus problems, overuse, recovery after knee surgery.",
-        },
-        {
-          slug: "sporto-traumos",
-          title: "Sports injuries",
-          text: "Injuries, overuse and recurring pain that stop your training. A plan to return to load safely.",
-        },
-        {
-          slug: "atsistatymas-po-operaciju",
-          title: "Recovery after surgery",
-          text: "We safely rebuild mobility, strength and confidence in movement, matched to your stage of healing.",
-        },
-        {
-          slug: "plintantis-skausmas",
-          title: "Radiating pain and numbness",
-          text: "Pain spreading to the arm or leg, numbness, tingling. We assess the nature of the symptoms and choose a direction.",
-        },
-        {
-          slug: "tendinopatijos",
-          title: "Tendinopathies and overuse",
-          text: "Pain during or after load, tenderness, lower tolerance to load.",
-        },
-      ],
     },
     services: {
       title: "Physiotherapy, manual therapy and osteopathy",
