@@ -106,10 +106,10 @@
   Из этого файла строятся блок «Kada galime padėti?» на главной (компьютер и телефон), `/ka-gydome`, sitemap
   и «хлебные крошки». Новая страница: файл в `src/content/conditions/`, поле `section` (свой раздел) и `page`
   у её темы в `sections.ts` (операция — в «Po operacijų» и в своей зоне). Сборка падает, если они расходятся.
-- Разделы Po operacijų, Nugara, Kaklas, Petys, Kelias, Sporto traumos уже на шаблоне G (пачки 1–4, PR #25, #27–#29).
-  В старом виде остались две страницы проблем (`ka-gydome/plintantis-skausmas`, `ka-gydome/tendinopatijos`)
-  и услуги (`paslaugos/*`): контент прямо в компоненте объектом `content = { lt, en }`. Компоненты проблем записаны
-  длинными однострочниками — правки делать точечно. Их переводим на шаблон G; новые страницы в старом виде не делать.
+- Все страницы проблем на шаблоне G: разделы Po operacijų, Nugara, Kaklas, Petys, Kelias, Sporto traumos (пачки 1–4,
+  PR #25, #27–#29), Sausgyslės и Plintantis skausmas (пачка 5, PR #30). У разделов Alkūnė ir riešas, Klubas ir kirkšnis,
+  Čiurna страниц пока нет: их темы ведут «← Ką gydome». В старом виде остались только услуги (`paslaugos/*`):
+  контент прямо в компоненте объектом `content = { lt, en }`. Их переводим на шаблон G; новые страницы в старом виде не делать.
 - Тексты пачек — в Claude Docs «reamed.lt: пачка N», код страницы и документ должны совпадать дословно.
 - `src/components/sections/` — блоки главной.
 - `src/lib/translations.ts` — тексты главной и общих блоков (lt/en).

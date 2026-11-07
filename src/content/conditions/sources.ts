@@ -314,3 +314,103 @@ export const CALF_RISK_2017: Source = {
   year: 2017,
   doi: "10.1136/bjsports-2016-097177",
 };
+
+// Batch 5 (Sausgyslės, Plintantis skausmas and their topics), checked in PubMed on 07.11.2026.
+export const ICON_2019: Source = {
+  authors: "Scott A ir kt.",
+  title: "ICON 2019: International Scientific Tendinopathy Symposium Consensus: Clinical Terminology.",
+  journal: "Br J Sports Med",
+  year: 2020,
+  doi: "10.1136/bjsports-2019-100885",
+};
+
+export const TENDINOPATHY_NRDP_2021: Source = {
+  authors: "Millar NL ir kt.",
+  title: "Tendinopathy.",
+  journal: "Nat Rev Dis Primers",
+  year: 2021,
+  doi: "10.1038/s41572-020-00234-1",
+};
+
+export const COOMBES_2010: Source = {
+  authors: "Coombes BK ir kt.",
+  title:
+    "Efficacy and safety of corticosteroid injections and other injections for management of tendinopathy: a systematic review of randomised controlled trials.",
+  journal: "Lancet",
+  year: 2010,
+  doi: "10.1016/S0140-6736(10)61160-9",
+};
+
+export const COOMBES_2013: Source = {
+  authors: "Coombes BK ir kt.",
+  title:
+    "Effect of corticosteroid injection, physiotherapy, or both on clinical outcomes in patients with unilateral lateral epicondylalgia: a randomized controlled trial.",
+  journal: "JAMA",
+  year: 2013,
+  doi: "10.1001/jama.2013.129",
+};
+
+export const LATERAL_ELBOW_CPG: Source = {
+  authors: "Lucado AM ir kt.",
+  title: "Lateral Elbow Pain and Muscle Function Impairments.",
+  journal: "J Orthop Sports Phys Ther",
+  year: 2022,
+  doi: "10.2519/jospt.2022.0302",
+};
+
+export const ACHILLES_CPG: Source = {
+  authors: "Martin RL ir kt.",
+  title: "Achilles Pain, Stiffness, and Muscle Power Deficits: Midportion Achilles Tendinopathy Revision 2018.",
+  journal: "J Orthop Sports Phys Ther",
+  year: 2018,
+  doi: "10.2519/jospt.2018.0302",
+};
+
+export const MELLOR_2018: Source = {
+  authors: "Mellor R ir kt.",
+  title:
+    "Education plus exercise versus corticosteroid injection use versus a wait and see approach on global outcome and pain from gluteal tendinopathy: prospective, single blinded, randomised clinical trial.",
+  journal: "BMJ",
+  year: 2018,
+  doi: "10.1136/bmj.k1662",
+};
+
+export const GRIMALDI_2015: Source = {
+  authors: "Grimaldi A ir kt.",
+  title: "Gluteal Tendinopathy: A Review of Mechanisms, Assessment and Management.",
+  journal: "Sports Med",
+  year: 2015,
+  doi: "10.1007/s40279-015-0336-5",
+};
+
+export const CTS_CPG: Source = {
+  authors: "Erickson M ir kt.",
+  title: "Hand Pain and Sensory Deficits: Carpal Tunnel Syndrome.",
+  journal: "J Orthop Sports Phys Ther",
+  year: 2019,
+  doi: "10.2519/jospt.2019.0301",
+};
+
+export const PADUA_2016: Source = {
+  authors: "Padua L ir kt.",
+  title: "Carpal tunnel syndrome: clinical features, diagnosis, and management.",
+  journal: "Lancet Neurol",
+  year: 2016,
+  doi: "10.1016/S1474-4422(16)30231-9",
+};
+
+export const CTS_MANUAL_VS_SURGERY: Source = {
+  authors: "Fernández-de-Las-Peñas C ir kt.",
+  title: "Manual Physical Therapy Versus Surgery for Carpal Tunnel Syndrome: A Randomized Parallel-Group Trial.",
+  journal: "J Pain",
+  year: 2015,
+  doi: "10.1016/j.jpain.2015.07.012",
+};
+
+export const BOGDUK_2009: Source = {
+  authors: "Bogduk N.",
+  title: "On the definitions and physiology of back pain, referred pain, and radicular pain.",
+  journal: "Pain",
+  year: 2009,
+  doi: "10.1016/j.pain.2009.08.020",
+};
