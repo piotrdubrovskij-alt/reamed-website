@@ -119,6 +119,14 @@ for (const s of SECTIONS) {
   for (const t of s.topics) {
     if (t.page && !getConditionPage(t.page)) throw new Error(`sections.ts: «${t.title}» links to missing page ${t.page}`);
   }
+  // A section with a page names it by that page's H1 in the «Ką gydome» block.
+  if (s.hasPage) {
+    const own = getConditionPage(s.slug);
+    if (!own) throw new Error(`sections.ts: ${s.slug} has hasPage but no page file`);
+    if (s.pageTitle !== own.hero.h1) {
+      throw new Error(`sections.ts: ${s.slug} pageTitle «${s.pageTitle}» ≠ page H1 «${own.hero.h1}»`);
+    }
+  }
 }
 for (const p of conditionPages) {
   if (p.slug === p.section) continue; // a section's own page
