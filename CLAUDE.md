@@ -43,6 +43,38 @@
   URL не меняется, `<html lang>` всегда `lt`. Переход на `/en/...` — пункт плана.
   На телефоне (до lg) язык переключается в шапке: кнопка «LT ▾» со списком; в мобильном меню и футере переключателя нет.
 
+## Запись онлайн: `/rezervacija` (ноябрь 2026)
+
+- Движок — система клиники (репозиторий `klinika-system`, боевой сервер Cloud Run `klinika`): каталог, свободное время,
+  удержание, Paysera, письма, запись в календари. План и правила — там: `docs/WEBSITE_BOOKING.md`, `AGENTS.md`
+  («Online booking»). Сайт ничего не считает сам: цены, длительности и правила приходят с сервера.
+- Код: `src/app/rezervacija/**` (страница, `rezultatas` — возврат из Paysera, `uzsakymas?t=` — заказ по ссылке из письма,
+  `mano-vizitai` — вход по коду на email, `salygos` — условия), `src/components/booking/*`, `src/lib/booking/*`.
+  Единственная дверь к системе — `src/app/api/booking/[...path]/route.ts`: прокси с белым списком маршрутов, ключ
+  `X-Website-Key` и адрес системы только на сервере; сессия пациента — HttpOnly-cookie `reamed_patient`
+  (Path `/api/booking`), токен в браузер не попадает.
+- Переменные: `KLINIKA_API_ORIGIN`, `WEBSITE_API_KEY` (секрет `klinika-website-api-key` в проекте reamed-site; подключается
+  `scripts/cloud-booking-env.sh` в Cloud Shell). Без них страница говорит «registracija internetu dar neįjungta».
+- Локально без системы: `node scripts/mock-booking-api.mjs` и `KLINIKA_API_ORIGIN=http://127.0.0.1:4100
+  WEBSITE_API_KEY=mock-website-key-0123456789abcdef0123 npm run dev` (код входа 123456, фальшивая страница Paysera).
+- До запуска страницы `noindex`, в меню и футере не ссылаются; `/registracija` с формой остаётся. Замена — после
+  сквозной проверки (klinika-system, этап 3). Тексты условий на `/rezervacija/salygos` — утверждённая редакция
+  условий системы клиники (12 часов, 15 €, Paysera); менять только через `docs/DECISIONS.md` там.
+- Счёт-фактура (03.11.2026): на шаге «Jūsų duomenys» переключатель «Fiziniam asmeniui / Įmonei» (фирма: pavadinimas,
+  kodas 7–12 цифр, PVM kodas необязателен, adresas) уходит с заказом полем `invoice`; система выписывает счёт после
+  оплаты и шлёт его сама. На странице заказа — кнопка «Atsisiųsti sąskaitą faktūrą»: PDF идёт через прокси
+  (`GET orders/:id/invoice.pdf`, пропускается как файл) по той же ссылке заказа или сессии. Сайт счёт не рисует.
+- Кабинет пациента (04.11.2026, решение Piotr: без пароля и соцвхода, код на e-mail): cookie `reamed_patient`
+  живёт 90 дней; `GET me` без cookie прокси отвечает 200 `{email:null}` (страница записи спрашивает его при каждой
+  загрузке и заполняет форму из `profile`), `me/orders` без cookie — 403. На странице заказа: конкретный срок
+  переноса из `changeDeadline` (общий текст «12 valandų» на экранах остаётся), «Pridėti į kalendorių» —
+  `GET orders/:id/calendar.ics?item=` через прокси как файл `text/calendar`, «Registruotis dar kartą» —
+  `/rezervacija?specialistas=<slug>&paslauga=<id>` (через `useSearchParams` в Suspense: при переходе по ссылке внутри сайта `window.location` ещё показывает прошлую страницу).
+  Подсказка опечаток e-mail — `src/lib/booking/email-hint.ts`, только в браузере. Смена e-mail пациентом не
+  предусмотрена: её делает администрация в системе клиники.
+- Все времена показываем по Вильнюсу (`Europe/Vilnius`), независимо от устройства. Ошибки сервера — литовские;
+  английские варианты — отдельная задача.
+
 ## Отзывы
 
 - `src/data/reviews.ts` — настоящие отзывы из Google-карточки ReaMed, отобраны вручную.

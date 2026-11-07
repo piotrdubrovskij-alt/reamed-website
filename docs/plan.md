@@ -21,6 +21,28 @@
   (было — центр Вильнюса), в `address` добавлен `postalCode: "09200"`, добавлен `sameAs` со ссылкой
   на Google-карточку клиники — PR #5
 
+- [ ] **Запись онлайн `/rezervacija`** (решение Piotr 01.11.2026, движок — система клиники): страница записи с корзиной,
+  оплата через Paysera, страница результата, заказ по ссылке из письма, «Mano vizitai» по коду на email, условия;
+  прокси `/api/booking/*` к системе с серверным ключом; `scripts/mock-booking-api.mjs` для локальной разработки;
+  `scripts/cloud-booking-env.sh` для подключения в Cloud Run. До запуска `noindex` и без ссылок в меню — PR #17.
+  Дальше: подключить ключ и адрес системы (`cloud-booking-env.sh`), сквозная проверка в Test Mode Paysera, затем
+  заменить `/registracija` (п. 10) и добавить ссылку в шапку/футер. 02.11.2026: ключ подключён, цепочка оплата →
+  календарь → письма → перенос → отмена проверена на превью-ревизии. 03.11.2026 (в том же PR): счёт-фактура —
+  на шаге «Jūsų duomenys» выбор «Fiziniam asmeniui / Įmonei» с реквизитами фирмы, на странице заказа кнопка
+  «Atsisiųsti sąskaitą faktūrą» (PDF через прокси `orders/:id/invoice.pdf`); счёт выписывает и шлёт система
+  (с saskaitos@reamed.lt). 04.11.2026 (тот же PR, решение Piotr о кабинете пациента): cookie сессии 90 дней;
+  вошедшему пациенту форма заполняется из последнего заказа (`GET me` → `profile`); подсказка опечатки домена
+  e-mail («Gal turėjote omenyje gmail.com?»); на странице заказа и в «Mano vizitai» у каждого визита конкретный
+  срок «Pakeisti ar atšaukti galima iki …», «Pridėti į kalendorių» (.ics через прокси `orders/:id/calendar.ics`)
+  и «Registruotis dar kartą» (`/rezervacija?specialistas=…&paslauga=…` выбирает специалиста и услугу).
+
+- [ ] **Перевыпустить ключ Resend сайта** (решение Piotr 02.11.2026). 02.11.2026 при проверке переменных сервиса
+  `reamed-site` в Cloud Shell на экран попала часть значения `RESEND_API_KEY`. Порядок: в resend.com → API Keys создать
+  новый ключ (sending only), в Cloud Run `reamed-site` (europe-west1) заменить переменную `RESEND_API_KEY`
+  (`gcloud run services update reamed-site --region europe-west1 --update-env-vars RESEND_API_KEY=…` — значение вводит
+  Piotr в Cloud Shell, не в чат), проверить форму `/registracija`, затем удалить старый ключ в resend.com.
+  Заодно перенести ключ из обычной переменной в Secret Manager, как `WEBSITE_API_KEY`.
+
 ## P0 — сразу
 
 - [ ] **2. Контраст кнопок и ссылок.** Белый на `#7DB9B5` = 2,2:1.
