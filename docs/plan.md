@@ -139,6 +139,10 @@ Search Console — в аккаунте info@reamed.lt (`sc-domain:reamed.lt`), �
     внутри кинезитерапии, тейпирование — дополнение к визиту. Пачка 7 по услугам отменена.
   - [ ] «Privati reabilitacija be siuntimo», «Chiropraktikas Vilniuje?», «Apie mus», DUK
 - [ ] **Статьи LT:** 5–10 на раздел, заголовок — вопрос из поиска
+  - Обязательно: хиропрактика («Chiropraktikas Vilniuje?»), Redcord, kineziologinis teipavimas — статьями со ссылками
+    на страницы болезней и услуг (решение Piotr 07.11.2026).
+  - [ ] План статей (список заголовков по разделам, спрос, куда ведёт каждая) — Claude Doc на правку Piotr
+  - [ ] Шаблон статьи в коде: `/straipsniai/<slug>`, `Article` в JSON-LD, статьи раздела на его странице
 - [ ] **Приоритет 2:** alkūnė ir riešas, klubas ir kirkšnis, čiurna ir pėda, sausgyslės
   - [x] Пачка 5: разделы Sausgyslės и Plintantis skausmas заново на шаблоне G; темы teniso alkūnė, riešo kanalo
     sindromas, Achilo tendinopatija, šoninis klubo skausmas, tirpsta ranka (итого 33 страницы) — PR #30
