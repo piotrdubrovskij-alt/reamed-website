@@ -7,7 +7,7 @@ import { useLanguage } from "@/contexts/LanguageContext";
 import SectionTopics from "@/components/SectionTopics";
 import { SECTIONS, type Section } from "@/content/sections";
 
-// «Kada galime padėti?»: the sections of the plan's table (src/content/sections.ts), in its order.
+// «Ką gydome» (was «Kada galime padėti?»): the sections of the plan's table (src/content/sections.ts), in its order.
 // Each one opens to what it holds (pages as links) and the way to book or read more.
 
 // Row button: full column width, 52px, ground pill on the paper section.

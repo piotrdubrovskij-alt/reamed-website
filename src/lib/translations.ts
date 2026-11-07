@@ -1,4 +1,8 @@
-import { FIRST_VISIT, formatPrice } from "@/data/prices";
+import { FIRST_VISIT, formatPrice, getPricedService } from "@/data/prices";
+
+// «Pirmasis vizitas» offer line: one kinesitherapy visit vs the cheapest visit in a package, from prices.ts.
+const KT = getPricedService("kineziterapija");
+const KT_FROM = Math.min(...(KT.packs ?? []).map((p) => p.unit));
 
 export type Language = "lt" | "en";
 
@@ -33,7 +37,8 @@ export const translations = {
       cta: "Registruotis vizitui",
     },
     areas: {
-      title: "Kada galime padėti?",
+      // Same name as the menu item that leads here (Piotr, 07.11.2026): one name for one place.
+      title: "Ką gydome",
       register: "Registruotis",
       more: "Plačiau apie tai",
     },
@@ -55,9 +60,11 @@ export const translations = {
     },
     visit: {
       title: "Pirmasis vizitas",
-      statement: "Išklausome, ištiriame judesį ir paaiškiname, kas vyksta. Sudarome planą ir pradedame gydymą.",
+      // Piotr, 07.11.2026: say plainly that the 60 minutes hold everything, without a long text.
+      statement: "Konsultacija, ištyrimas, gydymo planas ir gydymas: viskas viename vizite.",
       // From src/data/prices.ts, so the home page and /kainos always agree.
       facts: [FIRST_VISIT.duration, formatPrice(FIRST_VISIT.price, "lt")],
+      offer: `Su paketu tolesni vizitai pigesni: kineziterapija nuo ${formatPrice(KT_FROM, "lt")} vietoj ${formatPrice(KT.price, "lt")}.`,
       cta: "Registruotis vizitui",
       prices: "Visos kainos ir paketai",
       photoAlt: "Kineziterapeutas dirba su paciente",
@@ -119,7 +126,7 @@ export const translations = {
       cta: "Book a visit",
     },
     areas: {
-      title: "When can we help?",
+      title: "What we treat",
       register: "Book a visit",
       more: "Read more",
     },
@@ -141,8 +148,9 @@ export const translations = {
     },
     visit: {
       title: "First visit",
-      statement: "We listen, assess how you move and explain what is going on. We make a plan and start treatment.",
+      statement: "Consultation, assessment, a treatment plan and treatment: all in one visit.",
       facts: [FIRST_VISIT.duration, formatPrice(FIRST_VISIT.price, "en")],
+      offer: `Follow-up visits cost less in a package: physiotherapy from ${formatPrice(KT_FROM, "en")} instead of ${formatPrice(KT.price, "en")}.`,
       cta: "Book a visit",
       prices: "All prices and packages",
       photoAlt: "A physiotherapist working with a patient",
