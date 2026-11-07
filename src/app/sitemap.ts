@@ -1,59 +1,24 @@
 import type { MetadataRoute } from "next";
+import { SITE_URL } from "@/lib/seo";
+import { specialists } from "@/lib/specialists";
+import { translations } from "@/lib/translations";
 
-const BASE_URL = "https://reamed.lt";
+// No lastModified on purpose: the site does not track when each page's text
+// really changed, and a date that is always "now" teaches Google to ignore it.
+// Pages will get real dates when their texts move into content files.
+//
+// /registracija is noindex and stays out.
+
+const staticPaths = ["/", "/ka-gydome", "/paslaugos", "/specialistai", "/kainos", "/kontaktai", "/privatumas"];
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const now = new Date();
-
-  const staticRoutes: MetadataRoute.Sitemap = [
-    { url: BASE_URL, lastModified: now, changeFrequency: "monthly", priority: 1 },
-    { url: `${BASE_URL}/kontaktai`, lastModified: now, changeFrequency: "yearly", priority: 0.8 },
-    { url: `${BASE_URL}/kainos`, lastModified: now, changeFrequency: "monthly", priority: 0.8 },
-    { url: `${BASE_URL}/privatumas`, lastModified: now, changeFrequency: "yearly", priority: 0.3 },
-    // /registracija is noindex — intentionally excluded from sitemap
+  const lt = translations.lt;
+  const paths = [
+    ...staticPaths,
+    ...lt.areas.items.map((a) => `/ka-gydome/${a.slug}`),
+    ...lt.services.items.map((s) => `/paslaugos/${s.slug}`),
+    ...specialists.map((s) => `/specialistai/${s.slug}`),
   ];
 
-  const serviceRoutes: MetadataRoute.Sitemap = [
-    "kineziterapija",
-    "manualine-terapija",
-    "osteopatija",
-    "sporto-reabilitacija",
-    "pooperacine-reabilitacija",
-    "gydomasis-masazas",
-  ].map((slug) => ({
-    url: `${BASE_URL}/paslaugos/${slug}`,
-    lastModified: now,
-    changeFrequency: "monthly" as const,
-    priority: 0.9,
-  }));
-
-  const conditionRoutes: MetadataRoute.Sitemap = [
-    "nugaros-skausmas",
-    "kaklo-skausmas",
-    "sporto-traumos",
-    "kelio-skausmas",
-    "peties-problemos",
-    "plintantis-skausmas",
-    "tendinopatijos",
-    "atsistatymas-po-operaciju",
-  ].map((slug) => ({
-    url: `${BASE_URL}/ka-gydome/${slug}`,
-    lastModified: now,
-    changeFrequency: "monthly" as const,
-    priority: 0.8,
-  }));
-
-  const specialistRoutes: MetadataRoute.Sitemap = [
-    "piotr-dubrovskij",
-    "mangirdas-kazacenko",
-    "kotryna-kairyte",
-    "erikas-jatkauskas",
-  ].map((slug) => ({
-    url: `${BASE_URL}/specialistai/${slug}`,
-    lastModified: now,
-    changeFrequency: "yearly" as const,
-    priority: 0.7,
-  }));
-
-  return [...staticRoutes, ...serviceRoutes, ...conditionRoutes, ...specialistRoutes];
+  return paths.map((path) => ({ url: path === "/" ? SITE_URL : `${SITE_URL}${path}` }));
 }

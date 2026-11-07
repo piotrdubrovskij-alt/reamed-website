@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
+import { pageMetadata } from "@/lib/seo";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import SpecialistPageContent from "@/components/SpecialistPageContent";
@@ -17,10 +18,11 @@ export async function generateMetadata({
   const { slug } = await params;
   const spec = getSpecialistBySlug(slug);
   if (!spec) return {};
-  return {
+  return pageMetadata({
+    path: `/specialistai/${spec.slug}`,
     title: `${spec.name} — ReaMed klinika Vilniuje`,
     description: `${spec.role}. ${spec.tagline}. Registruotis vizitui ReaMed klinikoje Vilniuje.`,
-  };
+  });
 }
 
 export default async function SpecialistPage({

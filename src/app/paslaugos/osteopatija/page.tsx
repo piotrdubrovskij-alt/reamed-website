@@ -1,12 +1,16 @@
 import type { Metadata } from "next";
+import { pageMetadata } from "@/lib/seo";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import OsteopatijaContent from "@/components/OsteopatijaContent";
 
 export const metadata: Metadata = {
-  title: "Osteopatija Vilniuje — ReaMed klinika",
-  description:
-    "Struktūrinis osteopatinis gydymas Vilniuje. Skausmo mažinimas, kūno judrumo ir funkcinių ryšių gerinimas. Piotr Dubrovskij, ReaMed klinika, Olimpiečių g. 1A-7.",
+  ...pageMetadata({
+    path: "/paslaugos/osteopatija",
+    title: "Osteopatija Vilniuje — ReaMed klinika",
+    description:
+      "Struktūrinis osteopatinis gydymas Vilniuje. Skausmo mažinimas, kūno judrumo ir funkcinių ryšių gerinimas. Piotr Dubrovskij, ReaMed klinika, Olimpiečių g. 1A-7.",
+  }),
   keywords: [
     "osteopatija Vilniuje",
     "osteopatas Vilnius",
