@@ -34,7 +34,6 @@ function Dots({ items, dark = false }: { items: string[]; dark?: boolean }) {
 }
 
 export default function ConditionPageContent({ page }: { page: ConditionPage }) {
-  const heroPerson = getSpecialistBySlug(page.hero.specialist);
   // A section's own page (/ka-gydome/kelio-skausmas): it lists the section's topics and leads back to /ka-gydome.
   const isSectionPage = page.slug === page.section;
   const section = isSectionPage ? { title: "Ką gydome", href: "/ka-gydome" } : sectionInfo(page.section);
@@ -47,10 +46,11 @@ export default function ConditionPageContent({ page }: { page: ConditionPage }) 
 
   return (
     <>
-      {/* First screen: title, direct answer, booking. The specialist's photo in a circle cut by the edge. */}
-      <section aria-labelledby="h1" className="relative overflow-hidden bg-ground">
-        <div className="wrap grid gap-10 pt-8 desk:pt-14 desk:grid-cols-[7fr_5fr] desk:gap-[72px] desk:items-end">
-          <div className="flex flex-col gap-6 desk:gap-7 desk:pb-30">
+      {/* First screen: title, direct answer, booking. No specialist photo here (Piotr, 07.11.2026):
+          the circle read like a passport photo. If a photo comes back, it is an arch as on the home page. */}
+      <section aria-labelledby="h1" className="bg-ground">
+        <div className="wrap pt-8 pb-16 desk:pt-14 desk:pb-24">
+          <div className="flex flex-col gap-6 desk:gap-7 desk:max-w-[800px]">
             {/* Back to the page's section (plan of 07.11.2026); to /ka-gydome while the section has no page. */}
             <Link href={section.href ?? "/ka-gydome"} className="self-start inline-flex items-center min-h-11 text-small font-medium text-graphite no-underline hover:text-ink">
               ← {section.href ? section.title : "Ką gydome"}
@@ -69,19 +69,6 @@ export default function ConditionPageContent({ page }: { page: ConditionPage }) 
               </a>
             </div>
           </div>
-          {heroPerson && (
-            <div className="justify-self-end w-[86vw] max-w-[520px] aspect-square rounded-full overflow-hidden -mb-[30vw] desk:-mb-30 desk:w-full bg-ground-hover">
-              <Image
-                src={specialistPhoto(page.hero.specialist)}
-                alt={`${heroPerson.name}, ${heroPerson.role.toLowerCase()}`}
-                width={640}
-                height={800}
-                priority
-                sizes="(min-width: 821px) 520px, 86vw"
-                className="size-full object-cover object-[50%_20%]"
-              />
-            </div>
-          )}
         </div>
       </section>
 

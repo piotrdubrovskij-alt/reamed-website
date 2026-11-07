@@ -32,7 +32,8 @@ export type ConditionPage = {
     h1: string;
     /** Two or three sentences: the direct answer Google and AI assistants quote. */
     lead: string;
-    /** Whose photo is in the circle. */
+    /** Lead specialist of the topic. Not shown in the first screen for now (Piotr, 07.11.2026);
+     *  if a photo returns there, it is an arch as on the home page, not a circle. */
     specialist: SpecialistSlug;
   };
   about: { title?: string; paragraphs: string[]; list?: { intro: string; items: string[] } };
