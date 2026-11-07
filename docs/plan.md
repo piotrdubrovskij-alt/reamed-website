@@ -83,6 +83,54 @@
 - [ ] CSP: убрать `'unsafe-eval'` из `script-src` (в продакшене Next.js он не нужен), проверить сборку.
 - [ ] Обновить или удалить устаревший `.cursorrules`.
 
+## Поиск, Google-карточка и реклама (07.11.2026)
+
+Что выяснилось. Запрос «reabilitacija vilniuje su siuntimu» приводил людей по направлению врача.
+Дело не в тексте сайта: Search Console относит 4 216 показов к `http://www.reamed.lt/`, то есть к
+Google-карточке (категория была «Reabilitacijos centras»), плюс реклама на широком соответствии.
+ReaMed — частная клиника: все услуги платные, с ТЛК (ligonių kasos) не работаем, siuntimas не нужен.
+Сколиоз и детские запросы — не ReaMed (FitKid, fitkid.lt).
+
+Сделано вне репозитория (07.11.2026):
+
+- [x] **Google Business Profile.** Основная категория — «Kineziterapeutas»; убраны «Reabilitacijos centras» и
+  «Vaikų sveikatos priežiūros centras»; сайт — `https://reamed.lt/`; описание переписано (кинезитерапия,
+  мануальная терапия, остеопатия, сборные, «paslaugos mokamos, su ligonių kasomis nedirbame», без слова
+  «siuntimas» и без ссылок — Google их не принимает). Правки на модерации у Google.
+- [x] **Google Ads, кампания «ReaMed 2025»** (аккаунт 564-428-8303, MB Kineziterapija). Данные 01.08–07.11:
+  982 €, 15 053 показа, 1 038 кликов, CTR 6,9 %, конверсий 0 (отслеживание не настроено).
+  Мусор приходил с ключа «kineziterapija vilniuje» на широком соответствии: «reabilitacija vilniuje su siuntimu»,
+  «nieko baisaus», «osteomedika savanoriu», «hila», «abromiškių reabilitacija», «kineziterapija vandenyje»,
+  детские и «kūdikių» запросы.
+  Теперь: тот же ключ — фразовое соответствие; добавлены `[kineziterapija vilniuje]`, `[kineziterapijos klinika vilniuje]`,
+  `[kineziterapeutas vilniuje]` и их фразовые версии; 43 минус-слова на уровне кампании
+  (siuntimu/siuntimas/siuntimą/siuntimo, nemokamai/nemokama/nemokamas, tlk, ligonių kasa/kasos, kompensuojama,
+  valstybinė, ligoninė, poliklinika, savanoriai, darbas, sanatorija, kursai, mokymai, studijos, vandenyje,
+  vertikali vonia, названия чужих клиник, vaikų/vaikams/kūdikių, dubens dugno).
+  Цель: первые позиции по «kineziterapija vilniuje».
+- [x] **Сайт:** старые адреса WordPress ведут на новые страницы, «privati klinika» на `/kontaktai`, `/kainos`
+  и в FAQ, главная без слова «reabilitacija» в `title` — PR #22.
+
+Дальше:
+
+- [ ] Через 1–2 недели открыть «Paieškos terminai» в Ads и Search Console (`http://www.reamed.lt/`, запросы со словом
+  «siuntimu»): мусор должен уйти. Если остался — дополнить минус-слова.
+- [ ] **Конверсии в Ads** (клик по телефону, отправка формы `/registracija`) — вместе с п. 13. Без них кампания
+  оптимизируется вслепую и «0 конверсий» ничего не значит.
+- [ ] Решить с Piotr: радиус показа сейчас 2 км вокруг центра Вильнюса (кампания «ограничена бюджетом», 10 €/день,
+  ручной MUP до 1 €); «Paieškos partneriai» включены. Для топ-позиций по «kineziterapija vilniuje»
+  может понадобиться весь город и другая ставка.
+- [ ] **Страницы проблем по языку пациентов** (порядок по спросу, акцент на спине и шее): Nugaros skausmas,
+  Kaklo skausmas, Peties skausmas, Klubo skausmas, Kelio skausmas, Riešo ir alkūnės skausmas,
+  Kulno ir pėdos skausmas, Tirpsta rankos ar kojos, Sporto traumos ir perkrovos (сюда же тендинопатии,
+  адрес `/ka-gydome/tendinopatijos` остаётся и ведёт на неё), Atsistatymas po operacijos.
+  Сколиоз — убран (FitKid). Заменить типовые тексты ~900 слов; новые: Klubo, Riešo ir alkūnės, Kulno ir pėdos.
+  «Plintantis» → «Tirpsta rankos ar kojos», «Peties problemos» → «Peties skausmas». Список на главной
+  («Kada galime padėti?») — те же 10 пунктов.
+- [ ] После вливания PR: трафик Cloud Run закреплён на ревизии (Paysera-превью деплоится с `--no-traffic`),
+  новую ревизию переключать вручную: `gcloud run services update-traffic reamed-site --region europe-west1
+  --project reamed-site --to-revisions <rev>=100`. Не на «latest».
+
 ## Новое
 
 - [ ] **Страница специалиста по макету G** — PR #20
