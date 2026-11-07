@@ -154,3 +154,60 @@ export const OARSI_2019: Source = {
   year: 2019,
   doi: "10.1016/j.joca.2019.06.011",
 };
+
+// Batch 3 (07.11.2026): Nugara, Kaklas, Petys. All checked in PubMed.
+export const LBP_LANCET_2018: Source = {
+  authors: "Foster NE ir kt.",
+  title: "Prevention and treatment of low back pain: evidence, challenges, and promising directions.",
+  journal: "Lancet",
+  year: 2018,
+  doi: "10.1016/S0140-6736(18)30489-6",
+};
+
+export const NECK_PAIN_CPG: Source = {
+  authors: "Blanpied PR ir kt.",
+  title: "Neck Pain: Revision 2017.",
+  journal: "J Orthop Sports Phys Ther",
+  year: 2017,
+  doi: "10.2519/jospt.2017.0302",
+};
+
+export const CERVICAL_RADICULOPATHY_REVIEW: Source = {
+  authors: "Thoomes EJ ir kt.",
+  title: "The effectiveness of conservative treatment for patients with cervical radiculopathy: a systematic review.",
+  journal: "Clin J Pain",
+  year: 2013,
+  doi: "10.1097/AJP.0b013e31828441fb",
+};
+
+export const TTH_EFNS: Source = {
+  authors: "Bendtsen L ir kt.",
+  title: "EFNS guideline on the treatment of tension-type headache.",
+  journal: "Eur J Neurol",
+  year: 2010,
+  doi: "10.1111/j.1468-1331.2010.03070.x",
+};
+
+export const SAPS_GUIDELINE: Source = {
+  authors: "Diercks R ir kt.",
+  title: "Guideline for diagnosis and treatment of subacromial pain syndrome: a multidisciplinary review by the Dutch Orthopaedic Association.",
+  journal: "Acta Orthop",
+  year: 2014,
+  doi: "10.3109/17453674.2014.920991",
+};
+
+export const CSAW_2018: Source = {
+  authors: "Beard DJ ir kt.",
+  title: "Arthroscopic subacromial decompression for subacromial shoulder pain (CSAW): a multicentre, pragmatic, parallel group, placebo-controlled, three-group, randomised surgical trial.",
+  journal: "Lancet",
+  year: 2018,
+  doi: "10.1016/S0140-6736(17)32457-1",
+};
+
+export const FROZEN_SHOULDER_REVIEW: Source = {
+  authors: "Challoumas D ir kt.",
+  title: "Comparison of Treatments for Frozen Shoulder: A Systematic Review and Meta-analysis.",
+  journal: "JAMA Netw Open",
+  year: 2020,
+  doi: "10.1001/jamanetworkopen.2020.29581",
+};

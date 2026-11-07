@@ -13,6 +13,13 @@ import { kelioSkausmas } from "./kelio-skausmas";
 import { priekinioKryzminioRaiscioPlysimas } from "./priekinio-kryzminio-raiscio-plysimas";
 import { meniskoPlysimas } from "./menisko-plysimas";
 import { patelofemoralinisSkausmas } from "./patelofemoralinis-skausmas";
+import { nugarosSkausmas } from "./nugaros-skausmas";
+import { kakloSkausmas } from "./kaklo-skausmas";
+import { cervikalgija } from "./cervikalgija";
+import { kakloRadikulopatija } from "./kaklo-radikulopatija";
+import { itamposGalvosSkausmas } from "./itampos-galvos-skausmas";
+import { petiesProblemos } from "./peties-problemos";
+import { subakromialinisSkausmoSindromas } from "./subakromialinis-skausmo-sindromas";
 
 // Problem pages built from data (/ka-gydome/<slug>). Order = order inside each section.
 // Older section pages not yet rewritten still live in their own folders under src/app/ka-gydome/.
@@ -31,6 +38,14 @@ export const conditionPages: ConditionPage[] = [
   priekinioKryzminioRaiscioPlysimas,
   meniskoPlysimas,
   patelofemoralinisSkausmas,
+  // Batch 3: three section pages (they replace the older ones at the same addresses) and four topics.
+  nugarosSkausmas,
+  kakloSkausmas,
+  cervikalgija,
+  kakloRadikulopatija,
+  itamposGalvosSkausmas,
+  petiesProblemos,
+  subakromialinisSkausmoSindromas,
 ];
 
 export function getConditionPage(slug: string): ConditionPage | undefined {
