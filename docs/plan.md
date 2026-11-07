@@ -112,7 +112,7 @@ Search Console — в аккаунте info@reamed.lt (`sc-domain:reamed.lt`), �
 - [ ] **Техника.** 301 со старых адресов WordPress (`src/data/legacy-redirects.ts`, 96 адресов из отчёта 404),
   canonical и og:image на каждой странице (`pageMetadata()` в `src/lib/seo.ts`), страницы-разделы
   `/ka-gydome`, `/paslaugos`, `/specialistai` (меню и «хлебные крошки» ведут туда), sitemap без поддельных дат
-  и с Edmundas, литовская 404 — ветка `seo/technical-foundation`
+  и с Edmundas, литовская 404 — PR #23
 - [ ] **Исследование запросов** (Keyword Planner в Google Ads) → таблица «запрос → страница», LT/EN/RU
 - [ ] **Тексты в файлы данных** и один шаблон страницы болезни: прямой ответ, симптомы, красные флаги,
   оценка, лечение, цена, вопросы (`FAQPage`), литература, «Peržiūrėjo»
