@@ -2,6 +2,7 @@ import type { MetadataRoute } from "next";
 import { SITE_URL } from "@/lib/seo";
 import { specialists } from "@/lib/specialists";
 import { translations } from "@/lib/translations";
+import { conditionPages } from "@/content/conditions";
 
 // No lastModified on purpose: the site does not track when each page's text
 // really changed, and a date that is always "now" teaches Google to ignore it.
@@ -16,6 +17,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
   const paths = [
     ...staticPaths,
     ...lt.areas.items.map((a) => `/ka-gydome/${a.slug}`),
+    ...conditionPages.map((p) => `/ka-gydome/${p.slug}`),
     ...lt.services.items.map((s) => `/paslaugos/${s.slug}`),
     ...specialists.map((s) => `/specialistai/${s.slug}`),
   ];

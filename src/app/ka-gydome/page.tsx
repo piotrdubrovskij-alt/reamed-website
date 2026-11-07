@@ -3,6 +3,7 @@ import { pageMetadata } from "@/lib/seo";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import HubPageContent from "@/components/HubPageContent";
+import { conditionPages, conditionSummary } from "@/content/conditions";
 
 export const metadata: Metadata = pageMetadata({
   path: "/ka-gydome",
@@ -16,7 +17,10 @@ export default function KaGydomePage() {
     <>
       <Header />
       <main>
-        <HubPageContent kind="areas" />
+        <HubPageContent
+          kind="areas"
+          conditions={conditionPages.map((p) => ({ slug: p.slug, title: p.hero.h1, text: conditionSummary(p) }))}
+        />
       </main>
       <Footer />
     </>
