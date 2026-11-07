@@ -23,5 +23,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
     ...specialists.map((s) => `/specialistai/${s.slug}`),
   ];
 
-  return paths.map((path) => ({ url: path === "/" ? SITE_URL : `${SITE_URL}${path}` }));
+  // A section's own page can be both a section and a data page: list it once.
+  return [...new Set(paths)].map((path) => ({ url: path === "/" ? SITE_URL : `${SITE_URL}${path}` }));
 }
