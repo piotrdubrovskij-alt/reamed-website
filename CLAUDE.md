@@ -112,8 +112,13 @@
   у её темы в `sections.ts` (операция — в «Po operacijų» и в своей зоне). Сборка падает, если они расходятся.
 - Все страницы проблем на шаблоне G: разделы Po operacijų, Nugara, Kaklas, Petys, Kelias, Sporto traumos (пачки 1–4,
   PR #25, #27–#29), Sausgyslės и Plintantis skausmas (пачка 5, PR #30). У разделов Alkūnė ir riešas, Klubas ir kirkšnis,
-  Čiurna страниц пока нет: их темы ведут «← Ką gydome». В старом виде остались только услуги (`paslaugos/*`):
-  контент прямо в компоненте объектом `content = { lt, en }`. Их переводим на шаблон G; новые страницы в старом виде не делать.
+  Čiurna страниц пока нет: их темы ведут «← Ką gydome».
+- Страницы услуг — тоже из данных (пачка 6): файл `src/content/services/<slug>.ts` (тип `ServicePage`), строка в `index.ts`;
+  маршрут `src/app/paslaugos/[slug]`, вид — `ServicePageContent` (макет G), JSON-LD — `src/lib/service-schema.ts`.
+  Цены в блоке «Kaina» и в текстах берутся из `src/data/prices.ts` по `id` (`price-text.ts`), руками не набирать.
+  `helps.pages` — страницы болезней из `src/content/conditions`. Сборка падает, если ссылка ведёт в пустоту или у услуги
+  из `translations.services` нет страницы. Общие блоки обоих шаблонов — `src/components/g/PageBlocks.tsx`,
+  строки чека цен — `src/components/prices/PriceLines.tsx` (их же использует `/kainos`). Старый вид услуг удалён.
 - Тексты пачек — в Claude Docs «reamed.lt: пачка N», код страницы и документ должны совпадать дословно.
 - `src/components/sections/` — блоки главной.
 - `src/lib/translations.ts` — тексты главной и общих блоков (lt/en).
