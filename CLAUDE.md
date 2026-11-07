@@ -27,6 +27,13 @@
 ## Структура
 
 - `src/app/**/page.tsx` — маршруты и `metadata`. Тело страниц — в `src/components/*Content.tsx`.
+  `metadata` каждой страницы — через `pageMetadata({ path, title, description })` из `src/lib/seo.ts`:
+  он ставит canonical, og:url и og:image. Без него страница остаётся без canonical.
+- Старые адреса прежнего WordPress-сайта → `src/data/legacy-redirects.ts` (подключён в `next.config.ts`).
+  Появилась более точная страница (например, disko išvarža) — перенаправить старый адрес на неё.
+- Разделы `/ka-gydome`, `/paslaugos`, `/specialistai` — `HubPageContent`; списки берутся из
+  `translations.areas/services` и `specialists.ts`, sitemap — из тех же списков.
+- Картинка для превью ссылок: `public/og/reamed-og.png`, пересобрать — `node scripts/build-og.mjs`.
 - Страницы проблем (`ka-gydome/*`) и услуг (`paslaugos/*`): контент лежит прямо в компоненте объектом `content = { lt, en }`.
   Компоненты проблем записаны длинными однострочниками — правки делать точечно.
 - `src/components/sections/` — блоки главной.

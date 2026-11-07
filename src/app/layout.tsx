@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Onest } from "next/font/google";
 import { Providers } from "./providers";
+import { OG_IMAGE } from "@/lib/seo";
 import "./globals.css";
 
 // Onest: variable font (one file for all weights); latin-ext covers ąčęėįšųūž.
@@ -35,20 +36,23 @@ export const metadata: Metadata = {
     "manualinė terapija",
     "ReaMed",
   ],
+  // No url here: every page sets its own og:url and canonical through pageMetadata()
+  // (src/lib/seo.ts), otherwise all pages would point to the home page.
   openGraph: {
     title: "ReaMed — Kineziterapijos klinika Vilniuje",
     description:
       "Šiuolaikinė kineziterapijos ir reabilitacijos klinika Vilniuje.",
-    url: "https://reamed.lt",
     siteName: "ReaMed",
     locale: "lt_LT",
     type: "website",
+    images: [OG_IMAGE],
   },
 };
 
 const jsonLd = {
   "@context": "https://schema.org",
-  "@type": "MedicalBusiness",
+  "@type": "MedicalClinic",
+  "@id": "https://reamed.lt/#clinic",
   name: "ReaMed",
   description:
     "Kineziterapijos ir reabilitacijos klinika Vilniuje. Stuburo ir kaklo skausmai, sporto traumos, sąnarių problemos, pooperacinis atsistatymas.",
@@ -82,7 +86,10 @@ const jsonLd = {
     },
   ],
   medicalSpecialty: "PhysicalTherapy",
-  image: "https://reamed.lt/logo.png",
+  isAcceptingNewPatients: true,
+  knowsLanguage: ["lt", "en", "ru"],
+  logo: "https://reamed.lt/logo.png",
+  image: "https://reamed.lt/og/reamed-og.png",
   sameAs: [
     "https://www.google.com/maps?cid=5379242466351535503",
     "https://www.instagram.com/reamedklinika/",

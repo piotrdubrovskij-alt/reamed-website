@@ -1,12 +1,16 @@
 import type { Metadata } from "next";
+import { pageMetadata } from "@/lib/seo";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import AtsistataymasPoOperacijuContent from "@/components/AtsistataymasPoOperacijuContent";
 
 export const metadata: Metadata = {
-  title: "Atsistatymas po operacijų Vilniuje — pooperacinė reabilitacija | ReaMed",
-  description:
-    "Pooperacinė reabilitacija Vilniuje. Įvertiname būklę, gijimo stadiją ir parenkame tinkamiausią atsistatymo kryptį po ortopedinio ar stuburo chirurginio gydymo. ReaMed klinika.",
+  ...pageMetadata({
+    path: "/ka-gydome/atsistatymas-po-operaciju",
+    title: "Atsistatymas po operacijų Vilniuje — pooperacinė reabilitacija | ReaMed",
+    description:
+      "Pooperacinė reabilitacija Vilniuje. Įvertiname būklę, gijimo stadiją ir parenkame tinkamiausią atsistatymo kryptį po ortopedinio ar stuburo chirurginio gydymo. ReaMed klinika.",
+  }),
   keywords: [
     "atsistatymas po operacijos Vilniuje",
     "pooperacinė reabilitacija",

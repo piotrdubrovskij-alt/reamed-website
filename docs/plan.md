@@ -102,6 +102,32 @@
 - [ ] **Отзывы:** просить у пациентов там, где их нет или мало — шея, мануальная терапия, остеопатия,
   тендинопатии, Kotryna. Обновлять `src/data/reviews.ts` раз в квартал.
 
+## SEO и контент — план от 07.11.2026
+
+Цель: первые места Google по кинезитерапии в Вильнюсе и по каждой болезни и операции, с которой работаем;
+источник для ИИ-ответов. Полный план, структура и решения Piotr — в Claude Doc
+[«reamed.lt: план захвата поиска по кинезитерапии»](https://claude.ai/artifact/Jmpt7pwX639tzaqCFvR4fC).
+Search Console — в аккаунте info@reamed.lt (`sc-domain:reamed.lt`), к Claude подключён через Windsor.ai.
+
+- [ ] **Техника.** 301 со старых адресов WordPress (`src/data/legacy-redirects.ts`, 96 адресов из отчёта 404),
+  canonical и og:image на каждой странице (`pageMetadata()` в `src/lib/seo.ts`), страницы-разделы
+  `/ka-gydome`, `/paslaugos`, `/specialistai` (меню и «хлебные крошки» ведут туда), sitemap без поддельных дат
+  и с Edmundas, литовская 404 — ветка `seo/technical-foundation`
+- [ ] **Исследование запросов** (Keyword Planner в Google Ads) → таблица «запрос → страница», LT/EN/RU
+- [ ] **Тексты в файлы данных** и один шаблон страницы болезни: прямой ответ, симптомы, красные флаги,
+  оценка, лечение, цена, вопросы (`FAQPage`), литература, «Peržiūrėjo»
+- [ ] **Ядро LT, приоритет 1:** po operacijų (+ po stuburo operacijų), kelias, petys, nugara, kaklas
+  (+ įtampos galvos skausmas), sporto traumos; услуги заново (+ kinezioteipavimas, Redcord, elektroterapija,
+  ultragarsas; остеопатия — структуральная; мануальная — Мейтланд); «Privati reabilitacija be siuntimo»,
+  «Chiropraktikas Vilniuje?», «Apie mus», DUK
+- [ ] **Статьи LT:** 5–10 на раздел, заголовок — вопрос из поиска
+- [ ] **Приоритет 2:** alkūnė ir riešas, klubas ir kirkšnis, čiurna ir pėda, sausgyslės
+- [ ] **EN и RU** по адресам `/en`, `/ru` с hreflang (см. п. 8)
+- [ ] **Bing Webmaster + IndexNow, `llms.txt`**, Google Business, manodaktaras.lt, ссылки VU и федерации
+
+Не берём: замены суставов, сколиоз и детей (FitKid; старые детские адреса ведут на fitkid.lt), dry needling,
+челюсть, тазовое дно, беременных.
+
 ## Открытые вопросы к Piotr
 
 1. Почему убрали виджет manodaktaras с `/registracija`? (п. 10а)
