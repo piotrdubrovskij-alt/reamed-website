@@ -22,7 +22,8 @@ export type ServiceSlug =
   | "osteopatija"
   | "sporto-reabilitacija"
   | "pooperacine-reabilitacija"
-  | "gydomasis-masazas";
+  | "gydomasis-masazas"
+  | "fizioterapija";
 
 export type SpecialistSlug =
   | "piotr-dubrovskij"

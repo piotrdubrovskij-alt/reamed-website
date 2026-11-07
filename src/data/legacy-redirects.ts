@@ -40,7 +40,7 @@ const rules: Array<[string, string]> = [
   ["/kinezioteipavimas-2/:path*", PHYSIO],
   ["/kinezioteipavimas/:path*", PHYSIO],
   ["/neurologine-kineziterapija/:path*", PHYSIO],
-  ["/fizioterapija/:path*", PHYSIO],
+  ["/fizioterapija/:path*", "/paslaugos/fizioterapija"],
   ["/masazas/:path*", "/paslaugos/gydomasis-masazas"],
   ["/osteopatija/:path*", "/paslaugos/osteopatija"],
   ["/taikomoji-kineziologija/:path*", "/paslaugos"],

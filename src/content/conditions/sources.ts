@@ -522,3 +522,28 @@ export const PANAGOPOULOS_2015: Source = {
   year: 2015,
   doi: "10.1002/ejp.614",
 };
+
+export const HAUGER_2018: Source = {
+  authors: "Hauger AV ir kt.",
+  title: "Neuromuscular electrical stimulation is effective in strengthening the quadriceps muscle after anterior cruciate ligament surgery.",
+  journal: "Knee Surg Sports Traumatol Arthrosc",
+  year: 2018,
+  doi: "10.1007/s00167-017-4669-5",
+};
+
+export const JOHNSON_2022: Source = {
+  authors: "Johnson MI ir kt.",
+  title:
+    "Efficacy and safety of transcutaneous electrical nerve stimulation (TENS) for acute and chronic pain in adults: a systematic review and meta-analysis of 381 studies (the meta-TENS study).",
+  journal: "BMJ Open",
+  year: 2022,
+  doi: "10.1136/bmjopen-2021-051073",
+};
+
+export const EBADI_2020: Source = {
+  authors: "Ebadi S ir kt.",
+  title: "Therapeutic ultrasound for chronic low back pain.",
+  journal: "Cochrane Database Syst Rev",
+  year: 2020,
+  doi: "10.1002/14651858.CD009169.pub3",
+};

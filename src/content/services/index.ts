@@ -7,8 +7,10 @@ import { manualineTerapija } from "./manualine-terapija";
 import { pooperacineReabilitacija } from "./pooperacine-reabilitacija";
 import { sportoReabilitacija } from "./sporto-reabilitacija";
 import { gydomasisMasazas } from "./gydomasis-masazas";
+import { fizioterapija } from "./fizioterapija";
 
-// Service pages built from data (/paslaugos/<slug>), template G. Batch 6: the six older services rewritten.
+// Service pages built from data (/paslaugos/<slug>), template G. Batch 6: the six older services rewritten
+// and fizioterapija (Piotr, 07.11.2026: add it to the services list).
 // The list on /paslaugos, the home page and the sitemap still comes from translations.services.
 export const servicePages: ServicePage[] = [
   kineziterapija,
@@ -17,6 +19,7 @@ export const servicePages: ServicePage[] = [
   pooperacineReabilitacija,
   sportoReabilitacija,
   gydomasisMasazas,
+  fizioterapija,
 ];
 
 export function getServicePage(slug: string): ServicePage | undefined {
