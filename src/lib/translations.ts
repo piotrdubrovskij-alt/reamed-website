@@ -38,11 +38,12 @@ export const translations = {
       more: "Plačiau apie tai",
     },
     services: {
-      title: "Kineziterapija, manualinė terapija ir osteopatija",
+      title: "Mūsų paslaugos",
       items: [
         { slug: "kineziterapija", title: "Kineziterapija", text: "Skausmui mažinti, judesio kokybei gerinti ir funkcijai atkurti." },
         { slug: "manualine-terapija", title: "Manualinė terapija", text: "Skausmui mažinti ir sąnarių judrumui gerinti." },
         { slug: "osteopatija", title: "Osteopatija", text: "Gydymas, orientuotas į kūno struktūrą ir funkcinius ryšius." },
+        { slug: "fizioterapija", title: "Fizioterapija", text: "Elektrostimuliacija, TENS ir ultragarsas kartu su pratimais." },
         { slug: "gydomasis-masazas", title: "Gydomasis masažas", text: "Raumenų įtampai ir diskomfortui mažinti." },
         { slug: "sporto-reabilitacija", title: "Sporto reabilitacija", text: "Po traumų ir perkrovų, grįžtant į sportą." },
         { slug: "pooperacine-reabilitacija", title: "Pooperacinė reabilitacija", text: "Po ortopedinių ir stuburo operacijų, pagal gijimo etapą." },
@@ -123,11 +124,12 @@ export const translations = {
       more: "Read more",
     },
     services: {
-      title: "Physiotherapy, manual therapy and osteopathy",
+      title: "Our services",
       items: [
         { slug: "kineziterapija", title: "Physiotherapy", text: "To reduce pain, improve movement quality and restore function." },
         { slug: "manualine-terapija", title: "Manual therapy", text: "To reduce pain and improve joint mobility." },
         { slug: "osteopatija", title: "Osteopathy", text: "Treatment focused on the body's structure and functional connections." },
+        { slug: "fizioterapija", title: "Electrotherapy and ultrasound", text: "Electrical muscle stimulation, TENS and ultrasound alongside exercise." },
         { slug: "gydomasis-masazas", title: "Therapeutic massage", text: "To ease muscle tension and discomfort." },
         { slug: "sporto-reabilitacija", title: "Sports rehabilitation", text: "After injuries and overload, on the way back to sport." },
         { slug: "pooperacine-reabilitacija", title: "Post-surgical rehabilitation", text: "After orthopaedic and spinal surgery, matched to the healing stage." },

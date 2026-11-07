@@ -414,3 +414,136 @@ export const BOGDUK_2009: Source = {
   year: 2009,
   doi: "10.1016/j.pain.2009.08.020",
 };
+
+// Service pages (batch 6): checked in PubMed on 07.11.2026.
+
+export const HAYDEN_2021: Source = {
+  authors: "Hayden JA ir kt.",
+  title: "Exercise therapy for chronic low back pain.",
+  journal: "Cochrane Database Syst Rev",
+  year: 2021,
+  doi: "10.1002/14651858.CD009790.pub2",
+};
+
+export const RUBINSTEIN_2019: Source = {
+  authors: "Rubinstein SM ir kt.",
+  title:
+    "Benefits and harms of spinal manipulative therapy for the treatment of chronic low back pain: systematic review and meta-analysis of randomised controlled trials.",
+  journal: "BMJ",
+  year: 2019,
+  doi: "10.1136/bmj.l689",
+};
+
+export const GROSS_2015: Source = {
+  authors: "Gross A ir kt.",
+  title: "Manipulation and mobilisation for neck pain contrasted against an inactive control or another active treatment.",
+  journal: "Cochrane Database Syst Rev",
+  year: 2015,
+  doi: "10.1002/14651858.CD004249.pub4",
+};
+
+export const FRANKE_2014: Source = {
+  authors: "Franke H, Franke JD, Fryer G.",
+  title: "Osteopathic manipulative treatment for nonspecific low back pain: a systematic review and meta-analysis.",
+  journal: "BMC Musculoskelet Disord",
+  year: 2014,
+  doi: "10.1186/1471-2474-15-286",
+};
+
+export const BAGAGIOLO_2022: Source = {
+  authors: "Bagagiolo D, Rosa D, Borrelli F.",
+  title: "Efficacy and safety of osteopathic manipulative treatment: an overview of systematic reviews.",
+  journal: "BMJ Open",
+  year: 2022,
+  doi: "10.1136/bmjopen-2021-053468",
+};
+
+export const GUILLAUD_2016: Source = {
+  authors: "Guillaud A ir kt.",
+  title: "Reliability of Diagnosis and Clinical Efficacy of Cranial Osteopathy: A Systematic Review.",
+  journal: "PLoS One",
+  year: 2016,
+  doi: "10.1371/journal.pone.0167823",
+};
+
+export const FURLAN_2015: Source = {
+  authors: "Furlan AD ir kt.",
+  title: "Massage for low-back pain.",
+  journal: "Cochrane Database Syst Rev",
+  year: 2015,
+  doi: "10.1002/14651858.CD001929.pub3",
+};
+
+export const BERVOETS_2015: Source = {
+  authors: "Bervoets DC ir kt.",
+  title:
+    "Massage therapy has short-term benefits for people with common musculoskeletal disorders compared to no treatment: a systematic review.",
+  journal: "J Physiother",
+  year: 2015,
+  doi: "10.1016/j.jphys.2015.05.018",
+};
+
+export const OOSTERHUIS_2014: Source = {
+  authors: "Oosterhuis T ir kt.",
+  title: "Rehabilitation after lumbar disc surgery.",
+  journal: "Cochrane Database Syst Rev",
+  year: 2014,
+  doi: "10.1002/14651858.CD003007.pub3",
+};
+
+export const MAZUQUIN_2021: Source = {
+  authors: "Mazuquin B ir kt.",
+  title: "Effectiveness of early versus delayed rehabilitation following rotator cuff repair: Systematic review and meta-analyses.",
+  journal: "PLoS One",
+  year: 2021,
+  doi: "10.1371/journal.pone.0252137",
+};
+
+export const HALLER_2020: Source = {
+  authors: "Haller H ir kt.",
+  title: "Craniosacral therapy for chronic pain: a systematic review and meta-analysis of randomized controlled trials.",
+  journal: "BMC Musculoskelet Disord",
+  year: 2020,
+  doi: "10.1186/s12891-019-3017-y",
+};
+
+export const GUILLAUD_2018: Source = {
+  authors: "Guillaud A ir kt.",
+  title: "Reliability of diagnosis and clinical efficacy of visceral osteopathy: a systematic review.",
+  journal: "BMC Complement Altern Med",
+  year: 2018,
+  doi: "10.1186/s12906-018-2098-8",
+};
+
+export const PANAGOPOULOS_2015: Source = {
+  authors: "Panagopoulos J ir kt.",
+  title: "Does the addition of visceral manipulation alter outcomes for patients with low back pain? A randomized placebo controlled trial.",
+  journal: "Eur J Pain",
+  year: 2015,
+  doi: "10.1002/ejp.614",
+};
+
+export const HAUGER_2018: Source = {
+  authors: "Hauger AV ir kt.",
+  title: "Neuromuscular electrical stimulation is effective in strengthening the quadriceps muscle after anterior cruciate ligament surgery.",
+  journal: "Knee Surg Sports Traumatol Arthrosc",
+  year: 2018,
+  doi: "10.1007/s00167-017-4669-5",
+};
+
+export const JOHNSON_2022: Source = {
+  authors: "Johnson MI ir kt.",
+  title:
+    "Efficacy and safety of transcutaneous electrical nerve stimulation (TENS) for acute and chronic pain in adults: a systematic review and meta-analysis of 381 studies (the meta-TENS study).",
+  journal: "BMJ Open",
+  year: 2022,
+  doi: "10.1136/bmjopen-2021-051073",
+};
+
+export const EBADI_2020: Source = {
+  authors: "Ebadi S ir kt.",
+  title: "Therapeutic ultrasound for chronic low back pain.",
+  journal: "Cochrane Database Syst Rev",
+  year: 2020,
+  doi: "10.1002/14651858.CD009169.pub3",
+};
