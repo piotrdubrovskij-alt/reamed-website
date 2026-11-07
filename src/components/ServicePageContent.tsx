@@ -156,7 +156,7 @@ export default function ServicePageContent({ page }: { page: ServicePage }) {
       {/* When it does not fit */}
       <WarningSection
         id="netinka-h"
-        title="Kada šis gydymas netinka?"
+        title={page.limits.title ?? "Kada šis gydymas netinka?"}
         note={page.limits.note ?? "Tokiais atvejais pirmiausia reikia gydytojo. Jei abejojate, paskambinkite: patarsime, kur kreiptis."}
         items={page.limits.items}
       />

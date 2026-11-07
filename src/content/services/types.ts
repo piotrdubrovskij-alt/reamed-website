@@ -33,8 +33,8 @@ export type ServicePage = {
   };
   /** Lines from src/data/prices.ts, the same numbers as /kainos. */
   price: { lines: PriceId[]; note?: string };
-  /** "Kada netinka": contraindications and when a doctor comes first. */
-  limits: { items: string[]; note?: string };
+  /** Contraindications and when a doctor comes first. Title defaults to "Kada šis gydymas netinka?". */
+  limits: { title?: string; items: string[]; note?: string };
   team: { title: string; specialists: SpecialistSlug[]; note?: string };
   faq: { q: string; a: string }[];
   /** Reviews are taken from this tag, only if at least two exist. */

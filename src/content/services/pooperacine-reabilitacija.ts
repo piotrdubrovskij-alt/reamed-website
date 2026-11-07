@@ -75,6 +75,7 @@ export const pooperacineReabilitacija: ServicePage = {
     note: "Ilgesnei reabilitacijai patogiausias 10 vizitų paketas: jis galioja 84 dienas nuo pirkimo.",
   },
   limits: {
+    title: "Kada skubiai kreiptis į chirurgą?",
     items: [
       "Žaizda parausta, šyla, iš jos teka skystis",
       "Karščiuojate",

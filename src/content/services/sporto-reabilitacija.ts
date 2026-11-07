@@ -70,6 +70,7 @@ export const sportoReabilitacija: ServicePage = {
     lines: ["pirmasis-vizitas", "kineziterapija", "kompleksine"],
   },
   limits: {
+    title: "Kada pirmiausia reikia gydytojo?",
     items: [
       "Įtariate lūžį: stiprus skausmas, negalite atsiremti ant kojos, matoma deformacija",
       "Sąnarys per kelias valandas po traumos stipriai patino",
