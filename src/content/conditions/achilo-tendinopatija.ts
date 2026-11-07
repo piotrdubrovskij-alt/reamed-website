@@ -2,7 +2,7 @@ import type { ConditionPage } from "./types";
 import { ACHILLES_CPG, COOMBES_2010, TENDINOPATHY_NRDP_2021 } from "./sources";
 
 // Draft of 07.11.2026, waiting for Piotr's review (Claude Doc «Пачка 5»).
-// Own section Čiurna, pėda ir kulnas (no section page yet); also listed in Sausgyslės.
+// Own section Čiurna, pėda ir kulnas (section page since batch 7); also listed in Sausgyslės.
 // Search: achilo sausgyslės uždegimas 170, kaip gydyti achilo sausgyslės uždegimą 70.
 export const achiloTendinopatija: ConditionPage = {
   slug: "achilo-tendinopatija",

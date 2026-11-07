@@ -547,3 +547,86 @@ export const EBADI_2020: Source = {
   year: 2020,
   doi: "10.1002/14651858.CD009169.pub3",
 };
+
+// Batch 7 (07.11.2026), checked in PubMed the same day.
+
+export const WARWICK_2016: Source = {
+  authors: "Griffin DR ir kt.",
+  title: "The Warwick Agreement on femoroacetabular impingement syndrome (FAI syndrome): an international consensus statement.",
+  journal: "Br J Sports Med",
+  year: 2016,
+  doi: "10.1136/bjsports-2016-096743",
+};
+
+export const HIP_OA_EXERCISE_2014: Source = {
+  authors: "Fransen M ir kt.",
+  title: "Exercise for osteoarthritis of the hip.",
+  journal: "Cochrane Database Syst Rev",
+  year: 2014,
+  doi: "10.1002/14651858.CD007912.pub2",
+};
+
+export const ANKLE_SPRAIN_GUIDELINE: Source = {
+  authors: "Vuurberg G ir kt.",
+  title: "Diagnosis, treatment and prevention of ankle sprains: update of an evidence-based clinical guideline.",
+  journal: "Br J Sports Med",
+  year: 2018,
+  doi: "10.1136/bjsports-2017-098106",
+};
+
+export const RC_REPAIR_CONSENSUS: Source = {
+  authors: "Thigpen CA ir kt.",
+  title: "The American Society of Shoulder and Elbow Therapists' consensus statement on rehabilitation following arthroscopic rotator cuff repair.",
+  journal: "J Shoulder Elbow Surg",
+  year: 2016,
+  doi: "10.1016/j.jse.2015.12.018",
+};
+
+export const KNEE_ARTHROSCOPY_GUIDELINE: Source = {
+  authors: "Siemieniuk RAC ir kt.",
+  title: "Arthroscopic surgery for degenerative knee arthritis and meniscal tears: a clinical practice guideline.",
+  journal: "BMJ",
+  year: 2017,
+  doi: "10.1136/bmj.j1982",
+};
+
+export const MCL_MANAGEMENT: Source = {
+  authors: "Marchant MH ir kt.",
+  title: "Management of medial-sided knee injuries, part 1: medial collateral ligament.",
+  journal: "Am J Sports Med",
+  year: 2011,
+  doi: "10.1177/0363546510385999",
+};
+
+export const JULL_2002: Source = {
+  authors: "Jull G ir kt.",
+  title: "A randomized controlled trial of exercise and manipulative therapy for cervicogenic headache.",
+  journal: "Spine",
+  year: 2002,
+  doi: "10.1097/00007632-200209010-00004",
+};
+
+export const ACP_LBP_2017: Source = {
+  authors: "Qaseem A ir kt.",
+  title: "Noninvasive Treatments for Acute, Subacute, and Chronic Low Back Pain: A Clinical Practice Guideline From the American College of Physicians.",
+  journal: "Ann Intern Med",
+  year: 2017,
+  doi: "10.7326/M16-2367",
+};
+
+export const LBP_PROGNOSIS_2012: Source = {
+  authors: "da C Menezes Costa L ir kt.",
+  title: "The prognosis of acute and persistent low-back pain: a meta-analysis.",
+  journal: "CMAJ",
+  year: 2012,
+  doi: "10.1503/cmaj.111271",
+};
+
+export const MCL_ACL_META: Source = {
+  authors: "Shultz CL ir kt.",
+  title:
+    "Nonoperative Management, Repair, or Reconstruction of the Medial Collateral Ligament in Combined Anterior Cruciate and Medial Collateral Ligament Injuries-Which Is Best? A Systematic Review and Meta-analysis.",
+  journal: "Am J Sports Med",
+  year: 2024,
+  doi: "10.1177/03635465231153157",
+};

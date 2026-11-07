@@ -33,6 +33,14 @@ import { achiloTendinopatija } from "./achilo-tendinopatija";
 import { soninisKlubo } from "./soninis-klubo-skausmas";
 import { riesoKanaloSindromas } from "./rieso-kanalo-sindromas";
 import { tirpstaRanka } from "./tirpsta-ranka";
+import { kluboIrKirksniesSkausmas } from "./klubo-ir-kirksnies-skausmas";
+import { ciurnosIrPedosSkausmas } from "./ciurnos-ir-pedos-skausmas";
+import { alkunesIrRiesoSkausmas } from "./alkunes-ir-rieso-skausmas";
+import { reabilitacijaPoPetiesArtroskopijos } from "./reabilitacija-po-peties-artroskopijos";
+import { reabilitacijaPoKelioArtroskopijos } from "./reabilitacija-po-kelio-artroskopijos";
+import { vidinioSoninioRaiscioPazeidimas } from "./vidinio-soninio-raiscio-pazeidimas";
+import { galvosSkausmasDelKaklo } from "./galvos-skausmas-del-kaklo";
+import { umusNugarosSkausmas } from "./umus-nugaros-skausmas";
 
 // Problem pages built from data (/ka-gydome/<slug>). Order = order inside each section.
 // Older section pages not yet rewritten still live in their own folders under src/app/ka-gydome/.
@@ -75,6 +83,16 @@ export const conditionPages: ConditionPage[] = [
   soninisKlubo,
   riesoKanaloSindromas,
   tirpstaRanka,
+  // Batch 7: the three new section pages (Klubas ir kirkšnis, Čiurna, Alkūnė ir riešas), two operations
+  // (also listed in Petys and Kelias) and three topics.
+  kluboIrKirksniesSkausmas,
+  ciurnosIrPedosSkausmas,
+  alkunesIrRiesoSkausmas,
+  reabilitacijaPoPetiesArtroskopijos,
+  reabilitacijaPoKelioArtroskopijos,
+  vidinioSoninioRaiscioPazeidimas,
+  galvosSkausmasDelKaklo,
+  umusNugarosSkausmas,
 ];
 
 export function getConditionPage(slug: string): ConditionPage | undefined {

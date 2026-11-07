@@ -2,7 +2,7 @@ import type { ConditionPage } from "./types";
 import { COOMBES_2010, COOMBES_2013, LATERAL_ELBOW_CPG } from "./sources";
 
 // Draft of 07.11.2026, waiting for Piotr's review (Claude Doc «Пачка 5»).
-// Own section Alkūnė ir riešas (no section page yet); also listed in Sausgyslės.
+// Own section Alkūnė ir riešas (section page since batch 7); also listed in Sausgyslės.
 // Search: lateralinis epikondilitas 320, alkūnės skausmas 170.
 export const tenisoAlkune: ConditionPage = {
   slug: "teniso-alkune",
