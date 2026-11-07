@@ -114,12 +114,18 @@ Search Console — в аккаунте info@reamed.lt (`sc-domain:reamed.lt`), �
   `/ka-gydome`, `/paslaugos`, `/specialistai` (меню и «хлебные крошки» ведут туда), sitemap без поддельных дат
   и с Edmundas, литовская 404 — PR #23
 - [ ] **Исследование запросов** (Keyword Planner в Google Ads) → таблица «запрос → страница», LT/EN/RU
-- [ ] **Тексты в файлы данных** и один шаблон страницы болезни: прямой ответ, симптомы, красные флаги,
-  оценка, лечение, цена, вопросы (`FAQPage`), литература, «Peržiūrėjo»
+- [x] **Тексты в файлы данных** и один шаблон страницы болезни: прямой ответ, симптомы, красные флаги,
+  оценка, лечение, цена, вопросы (`FAQPage`), литература, «Peržiūrėjo» — PR #25 (дерево разделов `sections.ts`,
+  блок «Kada galime padėti?» на главной, макет G); «Peržiūrėjo» появится после проверки текстов специалистом. Шаблон по макету G
+  (`ConditionPageContent`, данные в `src/content/conditions/`) и первые шесть страниц (пачка 1: stuburo išvarža,
+  išialgija, skausmas nugaros apačioje, osteochondrozė, plantarinis fascitas, po menisko operacijos) — ветка
+  `feat/condition-template`, ждёт «ок» по текстам. Следом перевести на шаблон 8 старых страниц проблем и 6 услуг
 - [ ] **Ядро LT, приоритет 1:** po operacijų (+ po stuburo operacijų), kelias, petys, nugara, kaklas
   (+ įtampos galvos skausmas), sporto traumos; услуги заново (+ kinezioteipavimas, Redcord, elektroterapija,
   ultragarsas; остеопатия — структуральная; мануальная — Мейтланд); «Privati reabilitacija be siuntimo»,
   «Chiropraktikas Vilniuje?», «Apie mus», DUK
+  - [x] Страницы проблем, пачки 1–4 (26 страниц: 6 разделов на шаблоне G и 20 тем) — PR #25, #27, #28, #29
+  - [ ] Услуги заново, «Privati reabilitacija be siuntimo», «Chiropraktikas Vilniuje?», «Apie mus», DUK
 - [ ] **Статьи LT:** 5–10 на раздел, заголовок — вопрос из поиска
 - [ ] **Приоритет 2:** alkūnė ir riešas, klubas ir kirkšnis, čiurna ir pėda, sausgyslės
 - [ ] **EN и RU** по адресам `/en`, `/ru` с hreflang (см. п. 8)

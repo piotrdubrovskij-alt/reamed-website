@@ -2,6 +2,8 @@ import type { MetadataRoute } from "next";
 import { SITE_URL } from "@/lib/seo";
 import { specialists } from "@/lib/specialists";
 import { translations } from "@/lib/translations";
+import { conditionPages } from "@/content/conditions";
+import { SECTIONS } from "@/content/sections";
 
 // No lastModified on purpose: the site does not track when each page's text
 // really changed, and a date that is always "now" teaches Google to ignore it.
@@ -15,10 +17,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
   const lt = translations.lt;
   const paths = [
     ...staticPaths,
-    ...lt.areas.items.map((a) => `/ka-gydome/${a.slug}`),
+    ...SECTIONS.filter((s) => s.hasPage).map((s) => `/ka-gydome/${s.slug}`),
+    ...conditionPages.map((p) => `/ka-gydome/${p.slug}`),
     ...lt.services.items.map((s) => `/paslaugos/${s.slug}`),
     ...specialists.map((s) => `/specialistai/${s.slug}`),
   ];
 
-  return paths.map((path) => ({ url: path === "/" ? SITE_URL : `${SITE_URL}${path}` }));
+  // A section's own page can be both a section and a data page: list it once.
+  return [...new Set(paths)].map((path) => ({ url: path === "/" ? SITE_URL : `${SITE_URL}${path}` }));
 }

@@ -6,9 +6,9 @@ import HubPageContent from "@/components/HubPageContent";
 
 export const metadata: Metadata = pageMetadata({
   path: "/ka-gydome",
-  title: "Ką gydome — nugaros, kaklo, peties, kelio skausmas ir sporto traumos | ReaMed",
+  title: "Ką gydome: reabilitacija po operacijų, kelio, peties, nugaros ir kaklo skausmas | ReaMed",
   description:
-    "Nugaros, kaklo, peties ir kelio skausmas, sporto traumos, sausgyslių perkrovos ir atsistatymas po operacijų. Privati kineziterapijos klinika Vilniaus centre, siuntimo nereikia.",
+    "Reabilitacija po operacijų, kelio, peties, nugaros ir kaklo skausmas, sporto traumos ir sausgyslių perkrovos. Privati kineziterapijos klinika Vilniaus centre, siuntimo nereikia.",
 });
 
 export default function KaGydomePage() {

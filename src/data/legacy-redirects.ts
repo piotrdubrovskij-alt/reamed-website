@@ -29,7 +29,7 @@ const rules: Array<[string, string]> = [
 
   // Conditions
   ["/sausgysliu-skausmo-gydymas/:path*", TENDONS],
-  ["/stuburo-diskas/:path*", BACK],
+  ["/stuburo-diskas/:path*", "/ka-gydome/stuburo-isvarza"],
   ["/nugaros-skausmas/:path*", BACK],
 
   // Services
@@ -64,7 +64,7 @@ const rules: Array<[string, string]> = [
   ["/tag/tendinitas", TENDONS],
   ["/tag/sausgysliu-skausmas", TENDONS],
   ["/tag/ekscentriniai-pratimai", TENDONS],
-  ["/tag/stuburo-diskas", BACK],
+  ["/tag/stuburo-diskas", "/ka-gydome/stuburo-isvarza"],
   ["/tag/sporto-traumos", SPORT],
   ["/tag/slidinejimo-traumos", SPORT],
   ["/tag/futbolo-traumos", SPORT],

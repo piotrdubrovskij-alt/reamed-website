@@ -18,6 +18,69 @@
 - Перед PR: `npx tsc --noEmit`, `npm run lint`, `npm run build` и проверка страницы в браузере на 375 px и 1280 px.
 - После вливания в `docs/plan.md` отметить пункт `[x]` с номером PR.
 
+## Правило: контент делаем по плану от 07.11.2026
+
+Решение Piotr (07.11.2026): весь контент и структура сайта — строго по плану из Claude Doc
+[«reamed.lt: план захвата поиска по кинезитерапии»](https://claude.ai/artifact/Jmpt7pwX639tzaqCFvR4fC)
+с его уточнениями ниже. Не делать отрывками и не придумывать свою структуру: каждая новая страница
+встаёт на своё место в дереве плана. Хочется отойти от плана — сначала спросить Piotr.
+
+**«Ką gydome» = 11 разделов по зонам тела, внутри — страницы болезней и операций.**
+- Страница болезни принадлежит одному разделу и показывается внутри него: на `/ka-gydome` под своим разделом,
+  на странице раздела, в «хлебных крошках» «Ką gydome › раздел › страница». Отдельным списком рядом с разделами — нельзя.
+- Страница операции живёт в «Po operacijų» и показывается ещё и в своей зоне (мениск — и в «Kelias»,
+  позвоночник — и в «Nugara»).
+- Адреса плоские: `/ka-gydome/<slug>` для разделов и болезней, `/straipsniai/<slug>` для статей.
+  Нынешние адреса не меняем.
+- Восемь нынешних страниц проблем становятся страницами-разделами и переписываются по шаблону G.
+
+Порядок строк — порядок разделов на сайте (главная, `/ka-gydome`), ревизия Piotr 07.11.2026.
+Операции стоят в «Po operacijų» и ещё раз в своей зоне. В коде дерево — `src/content/sections.ts`.
+
+| Раздел (адрес) | Страницы внутри | Приоритет |
+|---|---|---|
+| Po operacijų (`atsistatymas-po-operaciju`) | Ankstyva reabilitacija po operacijos ir imobilizacijos (gipsas, įtvaras); Po kryžminio raiščio rekonstrukcijos; Po menisko operacijos; Po kelio artroskopijos; Po kelio lūžio operacijos; Po peties artroskopijos ir rotatorių manžetės siūlės; Po peties stabilizacijos; Po žastikaulio lūžio; Po riešo ir rankos lūžio; Po klubo artroskopijos; Po čiurnos lūžio ar operacijos; Po Achilo sausgyslės plyšimo; Po disko išvaržos operacijos; Po stuburo stabilizacijos | 1 |
+| Nugara (`nugaros-skausmas`) | Ūmus nugaros skausmas („užstrigo nugara“); Nugaros skausmas ir raumenų įtampa; Stuburo išvarža; Išialgija ir radikulopatija; Skausmas nugaros apačioje; Osteochondrozė; Stuburo kanalo stenozė; Spondilolistezė; Kryžkaulio ir klubo sąnario skausmas; Skausmas tarp mentių; Nugaros skausmas sėdint; Laikysenos problemos; Po disko išvaržos operacijos; Po stuburo stabilizacijos | 1 |
+| Kaklas (`kaklo-skausmas`) | Kaklo skausmas ir įtampa (cervikalgija); Užstrigęs kaklas; Ribotas kaklo judrumas; Kaklo osteochondrozė; Kaklo radikulopatija: skausmas plinta į ranką; Kaklo trauma po avarijos; Įtampos galvos skausmas; Galvos skausmas dėl kaklo | 1 |
+| Petys (`peties-problemos`) | Peties skausmas keliant ranką; Subakromialinis skausmo sindromas; Rotatorių manžetės pažeidimas; Dvigalvio raumens sausgyslės uždegimas; Kalcifikuojantis tendinitas; Sustingęs petys (adhezinis kapsulitas); Peties nestabilumas ir išnirimai; AC sąnario trauma; Peties sąnario artrozė; Po peties artroskopijos ir rotatorių manžetės siūlės; Po peties stabilizacijos; Po žastikaulio lūžio | 1 |
+| Alkūnė ir riešas (`alkunes-ir-rieso-skausmas`, страницы раздела пока нет) | Teniso alkūnė; Golfo alkūnė; Alkūnės sustingimas po traumos; De Quervain sindromas; Riešo kanalo sindromas; Riešo skausmas ir patempimai; Po riešo ir rankos lūžio | 2 |
+| Kelias (`kelio-skausmas`) | Priekinio kryžminio raiščio plyšimas; Užpakalinio kryžminio raiščio plyšimas; Vidinio šoninio raiščio pažeidimas; Menisko plyšimas; Kelio lūžiai; Ribotas kelio judrumas; Patelofemoralinis skausmas (bėgiko kelis); Šokėjo kelis (girnelės sausgyslės tendinopatija); Iliotibialinio trakto sindromas; Kelio artrozė; Po kryžminio raiščio rekonstrukcijos; Po menisko operacijos; Po kelio artroskopijos; Po kelio lūžio operacijos | 1 |
+| Klubas ir kirkšnis (`klubo-ir-kirksnies-skausmas`, страницы раздела пока нет) | Klubo sąnario artrozė; Skausmas ir sustingimas po klubo endoprotezavimo; Šoninis klubo skausmas (trochanterinis bursitas); Kirkšnies skausmas sportininkams; Klubo FAI ir sąnario lūpos plyšimas; Piriformio sindromas; Po klubo artroskopijos | 2 |
+| Čiurna, pėda ir kulnas (`ciurnos-ir-pedos-skausmas`, страницы раздела пока нет) | Plantarinis fascitas; Kulno atauga; Čiurnos patempimas; Čiurnos nestabilumas; Achilo tendinopatija; Stresiniai pėdos lūžiai; Čiurnos sąnario artrozė; Blauzdos skausmas bėgikams; Po čiurnos lūžio ar operacijos; Po Achilo sausgyslės plyšimo | 2 |
+| Sporto traumos (`sporto-traumos`) | Raumenų patempimai ir plyšimai; Šlaunies dvigalvio raumens patempimas; Pritraukiamųjų raumenų patempimas; Blauzdos raumens plyšimas; Raumens sumušimas; Raiščių patempimai ir plyšimai; Lūžiai ir grįžimas į sportą po lūžio; Stresiniai lūžiai; Peties išnirimas sportuojant; Bėgimo traumos; Grįžimas į sportą po traumos; Traumų prevencija | 1 |
+| Plintantis skausmas (`plintantis-skausmas`) | Skausmas plinta į koją (išialgija); Skausmas plinta į ranką iš kaklo; Tirpsta ranka ar pirštai; Riešo kanalo sindromas; Piriformio sindromas | 3 |
+| Sausgyslės (`tendinopatijos`) | Teniso alkūnė; Golfo alkūnė; Šokėjo kelis; Achilo tendinopatija; Peties sausgyslių tendinopatija; Dvigalvio raumens sausgyslės uždegimas; Sėdmenų sausgyslių tendinopatija; De Quervain sindromas | 2 |
+
+**Остальное по плану.**
+- Услуги: kineziterapija; manualinė terapija (по методу Мейтланда, Mangirdas); osteopatija (структуральная,
+  без «чудес»); gydomasis masažas (развиваем); sporto reabilitacija; pooperacinė reabilitacija; добавить
+  kinezioteipavimas, Redcord terapija, elektroterapija, ultragarso terapija. Dry needling нет. Smūginė banga
+  и TECAR — когда появятся в клинике.
+- Отдельные страницы: «Privati reabilitacija be siuntimo», «Chiropraktikas Vilniuje?» (остаётся), «Apie mus», DUK.
+- Статьи: 5–10 на раздел, заголовок — вопрос из поиска, формат вопрос-ответ. Видео — позже.
+- Страница болезни — по шаблону из плана (прямой ответ, симптомы, красные флаги, оценка, лечение и сроки, цена,
+  вопросы, литература с DOI, «Peržiūrėjo»), вид — макет G. Старый вид страниц проблем и услуг не используем.
+- Порядок работ: пачками по 5–8 страниц. Текст пачки сначала в Claude Doc, правит Piotr, после его «ок» — код и PR.
+- Языки: сейчас литовский; английский и русский потом, адресами `/en`, `/ru` с hreflang.
+
+**Уточнения Piotr (07.11.2026).**
+- Не берём: реабилитацию после замены суставов как направление «Po operacijų», сколиоз и детей (это FitKid,
+  старые детские адреса ведут на fitkid.lt), челюсть, тазовое дно, беременных. Но в «Klubas ir kirkšnis» есть тема
+  «sunkumai po klubo endoprotezavimo» и artrozė (уточнение Piotr, 07.11.2026).
+- Пост-операционный фокус: передняя крестообразная, плечо, мениск и другие суставные операции. Почти после каждой
+  ортопедической операции есть гипс или ортез — отдельная тема о ранней мягкой (пассивной) кинезитерапии.
+- «Reabilitacija» пишем открыто, но всегда рядом «privati, be siuntimo, be eilių».
+- Сколько визитов: острое состояние — несколько визитов; затянувшаяся радикулопатия — 10 и больше, по стадии;
+  для коррекции — обычно не меньше 5.
+- После мениска и передней крестообразной реабилитацию начинаем рано: примерно через неделю после операции
+  или когда разрешит хирург; сначала советы и пассивная работа, месяцами не ждём.
+- Кто чем занимается: после операций спортивных травм — чаще Kotryna; пожилые пациенты после операций — Mangirdas;
+  Piotr — острые периоды, ишиалгия, болевые синдромы плеча и спины.
+- Тексты пока проверяет Piotr; кто из специалистов какие разделы — решим позже. Дату и автора проверки не выдумывать.
+- Аналитику ставим позже, сначала контент.
+- Слова в литовских текстах: не «įdėklas / įdėklai» (решение Piotr, 07.11.2026) — пишем «įtvaras». Если источник
+  говорит о стельках, не приписывать ему «įtvaras»: такую фразу переформулировать без этого слова.
+
 ## Стек
 
 - Next.js 16 (App Router, Turbopack), React 19, TypeScript, Tailwind CSS v4, lucide-react.
@@ -36,10 +99,22 @@
 - Старые адреса прежнего WordPress-сайта → `src/data/legacy-redirects.ts` (подключён в `next.config.ts`).
   Появилась более точная страница (например, disko išvarža) — перенаправить старый адрес на неё.
 - Разделы `/ka-gydome`, `/paslaugos`, `/specialistai` — `HubPageContent`; списки берутся из
-  `translations.areas/services` и `specialists.ts`, sitemap — из тех же списков.
+  `src/content/sections.ts`, `translations.services` и `specialists.ts`, sitemap — из тех же списков.
 - Картинка для превью ссылок: `public/og/reamed-og.png`, пересобрать — `node scripts/build-og.mjs`.
-- Страницы проблем (`ka-gydome/*`) и услуг (`paslaugos/*`): контент лежит прямо в компоненте объектом `content = { lt, en }`.
-  Компоненты проблем записаны длинными однострочниками — правки делать точечно.
+- Новые страницы проблем — только из данных: файл в `src/content/conditions/<slug>.ts` (тип `ConditionPage`),
+  строка в `index.ts`; маршрут `src/app/ka-gydome/[slug]`, вид — `ConditionPageContent` (макет G), JSON-LD —
+  `src/lib/condition-schema.ts`, источники с DOI — `sources.ts`. В sitemap попадают сами.
+  `reviewed: null`, пока текст не проверил специалист; дату и автора проверки не выдумывать.
+- Дерево «Ką gydome» — `src/content/sections.ts`: 11 разделов в порядке таблицы из плана, у каждого `topics`
+  (болезни и операции из таблицы). Тема с `page` — ссылка на готовую страницу, без `page` — текст, пока страницы нет.
+  Из этого файла строятся блок «Kada galime padėti?» на главной (компьютер и телефон), `/ka-gydome`, sitemap
+  и «хлебные крошки». Новая страница: файл в `src/content/conditions/`, поле `section` (свой раздел) и `page`
+  у её темы в `sections.ts` (операция — в «Po operacijų» и в своей зоне). Сборка падает, если они расходятся.
+- Все страницы проблем на шаблоне G: разделы Po operacijų, Nugara, Kaklas, Petys, Kelias, Sporto traumos (пачки 1–4,
+  PR #25, #27–#29), Sausgyslės и Plintantis skausmas (пачка 5, PR #30). У разделов Alkūnė ir riešas, Klubas ir kirkšnis,
+  Čiurna страниц пока нет: их темы ведут «← Ką gydome». В старом виде остались только услуги (`paslaugos/*`):
+  контент прямо в компоненте объектом `content = { lt, en }`. Их переводим на шаблон G; новые страницы в старом виде не делать.
+- Тексты пачек — в Claude Docs «reamed.lt: пачка N», код страницы и документ должны совпадать дословно.
 - `src/components/sections/` — блоки главной.
 - `src/lib/translations.ts` — тексты главной и общих блоков (lt/en).
 - `src/lib/specialists.ts` — специалисты (slug, био, лицензия, курсы).
