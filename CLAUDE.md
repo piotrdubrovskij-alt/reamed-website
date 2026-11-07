@@ -14,6 +14,62 @@
 - Перед PR: `npx tsc --noEmit`, `npm run lint`, `npm run build` и проверка страницы в браузере на 375 px и 1280 px.
 - После вливания в `docs/plan.md` отметить пункт `[x]` с номером PR.
 
+## Правило: контент делаем по плану от 07.11.2026
+
+Решение Piotr (07.11.2026): весь контент и структура сайта — строго по плану из Claude Doc
+[«reamed.lt: план захвата поиска по кинезитерапии»](https://claude.ai/artifact/Jmpt7pwX639tzaqCFvR4fC)
+с его уточнениями ниже. Не делать отрывками и не придумывать свою структуру: каждая новая страница
+встаёт на своё место в дереве плана. Хочется отойти от плана — сначала спросить Piotr.
+
+**«Ką gydome» = 11 разделов по зонам тела, внутри — страницы болезней и операций.**
+- Страница болезни принадлежит одному разделу и показывается внутри него: на `/ka-gydome` под своим разделом,
+  на странице раздела, в «хлебных крошках» «Ką gydome › раздел › страница». Отдельным списком рядом с разделами — нельзя.
+- Страница операции живёт в «Po operacijų» и показывается ещё и в своей зоне (мениск — и в «Kelias»,
+  позвоночник — и в «Nugara»).
+- Адреса плоские: `/ka-gydome/<slug>` для разделов и болезней, `/straipsniai/<slug>` для статей.
+  Нынешние адреса не меняем.
+- Восемь нынешних страниц проблем становятся страницами-разделами и переписываются по шаблону G.
+
+| Раздел (адрес) | Страницы внутри | Приоритет |
+|---|---|---|
+| Po operacijų (`atsistatymas-po-operaciju`) | po PKR rekonstrukcijos; po menisko operacijos; po kelio artroskopijos; po peties artroskopijos ir rotatorių manžetės siūlės; po peties stabilizacijos; po Achilo sausgyslės plyšimo; po čiurnos lūžio ar operacijos; po riešo ir rankos lūžio; po klubo artroskopijos; po disko išvaržos operacijos; po stuburo stabilizacijos | 1, главный фокус |
+| Kelias (`kelio-skausmas`) | PKR plyšimas; menisko plyšimas; patelofemoralinis skausmas; girnelės sausgyslės tendinopatija; iliotibialinio trakto sindromas; kelio raiščių patempimas; kelio artrozė | 1 |
+| Petys (`peties-problemos`) | subakromialinis skausmas; rotatorių manžetės pažeidimas; sustingęs petys; peties išnirimas ir nestabilumas; AC sąnario trauma; kalcifikuojantis tendinitas | 1 |
+| Nugara (`nugaros-skausmas`) | stuburo (disko) išvarža; išialgija ir radikulopatija; skausmas nugaros apačioje; osteochondrozė; ūmus nugaros skausmas; stuburo kanalo stenozė; spondilolistezė; kryžkaulio ir klubo sąnario skausmas; skausmas tarp mentių; nugaros skausmas sėdint; laikysena; + операции на позвоночнике из «Po operacijų» | 1, такой же большой, как ортопедия |
+| Kaklas (`kaklo-skausmas`) | cervikalgija; kaklo radikulopatija; užstrigęs kaklas; kaklo trauma po avarijos; įtampos galvos skausmas; galvos skausmas dėl kaklo | 1 |
+| Sporto traumos (`sporto-traumos`) | šlaunies dvigalvio raumens patempimas; blauzdos raumens plyšimas; bėgimo traumos; grįžimas į sportą po traumos | 1 |
+| Sausgyslės (`tendinopatijos`, назвать «Sausgyslių uždegimas ir tendinopatija») | общая страница + ссылки на локоть, Ахилл, колено, плечо | 2 |
+| Alkūnė ir riešas (новый) | teniso alkūnė; golfo alkūnė; de Quervain; riešo kanalo sindromas | 2 |
+| Klubas ir kirkšnis (новый) | kirkšnies skausmas sportininkams; šoninis klubo skausmas; klubo FAI ir lūpos plyšimas; piriformio sindromas | 2 |
+| Čiurna ir pėda (новый) | plantarinis fascitas (приоритет 1); čiurnos patempimas; čiurnos nestabilumas; Achilo tendinopatija; blauzdos skausmas bėgikams | 2 |
+| Plintantis skausmas (`plintantis-skausmas`) | страница-симптом: ведёт на išialgiją и kaklo radikulopatiją | 3 |
+
+**Остальное по плану.**
+- Услуги: kineziterapija; manualinė terapija (по методу Мейтланда, Mangirdas); osteopatija (структуральная,
+  без «чудес»); gydomasis masažas (развиваем); sporto reabilitacija; pooperacinė reabilitacija; добавить
+  kinezioteipavimas, Redcord terapija, elektroterapija, ultragarso terapija. Dry needling нет. Smūginė banga
+  и TECAR — когда появятся в клинике.
+- Отдельные страницы: «Privati reabilitacija be siuntimo», «Chiropraktikas Vilniuje?» (остаётся), «Apie mus», DUK.
+- Статьи: 5–10 на раздел, заголовок — вопрос из поиска, формат вопрос-ответ. Видео — позже.
+- Страница болезни — по шаблону из плана (прямой ответ, симптомы, красные флаги, оценка, лечение и сроки, цена,
+  вопросы, литература с DOI, «Peržiūrėjo»), вид — макет G. Старый вид страниц проблем и услуг не используем.
+- Порядок работ: пачками по 5–8 страниц. Текст пачки сначала в Claude Doc, правит Piotr, после его «ок» — код и PR.
+- Языки: сейчас литовский; английский и русский потом, адресами `/en`, `/ru` с hreflang.
+
+**Уточнения Piotr (07.11.2026).**
+- Не берём: замены суставов, сколиоз и детей (это FitKid, старые детские адреса ведут на fitkid.lt), челюсть,
+  тазовое дно, беременных.
+- Пост-операционный фокус: передняя крестообразная, плечо, мениск и другие суставные операции.
+- «Reabilitacija» пишем открыто, но всегда рядом «privati, be siuntimo, be eilių».
+- Сколько визитов: острое состояние — несколько визитов; затянувшаяся радикулопатия — 10 и больше, по стадии;
+  для коррекции — обычно не меньше 5.
+- После мениска и передней крестообразной реабилитацию начинаем рано: примерно через неделю после операции
+  или когда разрешит хирург; сначала советы и пассивная работа, месяцами не ждём.
+- Кто чем занимается: после операций спортивных травм — чаще Kotryna; пожилые пациенты после операций — Mangirdas;
+  Piotr — острые периоды, ишиалгия, болевые синдромы плеча и спины.
+- Тексты пока проверяет Piotr; кто из специалистов какие разделы — решим позже. Дату и автора проверки не выдумывать.
+- Аналитику ставим позже, сначала контент.
+
 ## Стек
 
 - Next.js 16 (App Router, Turbopack), React 19, TypeScript, Tailwind CSS v4, lucide-react.
