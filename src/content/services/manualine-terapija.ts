@@ -1,8 +1,9 @@
 import type { ServicePage } from "./types";
 import { BACK_PAIN_CPG, GROSS_2015, NECK_PAIN_CPG, RUBINSTEIN_2019 } from "@/content/conditions/sources";
-import { eur, minutes } from "./price-text";
+import { eur, minutes, packEur } from "./price-text";
 
-// Batch 6, draft of 07.11.2026. Plan: manual therapy by the Maitland concept (Mangirdas).
+// Batch 6, draft of 07.11.2026. Plan: manual therapy by the Maitland concept. Piotr, 07.11.2026: Mangirdas and Erikas,
+// same price as kineziterapija.
 export const manualineTerapija: ServicePage = {
   slug: "manualine-terapija",
   navTitle: "Manualinė terapija",
@@ -65,8 +66,8 @@ export const manualineTerapija: ServicePage = {
     ],
   },
   price: {
-    lines: ["pirmasis-vizitas", "kineziterapija", "piotr"],
-    note: "Manualinė terapija atliekama kineziterapijos vizito metu, todėl kaina tokia pati. Piotr Dubrovskij vizitams paketai netaikomi.",
+    lines: ["pirmasis-vizitas", "kineziterapija"],
+    note: "Manualinė terapija atliekama kineziterapijos vizito metu, todėl kaina ir paketai tokie patys.",
   },
   limits: {
     items: [
@@ -81,8 +82,8 @@ export const manualineTerapija: ServicePage = {
   },
   team: {
     title: "Manualinę terapiją atlieka",
-    specialists: ["mangirdas-kazacenko", "piotr-dubrovskij"],
-    note: "Mangirdas Kazačenko baigė Maitland manualinės terapijos 1, 2A ir 2B lygių kursus.",
+    specialists: ["mangirdas-kazacenko", "erikas-jatkauskas"],
+    note: "Mangirdas Kazačenko baigė Maitland manualinės terapijos 1, 2A ir 2B lygių kursus, Erikas Jatkauskas 2022 m. dalyvavo Maitland seminare.",
   },
   faq: [
     {
@@ -107,7 +108,7 @@ export const manualineTerapija: ServicePage = {
     },
     {
       q: "Kiek kainuoja?",
-      a: `Pirmasis vizitas su ištyrimu ${eur("pirmasis-vizitas")}, pakartotinis ${eur("kineziterapija")}. Piotr Dubrovskij vizitas ${eur("piotr")}.`,
+      a: `Pirmasis vizitas su ištyrimu ${eur("pirmasis-vizitas")}, pakartotinis ${eur("kineziterapija")}. Perkant 5 ar 10 vizitų paketą, vizitas kainuoja ${packEur("kineziterapija", 5)} arba ${packEur("kineziterapija", 10)}.`,
     },
     { q: "Ar reikia siuntimo?", a: "Ne. ReaMed yra privati klinika, registruojatės tiesiogiai." },
   ],

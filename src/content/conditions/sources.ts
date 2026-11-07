@@ -498,3 +498,27 @@ export const MAZUQUIN_2021: Source = {
   year: 2021,
   doi: "10.1371/journal.pone.0252137",
 };
+
+export const HALLER_2020: Source = {
+  authors: "Haller H ir kt.",
+  title: "Craniosacral therapy for chronic pain: a systematic review and meta-analysis of randomized controlled trials.",
+  journal: "BMC Musculoskelet Disord",
+  year: 2020,
+  doi: "10.1186/s12891-019-3017-y",
+};
+
+export const GUILLAUD_2018: Source = {
+  authors: "Guillaud A ir kt.",
+  title: "Reliability of diagnosis and clinical efficacy of visceral osteopathy: a systematic review.",
+  journal: "BMC Complement Altern Med",
+  year: 2018,
+  doi: "10.1186/s12906-018-2098-8",
+};
+
+export const PANAGOPOULOS_2015: Source = {
+  authors: "Panagopoulos J ir kt.",
+  title: "Does the addition of visceral manipulation alter outcomes for patients with low back pain? A randomized placebo controlled trial.",
+  journal: "Eur J Pain",
+  year: 2015,
+  doi: "10.1002/ejp.614",
+};
