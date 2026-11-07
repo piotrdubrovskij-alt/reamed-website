@@ -2,7 +2,7 @@ import type { ConditionPage } from "./types";
 import { CTS_CPG, CTS_MANUAL_VS_SURGERY, PADUA_2016 } from "./sources";
 
 // Draft of 07.11.2026, waiting for Piotr's review (Claude Doc «Пачка 5»).
-// Own section Alkūnė ir riešas (no section page yet); also listed in Plintantis skausmas.
+// Own section Alkūnė ir riešas (section page since batch 7); also listed in Plintantis skausmas.
 // Search: riešo kanalo sindromas 480. «Įtvaras», never «įdėklas» (Piotr, 07.11).
 export const riesoKanaloSindromas: ConditionPage = {
   slug: "rieso-kanalo-sindromas",

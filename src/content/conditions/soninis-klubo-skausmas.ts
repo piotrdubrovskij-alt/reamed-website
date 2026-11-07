@@ -2,7 +2,7 @@ import type { ConditionPage } from "./types";
 import { GRIMALDI_2015, MELLOR_2018, TENDINOPATHY_NRDP_2021 } from "./sources";
 
 // Draft of 07.11.2026, waiting for Piotr's review (Claude Doc «Пачка 5»).
-// Own section Klubas ir kirkšnis (no section page yet): topic «Šoninis klubo skausmas (trochanterinis bursitas)»;
+// Own section Klubas ir kirkšnis (section page since batch 7): topic «Šoninis klubo skausmas (trochanterinis bursitas)»;
 // also listed in Sausgyslės as «Sėdmenų sausgyslių tendinopatija». Search: trochanterinis bursitas 210.
 export const soninisKlubo: ConditionPage = {
   slug: "soninis-klubo-skausmas",

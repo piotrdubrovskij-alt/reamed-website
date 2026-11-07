@@ -15,7 +15,7 @@ export type Section = {
   slug: string;
   name: { lt: string; en: string };
   text: { lt: string; en: string };
-  /** The section's own page exists (the eight older pages; the three new ones are still to be written). */
+  /** The section's own page exists (all eleven since batch 7, 07.11.2026). */
   hasPage: boolean;
   priority: 1 | 2 | 3;
   topics: Topic[];
@@ -35,9 +35,9 @@ const SECTION_LIST = [
       { title: "Ankstyva reabilitacija po operacijos ir imobilizacijos (gipsas, įtvaras)", page: "ankstyva-reabilitacija-po-operacijos" },
       { title: "Po kryžminio raiščio rekonstrukcijos", page: "reabilitacija-po-kryzminio-raiscio-operacijos" },
       { title: "Po menisko operacijos", page: "reabilitacija-po-menisko-operacijos" },
-      { title: "Po kelio artroskopijos" },
+      { title: "Po kelio artroskopijos", page: "reabilitacija-po-kelio-artroskopijos" },
       { title: "Po kelio lūžio operacijos" },
-      { title: "Po peties artroskopijos ir rotatorių manžetės siūlės" },
+      { title: "Po peties artroskopijos ir rotatorių manžetės siūlės", page: "reabilitacija-po-peties-artroskopijos" },
       { title: "Po peties stabilizacijos" },
       { title: "Po žastikaulio lūžio" },
       { title: "Po riešo ir rankos lūžio" },
@@ -58,7 +58,7 @@ const SECTION_LIST = [
     hasPage: true,
     priority: 1,
     topics: [
-      { title: "Ūmus nugaros skausmas („užstrigo nugara“)" },
+      { title: "Ūmus nugaros skausmas („užstrigo nugara“)", page: "umus-nugaros-skausmas" },
       { title: "Nugaros skausmas ir raumenų įtampa" },
       { title: "Stuburo išvarža", page: "stuburo-isvarza" },
       { title: "Išialgija ir radikulopatija", page: "isialgija-radikulopatija" },
@@ -91,7 +91,7 @@ const SECTION_LIST = [
       { title: "Kaklo radikulopatija: skausmas plinta į ranką", page: "kaklo-radikulopatija" },
       { title: "Kaklo trauma po avarijos" },
       { title: "Įtampos galvos skausmas", page: "itampos-galvos-skausmas" },
-      { title: "Galvos skausmas dėl kaklo" },
+      { title: "Galvos skausmas dėl kaklo", page: "galvos-skausmas-del-kaklo" },
     ],
   },
   {
@@ -113,7 +113,7 @@ const SECTION_LIST = [
       { title: "Peties nestabilumas ir išnirimai" },
       { title: "AC sąnario trauma" },
       { title: "Peties sąnario artrozė" },
-      { title: "Po peties artroskopijos ir rotatorių manžetės siūlės" },
+      { title: "Po peties artroskopijos ir rotatorių manžetės siūlės", page: "reabilitacija-po-peties-artroskopijos" },
       { title: "Po peties stabilizacijos" },
       { title: "Po žastikaulio lūžio" },
     ],
@@ -125,7 +125,7 @@ const SECTION_LIST = [
       lt: "Alkūnės ir riešo skausmas, sausgyslių perkrovos, sustingimas po lūžių.",
       en: "Elbow and wrist pain, tendon overuse, stiffness after fractures.",
     },
-    hasPage: false,
+    hasPage: true,
     priority: 2,
     topics: [
       { title: "Teniso alkūnė", page: "teniso-alkune" },
@@ -149,7 +149,7 @@ const SECTION_LIST = [
     topics: [
       { title: "Priekinio kryžminio raiščio plyšimas", page: "priekinio-kryzminio-raiscio-plysimas" },
       { title: "Užpakalinio kryžminio raiščio plyšimas" },
-      { title: "Vidinio šoninio raiščio pažeidimas" },
+      { title: "Vidinio šoninio raiščio pažeidimas", page: "vidinio-soninio-raiscio-pazeidimas" },
       { title: "Menisko plyšimas", page: "menisko-plysimas" },
       { title: "Kelio lūžiai" },
       { title: "Ribotas kelio judrumas" },
@@ -159,7 +159,7 @@ const SECTION_LIST = [
       { title: "Kelio artrozė" },
       { title: "Po kryžminio raiščio rekonstrukcijos", page: "reabilitacija-po-kryzminio-raiscio-operacijos" },
       { title: "Po menisko operacijos", page: "reabilitacija-po-menisko-operacijos" },
-      { title: "Po kelio artroskopijos" },
+      { title: "Po kelio artroskopijos", page: "reabilitacija-po-kelio-artroskopijos" },
       { title: "Po kelio lūžio operacijos" },
     ],
   },
@@ -170,7 +170,7 @@ const SECTION_LIST = [
       lt: "Klubo sąnario ir kirkšnies skausmas, artrozė, sunkumai po endoprotezavimo.",
       en: "Hip joint and groin pain, osteoarthritis, problems after hip replacement.",
     },
-    hasPage: false,
+    hasPage: true,
     priority: 2,
     topics: [
       { title: "Klubo sąnario artrozė" },
@@ -189,7 +189,7 @@ const SECTION_LIST = [
       lt: "Kulno, pėdos ir čiurnos skausmas, raiščių patempimai, stresiniai lūžiai.",
       en: "Heel, foot and ankle pain, ligament sprains, stress fractures.",
     },
-    hasPage: false,
+    hasPage: true,
     priority: 2,
     topics: [
       { title: "Plantarinis fascitas", page: "plantarinis-fascitas" },
