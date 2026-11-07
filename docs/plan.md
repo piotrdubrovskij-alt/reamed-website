@@ -96,6 +96,8 @@
   (сверено с `/kainos`; при изменении цен менять в обоих местах).
 - [x] **Индексные страницы** `/specialistai`, `/paslaugos`, `/ka-gydome` — PR #23 (были 404);
   кнопка «Visi specialistai →» должна вести на список специалистов, а не на `/registracija`.
+- [x] **Первый экран страниц проблем и услуг без фото специалиста** (если вернётся — аркой) — PR #32
+- [x] **Услуги на главной кнопками** на мятной полосе, kineziterapija крупнее — PR #34
 - [ ] **Подарочные ваучеры:** ссылка в шапке и футере до декабря. Уточнить у Piotr, где живёт система ваучеров.
 - [ ] **Живая фотосъёмка:** кабинеты, работа с пациентом, оборудование, команда.
 - [ ] **Русская версия** — после п. 8.
@@ -126,7 +128,11 @@ Search Console — в аккаунте info@reamed.lt (`sc-domain:reamed.lt`), �
   ultragarsas; остеопатия — структуральная; мануальная — Мейтланд); «Privati reabilitacija be siuntimo»,
   «Chiropraktikas Vilniuje?», «Apie mus», DUK
   - [x] Страницы проблем, пачки 1–4 (26 страниц: 6 разделов на шаблоне G и 20 тем) — PR #25, #27, #28, #29
-  - [ ] Услуги заново, «Privati reabilitacija be siuntimo», «Chiropraktikas Vilniuje?», «Apie mus», DUK
+  - [x] Услуги заново, пачка 6: семь услуг на шаблоне G (kineziterapija, osteopatija, manualinė terapija,
+    pooperacinė и sporto reabilitacija, gydomasis masažas, fizioterapija = elektroterapija + ultragarsas),
+    список «Mūsų paslaugos» — PR #33
+  - [ ] Услуги, пачка 7: kinezioteipavimas, Redcord terapija
+  - [ ] «Privati reabilitacija be siuntimo», «Chiropraktikas Vilniuje?», «Apie mus», DUK
 - [ ] **Статьи LT:** 5–10 на раздел, заголовок — вопрос из поиска
 - [ ] **Приоритет 2:** alkūnė ir riešas, klubas ir kirkšnis, čiurna ir pėda, sausgyslės
   - [x] Пачка 5: разделы Sausgyslės и Plintantis skausmas заново на шаблоне G; темы teniso alkūnė, riešo kanalo
