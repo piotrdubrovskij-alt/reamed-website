@@ -1,12 +1,11 @@
 "use client";
 
-import Link from "next/link";
-import { ArrowRight } from "lucide-react";
 import { useLanguage } from "@/contexts/LanguageContext";
+import ServiceButtons from "@/components/ServiceButtons";
 
-// Services as big buttons on a mint band (Piotr, 07.11.2026: the plain list read as weak, most visits come from phones).
-// Brand pair the other way round: graphite buttons on mint, white title, mint arrow. The band sits between
-// «Pirmasis vizitas» (ground) and the team (graphite). No shadows or lines: background change only.
+// Services as big buttons on a mint band (Piotr, 07.11.2026). Brand pair the other way round: graphite buttons
+// on mint, white title, mint arrow. The band sits between «Pirmasis vizitas» (ground) and the team (graphite).
+// No shadows or lines: background change only. /paslaugos shows the same buttons.
 export default function ServicesSection() {
   const { t } = useLanguage();
 
@@ -20,31 +19,7 @@ export default function ServicesSection() {
         <h2 id="services-h" className="text-h2 max-w-[24ch] text-balance mb-8 md:mb-12">
           {t.services.title}
         </h2>
-        {/* Seven services. The first one (kineziterapija, the main service) is full width on tablets and two rows
-            tall on desktop, so the grid closes without a gap: 1 + 6 in 2 columns, or 1 tall + 3 × 2 in 4 columns. */}
-        <ul className="grid gap-2.5 md:grid-cols-2 desk:grid-cols-4 md:gap-3">
-          {t.services.items.map((s, i) => (
-            <li key={s.slug} className={i === 0 ? "flex md:col-span-2 desk:col-span-1 desk:row-span-2" : "flex"}>
-              <Link
-                href={`/paslaugos/${s.slug}`}
-                className={`group flex w-full items-center justify-between gap-4 min-h-[76px] rounded-[28px] bg-graphite px-6 py-4 text-white no-underline transition-colors duration-200 hover:bg-ink motion-reduce:transition-none desk:min-h-[112px] desk:px-7 desk:py-6${
-                  i === 0 ? " desk:flex-col desk:items-start desk:py-7" : ""
-                }`}
-              >
-                <span className="flex flex-col gap-1">
-                  <span className={`text-body font-medium ${i === 0 ? "desk:text-h3" : "desk:text-lead"}`}>{s.title}</span>
-                  <span className="text-small text-on-dark">{s.text}</span>
-                </span>
-                <span
-                  aria-hidden="true"
-                  className="grid place-items-center shrink-0 size-10 rounded-full bg-mint text-ink transition-transform duration-200 group-hover:translate-x-0.5 motion-reduce:transition-none"
-                >
-                  <ArrowRight size={20} />
-                </span>
-              </Link>
-            </li>
-          ))}
-        </ul>
+        <ServiceButtons items={t.services.items} />
       </div>
     </section>
   );

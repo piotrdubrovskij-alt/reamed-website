@@ -8,6 +8,7 @@ import { FIRST_VISIT, formatPrice } from "@/data/prices";
 import type { SpecialistSlug } from "@/data/reviews";
 import { SPECIALIST_NAMES, specialistPhoto } from "@/components/reviews/format";
 import SectionTopics from "@/components/SectionTopics";
+import ServiceButtons from "@/components/ServiceButtons";
 import { SECTIONS } from "@/content/sections";
 
 export type HubKind = "areas" | "services" | "specialists";
@@ -20,7 +21,7 @@ const content = {
     },
     services: {
       title: "Paslaugos",
-      lead: "Kineziterapija, manualinė terapija, osteopatija ir gydomasis masažas Vilniaus centre. Privati klinika: siuntimo nereikia.",
+      lead: "Kineziterapija, manualinė terapija, osteopatija, fizioterapija ir gydomasis masažas Vilniaus centre. Privati klinika: siuntimo nereikia, eilių nėra.",
     },
     specialists: {
       title: "Specialistai",
@@ -38,7 +39,7 @@ const content = {
     },
     services: {
       title: "Services",
-      lead: "Physiotherapy, manual therapy, osteopathy and therapeutic massage in central Vilnius. A private clinic: no referral needed.",
+      lead: "Physiotherapy, manual therapy, osteopathy, electrotherapy and therapeutic massage in central Vilnius. A private clinic: no referral, no waiting list.",
     },
     specialists: {
       title: "Specialists",
@@ -50,21 +51,6 @@ const content = {
     book: "Book a visit",
   },
 } as const;
-
-function LinkList({ items, base }: { items: readonly { slug: string; title: string; text: string }[]; base: string }) {
-  return (
-    <ul className="grid gap-8 md:grid-cols-2 desk:grid-cols-3 md:gap-x-[72px] md:gap-y-12">
-      {items.map((item) => (
-        <li key={item.slug}>
-          <Link href={`${base}/${item.slug}`} className="link-action inline-flex items-center min-h-11 text-lead">
-            {item.title}
-          </Link>
-          <p className="mt-1.5 text-graphite max-w-[36ch]">{item.text}</p>
-        </li>
-      ))}
-    </ul>
-  );
-}
 
 // /ka-gydome: the plan's table as the page. One row per section, in the table's order:
 // the section (a link once it has its own page) and everything it holds.
@@ -142,10 +128,13 @@ export default function HubPageContent({ kind }: { kind: HubKind }) {
         </div>
       </section>
 
-      <section className="bg-paper section-y">
+      {/* /paslaugos: the same mint band with graphite buttons as on the home page (Piotr, 07.11.2026). */}
+      <section
+        className={kind === "services" ? "bg-mint text-ink section-y [--focus-ring:var(--color-ink)]" : "bg-paper section-y"}
+      >
         <div className="wrap">
           {kind === "areas" && <SectionRows />}
-          {kind === "services" && <LinkList items={t.services.items} base="/paslaugos" />}
+          {kind === "services" && <ServiceButtons items={t.services.items} />}
           {kind === "specialists" && <SpecialistList />}
         </div>
       </section>
