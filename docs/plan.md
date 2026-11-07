@@ -138,9 +138,9 @@ Search Console — в аккаунте info@reamed.lt (`sc-domain:reamed.lt`), �
   - Kinezioteipavimas и Redcord отдельными страницами не делаем (решение Piotr 07.11.2026): Redcord — методика
     внутри кинезитерапии, тейпирование — дополнение к визиту. Пачка 7 по услугам отменена.
   - [ ] «Privati reabilitacija be siuntimo», «Chiropraktikas Vilniuje?», «Apie mus», DUK
-- [ ] **Статьи LT:** 5–10 на раздел, заголовок — вопрос из поиска
-  - Обязательно: хиропрактика («Chiropraktikas Vilniuje?»), Redcord, kineziologinis teipavimas — статьями со ссылками
-    на страницы болезней и услуг (решение Piotr 07.11.2026).
+- [ ] **Статьи LT:** 100–150 статей-ответов, 5–10 на раздел и статьи о методах, заголовок — вопрос из поиска, по 10–15 за PR
+  - Обязательно: статьи о хиропрактике, Redcord и kineziologinis teipavimas со ссылками на страницы болезней и услуг
+    (решение Piotr 07.11.2026). Отдельная страница «Chiropraktikas Vilniuje?» остаётся.
   - [ ] План статей (список заголовков по разделам, спрос, куда ведёт каждая) — Claude Doc на правку Piotr
   - [ ] Шаблон статьи в коде: `/straipsniai/<slug>`, `Article` в JSON-LD, статьи раздела на его странице
 - [ ] **Приоритет 2:** alkūnė ir riešas, klubas ir kirkšnis, čiurna ir pėda, sausgyslės
