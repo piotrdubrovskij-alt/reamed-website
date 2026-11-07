@@ -27,7 +27,7 @@ const content = {
       { title: "Atšaukimas", text: "Atšaukus vizitą vėliau nei prieš 24 val., jis nurašomas iš paketo." },
       {
         title: "Apmokėjimas ir draudimas",
-        text: "Mokėti galima grynaisiais, banko kortele arba pavedimu. Jei turite sveikatos draudimą, po vizito išrašome sąskaitą faktūrą draudimo bendrovei.",
+        text: "ReaMed yra privati klinika: visos paslaugos mokamos, gydytojo siuntimo nereikia, su ligonių kasomis nedirbame. Mokėti galima grynaisiais, banko kortele arba pavedimu. Jei turite sveikatos draudimą, po vizito išrašome sąskaitą faktūrą draudimo bendrovei.",
       },
     ],
   },
@@ -42,7 +42,7 @@ const content = {
       { title: "Cancellation", text: "If a visit is cancelled less than 24 hours in advance, it is deducted from the package." },
       {
         title: "Payment and insurance",
-        text: "You can pay in cash, by bank card or by bank transfer. If you have health insurance, after the visit we issue an invoice for your insurance company.",
+        text: "ReaMed is a private clinic: all services are paid, no doctor's referral is needed, and we do not work with the state health insurance fund. You can pay in cash, by bank card or by bank transfer. If you have health insurance, after the visit we issue an invoice for your insurance company.",
       },
     ],
   },
