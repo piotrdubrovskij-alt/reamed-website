@@ -6,9 +6,9 @@ import HubPageContent from "@/components/HubPageContent";
 
 export const metadata: Metadata = pageMetadata({
   path: "/paslaugos",
-  title: "Paslaugos — kineziterapija, manualinė terapija, osteopatija Vilniuje | ReaMed",
+  title: "Paslaugos: kineziterapija, manualinė terapija, osteopatija Vilniuje | ReaMed",
   description:
-    "Kineziterapija, manualinė terapija, osteopatija, gydomasis masažas, sporto ir pooperacinė reabilitacija Vilniaus centre. Privati klinika, siuntimo nereikia.",
+    "Kineziterapija, manualinė terapija, osteopatija, fizioterapija, gydomasis masažas, sporto ir pooperacinė reabilitacija Vilniaus centre. Privati klinika, siuntimo nereikia.",
 });
 
 export default function PaslaugosPage() {
