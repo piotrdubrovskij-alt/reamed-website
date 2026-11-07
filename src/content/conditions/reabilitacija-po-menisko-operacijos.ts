@@ -92,8 +92,9 @@ export const reabilitacijaPoMeniskoOperacijos: ConditionPage = {
   sources: [MENISCUS_CONSENSUS, MENISCUS_ROOT_REHAB],
   reviewed: null,
   related: [
-    { href: "/ka-gydome/kelio-skausmas", label: "Kelio skausmas ir traumos" },
-    { href: "/ka-gydome/atsistatymas-po-operaciju", label: "Atsistatymas po operacijų" },
+    { href: "/ka-gydome/kelio-skausmas", label: "Kelio skausmas" },
+    { href: "/ka-gydome/menisko-plysimas", label: "Menisko plyšimas" },
+    { href: "/ka-gydome/atsistatymas-po-operaciju", label: "Reabilitacija po operacijų" },
     { href: "/paslaugos/pooperacine-reabilitacija", label: "Pooperacinė reabilitacija" },
     { href: "/paslaugos/sporto-reabilitacija", label: "Sporto reabilitacija" },
   ],
