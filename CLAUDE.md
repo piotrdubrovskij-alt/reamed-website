@@ -53,9 +53,13 @@
 
 **Остальное по плану.**
 - Услуги: kineziterapija; manualinė terapija (по методу Мейтланда, Mangirdas); osteopatija (структуральная,
-  без «чудес»); gydomasis masažas (развиваем); sporto reabilitacija; pooperacinė reabilitacija; добавить
-  kinezioteipavimas, Redcord terapija, elektroterapija, ultragarso terapija. Dry needling нет. Smūginė banga
-  и TECAR — когда появятся в клинике.
+  без «чудес», краниосакральные и висцеральные техники — мягко и без обещаний); gydomasis masažas (развиваем);
+  sporto reabilitacija; pooperacinė reabilitacija; fizioterapija (elektroterapija + ultragarsas одной страницей).
+  Dry needling нет. Smūginė banga и TECAR — когда появятся в клинике.
+- Kinezioteipavimas и Redcord отдельными услугами не делаем и не выпячиваем (решение Piotr 07.11.2026).
+  Redcord — методика внутри кинезитерапии: специалист берёт его, когда считает уместным (чаще всего Erikas).
+  Тейпирование — дополнение к визиту, обычно после процедур (в прайсе — «papildomas modulis»); только на тейп
+  приходят примерно раз в год. Упоминать их можно там, где они часть лечения (страница кинезитерапии, страницы болезней).
 - Отдельные страницы: «Privati reabilitacija be siuntimo», «Chiropraktikas Vilniuje?» (остаётся), «Apie mus», DUK.
 - Статьи: 5–10 на раздел, заголовок — вопрос из поиска, формат вопрос-ответ. Видео — позже.
 - Страница болезни — по шаблону из плана (прямой ответ, симптомы, красные флаги, оценка, лечение и сроки, цена,

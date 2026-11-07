@@ -128,14 +128,15 @@ Search Console — в аккаунте info@reamed.lt (`sc-domain:reamed.lt`), �
   išialgija, skausmas nugaros apačioje, osteochondrozė, plantarinis fascitas, po menisko operacijos) — ветка
   `feat/condition-template`, ждёт «ок» по текстам. Следом перевести на шаблон 8 старых страниц проблем и 6 услуг
 - [ ] **Ядро LT, приоритет 1:** po operacijų (+ po stuburo operacijų), kelias, petys, nugara, kaklas
-  (+ įtampos galvos skausmas), sporto traumos; услуги заново (+ kinezioteipavimas, Redcord, elektroterapija,
-  ultragarsas; остеопатия — структуральная; мануальная — Мейтланд); «Privati reabilitacija be siuntimo»,
+  (+ įtampos galvos skausmas), sporto traumos; услуги заново (+ elektroterapija и ultragarsas;
+  остеопатия — структуральная; мануальная — Мейтланд); «Privati reabilitacija be siuntimo»,
   «Chiropraktikas Vilniuje?», «Apie mus», DUK
   - [x] Страницы проблем, пачки 1–4 (26 страниц: 6 разделов на шаблоне G и 20 тем) — PR #25, #27, #28, #29
   - [x] Услуги заново, пачка 6: семь услуг на шаблоне G (kineziterapija, osteopatija, manualinė terapija,
     pooperacinė и sporto reabilitacija, gydomasis masažas, fizioterapija = elektroterapija + ultragarsas),
     список «Mūsų paslaugos» — PR #33
-  - [ ] Услуги, пачка 7: kinezioteipavimas, Redcord terapija
+  - Kinezioteipavimas и Redcord отдельными страницами не делаем (решение Piotr 07.11.2026): Redcord — методика
+    внутри кинезитерапии, тейпирование — дополнение к визиту. Пачка 7 по услугам отменена.
   - [ ] «Privati reabilitacija be siuntimo», «Chiropraktikas Vilniuje?», «Apie mus», DUK
 - [ ] **Статьи LT:** 5–10 на раздел, заголовок — вопрос из поиска
 - [ ] **Приоритет 2:** alkūnė ir riešas, klubas ir kirkšnis, čiurna ir pėda, sausgyslės
