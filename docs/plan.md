@@ -20,6 +20,10 @@
 - [x] **Разметка schema.org.** В `layout.tsx` `geo` теперь на точке клиники `54.6900422, 25.2899553`
   (было — центр Вильнюса), в `address` добавлен `postalCode: "09200"`, добавлен `sameAs` со ссылкой
   на Google-карточку клиники — PR #5
+- [x] **Логотип в векторе.** Надпись ReaMed построена геометрически, руки перерисованы, KLINIKA и девиз —
+  Open Sans в кривых; все варианты в `public/brand/`. Фавиконки — буква R из надписи — PR #6
+- [x] **7. Шрифт.** Onest (переменный, `latin` + `latin-ext`) вместо Poppins. Попутно найдено: Poppins
+  фактически не применялся — `body` брал `var(--font-sans)`, а при `@theme inline` такой CSS-переменной нет — PR #7
 
 ## P0 — сразу
 
@@ -37,9 +41,6 @@
 - [ ] **6. Дизайн-токены.** Цвета в `@theme`: surface, primary, primary-strong, border, ink.
   Заменить жёсткие hex в классах (~500 мест, из них ~290 — `#7DB9B5`). Шкала из 6–7 размеров шрифта,
   основной текст не меньше 16 px.
-- [ ] **7. Шрифт.** Решено: Onest (переменный, `latin` + `latin-ext`) вместо Poppins — PR #7.
-  Было: Poppins, 6 начертаний, только `latin`, и фактически он не применялся: `body` брал `var(--font-sans)`,
-  а при `@theme inline` такой CSS-переменной нет, поэтому весь сайт шёл системным шрифтом.
 - [ ] **8. Английская версия по своим адресам.** `/en/...`, `hreflang`, правильный `<html lang>`,
   английские `title`/`description`. Затрагивает все `*Content.tsx` — делать вместе с п. 6,
   чтобы не переписывать компоненты дважды. Заодно перевести подписи `TrustBar` (сейчас только LT).
@@ -109,7 +110,7 @@
 [«reamed.lt: план захвата поиска по кинезитерапии»](https://claude.ai/artifact/Jmpt7pwX639tzaqCFvR4fC).
 Search Console — в аккаунте info@reamed.lt (`sc-domain:reamed.lt`), к Claude подключён через Windsor.ai.
 
-- [ ] **Техника.** 301 со старых адресов WordPress (`src/data/legacy-redirects.ts`, 96 адресов из отчёта 404),
+- [x] **Техника.** 301 со старых адресов WordPress (`src/data/legacy-redirects.ts`, 96 адресов из отчёта 404),
   canonical и og:image на каждой странице (`pageMetadata()` в `src/lib/seo.ts`), страницы-разделы
   `/ka-gydome`, `/paslaugos`, `/specialistai` (меню и «хлебные крошки» ведут туда), sitemap без поддельных дат
   и с Edmundas, литовская 404 — PR #23
@@ -128,6 +129,9 @@ Search Console — в аккаунте info@reamed.lt (`sc-domain:reamed.lt`), �
   - [ ] Услуги заново, «Privati reabilitacija be siuntimo», «Chiropraktikas Vilniuje?», «Apie mus», DUK
 - [ ] **Статьи LT:** 5–10 на раздел, заголовок — вопрос из поиска
 - [ ] **Приоритет 2:** alkūnė ir riešas, klubas ir kirkšnis, čiurna ir pėda, sausgyslės
+  - [x] Пачка 5: разделы Sausgyslės и Plintantis skausmas заново на шаблоне G; темы teniso alkūnė, riešo kanalo
+    sindromas, Achilo tendinopatija, šoninis klubo skausmas, tirpsta ranka (итого 33 страницы) — PR #30
+  - [ ] Страницы разделов Alkūnė ir riešas, Klubas ir kirkšnis, Čiurna, pėda ir kulnas и их остальные темы
 - [ ] **EN и RU** по адресам `/en`, `/ru` с hreflang (см. п. 8)
 - [ ] **Bing Webmaster + IndexNow, `llms.txt`**, Google Business, manodaktaras.lt, ссылки VU и федерации
 
