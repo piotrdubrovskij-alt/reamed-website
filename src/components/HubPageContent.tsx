@@ -7,6 +7,8 @@ import { specialists } from "@/lib/specialists";
 import { FIRST_VISIT, formatPrice } from "@/data/prices";
 import type { SpecialistSlug } from "@/data/reviews";
 import { SPECIALIST_NAMES, specialistPhoto } from "@/components/reviews/format";
+import SectionTopics from "@/components/SectionTopics";
+import { SECTIONS } from "@/content/sections";
 
 export type HubKind = "areas" | "services" | "specialists";
 
@@ -14,7 +16,7 @@ const content = {
   lt: {
     areas: {
       title: "Ką gydome",
-      lead: "Nugaros, kaklo, peties ir kelio skausmas, sporto traumos, sausgyslių perkrovos ir atsistatymas po operacijų. Pasirinkite, kas jus vargina.",
+      lead: "Reabilitacija po operacijų, kelio, peties, nugaros ir kaklo skausmas, sporto traumos ir sausgyslių perkrovos. Pasirinkite, kas jus vargina.",
     },
     services: {
       title: "Paslaugos",
@@ -32,7 +34,7 @@ const content = {
   en: {
     areas: {
       title: "What we treat",
-      lead: "Back, neck, shoulder and knee pain, sports injuries, tendon overload and recovery after surgery. Choose what troubles you.",
+      lead: "Rehabilitation after surgery, knee, shoulder, back and neck pain, sports injuries and tendon overload. Choose what troubles you.",
     },
     services: {
       title: "Services",
@@ -58,6 +60,33 @@ function LinkList({ items, base }: { items: readonly { slug: string; title: stri
             {item.title}
           </Link>
           <p className="mt-1.5 text-graphite max-w-[36ch]">{item.text}</p>
+        </li>
+      ))}
+    </ul>
+  );
+}
+
+// /ka-gydome: the plan's table as the page. One row per section, in the table's order:
+// the section (a link once it has its own page) and everything it holds.
+function SectionRows() {
+  const { lang } = useLanguage();
+  return (
+    <ul className="flex flex-col gap-14 desk:gap-16">
+      {SECTIONS.map((s) => (
+        <li key={s.slug} className="grid gap-4 desk:grid-cols-[5fr_7fr] desk:gap-[72px] desk:items-start">
+          <div>
+            <h2 className="text-h3-m desk:text-h3">
+              {s.hasPage ? (
+                <Link href={`/ka-gydome/${s.slug}`} className="link-action inline-flex items-center min-h-11">
+                  {s.name[lang]}
+                </Link>
+              ) : (
+                <span className="inline-flex items-center min-h-11">{s.name[lang]}</span>
+              )}
+            </h2>
+            <p className="mt-1.5 text-graphite max-w-[40ch]">{s.text[lang]}</p>
+          </div>
+          {lang === "lt" && <SectionTopics topics={s.topics} columns />}
         </li>
       ))}
     </ul>
@@ -95,6 +124,7 @@ function SpecialistList() {
 
 // Index page of a section: /ka-gydome, /paslaugos, /specialistai.
 // Graphite band with the title, then the list, then the first-visit offer.
+// /ka-gydome lists the sections from src/content/sections.ts (the plan's table).
 export default function HubPageContent({ kind }: { kind: HubKind }) {
   const { lang, t } = useLanguage();
   const c = content[lang];
@@ -114,7 +144,7 @@ export default function HubPageContent({ kind }: { kind: HubKind }) {
 
       <section className="bg-paper section-y">
         <div className="wrap">
-          {kind === "areas" && <LinkList items={t.areas.items} base="/ka-gydome" />}
+          {kind === "areas" && <SectionRows />}
           {kind === "services" && <LinkList items={t.services.items} base="/paslaugos" />}
           {kind === "specialists" && <SpecialistList />}
         </div>

@@ -3,6 +3,7 @@ import { pageMetadata } from "@/lib/seo";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import PlintantisSkausmasContent from "@/components/PlintantisSkausmasContent";
+import SectionPagesBlock from "@/components/SectionPagesBlock";
 
 export const metadata: Metadata = {
   ...pageMetadata({
@@ -27,6 +28,7 @@ export default function PlintantisSkausmasPage() {
       <Header />
       <main>
         <PlintantisSkausmasContent />
+        <SectionPagesBlock section="plintantis-skausmas" />
       </main>
       <Footer />
     </>

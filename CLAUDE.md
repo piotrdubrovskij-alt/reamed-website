@@ -95,10 +95,20 @@
 - Старые адреса прежнего WordPress-сайта → `src/data/legacy-redirects.ts` (подключён в `next.config.ts`).
   Появилась более точная страница (например, disko išvarža) — перенаправить старый адрес на неё.
 - Разделы `/ka-gydome`, `/paslaugos`, `/specialistai` — `HubPageContent`; списки берутся из
-  `translations.areas/services` и `specialists.ts`, sitemap — из тех же списков.
+  `src/content/sections.ts`, `translations.services` и `specialists.ts`, sitemap — из тех же списков.
 - Картинка для превью ссылок: `public/og/reamed-og.png`, пересобрать — `node scripts/build-og.mjs`.
-- Страницы проблем (`ka-gydome/*`) и услуг (`paslaugos/*`): контент лежит прямо в компоненте объектом `content = { lt, en }`.
-  Компоненты проблем записаны длинными однострочниками — правки делать точечно.
+- Новые страницы проблем — только из данных: файл в `src/content/conditions/<slug>.ts` (тип `ConditionPage`),
+  строка в `index.ts`; маршрут `src/app/ka-gydome/[slug]`, вид — `ConditionPageContent` (макет G), JSON-LD —
+  `src/lib/condition-schema.ts`, источники с DOI — `sources.ts`. В sitemap попадают сами.
+  `reviewed: null`, пока текст не проверил специалист; дату и автора проверки не выдумывать.
+- Дерево «Ką gydome» — `src/content/sections.ts`: 11 разделов в порядке таблицы из плана, у каждого `topics`
+  (болезни и операции из таблицы). Тема с `page` — ссылка на готовую страницу, без `page` — текст, пока страницы нет.
+  Из этого файла строятся блок «Kada galime padėti?» на главной (компьютер и телефон), `/ka-gydome`, sitemap
+  и «хлебные крошки». Новая страница: файл в `src/content/conditions/`, поле `section` (свой раздел) и `page`
+  у её темы в `sections.ts` (операция — в «Po operacijų» и в своей зоне). Сборка падает, если они расходятся.
+- Старые страницы проблем (8 папок в `ka-gydome/*`) и услуг (`paslaugos/*`): контент прямо в компоненте объектом
+  `content = { lt, en }`, вид старый. Компоненты проблем записаны длинными однострочниками — правки делать точечно.
+  Их переводим на шаблон G; новые страницы в старом виде не делать.
 - `src/components/sections/` — блоки главной.
 - `src/lib/translations.ts` — тексты главной и общих блоков (lt/en).
 - `src/lib/specialists.ts` — специалисты (slug, био, лицензия, курсы).

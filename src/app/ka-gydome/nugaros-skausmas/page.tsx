@@ -3,6 +3,7 @@ import { pageMetadata } from "@/lib/seo";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import NugarosSkausmasContent from "@/components/NugarosSkausmasContent";
+import SectionPagesBlock from "@/components/SectionPagesBlock";
 
 export const metadata: Metadata = {
   ...pageMetadata({
@@ -27,6 +28,7 @@ export default function NugarosSkausmasPage() {
       <Header />
       <main>
         <NugarosSkausmasContent />
+        <SectionPagesBlock section="nugaros-skausmas" />
       </main>
       <Footer />
     </>
