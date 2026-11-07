@@ -17,10 +17,9 @@ export type Source = {
 
 export type ConditionPage = {
   slug: string;
-  /** The section it belongs to (plan of 07.11.2026): breadcrumbs and the back link lead there. */
+  /** Its own section (plan of 07.11.2026): breadcrumbs and the back link lead there. Where else it is
+   *  listed is set in src/content/sections.ts (an operation also sits in its body zone). */
   section: SectionSlug;
-  /** Other sections that list it too: an operation page also sits in its body zone. */
-  alsoIn?: SectionSlug[];
   /** Short name in section lists: "Stuburo išvarža". */
   navTitle: string;
   /** Google title and description. */

@@ -5,7 +5,6 @@ import { BACK_PAIN_CPG, CHIU_2015, ZHU_2025 } from "./sources";
 export const isialgijaRadikulopatija: ConditionPage = {
   slug: "isialgija-radikulopatija",
   section: "nugaros-skausmas",
-  alsoIn: ["plintantis-skausmas"],
   navTitle: "Išialgija ir radikulopatija",
   meta: {
     title: "Išialgija ir radikulopatija (sėdimojo nervo uždegimas): gydymas Vilniuje | ReaMed",
