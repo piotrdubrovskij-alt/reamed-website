@@ -121,6 +121,8 @@
   строки чека цен — `src/components/prices/PriceLines.tsx` (их же использует `/kainos`). Старый вид услуг удалён.
 - Тексты пачек — в Claude Docs «reamed.lt: пачка N», код страницы и документ должны совпадать дословно.
 - `src/components/sections/` — блоки главной.
+  Услуги на главной (`ServicesSection`) — мятная полоса с графитовыми кнопками (название, строка текста, мятная стрелка),
+  между «Pirmasis vizitas» и командой: просьба Piotr 07.11.2026, главная смотрят в основном с телефона.
 - `src/lib/translations.ts` — тексты главной и общих блоков (lt/en).
 - `src/lib/specialists.ts` — специалисты (slug, био, лицензия, курсы).
 - `src/contexts/LanguageContext.tsx` — язык переключается на клиенте и хранится в localStorage;
