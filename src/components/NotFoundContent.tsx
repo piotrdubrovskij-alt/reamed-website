@@ -8,8 +8,8 @@ const content = {
     title: "Puslapis nerastas",
     lead: "Tokio puslapio nėra arba jis perkeltas. Galbūt ieškojote vieno iš šių:",
     links: [
-      { href: "/ka-gydome", label: "Ką gydome" },
-      { href: "/paslaugos", label: "Paslaugos" },
+      { href: "/#ka-gydome", label: "Ką gydome" },
+      { href: "/#paslaugos", label: "Paslaugos" },
       { href: "/specialistai", label: "Specialistai" },
       { href: "/kainos", label: "Kainos" },
       { href: "/kontaktai", label: "Kontaktai" },
@@ -21,8 +21,8 @@ const content = {
     title: "Page not found",
     lead: "This page does not exist or has moved. You may be looking for one of these:",
     links: [
-      { href: "/ka-gydome", label: "What we treat" },
-      { href: "/paslaugos", label: "Services" },
+      { href: "/#ka-gydome", label: "What we treat" },
+      { href: "/#paslaugos", label: "Services" },
       { href: "/specialistai", label: "Specialists" },
       { href: "/kainos", label: "Prices" },
       { href: "/kontaktai", label: "Contacts" },

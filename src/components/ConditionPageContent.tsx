@@ -28,9 +28,10 @@ import {
 const t = translations.lt;
 
 export default function ConditionPageContent({ page }: { page: ConditionPage }) {
-  // A section's own page (/ka-gydome/kelio-skausmas): it lists the section's topics and leads back to /ka-gydome.
+  // A section's own page (/ka-gydome/kelio-skausmas): it lists the section's topics and leads back to «Ką gydome»,
+  // which is the block on the home page, as in the menu (Piotr, 07.11.2026). /ka-gydome stays for breadcrumbs and the sitemap.
   const isSectionPage = page.slug === page.section;
-  const section = isSectionPage ? { title: "Ką gydome", href: "/ka-gydome" } : sectionInfo(page.section);
+  const section = isSectionPage ? { title: "Ką gydome", href: "/#ka-gydome" } : sectionInfo(page.section);
   const topics = isSectionPage ? getSection(page.section).topics : null;
   const reviews = page.reviews ? getReviews({ condition: page.reviews }) : [];
   const services = page.services
@@ -39,9 +40,9 @@ export default function ConditionPageContent({ page }: { page: ConditionPage }) 
 
   return (
     <>
-      {/* Back to the page's section (plan of 07.11.2026); to /ka-gydome while the section has no page. */}
+      {/* Back to the page's section (plan of 07.11.2026); to «Ką gydome» on the home page while the section has no page. */}
       <PageHero
-        back={{ href: section.href ?? "/ka-gydome", label: section.href ? section.title : "Ką gydome" }}
+        back={{ href: section.href ?? "/#ka-gydome", label: section.href ? section.title : "Ką gydome" }}
         h1={page.hero.h1}
         lead={page.hero.lead}
       />

@@ -33,7 +33,8 @@ export default function ServicePageContent({ page }: { page: ServicePage }) {
 
   return (
     <>
-      <PageHero back={{ href: "/paslaugos", label: "Paslaugos" }} h1={page.hero.h1} lead={page.hero.lead} />
+      {/* «← Paslaugos» goes to the services block on the home page, as the menu does (Piotr, 07.11.2026). */}
+      <PageHero back={{ href: "/#paslaugos", label: "Paslaugos" }} h1={page.hero.h1} lead={page.hero.lead} />
 
       {/* What it is */}
       <section aria-labelledby="kas-tai-h" className="bg-paper section-y">
