@@ -146,7 +146,10 @@ Search Console — в аккаунте info@reamed.lt (`sc-domain:reamed.lt`), �
 - [ ] **Приоритет 2:** alkūnė ir riešas, klubas ir kirkšnis, čiurna ir pėda, sausgyslės
   - [x] Пачка 5: разделы Sausgyslės и Plintantis skausmas заново на шаблоне G; темы teniso alkūnė, riešo kanalo
     sindromas, Achilo tendinopatija, šoninis klubo skausmas, tirpsta ranka (итого 33 страницы) — PR #30
-  - [ ] Страницы разделов Alkūnė ir riešas, Klubas ir kirkšnis, Čiurna, pėda ir kulnas и их остальные темы
+  - [x] Пачка 7: страницы разделов Alkūnė ir riešas, Klubas ir kirkšnis, Čiurna, pėda ir kulnas; po peties artroskopijos,
+    po kelio artroskopijos, vidinio šoninio raiščio pažeidimas, galvos skausmas dėl kaklo, ūmus nugaros skausmas
+    (итого 41 страница, все 11 разделов) — PR #39
+  - [ ] Остальные темы всех разделов (решение Piotr 07.11: сначала закончить «Ką gydome», потом статьи)
 - [ ] **EN и RU** по адресам `/en`, `/ru` с hreflang (см. п. 8)
 - [ ] **Bing Webmaster + IndexNow, `llms.txt`**, Google Business, manodaktaras.lt, ссылки VU и федерации
 
