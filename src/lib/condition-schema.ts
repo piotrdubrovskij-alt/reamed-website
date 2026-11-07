@@ -58,7 +58,7 @@ export function conditionJsonLd(page: ConditionPage) {
         itemListElement: [
           { name: "ReaMed", item: SITE_URL },
           { name: "Ką gydome", item: `${SITE_URL}/ka-gydome` },
-          ...(section.href ? [{ name: section.title, item: `${SITE_URL}${section.href}` }] : []),
+          ...(section.href && page.slug !== page.section ? [{ name: section.title, item: `${SITE_URL}${section.href}` }] : []),
           { name: page.navTitle, item: url },
         ].map((crumb, i) => ({ "@type": "ListItem", position: i + 1, ...crumb })),
       },

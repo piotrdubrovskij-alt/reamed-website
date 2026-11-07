@@ -3,7 +3,8 @@ import Link from "next/link";
 import { ChevronDown, Phone } from "lucide-react";
 import type { ConditionPage } from "@/content/conditions/types";
 import { getSpecialistBySlug } from "@/lib/specialists";
-import { sectionInfo } from "@/content/sections";
+import { getSection, sectionInfo } from "@/content/sections";
+import SectionTopics from "@/components/SectionTopics";
 import { translations } from "@/lib/translations";
 import { FIRST_VISIT, formatPrice } from "@/data/prices";
 import { GOOGLE_REVIEWS, getReviews } from "@/data/reviews";
@@ -34,7 +35,10 @@ function Dots({ items, dark = false }: { items: string[]; dark?: boolean }) {
 
 export default function ConditionPageContent({ page }: { page: ConditionPage }) {
   const heroPerson = getSpecialistBySlug(page.hero.specialist);
-  const section = sectionInfo(page.section);
+  // A section's own page (/ka-gydome/kelio-skausmas): it lists the section's topics and leads back to /ka-gydome.
+  const isSectionPage = page.slug === page.section;
+  const section = isSectionPage ? { title: "Ką gydome", href: "/ka-gydome" } : sectionInfo(page.section);
+  const topics = isSectionPage ? getSection(page.section).topics : null;
   const reviewer = page.reviewed ? getSpecialistBySlug(page.reviewed.by) : undefined;
   const reviews = page.reviews ? getReviews({ condition: page.reviews }) : [];
   const services = page.services
@@ -105,6 +109,15 @@ export default function ConditionPageContent({ page }: { page: ConditionPage }) 
             )}
           </div>
         </div>
+        {/* Section page: everything the section holds, from the plan's table (src/content/sections.ts). */}
+        {topics && (
+          <div className={`wrap ${twoCols} mt-16 desk:mt-24`}>
+            <h2 id="temos-h" className={h2}>
+              {page.topicsTitle ?? "Su kuo dirbame"}
+            </h2>
+            <SectionTopics topics={topics} columns />
+          </div>
+        )}
       </section>
 
       {/* When to come */}
