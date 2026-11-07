@@ -211,3 +211,106 @@ export const FROZEN_SHOULDER_REVIEW: Source = {
   year: 2020,
   doi: "10.1001/jamanetworkopen.2020.29581",
 };
+
+// Batch 4 (Sporto traumos), checked in PubMed on 07.11.2026.
+export const EKSTRAND_2011: Source = {
+  authors: "Ekstrand J ir kt.",
+  title: "Epidemiology of muscle injuries in professional football (soccer).",
+  journal: "Am J Sports Med",
+  year: 2011,
+  doi: "10.1177/0363546510395879",
+};
+
+export const MUNICH_2013: Source = {
+  authors: "Mueller-Wohlfahrt HW ir kt.",
+  title: "Terminology and classification of muscle injuries in sport: the Munich consensus statement.",
+  journal: "Br J Sports Med",
+  year: 2013,
+  doi: "10.1136/bjsports-2012-091448",
+};
+
+export const PEACE_LOVE_2020: Source = {
+  authors: "Dubois B, Esculier JF.",
+  title: "Soft-tissue injuries simply need PEACE and LOVE.",
+  journal: "Br J Sports Med",
+  year: 2020,
+  doi: "10.1136/bjsports-2019-101253",
+};
+
+export const LAUERSEN_2014: Source = {
+  authors: "Lauersen JB ir kt.",
+  title:
+    "The effectiveness of exercise interventions to prevent sports injuries: a systematic review and meta-analysis of randomised controlled trials.",
+  journal: "Br J Sports Med",
+  year: 2014,
+  doi: "10.1136/bjsports-2013-092538",
+};
+
+export const ASKLING_2013: Source = {
+  authors: "Askling CM ir kt.",
+  title:
+    "Acute hamstring injuries in Swedish elite football: a prospective randomised controlled clinical trial comparing two rehabilitation protocols.",
+  journal: "Br J Sports Med",
+  year: 2013,
+  doi: "10.1136/bjsports-2013-092165",
+};
+
+export const VAN_DYK_2019: Source = {
+  authors: "van Dyk N ir kt.",
+  title:
+    "Including the Nordic hamstring exercise in injury prevention programmes halves the rate of hamstring injuries: a systematic review and meta-analysis of 8459 athletes.",
+  journal: "Br J Sports Med",
+  year: 2019,
+  doi: "10.1136/bjsports-2018-100045",
+};
+
+export const SERNER_2020: Source = {
+  authors: "Serner A ir kt.",
+  title:
+    "Return to Sport After Criteria-Based Rehabilitation of Acute Adductor Injuries in Male Athletes: A Prospective Cohort Study.",
+  journal: "Orthop J Sports Med",
+  year: 2020,
+  doi: "10.1177/2325967119897247",
+};
+
+export const HAROY_2019: Source = {
+  authors: "Harøy J ir kt.",
+  title:
+    "The Adductor Strengthening Programme prevents groin problems among male football players: a cluster-randomised controlled trial.",
+  journal: "Br J Sports Med",
+  year: 2019,
+  doi: "10.1136/bjsports-2017-098937",
+};
+
+export const DOHA_2015: Source = {
+  authors: "Weir A ir kt.",
+  title: "Doha agreement meeting on terminology and definitions in groin pain in athletes.",
+  journal: "Br J Sports Med",
+  year: 2015,
+  doi: "10.1136/bjsports-2015-094869",
+};
+
+export const CALF_RTP_2020: Source = {
+  authors: "Green B ir kt.",
+  title: "Return to Play and Recurrence After Calf Muscle Strain Injuries in Elite Australian Football Players.",
+  journal: "Am J Sports Med",
+  year: 2020,
+  doi: "10.1177/0363546520959327",
+};
+
+export const CALF_EXPERTS_2022: Source = {
+  authors: "Green B ir kt.",
+  title:
+    "The Assessment, Management and Prevention of Calf Muscle Strain Injuries: A Qualitative Study of the Practices and Perspectives of 20 Expert Sports Clinicians.",
+  journal: "Sports Med Open",
+  year: 2022,
+  doi: "10.1186/s40798-021-00364-0",
+};
+
+export const CALF_RISK_2017: Source = {
+  authors: "Green B, Pizzari T.",
+  title: "Calf muscle strain injuries in sport: a systematic review of risk factors for injury.",
+  journal: "Br J Sports Med",
+  year: 2017,
+  doi: "10.1136/bjsports-2016-097177",
+};
