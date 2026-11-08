@@ -157,6 +157,10 @@ Search Console — в аккаунте info@reamed.lt (`sc-domain:reamed.lt`), �
     riešo ir rankos lūžio, klubo artroskopijos, čiurnos lūžio ar operacijos, Achilo sausgyslės plyšimo,
     disko išvaržos operacijos, stuburo stabilizacijos); источники-ссылки без DOI, блок «Ką galite daryti iki vizito»;
     у всех 14 тем «Po operacijų» есть страницы — PR #42
+  - [x] Пачка 10: тексты Piotr Nugara и Kaklas (nugaros skausmas ir raumenų įtampa, skausmas tarp menčių, nugaros
+    skausmas sėdint, laikysenos problemos, užstrigęs kaklas, ribotas kaklo judrumas, kaklo trauma po avarijos); перенесены
+    скриптами `scripts/import-condition-texts.mjs` и `verify-condition-texts.mjs` (Claude Code); темы Nugara и Kaklas
+    все со страницами — PR #43
   - [ ] Остальные темы всех разделов (решение Piotr 07.11: сначала закончить «Ką gydome», потом статьи)
 - [ ] **EN и RU** по адресам `/en`, `/ru` с hreflang (см. п. 8)
 - [ ] **Bing Webmaster + IndexNow, `llms.txt`**, Google Business, manodaktaras.lt, ссылки VU и федерации
