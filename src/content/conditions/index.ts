@@ -45,7 +45,6 @@ import { kakloOsteochondroze } from "./kaklo-osteochondroze";
 import { ciurnosPatempimas } from "./ciurnos-patempimas";
 import { kulnoAtauga } from "./kulno-atauga";
 import { spondilolisteze } from "./spondilolisteze";
-import { reabilitacijaPoDiskoIsvarzosOperacijos } from "./reabilitacija-po-disko-isvarzos-operacijos";
 import { stuburoKanaloStenoze } from "./stuburo-kanalo-stenoze";
 import { kelioArtroze } from "./kelio-artroze";
 import { kryzkaulioIrKluboSanarioSkausmas } from "./kryzkaulio-ir-klubo-sanario-skausmas";
@@ -101,12 +100,11 @@ export const conditionPages: ConditionPage[] = [
   vidinioSoninioRaiscioPazeidimas,
   galvosSkausmasDelKaklo,
   umusNugarosSkausmas,
-  // Batch 8: eight topics; the disc operation lives in «Po operacijų» and is also listed in Nugara.
+  // Batch 8: seven topics (the disc operation moved to batch 9 with Piotr's text, 08.11.2026).
   kakloOsteochondroze,
   ciurnosPatempimas,
   kulnoAtauga,
   spondilolisteze,
-  reabilitacijaPoDiskoIsvarzosOperacijos,
   stuburoKanaloStenoze,
   kelioArtroze,
   kryzkaulioIrKluboSanarioSkausmas,
