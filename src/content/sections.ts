@@ -71,7 +71,7 @@ const SECTION_LIST = [
       { title: "Stuburo kanalo stenozė", page: "stuburo-kanalo-stenoze" },
       { title: "Spondilolistezė", page: "spondilolisteze" },
       { title: "Kryžkaulio ir klubo sąnario skausmas", page: "kryzkaulio-ir-klubo-sanario-skausmas" },
-      { title: "Skausmas tarp mentių", page: "skausmas-tarp-menciu" },
+      { title: "Skausmas tarp menčių", page: "skausmas-tarp-menciu" },
       { title: "Nugaros skausmas sėdint", page: "nugaros-skausmas-sedint" },
       { title: "Laikysenos problemos", page: "laikysenos-problemos" },
       { title: "Po disko išvaržos operacijos", page: "reabilitacija-po-disko-isvarzos-operacijos" },
