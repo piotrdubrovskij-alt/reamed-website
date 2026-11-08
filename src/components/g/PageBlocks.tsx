@@ -271,7 +271,7 @@ export function SourcesSection({
                 {s.authors} {s.title}
                 {s.journal ? (
                   <>
-                    {" "}
+                    {/[.?!]$/.test(s.title) ? "" : "."}{" "}
                     <i>{s.journal}</i>
                     {s.year ? `, ${s.year}` : ""}.
                   </>

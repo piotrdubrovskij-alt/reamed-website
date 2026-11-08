@@ -1,0 +1,49 @@
+{
+  "_comment": "Пачка 11 (08.11.2026): готовые тексты Piotr, раздел Petys, 7 тем. assessLeadWords: сколько первых слов каждого абзаца «Kaip vertiname» выделить жирным (2–5, по смыслу). dashes: тире между словами и чем его заменить; каждая строка «было» должна встретиться в md ровно один раз.",
+  "batch": "Batch 11 (08.11.2026)",
+  "sourceDir": "/Users/piotrdubrovskij/Desktop/Patalpų dizainas/output/reamed_petys_2026-11-08",
+  "pages": [
+    { "slug": "rotatoriu-manzetes-pazeidimas", "section": "peties-problemos", "assessLeadWords": [5, 4, 3, 4] },
+    { "slug": "dvigalvio-raumens-sausgysles-uzdegimas", "section": "peties-problemos", "assessLeadWords": [4, 4, 5] },
+    { "slug": "kalcifikuojantis-tendinitas", "section": "peties-problemos", "assessLeadWords": [5, 3] },
+    { "slug": "sustinges-petys", "section": "peties-problemos", "assessLeadWords": [4, 5] },
+    { "slug": "peties-nestabilumas-ir-isnirimai", "section": "peties-problemos", "assessLeadWords": [4, 3] },
+    { "slug": "ac-sanario-trauma", "section": "peties-problemos", "assessLeadWords": [3, 5] },
+    { "slug": "peties-sanario-artroze", "section": "peties-problemos", "assessLeadWords": [4, 4] }
+  ],
+  "dashes": {
+    "rotatoriu-manzetes-pazeidimas": [
+      ["skirtingas būkles – nuo", "skirtingas būkles: nuo"],
+      ["gydytojo protokolu – šiame", "gydytojo protokolu: šiame"],
+      ["Pratimų tikslas – gerinti", "Pratimų tikslas: gerinti"]
+    ],
+    "dvigalvio-raumens-sausgysles-uzdegimas": [
+      ["galimų priežasčių – dvigalvio", "galimų priežasčių: dvigalvio"],
+      ["nepatvirtina – svarbus", "nepatvirtina: svarbus"],
+      ["Programos dalis – paaiškinimas", "Programos dalis: paaiškinimas"],
+      ["Tikslas – išlaikyti", "Tikslas: išlaikyti"]
+    ],
+    "kalcifikuojantis-tendinitas": [
+      ["Gydymo tikslas – gerinti", "Gydymo tikslas: gerinti"]
+    ],
+    "sustinges-petys": [
+      ["atsirado pirmiau – skausmas", "atsirado pirmiau: skausmas"]
+    ],
+    "peties-nestabilumas-ir-isnirimai": [
+      ["panirimo metu – iš dalies", "panirimo metu, iš dalies"],
+      ["būtina gydyti – svarbūs", "būtina gydyti: svarbūs"],
+      ["Po naujos traumos – taip", "Po naujos traumos: taip"],
+      ["Kada skambinti – greitoji", "Kada skambinti: greitoji"]
+    ],
+    "ac-sanario-trauma": [
+      ["petine atauga – akromionu", "petine atauga, akromionu"],
+      ["Ligament reconstruction – Introduction", "Ligament reconstruction: Introduction"],
+      ["Kada skambinti – greitoji", "Kada skambinti: greitoji"]
+    ],
+    "peties-sanario-artroze": [
+      ["sąnarine duobe – tai", "sąnarine duobe: tai"],
+      ["Tikslas – išlikti", "Tikslas: išlikti"],
+      ["jų paskirtis – padėti", "jų paskirtis: padėti"]
+    ]
+  }
+}

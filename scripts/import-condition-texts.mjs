@@ -95,8 +95,9 @@ function parseAssess(slug, blocks, leadWords, removed) {
 function parseTreatment(blocks) {
   const treatment = { items: [], paragraphs: [] };
   for (const b of blocks) {
-    const bold = b.match(/^\*\*(.+?)\*\*\s+(.+)$/s);
-    if (bold) treatment.items.push({ title: bold[1], text: dropCitations(bold[2]) });
+    // Punctuation right after the bold words («**Kai petys jautrus**, pradedame…») stays with the title.
+    const bold = b.match(/^\*\*(.+?)\*\*([,:;]?)\s+(.+)$/s);
+    if (bold) treatment.items.push({ title: bold[1] + bold[2], text: dropCitations(bold[3]) });
     else treatment.paragraphs.push(dropCitations(b));
   }
   return treatment;
@@ -147,7 +148,8 @@ function parseSources(slug, blocks) {
       const [, authors, title, url, tail] = m;
       const doi = tail.match(/DOI:\s*(10\.\S+?)\.?\s*$/)?.[1];
       const rest = tail.replace(/DOI:.*$/, "");
-      const journal = rest.match(/^\.\s*([^,]+),\s*\d{4};/)?.[1];
+      // «. J Rehabil Med, 2019;51:479–491.» or just «. Shoulder & Elbow, 2019.»
+      const journal = rest.match(/^\.\s*([^,]+),\s*\d{4}(?:;|\.?\s*$)/)?.[1];
       // «peržiūrėta 2026» is when the page was read, not a year of the source.
       const year = rest.replace(/peržiūrėta.*$/, "").match(/\b(?:19|20)\d{2}\b/)?.[0];
       const left = rest.replace(/^[.,\s]+|[.\s]+$/g, "");
@@ -202,7 +204,8 @@ function buildPage({ slug, section, assessLeadWords }) {
     meta: { title: row.title, description: row.description },
     conditionName: doc.h1,
     hero: { h1: doc.h1, lead: dropCitations(lead), specialist: parent.hero.specialist },
-    about: { title: about.title, paragraphs: about.blocks.map(dropCitations) },
+    // A paragraph here is a plain string: bold words inside it keep their words and lose the asterisks.
+    about: { title: about.title, paragraphs: about.blocks.map((b) => dropCitations(b).replaceAll("**", "")) },
     when,
     assess,
     services: parent.services,

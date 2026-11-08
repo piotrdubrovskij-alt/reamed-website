@@ -64,6 +64,13 @@ import { laikysenosProblemos } from "./laikysenos-problemos";
 import { uzstrigesKaklas } from "./uzstriges-kaklas";
 import { ribotasKakloJudrumas } from "./ribotas-kaklo-judrumas";
 import { kakloTraumaPoAvarijos } from "./kaklo-trauma-po-avarijos";
+import { rotatoriuManzetesPazeidimas } from "./rotatoriu-manzetes-pazeidimas";
+import { dvigalvioRaumensSausgyslesUzdegimas } from "./dvigalvio-raumens-sausgysles-uzdegimas";
+import { kalcifikuojantisTendinitas } from "./kalcifikuojantis-tendinitas";
+import { sustingesPetys } from "./sustinges-petys";
+import { petiesNestabilumasIrIsnirimai } from "./peties-nestabilumas-ir-isnirimai";
+import { acSanarioTrauma } from "./ac-sanario-trauma";
+import { petiesSanarioArtroze } from "./peties-sanario-artroze";
 
 // Problem pages built from data (/ka-gydome/<slug>). Order = order inside each section.
 // Older section pages not yet rewritten still live in their own folders under src/app/ka-gydome/.
@@ -142,6 +149,15 @@ export const conditionPages: ConditionPage[] = [
   uzstrigesKaklas,
   ribotasKakloJudrumas,
   kakloTraumaPoAvarijos,
+  // Batch 11: Piotr's seven texts for Petys (08.11.2026), moved by scripts/import-condition-texts.mjs.
+  // The biceps tendon page is also listed in Sausgyslės.
+  rotatoriuManzetesPazeidimas,
+  dvigalvioRaumensSausgyslesUzdegimas,
+  kalcifikuojantisTendinitas,
+  sustingesPetys,
+  petiesNestabilumasIrIsnirimai,
+  acSanarioTrauma,
+  petiesSanarioArtroze,
 ];
 
 export function getConditionPage(slug: string): ConditionPage | undefined {
