@@ -96,7 +96,7 @@ export const gydomasisMasazas: ServicePage = {
   ],
   reviews: "gydomasis-masazas",
   sources: [FURLAN_2015, BERVOETS_2015],
-  reviewed: null,
+  reviewed: { by: "piotr-dubrovskij", date: "2026-11-08" },
   related: [
     { href: "/paslaugos/kineziterapija", label: "Kineziterapija" },
     { href: "/paslaugos/sporto-reabilitacija", label: "Sporto reabilitacija" },

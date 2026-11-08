@@ -119,7 +119,7 @@ export const pooperacineReabilitacija: ServicePage = {
   ],
   reviews: "pooperacine-reabilitacija",
   sources: [VAN_MELICK_2016, MAZUQUIN_2021, OOSTERHUIS_2014, ANKLE_FRACTURE_REHAB],
-  reviewed: null,
+  reviewed: { by: "piotr-dubrovskij", date: "2026-11-08" },
   related: [
     { href: "/ka-gydome/atsistatymas-po-operaciju", label: "Po operacijų: visos temos" },
     { href: "/ka-gydome/reabilitacija-po-kryzminio-raiscio-operacijos", label: "Po kryžminio raiščio rekonstrukcijos" },

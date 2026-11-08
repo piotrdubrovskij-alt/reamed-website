@@ -120,7 +120,7 @@ export const kineziterapija: ServicePage = {
   ],
   reviews: "kineziterapija",
   sources: [HAYDEN_2021, BACK_PAIN_CPG, NECK_PAIN_CPG, OARSI_2019],
-  reviewed: null,
+  reviewed: { by: "piotr-dubrovskij", date: "2026-11-08" },
   related: [
     { href: "/paslaugos/manualine-terapija", label: "Manualinė terapija" },
     { href: "/paslaugos/sporto-reabilitacija", label: "Sporto reabilitacija" },

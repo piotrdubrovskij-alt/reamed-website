@@ -109,7 +109,7 @@ export const fizioterapija: ServicePage = {
   ],
   reviews: "fizioterapija",
   sources: [HAUGER_2018, VAN_MELICK_2016, JOHNSON_2022, EBADI_2020],
-  reviewed: null,
+  reviewed: { by: "piotr-dubrovskij", date: "2026-11-08" },
   related: [
     { href: "/paslaugos/kineziterapija", label: "Kineziterapija" },
     { href: "/paslaugos/pooperacine-reabilitacija", label: "Reabilitacija po operacijos" },

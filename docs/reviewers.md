@@ -196,6 +196,12 @@
 - [Lūžiai ir grįžimas į sportą po lūžio](https://reamed.lt/ka-gydome/luziai-ir-grizimas-i-sporta-po-luzio)
 - [Stresiniai lūžiai](https://reamed.lt/ka-gydome/stresiniai-luziai)
 
-## Без подписи
+## Услуги: Piotr Dubrovskij (7)
 
-Семь страниц услуг: в распределении их не было.
+- [Kineziterapija](https://reamed.lt/paslaugos/kineziterapija)
+- [Manualinė terapija](https://reamed.lt/paslaugos/manualine-terapija)
+- [Osteopatija](https://reamed.lt/paslaugos/osteopatija)
+- [Fizioterapija](https://reamed.lt/paslaugos/fizioterapija)
+- [Gydomasis masažas](https://reamed.lt/paslaugos/gydomasis-masazas)
+- [Sporto reabilitacija](https://reamed.lt/paslaugos/sporto-reabilitacija)
+- [Pooperacinė reabilitacija](https://reamed.lt/paslaugos/pooperacine-reabilitacija)
