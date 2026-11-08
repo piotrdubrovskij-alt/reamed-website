@@ -114,7 +114,7 @@ export const manualineTerapija: ServicePage = {
   ],
   reviews: "manualine-terapija",
   sources: [RUBINSTEIN_2019, GROSS_2015, BACK_PAIN_CPG, NECK_PAIN_CPG],
-  reviewed: null,
+  reviewed: { by: "piotr-dubrovskij", date: "2026-11-08" },
   related: [
     { href: "/paslaugos/osteopatija", label: "Osteopatija" },
     { href: "/paslaugos/kineziterapija", label: "Kineziterapija" },

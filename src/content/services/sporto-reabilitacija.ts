@@ -110,7 +110,7 @@ export const sportoReabilitacija: ServicePage = {
   ],
   reviews: "sporto-reabilitacija",
   sources: [ARDERN_2016, PEACE_LOVE_2020, LAUERSEN_2014],
-  reviewed: null,
+  reviewed: { by: "piotr-dubrovskij", date: "2026-11-08" },
   related: [
     { href: "/ka-gydome/sporto-traumos", label: "Sporto traumos" },
     { href: "/ka-gydome/grizimas-i-sporta-po-traumos", label: "Grįžimas į sportą po traumos" },

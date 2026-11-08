@@ -140,7 +140,7 @@ export const osteopatija: ServicePage = {
   ],
   reviews: "osteopatija",
   sources: [FRANKE_2014, BAGAGIOLO_2022, HALLER_2020, GUILLAUD_2016, GUILLAUD_2018, PANAGOPOULOS_2015],
-  reviewed: null,
+  reviewed: { by: "piotr-dubrovskij", date: "2026-11-08" },
   related: [
     { href: "/paslaugos/manualine-terapija", label: "Manualinė terapija" },
     { href: "/paslaugos/kineziterapija", label: "Kineziterapija" },

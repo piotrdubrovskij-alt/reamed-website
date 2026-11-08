@@ -13,6 +13,8 @@ const onest = Onest({
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://reamed.lt"),
+  // Bing Webmaster Tools: site ownership check, must stay on the page after verification.
+  verification: { other: { "msvalidate.01": "80A4B606C933FF07CE831BAECF2C3CE1" } },
   icons: {
     icon: [
       { url: "/favicon.ico", sizes: "any" },
