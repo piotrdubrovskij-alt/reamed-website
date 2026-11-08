@@ -1,4 +1,8 @@
-import type { ConditionSlug, ServiceSlug, SpecialistSlug } from "@/data/reviews";
+import type {
+  ConditionSlug,
+  ServiceSlug,
+  SpecialistSlug,
+} from "@/data/reviews";
 import type { SectionSlug } from "@/content/sections";
 
 // One problem page (/ka-gydome/<slug>) as data. The look lives in ConditionPageContent
@@ -45,7 +49,13 @@ export type ConditionPage = {
      *  if a photo returns there, it is an arch as on the home page, not a circle. */
     specialist: SpecialistSlug;
   };
-  about: { title?: string; paragraphs: string[]; list?: { intro: string; items: string[] } };
+  /** about.paragraphs, when.paragraphs and treatment.paragraphs may name our own pages as links:
+   *  «[Achilo tendinopatija](/ka-gydome/achilo-tendinopatija)» (Piotr's texts, 08.11.2026; LinkedText). */
+  about: {
+    title?: string;
+    paragraphs: string[];
+    list?: { intro: string; items: string[] };
+  };
   /** A list of situations, or (items: [], batch 12) plain paragraphs in the same place. */
   when: { items: string[]; paragraphs?: string[]; note?: string };
   /** "Kaip vertiname": bold opening words, then the rest of the sentence. */
@@ -54,6 +64,8 @@ export type ConditionPage = {
   /** Service pages linked under "Kaip vertiname". */
   services: ServiceSlug[];
   treatment: {
+    /** Heading of the block when it is not "Kaip gydome ir kiek tai trunka" (prevention: "Kaip dirbame…"). */
+    title?: string;
     intro?: string;
     items: { title: string; text: string }[];
     paragraphs: string[];

@@ -172,7 +172,10 @@ Search Console — в аккаунте info@reamed.lt (`sc-domain:reamed.lt`), �
     sustingimas po klubo endoprotezavimo, kirkšnies skausmas sportininkams, klubo FAI ir sąnario lūpos plyšimas, piriformio
     sindromas, čiurnos nestabilumas, stresiniai pėdos lūžiai, čiurnos sąnario artrozė, blauzdos skausmas bėgikams);
     перенесены теми же скриптами; темы обоих разделов и Plintantis skausmas все со страницами — PR #46
-  - [ ] Остальные темы всех разделов (решение Piotr 07.11: сначала закончить «Ką gydome», потом статьи)
+  - [x] Пачка 14: тексты Piotr Sporto traumos (6 тем: raumens sumušimas, raiščių patempimai ir plyšimai, lūžiai ir grįžimas
+    į sportą po lūžio, stresiniai lūžiai, bėgimo traumos, traumų prevencija); перенесены теми же скриптами; у всех тем дерева
+    «Ką gydome» есть страницы — PR #47
+  - [x] Остальные темы всех разделов (решение Piotr 07.11: сначала закончить «Ką gydome», потом статьи) — пачки 8–14, PR #41–#47
 - [ ] **EN и RU** по адресам `/en`, `/ru` с hreflang (см. п. 8)
 - [ ] **Bing Webmaster + IndexNow, `llms.txt`**, Google Business, manodaktaras.lt, ссылки VU и федерации
 

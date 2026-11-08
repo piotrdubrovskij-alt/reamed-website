@@ -40,8 +40,8 @@ export const sportoTraumos: ConditionPage = {
     { lead: "Pirmiausia išsiaiškiname:", text: "kaip įvyko trauma, kokį sportą kultivuojate, kokie artimiausi tikslai ir varžybos." },
     { lead: "Tada ištiriame:", text: "pažeistą vietą, judesius, jėgą ir stabilumą, palyginame su sveikąja puse." },
     {
-      lead: "Atmetame",
-      text: "lūžį, visišką raumens ar raiščio plyšimą ir kitas būkles, kurioms reikia gydytojo ar tyrimų.",
+      lead: "Įvertiname,",
+      text: "ar yra požymių, dėl kurių reikėtų įtarti lūžį, didesnį raumens ar raiščio pažeidimą. Tokiais atvejais prieš didinant krūvį rekomenduojame gydytojo apžiūrą ir, jei reikia, tyrimus.",
     },
     { lead: "Ir sudarome planą:", text: "etapai, krūvis kiekviename etape ir aiškūs kriterijai, kada pereiti prie kito." },
   ],
@@ -54,7 +54,7 @@ export const sportoTraumos: ConditionPage = {
       { title: "Grįžimas ir prevencija:", text: "testai prieš grįžtant ir pratimai, kurie mažina pakartotinės traumos riziką." },
     ],
     paragraphs: [
-      "Lengvesnei traumai dažnai pakanka kelių vizitų ir savarankiškų pratimų tarp jų. Raumens ar raiščio plyšimui ir grįžimui į sportą po operacijos reikia ilgesnio, etapais suplanuoto gydymo. Tyrimų apžvalga parodė, kad jėgos treniruotės sporto traumų sumažina iki mažiau nei trečdalio, todėl jėgos pratimai lieka programoje ir grįžus į sportą.",
+      "Lengvesnei traumai dažnai pakanka kelių vizitų ir savarankiškų pratimų tarp jų. Raumens ar raiščio plyšimui ir grįžimui į sportą po operacijos reikia ilgesnio, etapais suplanuoto gydymo. Jėgos, pusiausvyros ir judesių valdymo programos gali sumažinti tam tikrų sporto traumų riziką. Poveikis priklauso nuo sporto šakos, programos ir jos laikymosi, todėl vieno rizikos sumažėjimo procento negalima taikyti kiekvienam žmogui.",
     ],
   },
   urgent: {

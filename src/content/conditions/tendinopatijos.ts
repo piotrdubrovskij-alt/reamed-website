@@ -69,6 +69,7 @@ export const tendinopatijos: ConditionPage = {
       },
     ],
     paragraphs: [
+      "Laipsniškas krūvio didinimas svarbus daugeliui tendinopatijų, tačiau staigus skausmas po traumos, galimas sausgyslės plyšimas ar ryškus funkcijos praradimas pirmiausia turi būti įvertinti gydytojo. Skirtingoms sausgyslių ir jų dangalų būklėms vienoda programa netinka.",
       "Sausgyslės prisitaiko lėtai, todėl gydymas paprastai trunka bent 6–12 savaičių, o ilgai besitęsianti tendinopatija gali gyti ir kelis mėnesius. Paprastai reikia ne mažiau kaip 5 vizitų, o tarp jų kasdienių pratimų namuose.",
     ],
   },

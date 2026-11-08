@@ -15,7 +15,7 @@ const config = JSON.parse(fs.readFileSync(configPath, "utf8"));
 const seo = new Map(parseCsv(fs.readFileSync(path.join(config.sourceDir, "SEO.csv"), "utf8")).map((r) => [r.slug, r]));
 
 // Headings the template prints itself: they are structure, not text of the page.
-const TEMPLATE_HEADINGS = /^## (Kada verta kreiptis|Kaip vertiname|Kaip gydome ir kiek tai trunka|Ką galite daryti iki vizito|Kada reikia skubios pagalbos|Dažniausi klausimai)\??$/;
+const TEMPLATE_HEADINGS = /^## (Kada verta kreiptis|Kaip vertiname|Kaip gydome ir kiek tai trunka|Kaip dirbame ir kiek tai trunka|Ką galite daryti iki vizito|Kada reikia skubios pagalbos|Dažniausi klausimai)\??$/;
 const REMOVED_LINE = [
   /^\[←/,
   /^\[Ką gydome\]\(https:\/\/reamed\.lt\/ka-gydome\) → /,
@@ -26,6 +26,11 @@ const REMOVED_LINE = [
   /^Mediciniškai peržiūrėjo:/,
   /^Peržiūros data:/,
 ];
+
+// Links to our own pages inside a paragraph (about, when, treatment): compared separately, as words + address.
+const INLINE_LINK = /\[([^\]]+)\]\((\/ka-gydome\/[a-z0-9-]+)\)/g;
+const LINK_FIELDS = /^page\.(about\.paragraphs|when\.paragraphs|treatment\.paragraphs)\.\d+$/;
+const plain = (text) => text.replace(INLINE_LINK, "$1");
 
 const sentences = (text) =>
   text
@@ -97,7 +102,22 @@ function pageBodySentences(p) {
     ...(p.beforeVisit ?? []),
     ...p.urgent.items,
     ...p.faq.flatMap((f) => [f.q, f.a]),
-  ].flatMap(sentences);
+  ]
+    .map(plain)
+    .flatMap(sentences);
+}
+
+/** Links to our own pages in the md body (not the booking line, the back link or «Susiję puslapiai»). */
+function mdLinks(body) {
+  return [...body.matchAll(/\[([^\]]+)\]\(https:\/\/reamed\.lt(\/ka-gydome\/[a-z0-9-]+)\)/g)]
+    .filter((m) => !/^\[(←|Ką gydome\])/.test(body.slice(body.lastIndexOf("\n", m.index) + 1, m.index + 2)))
+    .map((m) => `${m[1]} → ${m[2]}`);
+}
+
+function pageLinks(p) {
+  return [...p.about.paragraphs, ...(p.when.paragraphs ?? []), ...p.treatment.paragraphs].flatMap((t) =>
+    [...t.matchAll(INLINE_LINK)].map((m) => `${m[1]} → ${m[2]}`),
+  );
 }
 
 function multisetDiff(a, b) {
@@ -148,10 +168,18 @@ function checkSources(block, page, problems) {
   });
 }
 
+function checkTreatmentTitle(md, page, problems) {
+  const heading = md.match(/^## (Kaip (?:gydome|dirbame) ir kiek tai trunka)\??$/m)?.[1];
+  if (!heading) problems.push("no «Kaip gydome/dirbame» heading in md");
+  const expected = heading?.startsWith("Kaip dirbame") ? heading : undefined;
+  if (page.treatment.title !== expected) problems.push(`treatment.title: md «${expected}», page «${page.treatment.title}»`);
+}
+
 function checkLeftovers(page, problems) {
   const walk = (v, at) => {
     if (typeof v === "string") {
-      if (/ [–—] |\*|\]\(|<a |\[\d|reamed\.lt\/registracija|80 €|Parengė|Registruokitės/.test(v)) problems.push(`${at}: leftover: «${v.slice(0, 100)}»`);
+      const text = LINK_FIELDS.test(at) ? plain(v) : v;
+      if (/ [–—] |\*|\]\(|<a |\[\d|reamed\.lt\/registracija|80 €|Parengė|Registruokitės/.test(text)) problems.push(`${at}: leftover: «${v.slice(0, 100)}»`);
     } else if (v && typeof v === "object") {
       for (const [k, x] of Object.entries(v)) walk(x, `${at}.${k}`);
     }
@@ -191,12 +219,17 @@ for (const { slug, section, teamNote } of config.pages) {
   for (const s of multisetDiff(theirs, mine)) problems.push(`on the page, not in md: «${s}»`);
   if (!problems.length && mine.join("\n") !== theirs.join("\n")) problems.push("same sentences, different order");
 
+  const linksMd = mdLinks(cut(md, "", "## Susiję puslapiai"));
+  const linksPage = pageLinks(page);
+  if (linksMd.join("\n") !== linksPage.join("\n")) problems.push(`links in the text: md [${linksMd.join("; ")}], page [${linksPage.join("; ")}]`);
+
   checkRelated(cut(md, "## Susiję puslapiai", "## Šaltiniai"), page, problems);
   checkSources(cut(md, "## Šaltiniai", null), page, problems);
 
   const row = seo.get(slug);
   if (page.meta.title !== row.title) problems.push("meta.title differs from SEO.csv");
   if (page.meta.description !== row.description) problems.push("meta.description differs from SEO.csv");
+  checkTreatmentTitle(md, page, problems);
   checkLeftovers(page, problems);
   checkTemplateFields(page, section, teamNote, problems);
 
