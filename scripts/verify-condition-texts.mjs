@@ -120,8 +120,11 @@ function checkSources(block, page, problems) {
     const doi = tail.match(/DOI:\s*(10\.[^\s]+?)\.?\s*$/)?.[1];
     if (urlEnd === -1) problems.push(`source ${i + 1}: no link`);
     if (doi ? s.doi !== doi || s.url : s.doi || s.url !== url) problems.push(`source ${i + 1}: doi/url differ: ${line.slice(0, 90)}`);
-    if (s.journal && !tail.includes(s.journal)) problems.push(`source ${i + 1}: journal not in md`);
-    const mdYear = tail.replace(/DOI:.*$/, "").replace(/peržiūrėta.*$/, "").match(/\b(?:19|20)\d{2}\b/)?.[0];
+    // A journal is the words between the link and the year: «. Shoulder & Elbow, 2019.», «. BMJ, 2023;383:e1.»
+    const beforeDoi = tail.replace(/DOI:.*$/, "");
+    const mdJournal = /^\. /.test(beforeDoi) && /, (?:19|20)\d{2}(;|\.? *$)/.test(beforeDoi) ? beforeDoi.slice(2, beforeDoi.search(/, (?:19|20)\d{2}(;|\.? *$)/)) : undefined;
+    if (mdJournal !== s.journal) problems.push(`source ${i + 1}: journal md «${mdJournal}», page «${s.journal}»`);
+    const mdYear = beforeDoi.replace(/peržiūrėta.*$/, "").match(/\b(?:19|20)\d{2}\b/)?.[0];
     if ((mdYear ? Number(mdYear) : undefined) !== s.year) problems.push(`source ${i + 1}: year md ${mdYear}, page ${s.year}`);
   });
 }
