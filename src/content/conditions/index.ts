@@ -57,6 +57,13 @@ import { reabilitacijaPoCiurnosLuzioArOperacijos } from "./reabilitacija-po-ciur
 import { reabilitacijaPoAchiloSausgyslesPlysimo } from "./reabilitacija-po-achilo-sausgysles-plysimo";
 import { reabilitacijaPoDiskoIsvarzosOperacijos } from "./reabilitacija-po-disko-isvarzos-operacijos";
 import { reabilitacijaPoStuburoStabilizacijos } from "./reabilitacija-po-stuburo-stabilizacijos";
+import { nugarosSkausmasIrRaumenuItampa } from "./nugaros-skausmas-ir-raumenu-itampa";
+import { skausmasTarpMenciu } from "./skausmas-tarp-menciu";
+import { nugarosSkausmasSedint } from "./nugaros-skausmas-sedint";
+import { laikysenosProblemos } from "./laikysenos-problemos";
+import { uzstrigesKaklas } from "./uzstriges-kaklas";
+import { ribotasKakloJudrumas } from "./ribotas-kaklo-judrumas";
+import { kakloTraumaPoAvarijos } from "./kaklo-trauma-po-avarijos";
 
 // Problem pages built from data (/ka-gydome/<slug>). Order = order inside each section.
 // Older section pages not yet rewritten still live in their own folders under src/app/ka-gydome/.
@@ -127,6 +134,14 @@ export const conditionPages: ConditionPage[] = [
   reabilitacijaPoAchiloSausgyslesPlysimo,
   reabilitacijaPoDiskoIsvarzosOperacijos,
   reabilitacijaPoStuburoStabilizacijos,
+  // Batch 10: Piotr's seven texts for Nugara and Kaklas (08.11.2026), moved by scripts/import-condition-texts.mjs.
+  nugarosSkausmasIrRaumenuItampa,
+  skausmasTarpMenciu,
+  nugarosSkausmasSedint,
+  laikysenosProblemos,
+  uzstrigesKaklas,
+  ribotasKakloJudrumas,
+  kakloTraumaPoAvarijos,
 ];
 
 export function getConditionPage(slug: string): ConditionPage | undefined {

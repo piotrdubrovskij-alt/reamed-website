@@ -138,15 +138,17 @@ export default function ConditionPageContent({ page }: { page: ConditionPage }) 
           </div>
           <div className="flex flex-col gap-6 max-w-[62ch]">
             {page.treatment.intro && <p>{page.treatment.intro}</p>}
-            <ul className="flex flex-col gap-5">
-              {page.treatment.items.map((item) => (
-                <li key={item.title} className={`${dot} before:bg-mint`}>
-                  <span>
-                    <b className="font-medium">{item.title}</b> {item.text}
-                  </span>
-                </li>
-              ))}
-            </ul>
+            {page.treatment.items.length > 0 && (
+              <ul className="flex flex-col gap-5">
+                {page.treatment.items.map((item) => (
+                  <li key={item.title} className={`${dot} before:bg-mint`}>
+                    <span>
+                      <b className="font-medium">{item.title}</b> {item.text}
+                    </span>
+                  </li>
+                ))}
+              </ul>
+            )}
             {page.treatment.paragraphs.map((p) => (
               <p key={p}>{p}</p>
             ))}

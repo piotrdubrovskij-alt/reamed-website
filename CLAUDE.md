@@ -40,7 +40,7 @@
 | Раздел (адрес) | Страницы внутри | Приоритет |
 |---|---|---|
 | Po operacijų (`atsistatymas-po-operaciju`) | Ankstyva reabilitacija po operacijos ir imobilizacijos (gipsas, įtvaras); Po kryžminio raiščio rekonstrukcijos; Po menisko operacijos; Po kelio artroskopijos; Po kelio lūžio operacijos; Po peties artroskopijos ir rotatorių manžetės siūlės; Po peties stabilizacijos; Po žastikaulio lūžio; Po riešo ir rankos lūžio; Po klubo artroskopijos; Po čiurnos lūžio ar operacijos; Po Achilo sausgyslės plyšimo; Po disko išvaržos operacijos; Po stuburo stabilizacijos | 1 |
-| Nugara (`nugaros-skausmas`) | Ūmus nugaros skausmas („užstrigo nugara“); Nugaros skausmas ir raumenų įtampa; Stuburo išvarža; Išialgija ir radikulopatija; Skausmas nugaros apačioje; Osteochondrozė; Stuburo kanalo stenozė; Spondilolistezė; Kryžkaulio ir klubo sąnario skausmas; Skausmas tarp mentių; Nugaros skausmas sėdint; Laikysenos problemos; Po disko išvaržos operacijos; Po stuburo stabilizacijos | 1 |
+| Nugara (`nugaros-skausmas`) | Ūmus nugaros skausmas („užstrigo nugara“); Nugaros skausmas ir raumenų įtampa; Stuburo išvarža; Išialgija ir radikulopatija; Skausmas nugaros apačioje; Osteochondrozė; Stuburo kanalo stenozė; Spondilolistezė; Kryžkaulio ir klubo sąnario skausmas; Skausmas tarp menčių; Nugaros skausmas sėdint; Laikysenos problemos; Po disko išvaržos operacijos; Po stuburo stabilizacijos | 1 |
 | Kaklas (`kaklo-skausmas`) | Kaklo skausmas ir įtampa (cervikalgija); Užstrigęs kaklas; Ribotas kaklo judrumas; Kaklo osteochondrozė; Kaklo radikulopatija: skausmas plinta į ranką; Kaklo trauma po avarijos; Įtampos galvos skausmas; Galvos skausmas dėl kaklo | 1 |
 | Petys (`peties-problemos`) | Peties skausmas keliant ranką; Subakromialinis skausmo sindromas; Rotatorių manžetės pažeidimas; Dvigalvio raumens sausgyslės uždegimas; Kalcifikuojantis tendinitas; Sustingęs petys (adhezinis kapsulitas); Peties nestabilumas ir išnirimai; AC sąnario trauma; Peties sąnario artrozė; Po peties artroskopijos ir rotatorių manžetės siūlės; Po peties stabilizacijos; Po žastikaulio lūžio | 1 |
 | Alkūnė ir riešas (`alkunes-ir-rieso-skausmas`) | Teniso alkūnė; Golfo alkūnė; Alkūnės sustingimas po traumos; De Quervain sindromas; Riešo kanalo sindromas; Riešo skausmas ir patempimai; Po riešo ir rankos lūžio | 2 |
@@ -129,6 +129,9 @@
   из `translations.services` нет страницы. Общие блоки обоих шаблонов — `src/components/g/PageBlocks.tsx`,
   строки чека цен — `src/components/prices/PriceLines.tsx` (их же использует `/kainos`). Старый вид услуг удалён.
 - Тексты пачек — в Claude Docs «reamed.lt: пачка N», код страницы и документ должны совпадать дословно.
+- Готовые тексты Piotr переносятся скриптами `scripts/import-condition-texts.mjs` и `scripts/verify-condition-texts.mjs`
+  (настройки пачки — `scripts/condition-texts/batch-N.json`), без перепечатки и без Claude Doc; меняется только перечисленное
+  в правиле: номера ссылок, призывы и навигация, строка цены, тире между словами. Сверка должна показать 0 расхождений.
 - `src/components/sections/` — блоки главной.
   Услуги на главной (`ServicesSection`) — мятная полоса с графитовыми кнопками (название, строка текста, мятная стрелка),
   между «Pirmasis vizitas» и командой: просьба Piotr 07.11.2026, главная смотрят в основном с телефона.

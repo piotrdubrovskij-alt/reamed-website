@@ -38,7 +38,7 @@ export const osteopatija: ServicePage = {
       "Nugaros ir juosmens skausmas",
       "Kaklo skausmas ir įtampa",
       "Galvos skausmas dėl kaklo",
-      "Skausmas tarp mentių, sustingusi krūtinės stuburo dalis",
+      "Skausmas tarp menčių, sustingusi krūtinės stuburo dalis",
       "Sąnarių sustingimas, ribotas judrumas",
       "Pasikartojantis skausmas, kai vieni pratimai nepadeda",
     ],
