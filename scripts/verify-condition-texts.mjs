@@ -18,10 +18,10 @@ const seo = new Map(parseCsv(fs.readFileSync(path.join(config.sourceDir, "SEO.cs
 const TEMPLATE_HEADINGS = /^## (Kada verta kreiptis|Kaip vertiname|Kaip gydome ir kiek tai trunka|Ką galite daryti iki vizito|Kada reikia skubios pagalbos|Dažniausi klausimai)\??$/;
 const REMOVED_LINE = [
   /^\[←/,
+  /^\[Ką gydome\]\(https:\/\/reamed\.lt\/ka-gydome\) → /,
   /reamed\.lt\/registracija/,
   /^Šiame puslapyje:/,
   /^<a id=/,
-  /^Pirmasis\b.*80 €.*reamed\.lt\/kainos/,
   /^Parengė:/,
   /^Mediciniškai peržiūrėjo:/,
   /^Peržiūros data:/,
@@ -66,11 +66,15 @@ function mdBodySentences(body) {
   return lines
     .filter((l, i) => !calls.has(i) && !REMOVED_LINE.some((re) => re.test(l)))
     .filter((l) => !TEMPLATE_HEADINGS.test(l))
+    // The price paragraph goes, but anything written after its link is text of the page.
+    .map((l) => l.match(/^Pirmasis\b.*80 €.*reamed\.lt\/kainos\)\.?\s*(.*)$/)?.[1] ?? l)
+    .filter(Boolean)
     .map((l) =>
       l
         .replace(/^#{1,3} /, "")
         .replace(/^- /, "")
         .replaceAll("**", "")
+        .replace(/\[([^\]]+)\]\(https:\/\/reamed\.lt\/[^)]*\)/g, "$1")
         .replace(/\s*\[\d+(?:\s*,\s*\d+)*\]/g, ""),
     )
     .flatMap(sentences);
@@ -87,6 +91,7 @@ function pageBodySentences(p) {
     ...(p.when.paragraphs ?? []),
     ...opt(p.when.note),
     ...p.assess.map((a) => `${a.lead} ${a.text}`),
+    ...opt(p.assessNote),
     ...p.treatment.items.map((i) => `${i.title} ${i.text}`),
     ...p.treatment.paragraphs,
     ...(p.beforeVisit ?? []),
@@ -121,8 +126,10 @@ function checkSources(block, page, problems) {
   lines.forEach((line, i) => {
     const s = page.sources[i];
     if (!s) return;
-    const head = `${s.authors} [${s.title}](`;
-    if (line.slice(line.indexOf(" ") + 1, line.indexOf(" ") + 1 + head.length) !== head) problems.push(`source ${i + 1}: authors or title differ: ${line.slice(0, 90)}`);
+    // «Authors. [Title](url)» or «[Authors — Title](url)» (then the page adds a full stop after the authors).
+    const text = line.slice(line.indexOf(" ") + 1);
+    const heads = [`${s.authors} [${s.title}](`, `[${s.authors.replace(/\.$/, "")} — ${s.title}](`];
+    if (!heads.some((h) => text.startsWith(h))) problems.push(`source ${i + 1}: authors or title differ: ${line.slice(0, 90)}`);
     const urlEnd = line.indexOf(")", line.indexOf("](") + 2);
     const tail = line.slice(line.lastIndexOf("](") + 2).split(")").slice(1).join(")");
     const url = line.slice(line.lastIndexOf("](") + 2).split(")")[0];
@@ -166,7 +173,7 @@ function checkTemplateFields(p, section, teamNote, problems) {
   if (p.reviews !== parent.reviews) problems.push("reviews differ from the section page");
   if (p.reviewed !== null) problems.push("reviewed is not null");
   if (p.urgent.note !== "") problems.push('urgent.note is not ""');
-  for (const extra of [p.assessNote, p.treatment.intro, p.about.list, p.topicsTitle]) {
+  for (const extra of [p.treatment.intro, p.about.list, p.topicsTitle]) {
     if (extra !== undefined) problems.push(`field outside the md mapping is filled: ${JSON.stringify(extra).slice(0, 60)}`);
   }
 }

@@ -168,6 +168,10 @@ Search Console — в аккаунте info@reamed.lt (`sc-domain:reamed.lt`), �
     ribotas kelio judrumas, šokėjo kelis, iliotibialinio trakto sindromas, golfo alkūnė, alkūnės sustingimas po traumos,
     De Quervain sindromas, riešo skausmas ir patempimai); перенесены теми же скриптами; темы обоих разделов и
     Sausgyslės все со страницами — PR #45
+  - [x] Пачка 13: тексты Piotr Klubas ir kirkšnis и Čiurna, pėda ir kulnas (9 тем: klubo sąnario artrozė, skausmas ir
+    sustingimas po klubo endoprotezavimo, kirkšnies skausmas sportininkams, klubo FAI ir sąnario lūpos plyšimas, piriformio
+    sindromas, čiurnos nestabilumas, stresiniai pėdos lūžiai, čiurnos sąnario artrozė, blauzdos skausmas bėgikams);
+    перенесены теми же скриптами; темы обоих разделов и Plintantis skausmas все со страницами — PR #46
   - [ ] Остальные темы всех разделов (решение Piotr 07.11: сначала закончить «Ką gydome», потом статьи)
 - [ ] **EN и RU** по адресам `/en`, `/ru` с hreflang (см. п. 8)
 - [ ] **Bing Webmaster + IndexNow, `llms.txt`**, Google Business, manodaktaras.lt, ссылки VU и федерации

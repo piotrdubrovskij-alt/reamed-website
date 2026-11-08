@@ -80,6 +80,15 @@ import { golfoAlkune } from "./golfo-alkune";
 import { alkunesSustingimasPoTraumos } from "./alkunes-sustingimas-po-traumos";
 import { deQuervainSindromas } from "./de-quervain-sindromas";
 import { riesoSkausmasIrPatempimai } from "./rieso-skausmas-ir-patempimai";
+import { kluboSanarioArtroze } from "./klubo-sanario-artroze";
+import { skausmasIrSustingimasPoKluboEndoprotezavimo } from "./skausmas-ir-sustingimas-po-klubo-endoprotezavimo";
+import { kirksniesSkausmasSportininkams } from "./kirksnies-skausmas-sportininkams";
+import { kluboFaiIrSanarioLuposPlysimas } from "./klubo-fai-ir-sanario-lupos-plysimas";
+import { piriformioSindromas } from "./piriformio-sindromas";
+import { ciurnosNestabilumas } from "./ciurnos-nestabilumas";
+import { stresiniaiPedosLuziai } from "./stresiniai-pedos-luziai";
+import { ciurnosSanarioArtroze } from "./ciurnos-sanario-artroze";
+import { blauzdosSkausmasBegikams } from "./blauzdos-skausmas-begikams";
 
 // Problem pages built from data (/ka-gydome/<slug>). Order = order inside each section.
 // Older section pages not yet rewritten still live in their own folders under src/app/ka-gydome/.
@@ -178,6 +187,17 @@ export const conditionPages: ConditionPage[] = [
   alkunesSustingimasPoTraumos,
   deQuervainSindromas,
   riesoSkausmasIrPatempimai,
+  // Batch 13: Piotr's nine texts for Klubas ir kirkšnis and Čiurna, pėda ir kulnas (08.11.2026), moved by scripts/import-condition-texts.mjs.
+  // Piriformio sindromas is also listed in Plintantis skausmas.
+  kluboSanarioArtroze,
+  skausmasIrSustingimasPoKluboEndoprotezavimo,
+  kirksniesSkausmasSportininkams,
+  kluboFaiIrSanarioLuposPlysimas,
+  piriformioSindromas,
+  ciurnosNestabilumas,
+  stresiniaiPedosLuziai,
+  ciurnosSanarioArtroze,
+  blauzdosSkausmasBegikams,
 ];
 
 export function getConditionPage(slug: string): ConditionPage | undefined {
