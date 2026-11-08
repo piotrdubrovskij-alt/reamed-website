@@ -153,6 +153,10 @@ Search Console — в аккаунте info@reamed.lt (`sc-domain:reamed.lt`), �
     (итого 41 страница, все 11 разделов) — PR #39
   - [x] Пачка 8: kaklo osteochondrozė, čiurnos patempimas, kulno atauga, spondilolistezė, stuburo kanalo stenozė,
     kelio artrozė, kryžkaulio ir klubo sąnario skausmas — PR #41
+  - [x] Пачка 9: тексты Piotr «Po operacijų» (po kelio lūžio operacijos, peties stabilizacijos, žastikaulio lūžio,
+    riešo ir rankos lūžio, klubo artroskopijos, čiurnos lūžio ar operacijos, Achilo sausgyslės plyšimo,
+    disko išvaržos operacijos, stuburo stabilizacijos); источники-ссылки без DOI, блок «Ką galite daryti iki vizito»;
+    у всех 14 тем «Po operacijų» есть страницы — PR #42
   - [ ] Остальные темы всех разделов (решение Piotr 07.11: сначала закончить «Ką gydome», потом статьи)
 - [ ] **EN и RU** по адресам `/en`, `/ru` с hreflang (см. п. 8)
 - [ ] **Bing Webmaster + IndexNow, `llms.txt`**, Google Business, manodaktaras.lt, ссылки VU и федерации
