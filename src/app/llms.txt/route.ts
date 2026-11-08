@@ -1,5 +1,6 @@
 import { SECTIONS } from "@/content/sections";
 import { conditionPages } from "@/content/conditions";
+import { infoPages } from "@/content/pages";
 import { servicePages } from "@/content/services";
 import { eur } from "@/content/services/price-text";
 import { specialists } from "@/lib/specialists";
@@ -32,6 +33,10 @@ export function GET() {
 - Pirmasis vizitas: konsultacija, ištyrimas ir gydymo planas, 60 min, ${eur("pirmasis-vizitas")}. Kineziterapija ${eur("kineziterapija")}. Visos kainos: ${SITE_URL}/kainos
 - Registracija: ${SITE_URL}/registracija
 - Vaikų kineziterapija ir skoliozė: ne ReaMed, o FitKid klinika (https://fitkid.lt).
+
+## Apie kliniką
+
+${infoPages.map((p) => line(p.hero.h1, p.path)).join("\n")}
 
 ## Paslaugos
 

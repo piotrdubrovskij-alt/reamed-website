@@ -135,7 +135,11 @@ export default function ServicePageContent({ page }: { page: ServicePage }) {
               Kaina
             </h2>
             <p className="mt-4 text-small text-graphite max-w-[36ch]">
-              Privati klinika: siuntimo nereikia, eilių nėra.{" "}
+              Privati klinika:{" "}
+              <Link href="/reabilitacija-be-siuntimo" className="link-action">
+                siuntimo nereikia
+              </Link>
+              , eilių nėra.{" "}
               <Link href="/kainos" className="link-action">
                 Visos kainos ir paketų sąlygos
               </Link>

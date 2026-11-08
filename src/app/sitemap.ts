@@ -4,6 +4,7 @@ import { specialists } from "@/lib/specialists";
 import { translations } from "@/lib/translations";
 import { conditionPages } from "@/content/conditions";
 import { SECTIONS } from "@/content/sections";
+import { infoPages } from "@/content/pages";
 import { servicePages } from "@/content/services";
 
 // lastModified only where a real date exists: the day a specialist last reviewed the text (`reviewed.date`).
@@ -18,12 +19,14 @@ export default function sitemap(): MetadataRoute.Sitemap {
   const reviewedOn = new Map<string, string>();
   for (const p of conditionPages) if (p.reviewed) reviewedOn.set(`/ka-gydome/${p.slug}`, p.reviewed.date);
   for (const p of servicePages) if (p.reviewed) reviewedOn.set(`/paslaugos/${p.slug}`, p.reviewed.date);
+  for (const p of infoPages) if (p.reviewed) reviewedOn.set(p.path, p.reviewed.date);
   const paths = [
     ...staticPaths,
     ...SECTIONS.filter((s) => s.hasPage).map((s) => `/ka-gydome/${s.slug}`),
     ...conditionPages.map((p) => `/ka-gydome/${p.slug}`),
     ...lt.services.items.map((s) => `/paslaugos/${s.slug}`),
     ...specialists.map((s) => `/specialistai/${s.slug}`),
+    ...infoPages.map((p) => p.path),
   ];
 
   // A section's own page can be both a section and a data page: list it once.

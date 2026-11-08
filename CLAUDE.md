@@ -137,6 +137,10 @@
   `helps.pages` — страницы болезней из `src/content/conditions`. Сборка падает, если ссылка ведёт в пустоту или у услуги
   из `translations.services` нет страницы. Общие блоки обоих шаблонов — `src/components/g/PageBlocks.tsx`,
   строки чека цен — `src/components/prices/PriceLines.tsx` (их же использует `/kainos`). Старый вид услуг удалён.
+- Отдельные страницы вне «Ką gydome» и услуг (пачка 15: `/apie-mus`, `/duk`, `/chiropraktikas-vilniuje`, `/reabilitacija-be-siuntimo`) — тоже из данных:
+  файл `src/content/pages/<имя>.ts` (тип `InfoPage`, страница собирается из блоков `InfoBlock`), строка в `index.ts`, папка маршрута в `src/app`;
+  вид — `InfoPageContent`, JSON-LD — `src/lib/info-schema.ts`. В sitemap и llms.txt попадают сами. В абзацах и ответах можно ссылаться
+  на свои страницы: `[слова](/адрес)`, сборка проверяет адреса. В главном меню их нет: ссылки из футера и из текстов.
 - Тексты пачек — в Claude Docs «reamed.lt: пачка N», код страницы и документ должны совпадать дословно.
 - Готовые тексты Piotr переносятся скриптами `scripts/import-condition-texts.mjs` и `scripts/verify-condition-texts.mjs`
   (настройки пачки — `scripts/condition-texts/batch-N.json`), без перепечатки и без Claude Doc; меняется только перечисленное

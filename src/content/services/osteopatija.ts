@@ -146,5 +146,6 @@ export const osteopatija: ServicePage = {
     { href: "/paslaugos/kineziterapija", label: "Kineziterapija" },
     { href: "/ka-gydome/nugaros-skausmas", label: "Nugaros skausmas" },
     { href: "/specialistai/piotr-dubrovskij", label: "Piotr Dubrovskij" },
+    { href: "/chiropraktikas-vilniuje", label: "Chiropraktikas Vilniuje?" },
   ],
 };

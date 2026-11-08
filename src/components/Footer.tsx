@@ -88,23 +88,47 @@ export default function Footer() {
           </a>
         </div>
 
-        {/* One line from 360px; below that Instagram and Facebook move to a second line together. */}
-        <nav aria-label={t.footer.menu} className="mt-10 desk:mt-12 flex flex-wrap items-center gap-x-1.5 text-small text-on-dark">
-          <a href="/privatumas" className="inline-flex items-center min-h-11 hover:underline">
-            {t.footer.privacy}
-          </a>
-          <span aria-hidden="true" className="max-[360px]:hidden">
+        {/* One line on a computer. On a phone: the clinic's pages, then privacy and socials. Below 360px the long link and
+            Instagram with Facebook move to their own lines, without a dangling dot. */}
+        <nav
+          aria-label={t.footer.menu}
+          className="mt-10 desk:mt-12 flex flex-col desk:flex-row desk:flex-wrap desk:items-center desk:gap-x-1.5 text-small text-on-dark"
+        >
+          <span className="flex flex-wrap items-center gap-x-1.5">
+            <Link href="/apie-mus" className="inline-flex items-center min-h-11 hover:underline">
+              {t.footer.about}
+            </Link>
+            <span aria-hidden="true">·</span>
+            <Link href="/duk" className="inline-flex items-center min-h-11 hover:underline">
+              {t.footer.faq}
+            </Link>
+            <span aria-hidden="true" className="max-[360px]:hidden">
+              ·
+            </span>
+            <Link href="/reabilitacija-be-siuntimo" className="inline-flex items-center min-h-11 hover:underline max-[360px]:w-full">
+              {t.footer.noReferral}
+            </Link>
+          </span>
+          <span aria-hidden="true" className="hidden desk:inline">
             ·
           </span>
-          <span className="inline-flex items-center gap-x-1.5 max-[360px]:w-full">
-            {social.map((s, i) => (
-              <span key={s.href} className="contents">
-                {i > 0 && <span aria-hidden="true">·</span>}
-                <a href={s.href} {...external} className="inline-flex items-center min-h-11 hover:underline">
-                  {s.label}
-                </a>
-              </span>
-            ))}
+          <span className="flex flex-wrap items-center gap-x-1.5">
+            <a href="/privatumas" className="inline-flex items-center min-h-11 hover:underline">
+              {t.footer.privacy}
+            </a>
+            <span aria-hidden="true" className="max-[360px]:hidden">
+              ·
+            </span>
+            <span className="inline-flex items-center gap-x-1.5 max-[360px]:w-full">
+              {social.map((s, i) => (
+                <span key={s.href} className="contents">
+                  {i > 0 && <span aria-hidden="true">·</span>}
+                  <a href={s.href} {...external} className="inline-flex items-center min-h-11 hover:underline">
+                    {s.label}
+                  </a>
+                </span>
+              ))}
+            </span>
           </span>
         </nav>
       </div>
