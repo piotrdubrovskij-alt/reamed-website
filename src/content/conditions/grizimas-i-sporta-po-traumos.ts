@@ -86,7 +86,7 @@ export const grizimasISportaPoTraumos: ConditionPage = {
     },
     {
       q: "Kaip sumažinti pakartotinės traumos riziką?",
-      a: "Svarbiausia yra jėgos pratimai: tyrimų apžvalga parodė, kad jėgos treniruotės sporto traumų sumažina iki mažiau nei trečdalio, o vien tempimas traumų nesumažina.",
+      a: "Svarbiausia yra jėgos pratimai. Jėgos, pusiausvyros ir judesių valdymo programos gali sumažinti tam tikrų sporto traumų riziką, o vien tempimas traumų nesumažina. Poveikis priklauso nuo sporto šakos, programos ir jos laikymosi, todėl vieno rizikos sumažėjimo procento negalima taikyti kiekvienam žmogui.",
     },
     { q: "Ar reikia siuntimo?", a: "Ne. ReaMed yra privati klinika, registruojatės tiesiogiai." },
   ],
