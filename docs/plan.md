@@ -96,6 +96,14 @@
   (сверено с `/kainos`; при изменении цен менять в обоих местах).
 - [x] **Индексные страницы** `/specialistai`, `/paslaugos`, `/ka-gydome` — PR #23 (были 404);
   кнопка «Visi specialistai →» должна вести на список специалистов, а не на `/registracija`.
+- [x] **Первый экран страниц проблем и услуг без фото специалиста** (если вернётся — аркой) — PR #32
+- [x] **Услуги на главной кнопками** на мятной полосе, kineziterapija крупнее — PR #34
+- [x] **Меню «Ką gydome» и «Paslaugos» — на блоки главной**, туда же «← Ką gydome», «← Paslaugos» и ссылки 404;
+  `/paslaugos` теми же кнопками, страницы-списки остаются для Google — PR #36, #37
+- [x] **Главная: блок «Ką gydome»** (одно название с меню), «Pirmasis vizitas» одной строкой (всё в одном визите)
+  и строка о пакетах (kineziterapija nuo 60 € vietoj 70 €, цифры из `prices.ts`) — PR #38
+- [x] **«Ką gydome» на главной: ссылка на страницу раздела первой строкой** в раскрытом разделе (мятная строка
+  с заголовком страницы, например «Klubo ir kirkšnies skausmas →»), вместо «Plačiau apie tai» в самом низу — PR #40
 - [ ] **Подарочные ваучеры:** ссылка в шапке и футере до декабря. Уточнить у Piotr, где живёт система ваучеров.
 - [ ] **Живая фотосъёмка:** кабинеты, работа с пациентом, оборудование, команда.
 - [ ] **Русская версия** — после п. 8.
@@ -122,16 +130,38 @@ Search Console — в аккаунте info@reamed.lt (`sc-domain:reamed.lt`), �
   išialgija, skausmas nugaros apačioje, osteochondrozė, plantarinis fascitas, po menisko operacijos) — ветка
   `feat/condition-template`, ждёт «ок» по текстам. Следом перевести на шаблон 8 старых страниц проблем и 6 услуг
 - [ ] **Ядро LT, приоритет 1:** po operacijų (+ po stuburo operacijų), kelias, petys, nugara, kaklas
-  (+ įtampos galvos skausmas), sporto traumos; услуги заново (+ kinezioteipavimas, Redcord, elektroterapija,
-  ultragarsas; остеопатия — структуральная; мануальная — Мейтланд); «Privati reabilitacija be siuntimo»,
+  (+ įtampos galvos skausmas), sporto traumos; услуги заново (+ elektroterapija и ultragarsas;
+  остеопатия — структуральная; мануальная — Мейтланд); «Privati reabilitacija be siuntimo»,
   «Chiropraktikas Vilniuje?», «Apie mus», DUK
   - [x] Страницы проблем, пачки 1–4 (26 страниц: 6 разделов на шаблоне G и 20 тем) — PR #25, #27, #28, #29
-  - [ ] Услуги заново, «Privati reabilitacija be siuntimo», «Chiropraktikas Vilniuje?», «Apie mus», DUK
-- [ ] **Статьи LT:** 5–10 на раздел, заголовок — вопрос из поиска
+  - [x] Услуги заново, пачка 6: семь услуг на шаблоне G (kineziterapija, osteopatija, manualinė terapija,
+    pooperacinė и sporto reabilitacija, gydomasis masažas, fizioterapija = elektroterapija + ultragarsas),
+    список «Mūsų paslaugos» — PR #33
+  - Kinezioteipavimas и Redcord отдельными страницами не делаем (решение Piotr 07.11.2026): Redcord — методика
+    внутри кинезитерапии, тейпирование — дополнение к визиту. Пачка 7 по услугам отменена.
+  - [ ] «Privati reabilitacija be siuntimo», «Chiropraktikas Vilniuje?», «Apie mus», DUK
+- [ ] **Статьи LT:** 100–150 статей-ответов, 5–10 на раздел и статьи о методах, заголовок — вопрос из поиска, по 10–15 за PR
+  - Обязательно: статьи о хиропрактике, Redcord и kineziologinis teipavimas со ссылками на страницы болезней и услуг
+    (решение Piotr 07.11.2026). Отдельная страница «Chiropraktikas Vilniuje?» остаётся.
+  - [ ] План статей (список заголовков по разделам, спрос, куда ведёт каждая) — Claude Doc на правку Piotr
+  - [ ] Шаблон статьи в коде: `/straipsniai/<slug>`, `Article` в JSON-LD, статьи раздела на его странице
 - [ ] **Приоритет 2:** alkūnė ir riešas, klubas ir kirkšnis, čiurna ir pėda, sausgyslės
   - [x] Пачка 5: разделы Sausgyslės и Plintantis skausmas заново на шаблоне G; темы teniso alkūnė, riešo kanalo
     sindromas, Achilo tendinopatija, šoninis klubo skausmas, tirpsta ranka (итого 33 страницы) — PR #30
-  - [ ] Страницы разделов Alkūnė ir riešas, Klubas ir kirkšnis, Čiurna, pėda ir kulnas и их остальные темы
+  - [x] Пачка 7: страницы разделов Alkūnė ir riešas, Klubas ir kirkšnis, Čiurna, pėda ir kulnas; po peties artroskopijos,
+    po kelio artroskopijos, vidinio šoninio raiščio pažeidimas, galvos skausmas dėl kaklo, ūmus nugaros skausmas
+    (итого 41 страница, все 11 разделов) — PR #39
+  - [x] Пачка 8: kaklo osteochondrozė, čiurnos patempimas, kulno atauga, spondilolistezė, stuburo kanalo stenozė,
+    kelio artrozė, kryžkaulio ir klubo sąnario skausmas — PR #41
+  - [x] Пачка 9: тексты Piotr «Po operacijų» (po kelio lūžio operacijos, peties stabilizacijos, žastikaulio lūžio,
+    riešo ir rankos lūžio, klubo artroskopijos, čiurnos lūžio ar operacijos, Achilo sausgyslės plyšimo,
+    disko išvaržos operacijos, stuburo stabilizacijos); источники-ссылки без DOI, блок «Ką galite daryti iki vizito»;
+    у всех 14 тем «Po operacijų» есть страницы — PR #42
+  - [x] Пачка 10: тексты Piotr Nugara и Kaklas (nugaros skausmas ir raumenų įtampa, skausmas tarp menčių, nugaros
+    skausmas sėdint, laikysenos problemos, užstrigęs kaklas, ribotas kaklo judrumas, kaklo trauma po avarijos); перенесены
+    скриптами `scripts/import-condition-texts.mjs` и `verify-condition-texts.mjs` (Claude Code); темы Nugara и Kaklas
+    все со страницами — PR #43
+  - [ ] Остальные темы всех разделов (решение Piotr 07.11: сначала закончить «Ką gydome», потом статьи)
 - [ ] **EN и RU** по адресам `/en`, `/ru` с hreflang (см. п. 8)
 - [ ] **Bing Webmaster + IndexNow, `llms.txt`**, Google Business, manodaktaras.lt, ссылки VU и федерации
 
