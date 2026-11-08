@@ -62,7 +62,7 @@ export const sportoReabilitacija: ServicePage = {
       { title: "Prevencija:", text: "pratimų programa, kuri mažina pakartotinės traumos riziką." },
     ],
     paragraphs: [
-      "Tyrimų apžvalga parodė, kad jėgos treniruotės sporto traumų sumažina iki mažiau nei trečdalio, o vien tempimas traumų nesumažina. Todėl jėgos pratimai yra kiekvieno mūsų plano dalis.",
+      "Jėgos, pusiausvyros ir judesių valdymo programos gali sumažinti tam tikrų sporto traumų riziką, o vien tempimas traumų nesumažina. Todėl jėgos pratimai yra kiekvieno mūsų plano dalis. Poveikis priklauso nuo sporto šakos, programos ir jos laikymosi, todėl vieno rizikos sumažėjimo procento negalima taikyti kiekvienam žmogui.",
       "Trukmė priklauso nuo traumos: lengvas raumens patempimas dažnai užgyja per kelias savaites, o po raiščio plyšimo ar operacijos reabilitacija trunka mėnesius.",
     ],
   },
