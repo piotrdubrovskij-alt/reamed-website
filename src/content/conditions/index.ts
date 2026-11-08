@@ -41,6 +41,13 @@ import { reabilitacijaPoKelioArtroskopijos } from "./reabilitacija-po-kelio-artr
 import { vidinioSoninioRaiscioPazeidimas } from "./vidinio-soninio-raiscio-pazeidimas";
 import { galvosSkausmasDelKaklo } from "./galvos-skausmas-del-kaklo";
 import { umusNugarosSkausmas } from "./umus-nugaros-skausmas";
+import { kakloOsteochondroze } from "./kaklo-osteochondroze";
+import { ciurnosPatempimas } from "./ciurnos-patempimas";
+import { kulnoAtauga } from "./kulno-atauga";
+import { spondilolisteze } from "./spondilolisteze";
+import { stuburoKanaloStenoze } from "./stuburo-kanalo-stenoze";
+import { kelioArtroze } from "./kelio-artroze";
+import { kryzkaulioIrKluboSanarioSkausmas } from "./kryzkaulio-ir-klubo-sanario-skausmas";
 
 // Problem pages built from data (/ka-gydome/<slug>). Order = order inside each section.
 // Older section pages not yet rewritten still live in their own folders under src/app/ka-gydome/.
@@ -93,6 +100,14 @@ export const conditionPages: ConditionPage[] = [
   vidinioSoninioRaiscioPazeidimas,
   galvosSkausmasDelKaklo,
   umusNugarosSkausmas,
+  // Batch 8: seven topics (the disc operation moved to batch 9 with Piotr's text, 08.11.2026).
+  kakloOsteochondroze,
+  ciurnosPatempimas,
+  kulnoAtauga,
+  spondilolisteze,
+  stuburoKanaloStenoze,
+  kelioArtroze,
+  kryzkaulioIrKluboSanarioSkausmas,
 ];
 
 export function getConditionPage(slug: string): ConditionPage | undefined {

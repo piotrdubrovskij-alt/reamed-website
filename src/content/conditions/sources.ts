@@ -630,3 +630,70 @@ export const MCL_ACL_META: Source = {
   year: 2024,
   doi: "10.1177/03635465231153157",
 };
+
+// Batch 8 (07.11.2026), checked in PubMed the same day.
+
+export const NAKASHIMA_2015: Source = {
+  authors: "Nakashima H ir kt.",
+  title: "Abnormal findings on magnetic resonance images of the cervical spines in 1211 asymptomatic subjects.",
+  journal: "Spine",
+  year: 2015,
+  doi: "10.1097/BRS.0000000000000775",
+};
+
+export const ANKLE_CPG_2021: Source = {
+  authors: "Martin RL ir kt.",
+  title: "Ankle Stability and Movement Coordination Impairments: Lateral Ankle Ligament Sprains Revision 2021.",
+  journal: "J Orthop Sports Phys Ther",
+  year: 2021,
+  doi: "10.2519/jospt.2021.0302",
+};
+
+export const KIRKPATRICK_2017: Source = {
+  authors: "Kirkpatrick J ir kt.",
+  title: "The plantar calcaneal spur: a review of anatomy, histology, etiology and key associations.",
+  journal: "J Anat",
+  year: 2017,
+  doi: "10.1111/joa.12607",
+};
+
+export const NASS_SPONDYLOLISTHESIS: Source = {
+  authors: "Matz PG ir kt.",
+  title:
+    "Guideline summary review: An evidence-based clinical guideline for the diagnosis and treatment of degenerative lumbar spondylolisthesis.",
+  journal: "Spine J",
+  year: 2016,
+  doi: "10.1016/j.spinee.2015.11.055",
+};
+
+export const DELITTO_2015: Source = {
+  authors: "Delitto A ir kt.",
+  title: "Surgery versus nonsurgical treatment of lumbar spinal stenosis: a randomized trial.",
+  journal: "Ann Intern Med",
+  year: 2015,
+  doi: "10.7326/M14-1420",
+};
+
+export const STENOSIS_COCHRANE_2016: Source = {
+  authors: "Zaina F ir kt.",
+  title: "Surgical versus non-surgical treatment for lumbar spinal stenosis.",
+  journal: "Cochrane Database Syst Rev",
+  year: 2016,
+  doi: "10.1002/14651858.CD010264.pub2",
+};
+
+export const KNEE_OA_EXERCISE_2015: Source = {
+  authors: "Fransen M ir kt.",
+  title: "Exercise for osteoarthritis of the knee.",
+  journal: "Cochrane Database Syst Rev",
+  year: 2015,
+  doi: "10.1002/14651858.CD004376.pub3",
+};
+
+export const LASLETT_2005: Source = {
+  authors: "Laslett M ir kt.",
+  title: "Diagnosis of sacroiliac joint pain: validity of individual provocation tests and composites of tests.",
+  journal: "Man Ther",
+  year: 2005,
+  doi: "10.1016/j.math.2005.01.003",
+};
