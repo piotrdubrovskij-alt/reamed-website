@@ -73,8 +73,7 @@ export const sokejoKelis: ConditionPage = {
       "erikas-jatkauskas",
       "mangirdas-kazacenko",
       "piotr-dubrovskij"
-    ],
-    note: "Po sporto traumų operacijų dažniausiai dirba Kotryna, vyresniems pacientams po operacijų padeda Mangirdas."
+    ]
   },
   faq: [
     {

@@ -152,13 +152,16 @@ function checkLeftovers(page, problems) {
   walk(page, "page");
 }
 
-function checkTemplateFields(p, section, problems) {
+function checkTemplateFields(p, section, teamNote, problems) {
   const parent = loadConditionPage(ROOT, section);
   const same = (a, b) => JSON.stringify(a) === JSON.stringify(b);
   if (p.section !== section) problems.push("section differs");
   if (p.navTitle !== p.hero.h1 || p.conditionName !== p.hero.h1) problems.push("navTitle or conditionName is not the H1");
   if (p.hero.specialist !== parent.hero.specialist) problems.push("hero.specialist differs from the section page");
-  if (!same(p.team, parent.team)) problems.push("team differs from the section page");
+  const { note, ...teamWithoutNote } = parent.team;
+  void note;
+  const team = teamNote === false ? teamWithoutNote : parent.team;
+  if (!same(p.team, team)) problems.push(teamNote === false ? "team is not the section's team without its note" : "team differs from the section page");
   if (!same(p.services, parent.services)) problems.push("services differ from the section page");
   if (p.reviews !== parent.reviews) problems.push("reviews differ from the section page");
   if (p.reviewed !== null) problems.push("reviewed is not null");
@@ -169,7 +172,7 @@ function checkTemplateFields(p, section, problems) {
 }
 
 let total = 0;
-for (const { slug, section } of config.pages) {
+for (const { slug, section, teamNote } of config.pages) {
   const problems = [];
   const raw = fs.readFileSync(path.join(config.sourceDir, "tekstai", `${slug}.md`), "utf8");
   const md = withDashesReplaced(slug, raw, problems);
@@ -188,7 +191,7 @@ for (const { slug, section } of config.pages) {
   if (page.meta.title !== row.title) problems.push("meta.title differs from SEO.csv");
   if (page.meta.description !== row.description) problems.push("meta.description differs from SEO.csv");
   checkLeftovers(page, problems);
-  checkTemplateFields(page, section, problems);
+  checkTemplateFields(page, section, teamNote, problems);
 
   const dashes = (config.dashes[slug] ?? []).length;
   console.log(`${problems.length ? "✗" : "✓"} ${slug}: ${mine.length} sentences md, ${theirs.length} page, ${page.sources.length} sources, ${page.related.length} related, ${dashes} dashes replaced, ${problems.length} differences`);

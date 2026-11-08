@@ -172,7 +172,7 @@ function parseSources(slug, blocks) {
     });
 }
 
-function buildPage({ slug, section, assessLeadWords }) {
+function buildPage({ slug, section, assessLeadWords, teamNote }) {
   console.log(`\n${slug}`);
   const md = applyDashes(slug, fs.readFileSync(path.join(config.sourceDir, "tekstai", `${slug}.md`), "utf8"));
   const doc = splitMarkdown(md);
@@ -220,7 +220,9 @@ function buildPage({ slug, section, assessLeadWords }) {
     treatment,
     beforeVisit,
     urgent: { note: "", items: urgent },
-    team: parent.team,
+    // teamNote: false in the config: the section's team without its note (Piotr, 08.11.2026: the Kelias note
+    // speaks of operations, the pages on šokėjo kelis and ITB do not).
+    team: teamNote === false ? withoutNote(parent.team) : parent.team,
     faq,
     reviews: parent.reviews,
     sources,
@@ -241,6 +243,11 @@ function checkClean(page) {
     }
   };
   walk(page, "page");
+}
+
+function withoutNote({ note, ...team }) {
+  void note;
+  return team;
 }
 
 const camel = (slug) => slug.replace(/-([a-z0-9])/g, (_, c) => c.toUpperCase());

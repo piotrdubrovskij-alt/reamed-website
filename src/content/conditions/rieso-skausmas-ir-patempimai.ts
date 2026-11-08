@@ -51,7 +51,7 @@ export const riesoSkausmasIrPatempimai: ConditionPage = {
     paragraphs: [
       "Jei patvirtintas nekomplikuotas patempimas, pradžioje riešui reikia santykinės ramybės: sumažiname skausmingą krūvį, o paskirtą įtvarą naudojame pagal nurodymus. Pratimų pradžia priklauso nuo traumos. Įtariant lūžį ar didesnį raiščio plyšimą, bendroji mankšta netinka, kol gydytojas nepatikslino pažeidimo.",
       "Kai judėti saugu, palaipsniui grąžiname riešo lankstymą bei dilbio sukimą. Po imobilizacijos net lengvas puodelis gali atrodyti sunkesnis nei įprastai, todėl suėmimą ir jėgą laviname nuo pakeliamo krūvio. Įtvaro nešiojimo laiką trumpiname tik tada, kai tai leidžia gydymo planas.",
-      "Toliau pereiname prie jums reikalingų užduočių. Kirpėjui gali būti svarbu ilgiau laikyti žirkles, o sportuojančiam, saugiai atsiremti į delną. Aptariame, kaip didinti darbo trukmę ar pasipriešinimą ir kada dar verta padaryti pertrauką. Sudėtingesnės veiklos grąžinimas neturi prasidėti nuo maksimalaus bandymo.",
+      "Toliau pereiname prie jums reikalingų užduočių. Kirpėjui gali būti svarbu ilgiau laikyti žirkles, o sportuojančiam saugiai atsiremti į delną. Aptariame, kaip didinti darbo trukmę ar pasipriešinimą ir kada dar verta padaryti pertrauką. Sudėtingesnės veiklos grąžinimas neturi prasidėti nuo maksimalaus bandymo.",
       "Lengvesni patempimai dažnai gyja per kelias savaites, sunkesni pažeidimai gali reikalauti kelių mėnesių ar operacinio gydymo. Užsitęsusio skausmo be traumos eiga priklauso nuo jo priežasties. Jei pasirinktas gydymas neveikia, peržiūrime vertinimą, o ne tęsiame tuos pačius pratimus neribotai."
     ]
   },

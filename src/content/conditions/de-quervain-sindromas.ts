@@ -57,7 +57,7 @@ export const deQuervainSindromas: ConditionPage = {
   },
   beforeVisit: [
     "Sumažinkite stiprų žnyplinį suėmimą ir pasikartojantį riešo lenkimą į šoną. Daiktus kelkite arčiau kūno, paskirstydami svorį abiem rankoms. Nereikia skausmingos vietos stipriai masažuoti ar bandyti „pratampyti“ iki aštraus skausmo.",
-    "Jei prižiūrite kūdikį, maitindami paremkite dilbius pagalvėmis. Keliant gali būti patogiau viena ranka prilaikyti jo sėdmenis, kita, liemenį ir galvą pagal amžių, užuot visą svorį laikę plačiai atitrauktais nykščiais. Rinkitės saugų laikymą ir paprašykite pagalbos, jei dėl skausmo sunku patikimai suimti vaiką.",
+    "Jei prižiūrite kūdikį, maitindami paremkite dilbius pagalvėmis. Keliant gali būti patogiau viena ranka prilaikyti jo sėdmenis, kita liemenį ir galvą pagal amžių, užuot visą svorį laikę plačiai atitrauktais nykščiais. Rinkitės saugų laikymą ir paprašykite pagalbos, jei dėl skausmo sunku patikimai suimti vaiką.",
     "Dėl skausmą mažinančių vaistų pasitarkite su vaistininku ar gydytoju; pasakykite, jei laukiatės arba žindote."
   ],
   urgent: {
@@ -80,7 +80,7 @@ export const deQuervainSindromas: ConditionPage = {
   faq: [
     {
       q: "Ar tai tas pats, kas riešo kanalo sindromas?",
-      a: "Ne. De Quervain sindromas susijęs su nykščio sausgyslėmis, o riešo kanalo sindromas, su nervo spaudimu. Tirpimą vertiname atskirai."
+      a: "Ne. De Quervain sindromas susijęs su nykščio sausgyslėmis, o riešo kanalo sindromas su nervo spaudimu. Tirpimą vertiname atskirai."
     },
     {
       q: "Ar galiu ir toliau kelti vaiką?",

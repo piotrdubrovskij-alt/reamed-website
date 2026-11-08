@@ -84,7 +84,7 @@ export const golfoAlkune: ConditionPage = {
   faq: [
     {
       q: "Kuo golfo alkūnė skiriasi nuo teniso alkūnės?",
-      a: "Golfo alkūnės atveju paprastai skauda vidinę, teniso alkūnės, išorinę alkūnės pusę. Pažeidžiamos skirtingų raumenų sausgyslių prisitvirtinimo vietos, todėl pratimai parenkami pagal tai, kas skauda ir kurie judesiai provokuoja simptomus."
+      a: "Golfo alkūnės atveju paprastai skauda vidinę, teniso alkūnės išorinę alkūnės pusę. Pažeidžiamos skirtingų raumenų sausgyslių prisitvirtinimo vietos, todėl pratimai parenkami pagal tai, kas skauda ir kurie judesiai provokuoja simptomus."
     },
     {
       q: "Ar reikės nedirbti, kol visai nebeskaudės?",
