@@ -281,7 +281,12 @@ export function SourcesSection({
                     {/[.?!]$/.test(s.year ? "" : s.title) ? "" : "."}
                   </>
                 )}{" "}
-                <a href={sourceHref(s)} target="_blank" rel="noopener noreferrer" className="link-action break-all">
+                <a
+                  href={sourceHref(s)}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className={`link-action ${s.doi ? "break-all" : "whitespace-nowrap"}`}
+                >
                   {s.doi ? `doi:${s.doi}` : new URL(sourceHref(s)).hostname.replace(/^www\./, "")}
                 </a>
               </li>
