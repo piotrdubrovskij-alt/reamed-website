@@ -1,5 +1,6 @@
 import type { ConditionPage } from "./types";
 import { SECTIONS, getSection, type SectionSlug } from "@/content/sections";
+import { INLINE_LINK } from "@/lib/inline-links";
 import { stuburoIsvarza } from "./stuburo-isvarza";
 import { isialgijaRadikulopatija } from "./isialgija-radikulopatija";
 import { skausmasNugarosApacioje } from "./skausmas-nugaros-apacioje";
@@ -236,26 +237,58 @@ export function conditionsInSection(section: SectionSlug): ConditionPage[] {
 // Every source opens somewhere: a DOI for a study, or the page link (08.11.2026).
 for (const p of conditionPages) {
   for (const src of p.sources) {
-    if (!src.doi && !src.url) throw new Error(`${p.slug}: source «${src.title}» has neither doi nor url`);
+    if (!src.doi && !src.url)
+      throw new Error(
+        `${p.slug}: source «${src.title}» has neither doi nor url`,
+      );
+  }
+}
+
+// Links inside a paragraph (LinkedText) must lead to a page that exists, and only these fields may hold them.
+for (const p of conditionPages) {
+  const linked = [
+    ...p.about.paragraphs,
+    ...(p.when.paragraphs ?? []),
+    ...p.treatment.paragraphs,
+  ];
+  for (const text of linked) {
+    if (text.replace(INLINE_LINK, "").includes("]("))
+      throw new Error(
+        `${p.slug}: a link in «${text.slice(0, 60)}…» is not a /ka-gydome/ page`,
+      );
+    for (const m of text.matchAll(INLINE_LINK)) {
+      if (!getConditionPage(m[2].slice("/ka-gydome/".length)))
+        throw new Error(
+          `${p.slug}: link «${m[1]}» leads to missing page ${m[2]}`,
+        );
+    }
   }
 }
 
 for (const s of SECTIONS) {
   for (const t of s.topics) {
-    if (t.page && !getConditionPage(t.page)) throw new Error(`sections.ts: «${t.title}» links to missing page ${t.page}`);
+    if (t.page && !getConditionPage(t.page))
+      throw new Error(
+        `sections.ts: «${t.title}» links to missing page ${t.page}`,
+      );
   }
   // A section with a page names it by that page's H1 in the «Ką gydome» block.
   if (s.hasPage) {
     const own = getConditionPage(s.slug);
-    if (!own) throw new Error(`sections.ts: ${s.slug} has hasPage but no page file`);
+    if (!own)
+      throw new Error(`sections.ts: ${s.slug} has hasPage but no page file`);
     if (s.pageTitle !== own.hero.h1) {
-      throw new Error(`sections.ts: ${s.slug} pageTitle «${s.pageTitle}» ≠ page H1 «${own.hero.h1}»`);
+      throw new Error(
+        `sections.ts: ${s.slug} pageTitle «${s.pageTitle}» ≠ page H1 «${own.hero.h1}»`,
+      );
     }
   }
 }
 for (const p of conditionPages) {
   if (p.slug === p.section) continue; // a section's own page
   if (!getSection(p.section).topics.some((t) => t.page === p.slug)) {
-    throw new Error(`${p.slug}: its section ${p.section} in sections.ts does not list it`);
+    throw new Error(
+      `${p.slug}: its section ${p.section} in sections.ts does not list it`,
+    );
   }
 }

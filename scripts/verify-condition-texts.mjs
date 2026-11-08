@@ -27,6 +27,11 @@ const REMOVED_LINE = [
   /^Peržiūros data:/,
 ];
 
+// Links to our own pages inside a paragraph (about, when, treatment): compared separately, as words + address.
+const INLINE_LINK = /\[([^\]]+)\]\((\/ka-gydome\/[a-z0-9-]+)\)/g;
+const LINK_FIELDS = /^page\.(about\.paragraphs|when\.paragraphs|treatment\.paragraphs)\.\d+$/;
+const plain = (text) => text.replace(INLINE_LINK, "$1");
+
 const sentences = (text) =>
   text
     .split(/(?<=[.?!…])\s+(?=[„"(\p{Lu}\d])/u)
@@ -97,7 +102,22 @@ function pageBodySentences(p) {
     ...(p.beforeVisit ?? []),
     ...p.urgent.items,
     ...p.faq.flatMap((f) => [f.q, f.a]),
-  ].flatMap(sentences);
+  ]
+    .map(plain)
+    .flatMap(sentences);
+}
+
+/** Links to our own pages in the md body (not the booking line, the back link or «Susiję puslapiai»). */
+function mdLinks(body) {
+  return [...body.matchAll(/\[([^\]]+)\]\(https:\/\/reamed\.lt(\/ka-gydome\/[a-z0-9-]+)\)/g)]
+    .filter((m) => !/^\[(←|Ką gydome\])/.test(body.slice(body.lastIndexOf("\n", m.index) + 1, m.index + 2)))
+    .map((m) => `${m[1]} → ${m[2]}`);
+}
+
+function pageLinks(p) {
+  return [...p.about.paragraphs, ...(p.when.paragraphs ?? []), ...p.treatment.paragraphs].flatMap((t) =>
+    [...t.matchAll(INLINE_LINK)].map((m) => `${m[1]} → ${m[2]}`),
+  );
 }
 
 function multisetDiff(a, b) {
@@ -158,7 +178,8 @@ function checkTreatmentTitle(md, page, problems) {
 function checkLeftovers(page, problems) {
   const walk = (v, at) => {
     if (typeof v === "string") {
-      if (/ [–—] |\*|\]\(|<a |\[\d|reamed\.lt\/registracija|80 €|Parengė|Registruokitės/.test(v)) problems.push(`${at}: leftover: «${v.slice(0, 100)}»`);
+      const text = LINK_FIELDS.test(at) ? plain(v) : v;
+      if (/ [–—] |\*|\]\(|<a |\[\d|reamed\.lt\/registracija|80 €|Parengė|Registruokitės/.test(text)) problems.push(`${at}: leftover: «${v.slice(0, 100)}»`);
     } else if (v && typeof v === "object") {
       for (const [k, x] of Object.entries(v)) walk(x, `${at}.${k}`);
     }
@@ -197,6 +218,10 @@ for (const { slug, section, teamNote } of config.pages) {
   for (const s of multisetDiff(mine, theirs)) problems.push(`in md, not on the page: «${s}»`);
   for (const s of multisetDiff(theirs, mine)) problems.push(`on the page, not in md: «${s}»`);
   if (!problems.length && mine.join("\n") !== theirs.join("\n")) problems.push("same sentences, different order");
+
+  const linksMd = mdLinks(cut(md, "", "## Susiję puslapiai"));
+  const linksPage = pageLinks(page);
+  if (linksMd.join("\n") !== linksPage.join("\n")) problems.push(`links in the text: md [${linksMd.join("; ")}], page [${linksPage.join("; ")}]`);
 
   checkRelated(cut(md, "## Susiję puslapiai", "## Šaltiniai"), page, problems);
   checkSources(cut(md, "## Šaltiniai", null), page, problems);

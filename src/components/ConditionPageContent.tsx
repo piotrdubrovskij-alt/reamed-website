@@ -2,6 +2,7 @@ import Link from "next/link";
 import type { ConditionPage } from "@/content/conditions/types";
 import { getSection, sectionInfo } from "@/content/sections";
 import SectionTopics from "@/components/SectionTopics";
+import LinkedText from "@/components/g/LinkedText";
 import { translations } from "@/lib/translations";
 import { FIRST_VISIT, formatPrice } from "@/data/prices";
 import { getReviews } from "@/data/reviews";
@@ -27,11 +28,17 @@ import {
 
 const t = translations.lt;
 
-export default function ConditionPageContent({ page }: { page: ConditionPage }) {
+export default function ConditionPageContent({
+  page,
+}: {
+  page: ConditionPage;
+}) {
   // A section's own page (/ka-gydome/kelio-skausmas): it lists the section's topics and leads back to «Ką gydome»,
   // which is the block on the home page, as in the menu (Piotr, 07.11.2026). /ka-gydome stays for breadcrumbs and the sitemap.
   const isSectionPage = page.slug === page.section;
-  const section = isSectionPage ? { title: "Ką gydome", href: "/#ka-gydome" } : sectionInfo(page.section);
+  const section = isSectionPage
+    ? { title: "Ką gydome", href: "/#ka-gydome" }
+    : sectionInfo(page.section);
   const topics = isSectionPage ? getSection(page.section).topics : null;
   const reviews = page.reviews ? getReviews({ condition: page.reviews }) : [];
   const services = page.services
@@ -42,7 +49,10 @@ export default function ConditionPageContent({ page }: { page: ConditionPage }) 
     <>
       {/* Back to the page's section (plan of 07.11.2026); to «Ką gydome» on the home page while the section has no page. */}
       <PageHero
-        back={{ href: section.href ?? "/#ka-gydome", label: section.href ? section.title : "Ką gydome" }}
+        back={{
+          href: section.href ?? "/#ka-gydome",
+          label: section.href ? section.title : "Ką gydome",
+        }}
         h1={page.hero.h1}
         lead={page.hero.lead}
       />
@@ -55,7 +65,9 @@ export default function ConditionPageContent({ page }: { page: ConditionPage }) 
           </h2>
           <div className="flex flex-col gap-5 max-w-[62ch]">
             {page.about.paragraphs.map((p) => (
-              <p key={p}>{p}</p>
+              <p key={p}>
+                <LinkedText text={p} />
+              </p>
             ))}
             {page.about.list && (
               <>
@@ -89,7 +101,11 @@ export default function ConditionPageContent({ page }: { page: ConditionPage }) 
             <h2 id="kada-h" className={h2}>
               Kada verta kreiptis?
             </h2>
-            {page.when.note && <p className="mt-4 text-small text-graphite max-w-[36ch]">{page.when.note}</p>}
+            {page.when.note && (
+              <p className="mt-4 text-small text-graphite max-w-[36ch]">
+                {page.when.note}
+              </p>
+            )}
             <ArchPhoto />
           </div>
           <div className="desk:mt-3">
@@ -97,7 +113,9 @@ export default function ConditionPageContent({ page }: { page: ConditionPage }) 
             {page.when.paragraphs && (
               <div className="flex flex-col gap-5 max-w-[62ch]">
                 {page.when.paragraphs.map((p) => (
-                  <p key={p}>{p}</p>
+                  <p key={p}>
+                    <LinkedText text={p} />
+                  </p>
                 ))}
               </div>
             )}
@@ -113,12 +131,17 @@ export default function ConditionPageContent({ page }: { page: ConditionPage }) 
           </h2>
           {/* Mockup G: phrases 7fr, round photo 5fr */}
           <Phrases items={page.assess} />
-          {page.assessNote && <p className="mt-10 max-w-[62ch]">{page.assessNote}</p>}
+          {page.assessNote && (
+            <p className="mt-10 max-w-[62ch]">{page.assessNote}</p>
+          )}
           {services.length > 0 && (
             <ul className="mt-12 desk:mt-14 grid grid-cols-2 desk:grid-cols-4 gap-6">
               {services.map((s) => (
                 <li key={s.slug}>
-                  <Link href={`/paslaugos/${s.slug}`} className="link-action inline-flex items-center min-h-11 text-body">
+                  <Link
+                    href={`/paslaugos/${s.slug}`}
+                    className="link-action inline-flex items-center min-h-11 text-body"
+                  >
                     {s.title}
                   </Link>
                   <p className="mt-1 text-small text-graphite">{s.text}</p>
@@ -137,7 +160,8 @@ export default function ConditionPageContent({ page }: { page: ConditionPage }) 
               {page.treatment.title ?? "Kaip gydome ir kiek tai trunka"}
             </h2>
             <p className="mt-6 text-small text-graphite max-w-[36ch]">
-              Pirmasis vizitas: {FIRST_VISIT.name.lt.toLowerCase()}, {FIRST_VISIT.duration}, {formatPrice(FIRST_VISIT.price, "lt")}.{" "}
+              Pirmasis vizitas: {FIRST_VISIT.name.lt.toLowerCase()},{" "}
+              {FIRST_VISIT.duration}, {formatPrice(FIRST_VISIT.price, "lt")}.{" "}
               <Link href="/kainos" className="link-action">
                 Visos kainos
               </Link>
@@ -157,7 +181,9 @@ export default function ConditionPageContent({ page }: { page: ConditionPage }) 
               </ul>
             )}
             {page.treatment.paragraphs.map((p) => (
-              <p key={p}>{p}</p>
+              <p key={p}>
+                <LinkedText text={p} />
+              </p>
             ))}
           </div>
         </div>
@@ -179,18 +205,29 @@ export default function ConditionPageContent({ page }: { page: ConditionPage }) 
       <WarningSection
         id="skubu-h"
         title="Kada reikalingas skubesnis įvertinimas?"
-        note={page.urgent.note ?? "Šiais atvejais nedelsdami kreipkitės į gydytoją arba skubiosios pagalbos skyrių."}
+        note={
+          page.urgent.note ??
+          "Šiais atvejais nedelsdami kreipkitės į gydytoją arba skubiosios pagalbos skyrių."
+        }
         items={page.urgent.items}
       />
 
       {/* Who works with it */}
-      <TeamSection title={page.team.title} specialists={page.team.specialists} note={page.team.note} />
+      <TeamSection
+        title={page.team.title}
+        specialists={page.team.specialists}
+        note={page.team.note}
+      />
 
       <FaqSection faq={page.faq} />
 
       <ReviewsSection reviews={reviews} />
 
-      <SourcesSection sources={page.sources} reviewed={page.reviewed} related={page.related} />
+      <SourcesSection
+        sources={page.sources}
+        reviewed={page.reviewed}
+        related={page.related}
+      />
     </>
   );
 }

@@ -19,9 +19,13 @@ const config = JSON.parse(fs.readFileSync(configPath, "utf8"));
 const batchSlugs = new Set(config.pages.map((p) => p.slug));
 const seo = new Map(parseCsv(fs.readFileSync(path.join(config.sourceDir, "SEO.csv"), "utf8")).map((r) => [r.slug, r]));
 
-// No citation numbers; a link to our own site keeps its words. Any other link in a text stops the run (checkClean).
+// No citation numbers. Any link outside the allowed fields, or to another site, stops the run (checkClean).
+// A link to our own page stays a link, written relative: «[žodžiai](/ka-gydome/slug)» (LinkedText shows it;
+// only about.paragraphs, when.paragraphs and treatment.paragraphs may hold one, see checkClean).
 const dropCitations = (s) =>
-  s.replace(/\s*\[\d+(?:\s*,\s*\d+)*\]/g, "").replace(/\[([^\]]+)\]\(https:\/\/reamed\.lt\/[^)]*\)/g, "$1");
+  s.replace(/\s*\[\d+(?:\s*,\s*\d+)*\]/g, "").replace(/\[([^\]]+)\]\(https:\/\/reamed\.lt(\/[^)]*)\)/g, "[$1]($2)");
+const INLINE_LINK = /\[([^\]]+)\]\((\/ka-gydome\/[a-z0-9-]+)\)/g;
+const LINK_FIELDS = /^page\.(about\.paragraphs|when\.paragraphs|treatment\.paragraphs)\.\d+$/;
 const key = (title) => title.replace(/\?$/, "").trim().toLowerCase();
 const isSiteLine = (b) => /^\[Registruotis vizitui\]\(https:\/\/reamed\.lt\/registracija\)/.test(b);
 
@@ -255,7 +259,14 @@ function buildPage({ slug, section, assessLeadWords, teamNote }) {
 function checkClean(page) {
   const walk = (value, where) => {
     if (typeof value === "string") {
-      if (/ [–—] |\*|\]\(|<a |\[\d/.test(value)) throw new Error(`${page.slug} ${where}: leftover markup or dash: «${value.slice(0, 100)}»`);
+      let text = value;
+      if (LINK_FIELDS.test(where)) {
+        for (const m of value.matchAll(INLINE_LINK)) {
+          if (!pageExists(m[2])) throw new Error(`${page.slug} ${where}: link «${m[1]}» leads to a page that does not exist: ${m[2]}`);
+        }
+        text = value.replace(INLINE_LINK, "$1");
+      }
+      if (/ [–—] |\*|\]\(|<a |\[\d/.test(text)) throw new Error(`${page.slug} ${where}: leftover markup or dash: «${value.slice(0, 100)}»`);
     } else if (value && typeof value === "object") {
       for (const [k, v] of Object.entries(value)) walk(v, `${where}.${k}`);
     }

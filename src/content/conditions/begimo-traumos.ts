@@ -19,7 +19,7 @@ export const begimoTraumos: ConditionPage = {
     title: "Skausmo vieta padeda orientuotis, bet nepasako diagnozės",
     paragraphs: [
       "Bėgikams gali skaudėti kelį, blauzdą, Achilo sausgyslę, pėdą ar klubą. Kartais simptomai stiprėja palaipsniui, kartais prasideda staigiai paspartėjus ar kryptelėjus čiurnai. Raumenų, sausgyslių, sąnarių ir kaulo pažeidimams reikia skirtingo gydymo. Vien dėl to, kad skauda bėgant, problema netampa ta pačia „bėgiko trauma“.",
-      "Skausmas aplink girnelę gali būti susijęs su patelofemoraliniu skausmu, ties užpakaline kulno dalimi su Achilo tendinopatija. Staigus skausmas blauzdoje ar šlaunyje labiau primena raumens traumą. Šios nuorodos padeda susipažinti su atskiromis būklėmis, tačiau neatstoja apžiūros."
+      "Skausmas aplink girnelę gali būti susijęs su [patelofemoraliniu skausmu](/ka-gydome/patelofemoralinis-skausmas), ties užpakaline kulno dalimi su [Achilo tendinopatija](/ka-gydome/achilo-tendinopatija). Staigus skausmas blauzdoje ar šlaunyje labiau primena raumens traumą. Šios nuorodos padeda susipažinti su atskiromis būklėmis, tačiau neatstoja apžiūros."
     ]
   },
   when: {
@@ -81,8 +81,7 @@ export const begimoTraumos: ConditionPage = {
       "erikas-jatkauskas",
       "edmundas-zlatkus",
       "piotr-dubrovskij"
-    ],
-    note: "Po sporto traumų operacijų dažniausiai dirba Kotryna."
+    ]
   },
   faq: [
     {

@@ -28,7 +28,7 @@ export const kirksniesSkausmasSportininkams: ConditionPage = {
     paragraphs: [
       "Konsultacija naudinga, jei skausmas kartojasi spiriant, bėgant, keičiant kryptį ar atliekant atsilenkimus. Taip pat jei poilsis padeda tik trumpam, o sugrįžus prie treniruočių vėl tenka saugoti koją.",
       "Pasakykite, jei skauda kosint, čiaudint ar ramybėje. Šie požymiai padeda spręsti, ar reikalinga gydytojo konsultacija. Nuolatinis naktinis skausmas, šlubavimas ir skausmas remiantis koja neturėtų būti tiesiog priskiriami raumenų nuovargiui. Bėgikams būtina pagalvoti ir apie kaulo stresinį pažeidimą.",
-      "Jei skausmas prasidėjo vienu staigiu judesiu, gali būti aktualus atskiras puslapis apie pritraukiamųjų raumenų patempimą."
+      "Jei skausmas prasidėjo vienu staigiu judesiu, gali būti aktualus atskiras puslapis apie [pritraukiamųjų raumenų patempimą](/ka-gydome/pritraukiamuju-raumenu-patempimas)."
     ]
   },
   assess: [

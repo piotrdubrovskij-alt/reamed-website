@@ -80,8 +80,7 @@ export const stresiniaiLuziai: ConditionPage = {
       "erikas-jatkauskas",
       "edmundas-zlatkus",
       "piotr-dubrovskij"
-    ],
-    note: "Po sporto traumų operacijų dažniausiai dirba Kotryna."
+    ]
   },
   faq: [
     {
