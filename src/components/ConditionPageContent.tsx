@@ -154,6 +154,18 @@ export default function ConditionPageContent({ page }: { page: ConditionPage }) 
         </div>
       </section>
 
+      {/* What to do until the visit: operation pages (batch 9, Piotr's texts of 08.11.2026). */}
+      {page.beforeVisit && (
+        <section aria-labelledby="iki-vizito-h" className="bg-paper section-y">
+          <div className={`wrap ${twoCols}`}>
+            <h2 id="iki-vizito-h" className={h2}>
+              Ką galite daryti iki vizito
+            </h2>
+            <Dots items={page.beforeVisit} />
+          </div>
+        </section>
+      )}
+
       {/* Red flags */}
       <WarningSection
         id="skubu-h"

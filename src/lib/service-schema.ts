@@ -1,6 +1,7 @@
 import type { ServicePage } from "@/content/services/types";
 import { getSpecialistBySlug } from "@/lib/specialists";
 import { SITE_URL } from "@/lib/seo";
+import { sourceHref } from "@/content/conditions/types";
 
 // schema.org for a service page: the page itself (MedicalWebPage about a MedicalTherapy),
 // its questions (FAQPage) and the breadcrumb ReaMed › Paslaugos › page. The clinic node lives in the root layout (#clinic).
@@ -32,14 +33,18 @@ export function serviceJsonLd(page: ServicePage) {
               },
             }
           : {}),
-        citation: page.sources.map((s) => ({
-          "@type": "ScholarlyArticle",
-          name: s.title,
-          author: s.authors,
-          datePublished: String(s.year),
-          isPartOf: s.journal,
-          url: `https://doi.org/${s.doi}`,
-        })),
+        citation: page.sources.map((s) =>
+          s.doi
+            ? {
+                "@type": "ScholarlyArticle",
+                name: s.title,
+                author: s.authors,
+                datePublished: String(s.year),
+                isPartOf: s.journal,
+                url: sourceHref(s),
+              }
+            : { "@type": "WebPage", name: s.title, author: s.authors, url: sourceHref(s) },
+        ),
       },
       {
         "@type": "FAQPage",

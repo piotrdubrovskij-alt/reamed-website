@@ -48,6 +48,15 @@ import { spondilolisteze } from "./spondilolisteze";
 import { stuburoKanaloStenoze } from "./stuburo-kanalo-stenoze";
 import { kelioArtroze } from "./kelio-artroze";
 import { kryzkaulioIrKluboSanarioSkausmas } from "./kryzkaulio-ir-klubo-sanario-skausmas";
+import { reabilitacijaPoKelioLuzioOperacijos } from "./reabilitacija-po-kelio-luzio-operacijos";
+import { reabilitacijaPoPetiesStabilizacijos } from "./reabilitacija-po-peties-stabilizacijos";
+import { reabilitacijaPoZastikaulioLuzio } from "./reabilitacija-po-zastikaulio-luzio";
+import { reabilitacijaPoRiesoIrRankosLuzio } from "./reabilitacija-po-rieso-ir-rankos-luzio";
+import { reabilitacijaPoKluboArtroskopijos } from "./reabilitacija-po-klubo-artroskopijos";
+import { reabilitacijaPoCiurnosLuzioArOperacijos } from "./reabilitacija-po-ciurnos-luzio-ar-operacijos";
+import { reabilitacijaPoAchiloSausgyslesPlysimo } from "./reabilitacija-po-achilo-sausgysles-plysimo";
+import { reabilitacijaPoDiskoIsvarzosOperacijos } from "./reabilitacija-po-disko-isvarzos-operacijos";
+import { reabilitacijaPoStuburoStabilizacijos } from "./reabilitacija-po-stuburo-stabilizacijos";
 
 // Problem pages built from data (/ka-gydome/<slug>). Order = order inside each section.
 // Older section pages not yet rewritten still live in their own folders under src/app/ka-gydome/.
@@ -108,6 +117,16 @@ export const conditionPages: ConditionPage[] = [
   stuburoKanaloStenoze,
   kelioArtroze,
   kryzkaulioIrKluboSanarioSkausmas,
+  // Batch 9: Piotr's nine «Po operacijų» texts (08.11.2026); each also sits in its body zone.
+  reabilitacijaPoKelioLuzioOperacijos,
+  reabilitacijaPoPetiesStabilizacijos,
+  reabilitacijaPoZastikaulioLuzio,
+  reabilitacijaPoRiesoIrRankosLuzio,
+  reabilitacijaPoKluboArtroskopijos,
+  reabilitacijaPoCiurnosLuzioArOperacijos,
+  reabilitacijaPoAchiloSausgyslesPlysimo,
+  reabilitacijaPoDiskoIsvarzosOperacijos,
+  reabilitacijaPoStuburoStabilizacijos,
 ];
 
 export function getConditionPage(slug: string): ConditionPage | undefined {
@@ -130,6 +149,13 @@ export function conditionsInSection(section: SectionSlug): ConditionPage[] {
 
 // The build stops if the plan's tree and the page files disagree: a topic linking to a page that
 // does not exist, or a page that its own section does not list.
+// Every source opens somewhere: a DOI for a study, or the page link (08.11.2026).
+for (const p of conditionPages) {
+  for (const src of p.sources) {
+    if (!src.doi && !src.url) throw new Error(`${p.slug}: source «${src.title}» has neither doi nor url`);
+  }
+}
+
 for (const s of SECTIONS) {
   for (const t of s.topics) {
     if (t.page && !getConditionPage(t.page)) throw new Error(`sections.ts: «${t.title}» links to missing page ${t.page}`);

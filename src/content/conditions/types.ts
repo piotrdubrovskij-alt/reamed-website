@@ -7,13 +7,22 @@ import type { SectionSlug } from "@/content/sections";
 // No long dashes in Lithuanian texts (CLAUDE.md).
 
 export type Source = {
-  /** "George SZ ir kt." */
+  /** "George SZ ir kt.", or the organisation of a web page: "Cambridge University Hospitals." */
   authors: string;
   title: string;
-  journal: string;
-  year: number;
-  doi: string;
+  /** Journal of a study; a hospital leaflet or guideline web page has none. */
+  journal?: string;
+  year?: number;
+  /** A study has a DOI. A web page without one (hospital leaflet, 112.lt) has its url instead:
+   *  Piotr kept such sources for the «Po operacijų» texts (08.11.2026). The build needs one of the two. */
+  doi?: string;
+  url?: string;
 };
+
+/** Where a source opens: doi.org for a study, otherwise the page itself. */
+export function sourceHref(s: Source): string {
+  return s.doi ? `https://doi.org/${s.doi}` : (s.url ?? "");
+}
 
 export type ConditionPage = {
   slug: string;
@@ -48,6 +57,8 @@ export type ConditionPage = {
     items: { title: string; text: string }[];
     paragraphs: string[];
   };
+  /** "Ką galite daryti iki vizito": what to do at home until the visit (operation pages, batch 9). */
+  beforeVisit?: string[];
   urgent: { items: string[]; note?: string };
   team: { title: string; specialists: SpecialistSlug[]; note?: string };
   faq: { q: string; a: string }[];
