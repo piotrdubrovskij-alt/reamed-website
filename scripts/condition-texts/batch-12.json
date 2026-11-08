@@ -1,0 +1,54 @@
+{
+  "_comment": "Пачка 12 (08.11.2026): готовые тексты Piotr, Kelias 5 и Alkūnė ir riešas 4. assessLeadWords: сколько первых слов каждого абзаца «Kaip vertiname» выделить жирным (2–5, по смыслу). dashes: тире между словами и чем его заменить; каждая строка «было» должна встретиться в md ровно один раз.",
+  "batch": "Batch 12 (08.11.2026)",
+  "sourceDir": "/Users/piotrdubrovskij/Desktop/Patalpų dizainas/output/reamed_kelias_alkune_riesas_2026-11-08",
+  "pages": [
+    { "slug": "uzpakalinio-kryzminio-raiscio-plysimas", "section": "kelio-skausmas", "assessLeadWords": [5, 3] },
+    { "slug": "kelio-luziai", "section": "kelio-skausmas", "assessLeadWords": [3, 4] },
+    { "slug": "ribotas-kelio-judrumas", "section": "kelio-skausmas", "assessLeadWords": [4, 4, 4] },
+    { "slug": "sokejo-kelis", "section": "kelio-skausmas", "assessLeadWords": [5, 3] },
+    { "slug": "iliotibialinio-trakto-sindromas", "section": "kelio-skausmas", "assessLeadWords": [4, 4, 5] },
+    { "slug": "golfo-alkune", "section": "alkunes-ir-rieso-skausmas", "assessLeadWords": [4, 4, 5] },
+    { "slug": "alkunes-sustingimas-po-traumos", "section": "alkunes-ir-rieso-skausmas", "assessLeadWords": [5, 3] },
+    { "slug": "de-quervain-sindromas", "section": "alkunes-ir-rieso-skausmas", "assessLeadWords": [4, 3] },
+    { "slug": "rieso-skausmas-ir-patempimai", "section": "alkunes-ir-rieso-skausmas", "assessLeadWords": [4, 5] }
+  ],
+  "dashes": {
+    "uzpakalinio-kryzminio-raiscio-plysimas": [
+      ["Kada skambinti – greitoji", "Kada skambinti: greitoji"]
+    ],
+    "kelio-luziai": [
+      ["Kada skambinti – greitoji", "Kada skambinti: greitoji"]
+    ],
+    "ribotas-kelio-judrumas": [
+      ["užsikirtimas – kai", "užsikirtimas, kai"],
+      ["ištiesti – taip", "ištiesti, taip"],
+      ["Kada skambinti – greitoji", "Kada skambinti: greitoji"]
+    ],
+    "iliotibialinio-trakto-sindromas": [
+      ["galimų priežasčių – iliotibialinio", "galimų priežasčių: iliotibialinio"],
+      ["Iliotibialinis traktas – tvirta", "Iliotibialinis traktas: tvirta"],
+      ["pažeidimą – reikia", "pažeidimą: reikia"],
+      ["Iliotibial band syndrome – aftercare", "Iliotibial band syndrome: aftercare"]
+    ],
+    "golfo-alkune": [
+      ["golfo alkūnė – dilbio", "golfo alkūnė: dilbio"],
+      ["teniso alkūnės – išorinę", "teniso alkūnės, išorinę"]
+    ],
+    "alkunes-sustingimas-po-traumos": [
+      ["gydytojo įvertinimo – šalia", "gydytojo įvertinimo: šalia"]
+    ],
+    "de-quervain-sindromas": [
+      ["naudojamą daiktą – neretai", "naudojamą daiktą: neretai"],
+      ["būtų netikslu – jų", "būtų netikslu: jų"],
+      ["sėdmenis, kita – liemenį", "sėdmenis, kita, liemenį"],
+      ["riešo kanalo sindromas – su", "riešo kanalo sindromas, su"]
+    ],
+    "rieso-skausmas-ir-patempimai": [
+      ["Patempimas – tai", "Patempimas: tai"],
+      ["traumos mechanizmas – kritimas", "traumos mechanizmas: kritimas"],
+      ["gautus po traumos – jie", "gautus po traumos: jie"],
+      ["sportuojančiam – saugiai", "sportuojančiam, saugiai"]
+    ]
+  }
+}

@@ -67,6 +67,8 @@ function listItems(block) {
 }
 
 function parseWhen(blocks) {
+  // Some texts have paragraphs here instead of a list.
+  if (!blocks.some((b) => b.startsWith("- "))) return { items: [], paragraphs: blocks.map(dropCitations) };
   const [list, ...rest] = blocks;
   if (rest.length > 1) throw new Error("«Kada verta kreiptis»: more than one paragraph after the list");
   return { items: listItems(list).map(dropCitations), ...(rest[0] ? { note: dropCitations(rest[0]) } : {}) };
@@ -74,7 +76,8 @@ function parseWhen(blocks) {
 
 function parseAssess(slug, blocks, leadWords, removed) {
   const paragraphs = blocks.filter((b) => {
-    const price = /^Pirmasis vizitas\b/.test(b) && b.includes("80 €") && b.includes("Visos kainos");
+    // Worded differently from text to text; «Pirmasis susitarimas…» elsewhere is ordinary text.
+    const price = /^Pirmasis\b/.test(b) && b.includes("80 €") && b.includes("reamed.lt/kainos");
     if (price) removed.push(b);
     return !price;
   });
@@ -105,7 +108,7 @@ function parseTreatment(blocks) {
 
 function parseFaq(slug, blocks, removed) {
   const faq = [];
-  for (const b of blocks) {
+  for (const [i, b] of blocks.entries()) {
     const question = b.match(/^###\s+(.+)$/) ?? b.match(/^\*\*(.+)\*\*$/);
     if (question) {
       faq.push({ q: question[1].trim(), a: null });
@@ -114,8 +117,11 @@ function parseFaq(slug, blocks, removed) {
     const current = faq.at(-1);
     if (!current) throw new Error(`${slug}: FAQ text before the first question`);
     if (current.a === null) current.a = dropCitations(b);
-    else if (/reamed\.lt\/registracija/.test(b) || /^Norite\b/.test(b)) removed.push(b);
-    else throw new Error(`${slug}: unexpected second paragraph in an FAQ answer: «${b.slice(0, 60)}»`);
+    // After an answer: a booking line, or the paragraph right before a booking line (the call, in any words).
+    else if (/reamed\.lt\/registracija/.test(b) || /^\[Registruotis vizitui\]/.test(blocks[i + 1] ?? "")) {
+      removed.push(b);
+      console.log(`  call removed: ${b}`);
+    } else throw new Error(`${slug}: unexpected second paragraph in an FAQ answer: «${b.slice(0, 60)}»`);
   }
   for (const f of faq) if (f.a === null) throw new Error(`${slug}: question without an answer: ${f.q}`);
   return faq;
@@ -148,8 +154,10 @@ function parseSources(slug, blocks) {
       const [, authors, title, url, tail] = m;
       const doi = tail.match(/DOI:\s*(10\.\S+?)\.?\s*$/)?.[1];
       const rest = tail.replace(/DOI:.*$/, "");
-      // «. J Rehabil Med, 2019;51:479–491.» or just «. Shoulder & Elbow, 2019.»
-      const journal = rest.match(/^\.\s*([^,]+),\s*\d{4}(?:;|\.?\s*$)/)?.[1];
+      // «. J Rehabil Med, 2019;51:479–491.», «. Shoulder & Elbow, 2019.», a name with commas, or in *italics*.
+      // «. NG226, 2022.» is the number of a guideline, not a journal.
+      const named = rest.match(/^\.\s*(.+?),\s*\d{4}(?:;|\.?\s*$)/)?.[1].replaceAll("*", "");
+      const journal = named && !/^[A-Z]+\d+$/.test(named) ? named : undefined;
       // «peržiūrėta 2026» is when the page was read, not a year of the source.
       const year = rest.replace(/peržiūrėta.*$/, "").match(/\b(?:19|20)\d{2}\b/)?.[0];
       const left = rest.replace(/^[.,\s]+|[.\s]+$/g, "");
@@ -221,14 +229,13 @@ function buildPage({ slug, section, assessLeadWords }) {
   };
 
   console.log(`  removed: ${removed.length} blocks; ${treatment.items.length} treatment items; ${faq.length} questions; ${sources.length} sources`);
-  for (const r of removed.filter((b) => /^Norite\b/.test(b) || /Aptarsime/.test(b))) console.log(`  call removed: ${r.slice(0, 90)}`);
   return page;
 }
 
 function checkClean(page) {
   const walk = (value, where) => {
     if (typeof value === "string") {
-      if (/ [–—] |\*\*|\]\(|<a |\[\d/.test(value)) throw new Error(`${page.slug} ${where}: leftover markup or dash: «${value.slice(0, 100)}»`);
+      if (/ [–—] |\*|\]\(|<a |\[\d/.test(value)) throw new Error(`${page.slug} ${where}: leftover markup or dash: «${value.slice(0, 100)}»`);
     } else if (value && typeof value === "object") {
       for (const [k, v] of Object.entries(value)) walk(v, `${where}.${k}`);
     }

@@ -46,7 +46,8 @@ export type ConditionPage = {
     specialist: SpecialistSlug;
   };
   about: { title?: string; paragraphs: string[]; list?: { intro: string; items: string[] } };
-  when: { items: string[]; note?: string };
+  /** A list of situations, or (items: [], batch 12) plain paragraphs in the same place. */
+  when: { items: string[]; paragraphs?: string[]; note?: string };
   /** "Kaip vertiname": bold opening words, then the rest of the sentence. */
   assess: { lead: string; text: string }[];
   assessNote?: string;
