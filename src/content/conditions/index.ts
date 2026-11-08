@@ -71,6 +71,15 @@ import { sustingesPetys } from "./sustinges-petys";
 import { petiesNestabilumasIrIsnirimai } from "./peties-nestabilumas-ir-isnirimai";
 import { acSanarioTrauma } from "./ac-sanario-trauma";
 import { petiesSanarioArtroze } from "./peties-sanario-artroze";
+import { uzpakalinioKryzminioRaiscioPlysimas } from "./uzpakalinio-kryzminio-raiscio-plysimas";
+import { kelioLuziai } from "./kelio-luziai";
+import { ribotasKelioJudrumas } from "./ribotas-kelio-judrumas";
+import { sokejoKelis } from "./sokejo-kelis";
+import { iliotibialinioTraktoSindromas } from "./iliotibialinio-trakto-sindromas";
+import { golfoAlkune } from "./golfo-alkune";
+import { alkunesSustingimasPoTraumos } from "./alkunes-sustingimas-po-traumos";
+import { deQuervainSindromas } from "./de-quervain-sindromas";
+import { riesoSkausmasIrPatempimai } from "./rieso-skausmas-ir-patempimai";
 
 // Problem pages built from data (/ka-gydome/<slug>). Order = order inside each section.
 // Older section pages not yet rewritten still live in their own folders under src/app/ka-gydome/.
@@ -158,6 +167,17 @@ export const conditionPages: ConditionPage[] = [
   petiesNestabilumasIrIsnirimai,
   acSanarioTrauma,
   petiesSanarioArtroze,
+  // Batch 12: Piotr's nine texts for Kelias and Alkūnė ir riešas (08.11.2026), moved by scripts/import-condition-texts.mjs.
+  // The jumper's knee, golfer's elbow and De Quervain pages are also listed in Sausgyslės.
+  uzpakalinioKryzminioRaiscioPlysimas,
+  kelioLuziai,
+  ribotasKelioJudrumas,
+  sokejoKelis,
+  iliotibialinioTraktoSindromas,
+  golfoAlkune,
+  alkunesSustingimasPoTraumos,
+  deQuervainSindromas,
+  riesoSkausmasIrPatempimai,
 ];
 
 export function getConditionPage(slug: string): ConditionPage | undefined {

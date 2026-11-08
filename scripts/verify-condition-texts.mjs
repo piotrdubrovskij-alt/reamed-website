@@ -21,7 +21,7 @@ const REMOVED_LINE = [
   /reamed\.lt\/registracija/,
   /^Šiame puslapyje:/,
   /^<a id=/,
-  /^Pirmasis vizitas .*80 €.*Visos kainos/,
+  /^Pirmasis\b.*80 €.*reamed\.lt\/kainos/,
   /^Parengė:/,
   /^Mediciniškai peržiūrėjo:/,
   /^Peržiūros data:/,
@@ -51,12 +51,20 @@ function withDashesReplaced(slug, md, report) {
 }
 
 function mdBodySentences(body) {
-  const lines = body.split("\n").map((l) => l.trim());
-  // The closing call in the questions: a booking line (already removed) may have a «Norite…» paragraph before it.
-  const kept = lines.filter((l) => l && !REMOVED_LINE.some((re) => re.test(l)));
-  const faqAt = kept.findIndex((l) => /^## Dažniausi klausimai/.test(l));
-  const cleaned = kept.filter((l, i) => !(i > faqAt && /^Norite\b/.test(l)));
-  return cleaned
+  const lines = body
+    .split("\n")
+    .map((l) => l.trim())
+    .filter(Boolean);
+  // The closing call in the questions: the line before a booking line, unless that line is the answer itself
+  // (then a question stands right above it).
+  const faqAt = lines.findIndex((l) => /^## Dažniausi klausimai/.test(l));
+  const isQuestion = (l) => /^### /.test(l) || /^\*\*.+\*\*$/.test(l);
+  const calls = new Set();
+  lines.forEach((l, i) => {
+    if (i > faqAt && /^\[Registruotis vizitui\]/.test(l) && !isQuestion(lines[i - 2])) calls.add(i - 1);
+  });
+  return lines
+    .filter((l, i) => !calls.has(i) && !REMOVED_LINE.some((re) => re.test(l)))
     .filter((l) => !TEMPLATE_HEADINGS.test(l))
     .map((l) =>
       l
@@ -76,6 +84,7 @@ function pageBodySentences(p) {
     p.about.title,
     ...p.about.paragraphs,
     ...p.when.items,
+    ...(p.when.paragraphs ?? []),
     ...opt(p.when.note),
     ...p.assess.map((a) => `${a.lead} ${a.text}`),
     ...p.treatment.items.map((i) => `${i.title} ${i.text}`),
@@ -121,8 +130,11 @@ function checkSources(block, page, problems) {
     if (urlEnd === -1) problems.push(`source ${i + 1}: no link`);
     if (doi ? s.doi !== doi || s.url : s.doi || s.url !== url) problems.push(`source ${i + 1}: doi/url differ: ${line.slice(0, 90)}`);
     // A journal is the words between the link and the year: «. Shoulder & Elbow, 2019.», «. BMJ, 2023;383:e1.»
-    const beforeDoi = tail.replace(/DOI:.*$/, "");
-    const mdJournal = /^\. /.test(beforeDoi) && /, (?:19|20)\d{2}(;|\.? *$)/.test(beforeDoi) ? beforeDoi.slice(2, beforeDoi.search(/, (?:19|20)\d{2}(;|\.? *$)/)) : undefined;
+    // A guideline number before the year («. NG226, 2022.») is not one.
+    const beforeDoi = tail.replace(/DOI:.*$/, "").replaceAll("*", "");
+    const yearAt = beforeDoi.search(/, (?:19|20)\d{2}(;|\.? *$)/);
+    const named = beforeDoi.startsWith(". ") && yearAt > 0 ? beforeDoi.slice(2, yearAt) : undefined;
+    const mdJournal = named && !/^[A-Z]+\d+$/.test(named) ? named : undefined;
     if (mdJournal !== s.journal) problems.push(`source ${i + 1}: journal md «${mdJournal}», page «${s.journal}»`);
     const mdYear = beforeDoi.replace(/peržiūrėta.*$/, "").match(/\b(?:19|20)\d{2}\b/)?.[0];
     if ((mdYear ? Number(mdYear) : undefined) !== s.year) problems.push(`source ${i + 1}: year md ${mdYear}, page ${s.year}`);
@@ -132,7 +144,7 @@ function checkSources(block, page, problems) {
 function checkLeftovers(page, problems) {
   const walk = (v, at) => {
     if (typeof v === "string") {
-      if (/ [–—] |\*\*|\]\(|<a |\[\d|reamed\.lt\/registracija|80 €|Parengė|Registruokitės/.test(v)) problems.push(`${at}: leftover: «${v.slice(0, 100)}»`);
+      if (/ [–—] |\*|\]\(|<a |\[\d|reamed\.lt\/registracija|80 €|Parengė|Registruokitės/.test(v)) problems.push(`${at}: leftover: «${v.slice(0, 100)}»`);
     } else if (v && typeof v === "object") {
       for (const [k, x] of Object.entries(v)) walk(x, `${at}.${k}`);
     }
@@ -140,13 +152,16 @@ function checkLeftovers(page, problems) {
   walk(page, "page");
 }
 
-function checkTemplateFields(p, section, problems) {
+function checkTemplateFields(p, section, teamNote, problems) {
   const parent = loadConditionPage(ROOT, section);
   const same = (a, b) => JSON.stringify(a) === JSON.stringify(b);
   if (p.section !== section) problems.push("section differs");
   if (p.navTitle !== p.hero.h1 || p.conditionName !== p.hero.h1) problems.push("navTitle or conditionName is not the H1");
   if (p.hero.specialist !== parent.hero.specialist) problems.push("hero.specialist differs from the section page");
-  if (!same(p.team, parent.team)) problems.push("team differs from the section page");
+  const { note, ...teamWithoutNote } = parent.team;
+  void note;
+  const team = teamNote === false ? teamWithoutNote : parent.team;
+  if (!same(p.team, team)) problems.push(teamNote === false ? "team is not the section's team without its note" : "team differs from the section page");
   if (!same(p.services, parent.services)) problems.push("services differ from the section page");
   if (p.reviews !== parent.reviews) problems.push("reviews differ from the section page");
   if (p.reviewed !== null) problems.push("reviewed is not null");
@@ -157,7 +172,7 @@ function checkTemplateFields(p, section, problems) {
 }
 
 let total = 0;
-for (const { slug, section } of config.pages) {
+for (const { slug, section, teamNote } of config.pages) {
   const problems = [];
   const raw = fs.readFileSync(path.join(config.sourceDir, "tekstai", `${slug}.md`), "utf8");
   const md = withDashesReplaced(slug, raw, problems);
@@ -176,7 +191,7 @@ for (const { slug, section } of config.pages) {
   if (page.meta.title !== row.title) problems.push("meta.title differs from SEO.csv");
   if (page.meta.description !== row.description) problems.push("meta.description differs from SEO.csv");
   checkLeftovers(page, problems);
-  checkTemplateFields(page, section, problems);
+  checkTemplateFields(page, section, teamNote, problems);
 
   const dashes = (config.dashes[slug] ?? []).length;
   console.log(`${problems.length ? "✗" : "✓"} ${slug}: ${mine.length} sentences md, ${theirs.length} page, ${page.sources.length} sources, ${page.related.length} related, ${dashes} dashes replaced, ${problems.length} differences`);

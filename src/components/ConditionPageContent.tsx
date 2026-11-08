@@ -93,7 +93,14 @@ export default function ConditionPageContent({ page }: { page: ConditionPage }) 
             <ArchPhoto />
           </div>
           <div className="desk:mt-3">
-            <Dots items={page.when.items} />
+            {page.when.items.length > 0 && <Dots items={page.when.items} />}
+            {page.when.paragraphs && (
+              <div className="flex flex-col gap-5 max-w-[62ch]">
+                {page.when.paragraphs.map((p) => (
+                  <p key={p}>{p}</p>
+                ))}
+              </div>
+            )}
           </div>
         </div>
       </section>

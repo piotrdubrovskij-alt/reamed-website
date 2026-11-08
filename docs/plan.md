@@ -164,6 +164,10 @@ Search Console — в аккаунте info@reamed.lt (`sc-domain:reamed.lt`), �
   - [x] Пачка 11: тексты Piotr Petys (7 тем: rotatorių manžetės pažeidimas, dvigalvio raumens sausgyslės uždegimas,
     kalcifikuojantis tendinitas, sustingęs petys, peties nestabilumas ir išnirimai, AC sąnario trauma, peties sąnario
     artrozė); перенесены теми же скриптами; темы Petys все со страницами — PR #44
+  - [x] Пачка 12: тексты Piotr Kelias и Alkūnė ir riešas (9 тем: užpakalinio kryžminio raiščio plyšimas, kelio lūžiai,
+    ribotas kelio judrumas, šokėjo kelis, iliotibialinio trakto sindromas, golfo alkūnė, alkūnės sustingimas po traumos,
+    De Quervain sindromas, riešo skausmas ir patempimai); перенесены теми же скриптами; темы обоих разделов и
+    Sausgyslės все со страницами — PR #45
   - [ ] Остальные темы всех разделов (решение Piotr 07.11: сначала закончить «Ką gydome», потом статьи)
 - [ ] **EN и RU** по адресам `/en`, `/ru` с hreflang (см. п. 8)
 - [ ] **Bing Webmaster + IndexNow, `llms.txt`**, Google Business, manodaktaras.lt, ссылки VU и федерации
