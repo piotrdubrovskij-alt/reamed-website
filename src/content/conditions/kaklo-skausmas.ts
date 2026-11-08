@@ -10,7 +10,7 @@ export const kakloSkausmas: ConditionPage = {
   meta: {
     title: "Kaklo skausmas: priežastys ir gydymas Vilniuje | ReaMed",
     description:
-      "Skauda kaklą ar sprandą, negalite pasukti galvos, skausmas plinta į ranką ar galvą? Kaip gydome ir kada reikia pas gydytoją. Kineziterapija Vilniaus centre, be siuntimo.",
+      "Skauda kaklą ar sprandą, negalite pasukti galvos, skausmas plinta į ranką ar galvą? Kaip gydome ir kada reikia pas gydytoją. Vilniaus centre, be siuntimo.",
   },
   conditionName: "Kaklo skausmas",
   hero: {
@@ -88,7 +88,7 @@ export const kakloSkausmas: ConditionPage = {
   ],
   reviews: "kaklo-skausmas",
   sources: [NECK_PAIN_CPG, CERVICAL_RADICULOPATHY_REVIEW],
-  reviewed: null,
+  reviewed: { by: "piotr-dubrovskij", date: "2026-11-08" },
   related: [
     { href: "/ka-gydome/cervikalgija", label: "Cervikalgija" },
     { href: "/ka-gydome/kaklo-radikulopatija", label: "Kaklo radikulopatija" },

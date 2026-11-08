@@ -145,7 +145,7 @@ export const blauzdosSkausmasBegikams: ConditionPage = {
       url: "https://112.lt/kada-skambinti-greitoji-medicinos-pagalba/"
     }
   ],
-  reviewed: null,
+  reviewed: { by: "kotryna-kairyte", date: "2026-11-08" },
   related: [
     {
       href: "/ka-gydome/blauzdos-raumens-plysimas",

@@ -9,7 +9,7 @@ export const reabilitacijaPoCiurnosLuzioArOperacijos: ConditionPage = {
   meta: {
     title: "Reabilitacija po čiurnos lūžio ar operacijos | ReaMed",
     description:
-      "Kaip atkurti čiurnos judesius, eiseną ir pusiausvyrą po lūžio ar operacijos. Krūvis pagal gijimą ir chirurgo nurodymus. Privati reabilitacija Vilniuje be siuntimo.",
+      "Kaip atkurti čiurnos judesius, eiseną ir pusiausvyrą po lūžio ar operacijos. Krūvis pagal gijimą ir chirurgo nurodymus. Kineziterapija Vilniuje, be siuntimo.",
   },
   conditionName: "Būklė po čiurnos lūžio ar operacijos",
   hero: {
@@ -168,7 +168,7 @@ export const reabilitacijaPoCiurnosLuzioArOperacijos: ConditionPage = {
       url: "https://www.uclh.nhs.uk/patients-and-visitors/patient-information-pages/walking-boot-advice-patients",
     },
   ],
-  reviewed: null,
+  reviewed: { by: "piotr-dubrovskij", date: "2026-11-08" },
   related: [
     {
       href: "/ka-gydome/ciurnos-ir-pedos-skausmas",

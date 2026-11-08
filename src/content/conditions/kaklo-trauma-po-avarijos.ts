@@ -161,7 +161,7 @@ export const kakloTraumaPoAvarijos: ConditionPage = {
       url: "https://www.nice.org.uk/guidance/ng232/chapter/Recommendations"
     }
   ],
-  reviewed: null,
+  reviewed: { by: "erikas-jatkauskas", date: "2026-11-08" },
   related: [
     {
       href: "/ka-gydome/kaklo-skausmas",

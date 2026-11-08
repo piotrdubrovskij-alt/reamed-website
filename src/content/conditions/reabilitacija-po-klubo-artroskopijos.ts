@@ -9,7 +9,7 @@ export const reabilitacijaPoKluboArtroskopijos: ConditionPage = {
   meta: {
     title: "Reabilitacija po klubo artroskopijos Vilniuje | ReaMed",
     description:
-      "Reabilitacija po klubo artroskopijos, gūžduobės lūpos ar kremzlės gydymo. Atrama, pratimai ir grįžimas į veiklą pagal operaciją. Privati reabilitacija Vilniuje be siuntimo.",
+      "Reabilitacija po klubo artroskopijos, gūžduobės lūpos ar kremzlės gydymo. Atrama, pratimai ir grįžimas į veiklą pagal operaciją. Vilniaus centre, be siuntimo.",
   },
   conditionName: "Būklė po klubo artroskopijos",
   hero: {
@@ -150,7 +150,7 @@ export const reabilitacijaPoKluboArtroskopijos: ConditionPage = {
       url: "https://112.lt/kada-skambinti-greitoji-medicinos-pagalba/",
     },
   ],
-  reviewed: null,
+  reviewed: { by: "piotr-dubrovskij", date: "2026-11-08" },
   related: [
     {
       href: "/ka-gydome/klubo-ir-kirksnies-skausmas",

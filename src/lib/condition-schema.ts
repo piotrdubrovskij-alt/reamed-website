@@ -28,6 +28,7 @@ export function conditionJsonLd(page: ConditionPage) {
               lastReviewed: page.reviewed.date,
               reviewedBy: {
                 "@type": "Person",
+                "@id": `${SITE_URL}/specialistai/${reviewer.slug}#person`,
                 name: reviewer.name,
                 jobTitle: reviewer.role,
                 url: `${SITE_URL}/specialistai/${reviewer.slug}`,

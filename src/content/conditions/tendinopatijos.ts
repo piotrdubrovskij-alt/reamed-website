@@ -9,9 +9,9 @@ export const tendinopatijos: ConditionPage = {
   navTitle: "Sausgyslės",
   topicsTitle: "Su kuo dirbame",
   meta: {
-    title: "Sausgyslių uždegimas (tendinitas) ir tendinopatija: gydymas | ReaMed",
+    title: "Sausgyslių uždegimas (tendinitas) ir tendinopatija: gydymas",
     description:
-      "Skauda sausgyslę judant ar po krūvio? Kodėl tai dažniausiai ne tik uždegimas, kas padeda, kas trukdo gyti ir kiek trunka gydymas. Kineziterapija Vilniaus centre, be siuntimo.",
+      "Skauda sausgyslę judant ar po krūvio? Kodėl tai dažniausiai ne tik uždegimas, kas padeda, kas trukdo gyti ir kiek trunka gydymas. Vilniaus centre, be siuntimo.",
   },
   conditionName: "Tendinopatija (sausgyslių uždegimas)",
   hero: {
@@ -107,7 +107,7 @@ export const tendinopatijos: ConditionPage = {
   ],
   reviews: "tendinopatijos",
   sources: [ICON_2019, TENDINOPATHY_NRDP_2021, COOMBES_2010],
-  reviewed: null,
+  reviewed: { by: "piotr-dubrovskij", date: "2026-11-08" },
   related: [
     { href: "/ka-gydome/teniso-alkune", label: "Teniso alkūnė" },
     { href: "/ka-gydome/achilo-tendinopatija", label: "Achilo sausgyslės uždegimas ir tendinopatija" },

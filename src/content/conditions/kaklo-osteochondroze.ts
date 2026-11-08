@@ -8,9 +8,9 @@ export const kakloOsteochondroze: ConditionPage = {
   section: "kaklo-skausmas",
   navTitle: "Kaklo osteochondrozė",
   meta: {
-    title: "Kaklo osteochondrozė: ką reiškia diagnozė ir kas padeda | ReaMed",
+    title: "Kaklo osteochondrozė: ką reiškia diagnozė ir kas padeda",
     description:
-      "Gavote kaklo osteochondrozės diagnozę? Ką ji reiškia, kodėl pakitimai MRT dažni ir be skausmo, kas padeda nuo kaklo skausmo ir sustingimo. Kineziterapija Vilniaus centre be siuntimo.",
+      "Gavote kaklo osteochondrozės diagnozę? Ką ji reiškia, kodėl pakitimai MRT dažni ir be skausmo, kas padeda nuo kaklo skausmo ir sustingimo. Be siuntimo.",
   },
   conditionName: "Kaklo osteochondrozė",
   hero: {
@@ -90,7 +90,7 @@ export const kakloOsteochondroze: ConditionPage = {
   ],
   reviews: "kaklo-skausmas",
   sources: [NAKASHIMA_2015, NECK_PAIN_CPG],
-  reviewed: null,
+  reviewed: { by: "mangirdas-kazacenko", date: "2026-11-08" },
   related: [
     { href: "/ka-gydome/kaklo-skausmas", label: "Kaklo skausmas" },
     { href: "/ka-gydome/cervikalgija", label: "Cervikalgija" },

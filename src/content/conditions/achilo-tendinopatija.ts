@@ -9,9 +9,9 @@ export const achiloTendinopatija: ConditionPage = {
   section: "ciurnos-ir-pedos-skausmas",
   navTitle: "Achilo tendinopatija",
   meta: {
-    title: "Achilo sausgyslės uždegimas (tendinopatija): gydymas ir pratimai | ReaMed",
+    title: "Achilo sausgyslės uždegimas (tendinopatija): gydymas",
     description:
-      "Skauda Achilo sausgyslę ryte ar bėgant? Kodėl tai vadinama tendinopatija, kas padeda, kiek trunka gydymas ir kada skubiai pas gydytoją. Kineziterapija Vilniaus centre.",
+      "Skauda Achilo sausgyslę ryte ar bėgant? Kodėl tai vadinama tendinopatija, kas padeda, kiek trunka gydymas ir kada skubiai pas gydytoją. Vilniuje, be siuntimo.",
   },
   conditionName: "Achilo sausgyslės tendinopatija",
   hero: {
@@ -102,7 +102,7 @@ export const achiloTendinopatija: ConditionPage = {
   ],
   reviews: "tendinopatijos",
   sources: [ACHILLES_CPG, COOMBES_2010, TENDINOPATHY_NRDP_2021],
-  reviewed: null,
+  reviewed: { by: "piotr-dubrovskij", date: "2026-11-08" },
   related: [
     { href: "/ka-gydome/tendinopatijos", label: "Sausgyslių uždegimas ir tendinopatija" },
     { href: "/ka-gydome/blauzdos-raumens-plysimas", label: "Blauzdos raumens plyšimas" },

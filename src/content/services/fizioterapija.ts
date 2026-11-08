@@ -9,7 +9,7 @@ export const fizioterapija: ServicePage = {
   slug: "fizioterapija",
   navTitle: "Fizioterapija",
   meta: {
-    title: "Fizioterapija Vilniuje: elektrostimuliacija, TENS, ultragarsas | ReaMed",
+    title: "Fizioterapija Vilniuje: elektroterapija ir ultragarsas",
     description: `Fizioterapija Vilniaus centre: raumenų elektrostimuliacija judesio metu, TENS skausmui ir terapinis ultragarsas, visada kartu su pratimais. Procedūra ${eur("fizioterapija")}.`,
   },
   therapyName: "Fizioterapija (elektroterapija ir ultragarsas)",

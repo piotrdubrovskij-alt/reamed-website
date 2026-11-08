@@ -9,9 +9,9 @@ export const galvosSkausmasDelKaklo: ConditionPage = {
   section: "kaklo-skausmas",
   navTitle: "Galvos skausmas dėl kaklo",
   meta: {
-    title: "Galvos skausmas dėl kaklo (cervikogeninis): gydymas Vilniuje | ReaMed",
+    title: "Galvos skausmas dėl kaklo (cervikogeninis): gydymas Vilniuje",
     description:
-      "Galvą skauda nuo pakaušio į smilkinį, vienoje pusėje, ir skausmas stiprėja judinant kaklą? Cervikogeninis galvos skausmas: kas padeda. Kineziterapija Vilniaus centre be siuntimo.",
+      "Galvą skauda nuo pakaušio į smilkinį, vienoje pusėje, ir skausmas stiprėja judinant kaklą? Cervikogeninis galvos skausmas: kas padeda. Vilniuje, be siuntimo.",
   },
   conditionName: "Cervikogeninis galvos skausmas",
   hero: {
@@ -103,7 +103,7 @@ export const galvosSkausmasDelKaklo: ConditionPage = {
   ],
   reviews: "kaklo-skausmas",
   sources: [JULL_2002, NECK_PAIN_CPG],
-  reviewed: null,
+  reviewed: { by: "mangirdas-kazacenko", date: "2026-11-08" },
   related: [
     { href: "/ka-gydome/kaklo-skausmas", label: "Kaklo skausmas" },
     { href: "/ka-gydome/itampos-galvos-skausmas", label: "Įtampos galvos skausmas" },

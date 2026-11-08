@@ -8,9 +8,9 @@ export const blauzdosRaumensPlysimas: ConditionPage = {
   section: "sporto-traumos",
   navTitle: "Blauzdos raumens plyšimas",
   meta: {
-    title: "Blauzdos raumens plyšimas ir patempimas: gydymas ir trukmė | ReaMed",
+    title: "Blauzdos raumens plyšimas ir patempimas: gydymas ir trukmė",
     description:
-      "Bėgant ar šokant lyg kas spyrė į blauzdą? Blauzdos raumens patempimas ir plyšimas: kaip atpažinti, ką daryti, kiek trunka gijimas. Kineziterapija Vilniaus centre.",
+      "Bėgant ar šokant lyg kas spyrė į blauzdą? Blauzdos raumens patempimas ir plyšimas: kaip atpažinti, ką daryti, kiek trunka gijimas. Vilniaus centre, be siuntimo.",
   },
   conditionName: "Blauzdos raumens plyšimas",
   hero: {
@@ -95,7 +95,7 @@ export const blauzdosRaumensPlysimas: ConditionPage = {
   ],
   reviews: "sporto-traumos",
   sources: [CALF_RTP_2020, CALF_EXPERTS_2022, CALF_RISK_2017, EKSTRAND_2011],
-  reviewed: null,
+  reviewed: { by: "piotr-dubrovskij", date: "2026-11-08" },
   related: [
     { href: "/ka-gydome/raumenu-patempimas", label: "Raumenų patempimai ir plyšimai" },
     { href: "/ka-gydome/tendinopatijos", label: "Sausgyslių uždegimas ir tendinopatijos" },

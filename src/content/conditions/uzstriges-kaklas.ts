@@ -146,7 +146,7 @@ export const uzstrigesKaklas: ConditionPage = {
       url: "https://112.lt/kada-skambinti-greitoji-medicinos-pagalba/"
     }
   ],
-  reviewed: null,
+  reviewed: { by: "piotr-dubrovskij", date: "2026-11-08" },
   related: [
     {
       href: "/ka-gydome/kaklo-skausmas",

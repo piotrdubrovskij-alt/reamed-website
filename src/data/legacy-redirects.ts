@@ -12,6 +12,8 @@ type LegacyRedirect = { source: string; destination: string };
 const BACK = "/ka-gydome/nugaros-skausmas";
 const TENDONS = "/ka-gydome/tendinopatijos";
 const SPORT = "/ka-gydome/sporto-traumos";
+const RUNNING = "/ka-gydome/begimo-traumos";
+const PREVENTION = "/ka-gydome/traumu-prevencija";
 const PHYSIO = "/paslaugos/kineziterapija";
 // Children and scoliosis are FitKid's work, not ReaMed's.
 const FITKID = "https://fitkid.lt";
@@ -46,9 +48,9 @@ const rules: Array<[string, string]> = [
   ["/taikomoji-kineziologija/:path*", "/paslaugos"],
 
   // Old articles about sports injuries
-  ["/kaip-sumazinti-traumu-tikimybe-slidinejant-kalnuose/:path*", SPORT],
-  ["/begimo-tramu-prevencija/:path*", SPORT],
-  ["/futbolo-traumos-ju-priezastys-tyrimai-ir-prevencija/:path*", SPORT],
+  ["/kaip-sumazinti-traumu-tikimybe-slidinejant-kalnuose/:path*", PREVENTION],
+  ["/begimo-tramu-prevencija/:path*", RUNNING],
+  ["/futbolo-traumos-ju-priezastys-tyrimai-ir-prevencija/:path*", PREVENTION],
 
   // Children and scoliosis → FitKid
   ["/vaiku-kineziterapija/:path*", FITKID],
@@ -68,10 +70,10 @@ const rules: Array<[string, string]> = [
   ["/tag/sporto-traumos", SPORT],
   ["/tag/slidinejimo-traumos", SPORT],
   ["/tag/futbolo-traumos", SPORT],
-  ["/tag/futbolo-traumu-prevencija", SPORT],
+  ["/tag/futbolo-traumu-prevencija", PREVENTION],
   ["/tag/futbolo-traumu-reabilitacija", SPORT],
-  ["/tag/begimo-traumos", SPORT],
-  ["/tag/begimo-traumu-prevencija", SPORT],
+  ["/tag/begimo-traumos", RUNNING],
+  ["/tag/begimo-traumu-prevencija", RUNNING],
   ["/tag/begimo-treniruotes", SPORT],
   ["/tag/kineziterapija", PHYSIO],
   ["/tag/kineziterapija-vilniuje", PHYSIO],

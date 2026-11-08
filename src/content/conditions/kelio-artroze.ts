@@ -9,9 +9,9 @@ export const kelioArtroze: ConditionPage = {
   section: "kelio-skausmas",
   navTitle: "Kelio artrozė",
   meta: {
-    title: "Kelio artrozė: pratimai ir gydymas be operacijos Vilniuje | ReaMed",
+    title: "Kelio artrozė: pratimai ir gydymas be operacijos Vilniuje",
     description:
-      "Skauda kelį vaikštant ir lipant laiptais, rytais jis sustingęs? Kelio artrozė: kas iš tikrųjų padeda, kokie pratimai ir kada reikia operacijos. Kineziterapija Vilniaus centre be siuntimo.",
+      "Skauda kelį vaikštant ir lipant laiptais, rytais jis sustingęs? Kelio artrozė: kas iš tikrųjų padeda, kokie pratimai ir kada reikia operacijos. Be siuntimo.",
   },
   conditionName: "Kelio sąnario artrozė",
   hero: {
@@ -103,7 +103,7 @@ export const kelioArtroze: ConditionPage = {
   ],
   reviews: "kelio-skausmas",
   sources: [KNEE_OA_EXERCISE_2015, OARSI_2019, KNEE_ARTHROSCOPY_GUIDELINE],
-  reviewed: null,
+  reviewed: { by: "piotr-dubrovskij", date: "2026-11-08" },
   related: [
     { href: "/ka-gydome/kelio-skausmas", label: "Kelio skausmas" },
     { href: "/ka-gydome/menisko-plysimas", label: "Menisko plyšimas" },

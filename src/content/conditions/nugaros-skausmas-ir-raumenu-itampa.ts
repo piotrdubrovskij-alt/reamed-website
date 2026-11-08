@@ -155,7 +155,7 @@ export const nugarosSkausmasIrRaumenuItampa: ConditionPage = {
       url: "https://www.health.nsw.gov.au/outpatients/referrals/Pages/back-pain-adult.aspx"
     }
   ],
-  reviewed: null,
+  reviewed: { by: "erikas-jatkauskas", date: "2026-11-08" },
   related: [
     {
       href: "/ka-gydome/nugaros-skausmas",

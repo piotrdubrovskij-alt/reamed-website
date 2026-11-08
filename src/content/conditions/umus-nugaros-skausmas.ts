@@ -11,7 +11,7 @@ export const umusNugarosSkausmas: ConditionPage = {
   meta: {
     title: "Užstrigo nugara: ūmus nugaros skausmas, ką daryti | ReaMed",
     description:
-      "Staiga užstrigo nugara, sunku išsitiesti ar atsikelti? Ką daryti pirmomis dienomis, per kiek laiko praeina ir kada skubiai pas gydytoją. Kineziterapija Vilniaus centre be siuntimo.",
+      "Staiga užstrigo nugara, sunku išsitiesti ar atsikelti? Ką daryti pirmomis dienomis, per kiek laiko praeina ir kada skubiai pas gydytoją. Vilniuje, be siuntimo.",
   },
   conditionName: "Ūmus juosmens skausmas (lumbago)",
   hero: {
@@ -106,7 +106,7 @@ export const umusNugarosSkausmas: ConditionPage = {
   ],
   reviews: "nugaros-skausmas",
   sources: [LBP_PROGNOSIS_2012, ACP_LBP_2017, LBP_LANCET_2018, BACK_PAIN_CPG],
-  reviewed: null,
+  reviewed: { by: "piotr-dubrovskij", date: "2026-11-08" },
   related: [
     { href: "/ka-gydome/nugaros-skausmas", label: "Nugaros skausmas" },
     { href: "/ka-gydome/skausmas-nugaros-apacioje", label: "Skausmas nugaros apačioje" },

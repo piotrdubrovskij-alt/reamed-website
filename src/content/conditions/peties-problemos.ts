@@ -90,7 +90,7 @@ export const petiesProblemos: ConditionPage = {
   ],
   reviews: "peties-problemos",
   sources: [SAPS_GUIDELINE, CSAW_2018, FROZEN_SHOULDER_REVIEW],
-  reviewed: null,
+  reviewed: { by: "piotr-dubrovskij", date: "2026-11-08" },
   related: [
     { href: "/ka-gydome/subakromialinis-skausmo-sindromas", label: "Subakromialinis skausmo sindromas" },
     { href: "/ka-gydome/kaklo-skausmas", label: "Kaklo skausmas" },

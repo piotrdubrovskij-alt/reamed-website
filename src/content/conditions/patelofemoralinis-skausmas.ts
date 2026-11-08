@@ -8,9 +8,9 @@ export const patelofemoralinisSkausmas: ConditionPage = {
   section: "kelio-skausmas",
   navTitle: "Patelofemoralinis skausmas (bėgiko kelis)",
   meta: {
-    title: "Bėgiko kelis (patelofemoralinis skausmas): pratimai ir gydymas | ReaMed",
+    title: "Bėgiko kelis (patelofemoralinis skausmas): pratimai",
     description:
-      "Skauda aplink girnelę lipant laiptais, tupiant, bėgant ar ilgai sėdint? Kas yra patelofemoralinis skausmas ir kokie pratimai padeda. Kineziterapija Vilniuje, be siuntimo.",
+      "Skauda aplink girnelę lipant laiptais, tupiant, bėgant ar ilgai sėdint? Kas yra patelofemoralinis skausmas ir kokie pratimai padeda. Vilniuje, be siuntimo.",
   },
   conditionName: "Patelofemoralinis skausmo sindromas",
   hero: {
@@ -84,7 +84,7 @@ export const patelofemoralinisSkausmas: ConditionPage = {
   ],
   reviews: "kelio-skausmas",
   sources: [PFP_CPG],
-  reviewed: null,
+  reviewed: { by: "piotr-dubrovskij", date: "2026-11-08" },
   related: [
     { href: "/ka-gydome/kelio-skausmas", label: "Kelio skausmas" },
     { href: "/ka-gydome/menisko-plysimas", label: "Menisko plyšimas" },

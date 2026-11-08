@@ -9,9 +9,9 @@ export const riesoKanaloSindromas: ConditionPage = {
   section: "alkunes-ir-rieso-skausmas",
   navTitle: "Riešo kanalo sindromas",
   meta: {
-    title: "Riešo kanalo sindromas: tirpsta pirštai naktį, gydymas | ReaMed",
+    title: "Riešo kanalo sindromas: tirpsta pirštai naktį, gydymas",
     description:
-      "Tirpsta nykštys, smilius ir didysis pirštas, ypač naktį? Riešo kanalo sindromas: kaip atpažinti, kas padeda be operacijos ir kada reikia chirurgo. Kineziterapija Vilniuje.",
+      "Tirpsta nykštys, smilius ir didysis pirštas, ypač naktį? Riešo kanalo sindromas: kaip atpažinti, kas padeda be operacijos ir kada reikia chirurgo. Be siuntimo.",
   },
   conditionName: "Riešo kanalo sindromas",
   hero: {
@@ -102,7 +102,7 @@ export const riesoKanaloSindromas: ConditionPage = {
     { q: "Ar reikia siuntimo?", a: "Ne. ReaMed yra privati klinika, registruojatės tiesiogiai." },
   ],
   sources: [CTS_CPG, PADUA_2016, CTS_MANUAL_VS_SURGERY],
-  reviewed: null,
+  reviewed: { by: "mangirdas-kazacenko", date: "2026-11-08" },
   related: [
     { href: "/ka-gydome/tirpsta-ranka", label: "Tirpsta ranka ar pirštai" },
     { href: "/ka-gydome/kaklo-radikulopatija", label: "Kaklo radikulopatija" },

@@ -167,7 +167,7 @@ export const dvigalvioRaumensSausgyslesUzdegimas: ConditionPage = {
       doi: "10.1016/j.bjpt.2023.100586"
     }
   ],
-  reviewed: null,
+  reviewed: { by: "mangirdas-kazacenko", date: "2026-11-08" },
   related: [
     {
       href: "/ka-gydome/peties-problemos",

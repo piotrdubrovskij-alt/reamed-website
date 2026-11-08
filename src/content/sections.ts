@@ -290,6 +290,23 @@ export function getSection(slug: SectionSlug): Section {
   return s;
 }
 
+/** Other pages of the page's section for the links under its text: the next ones in the section's own order,
+ *  wrapping round at the end, so every page is linked from several neighbours and the block stays short on a phone. */
+export function sectionNeighbours(section: SectionSlug, slug: string, count = 6): { href: string; label: string }[] {
+  const seen = new Set<string>();
+  const topics = getSection(section).topics.filter((t): t is Topic & { page: string } => {
+    if (!t.page || t.page === section || seen.has(t.page)) return false;
+    seen.add(t.page);
+    return true;
+  });
+  const at = topics.findIndex((t) => t.page === slug);
+  if (at < 0) return [];
+  return Array.from({ length: Math.min(count, topics.length - 1) }, (_, i) => topics[(at + 1 + i) % topics.length]).map((t) => ({
+    href: `/ka-gydome/${t.page}`,
+    label: t.title,
+  }));
+}
+
 /** Name of a section and its page address (null while the section has no page). */
 export function sectionInfo(slug: SectionSlug): { title: string; href: string | null } {
   const s = getSection(slug);

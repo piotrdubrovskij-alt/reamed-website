@@ -8,9 +8,9 @@ export const stuburoKanaloStenoze: ConditionPage = {
   section: "nugaros-skausmas",
   navTitle: "Stuburo kanalo stenozė",
   meta: {
-    title: "Stuburo kanalo stenozė: simptomai ir gydymas be operacijos | ReaMed",
+    title: "Stuburo kanalo stenozė: simptomai ir gydymas be operacijos",
     description:
-      "Einant skauda ir tirpsta kojos, o atsisėdus ar pasilenkus palengvėja? Juosmeninė stuburo kanalo stenozė: kas padeda ir kada reikia operacijos. Kineziterapija Vilniaus centre be siuntimo.",
+      "Einant skauda ir tirpsta kojos, o atsisėdus ar pasilenkus palengvėja? Juosmeninė stuburo kanalo stenozė: kas padeda ir kada reikia operacijos. Be siuntimo.",
   },
   conditionName: "Juosmeninė stuburo kanalo stenozė",
   hero: {
@@ -89,7 +89,7 @@ export const stuburoKanaloStenoze: ConditionPage = {
   ],
   reviews: "nugaros-skausmas",
   sources: [DELITTO_2015, STENOSIS_COCHRANE_2016],
-  reviewed: null,
+  reviewed: { by: "mangirdas-kazacenko", date: "2026-11-08" },
   related: [
     { href: "/ka-gydome/nugaros-skausmas", label: "Nugaros skausmas" },
     { href: "/ka-gydome/spondilolisteze", label: "Spondilolistezė" },

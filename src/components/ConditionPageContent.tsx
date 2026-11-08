@@ -1,6 +1,6 @@
 import Link from "next/link";
 import type { ConditionPage } from "@/content/conditions/types";
-import { getSection, sectionInfo } from "@/content/sections";
+import { getSection, sectionInfo, sectionNeighbours } from "@/content/sections";
 import SectionTopics from "@/components/SectionTopics";
 import LinkedText from "@/components/g/LinkedText";
 import { translations } from "@/lib/translations";
@@ -41,6 +41,9 @@ export default function ConditionPageContent({
     : sectionInfo(page.section);
   const topics = isSectionPage ? getSection(page.section).topics : null;
   const reviews = page.reviews ? getReviews({ condition: page.reviews }) : [];
+  // Other pages of the section, unless the page already links to them in «Susiję puslapiai».
+  const related = new Set(page.related.map((r) => r.href));
+  const neighbours = isSectionPage ? [] : sectionNeighbours(page.section, page.slug).filter((n) => !related.has(n.href));
   const services = page.services
     .map((slug) => t.services.items.find((s) => s.slug === slug))
     .filter((s): s is (typeof t.services.items)[number] => Boolean(s));
@@ -227,6 +230,7 @@ export default function ConditionPageContent({
         sources={page.sources}
         reviewed={page.reviewed}
         related={page.related}
+        neighbours={neighbours}
       />
     </>
   );

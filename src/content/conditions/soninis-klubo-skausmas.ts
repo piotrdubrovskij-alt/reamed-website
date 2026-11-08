@@ -9,9 +9,9 @@ export const soninisKlubo: ConditionPage = {
   section: "klubo-ir-kirksnies-skausmas",
   navTitle: "Šoninis klubo skausmas",
   meta: {
-    title: "Šoninis klubo skausmas (trochanterinis bursitas): gydymas | ReaMed",
+    title: "Šoninis klubo skausmas (trochanterinis bursitas): gydymas",
     description:
-      "Skauda klubo šoną gulint ant šono, lipant laiptais ar sukryžiavus kojas? Trochanterinis bursitas ir sėdmenų sausgyslių tendinopatija: kas padeda. Kineziterapija Vilniuje.",
+      "Skauda klubo šoną gulint ant šono, lipant laiptais ar sukryžiavus kojas? Trochanterinis bursitas ir sėdmenų sausgyslių tendinopatija: kas padeda. Be siuntimo.",
   },
   conditionName: "Didžiojo trochanterio skausmo sindromas (trochanterinis bursitas)",
   hero: {
@@ -101,7 +101,7 @@ export const soninisKlubo: ConditionPage = {
   ],
   reviews: "tendinopatijos",
   sources: [MELLOR_2018, GRIMALDI_2015, TENDINOPATHY_NRDP_2021],
-  reviewed: null,
+  reviewed: { by: "erikas-jatkauskas", date: "2026-11-08" },
   related: [
     { href: "/ka-gydome/tendinopatijos", label: "Sausgyslių uždegimas ir tendinopatija" },
     { href: "/ka-gydome/isialgija-radikulopatija", label: "Išialgija ir radikulopatija" },

@@ -154,7 +154,7 @@ export const petiesSanarioArtroze: ConditionPage = {
       url: "https://bess.ac.uk/download/1421/primary-intermediate-care-guidelines/6238/shoulder-pain-primary-community-and-intermediate-care-guidelines.pdf"
     }
   ],
-  reviewed: null,
+  reviewed: { by: "piotr-dubrovskij", date: "2026-11-08" },
   related: [
     {
       href: "/ka-gydome/peties-problemos",

@@ -10,9 +10,9 @@ export const reabilitacijaPoPetiesArtroskopijos: ConditionPage = {
   section: "atsistatymas-po-operaciju",
   navTitle: "Po peties artroskopijos",
   meta: {
-    title: "Reabilitacija po peties operacijos (rotatorių manžetės siūlės) | ReaMed",
+    title: "Reabilitacija po peties operacijos (rotatorių manžetės)",
     description:
-      "Kaip atsistatyti po peties artroskopijos ar rotatorių manžetės siūlės: etapai, įtvaras, kaip miegoti, kada vairuoti ir dirbti. Privati reabilitacija Vilniuje be siuntimo ir be eilių.",
+      "Kaip atsistatyti po peties artroskopijos ar rotatorių manžetės siūlės: etapai, įtvaras, kaip miegoti, kada vairuoti ir dirbti. Vilniuje, be siuntimo.",
   },
   conditionName: "Būklė po peties artroskopijos ir rotatorių manžetės siūlės",
   hero: {
@@ -102,7 +102,7 @@ export const reabilitacijaPoPetiesArtroskopijos: ConditionPage = {
   ],
   reviews: "atsistatymas-po-operaciju",
   sources: [RC_REPAIR_CONSENSUS, MAZUQUIN_2021],
-  reviewed: null,
+  reviewed: { by: "piotr-dubrovskij", date: "2026-11-08" },
   related: [
     { href: "/ka-gydome/peties-problemos", label: "Peties skausmas" },
     { href: "/ka-gydome/subakromialinis-skausmo-sindromas", label: "Subakromialinis skausmo sindromas" },

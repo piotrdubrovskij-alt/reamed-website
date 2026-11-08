@@ -5,6 +5,7 @@ import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import SpecialistPageContent from "@/components/SpecialistPageContent";
 import { specialists, getSpecialistBySlug } from "@/lib/specialists";
+import { specialistJsonLd } from "@/lib/specialist-schema";
 
 export async function generateStaticParams() {
   return specialists.map((s) => ({ slug: s.slug }));
@@ -36,6 +37,10 @@ export default async function SpecialistPage({
 
   return (
     <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(specialistJsonLd(spec)).replace(/</g, "\\u003c") }}
+      />
       <Header />
       <main>
         <SpecialistPageContent specialist={spec} />

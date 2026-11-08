@@ -7,9 +7,9 @@ export const osteochondroze: ConditionPage = {
   section: "nugaros-skausmas",
   navTitle: "Osteochondrozė",
   meta: {
-    title: "Osteochondrozė: ką reiškia ši diagnozė ir kaip gydoma | ReaMed Vilniuje",
+    title: "Osteochondrozė: ką reiškia diagnozė ir kaip gydoma | ReaMed",
     description:
-      "Gavote stuburo ar kaklo osteochondrozės diagnozę? Paaiškiname, ką ji reiškia, kodėl tai ne nuosprendis ir kaip kineziterapija padeda mažinti nugaros ar kaklo skausmą.",
+      "Gavote stuburo ar kaklo osteochondrozės diagnozę? Ką ji reiškia, kodėl tai ne nuosprendis ir kaip kineziterapija padeda mažinti skausmą.",
   },
   conditionName: "Stuburo osteochondrozė",
   hero: {
@@ -81,7 +81,7 @@ export const osteochondroze: ConditionPage = {
   ],
   reviews: "nugaros-skausmas",
   sources: [BRINJIKJI_2015, BACK_PAIN_CPG],
-  reviewed: null,
+  reviewed: { by: "mangirdas-kazacenko", date: "2026-11-08" },
   related: [
     { href: "/ka-gydome/skausmas-nugaros-apacioje", label: "Skausmas nugaros apačioje" },
     { href: "/ka-gydome/kaklo-skausmas", label: "Kaklo skausmas" },

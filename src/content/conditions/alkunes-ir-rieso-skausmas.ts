@@ -12,7 +12,7 @@ export const alkunesIrRiesoSkausmas: ConditionPage = {
   meta: {
     title: "Alkūnės ir riešo skausmas: gydymas Vilniuje | ReaMed",
     description:
-      "Skauda alkūnę keliant puodelį, naktį tirpsta pirštai ar skauda riešą po lūžio? Teniso alkūnė, riešo kanalo sindromas, De Quervain. Kineziterapija Vilniaus centre be siuntimo.",
+      "Skauda alkūnę keliant puodelį, naktį tirpsta pirštai ar skauda riešą po lūžio? Teniso alkūnė, riešo kanalo sindromas, De Quervain. Vilniaus centre, be siuntimo.",
   },
   conditionName: "Alkūnės ir riešo skausmas",
   hero: {
@@ -111,7 +111,7 @@ export const alkunesIrRiesoSkausmas: ConditionPage = {
     { q: "Ar reikia siuntimo?", a: "Ne. ReaMed yra privati klinika, registruojatės tiesiogiai." },
   ],
   sources: [LATERAL_ELBOW_CPG, COOMBES_2013, CTS_CPG],
-  reviewed: null,
+  reviewed: { by: "piotr-dubrovskij", date: "2026-11-08" },
   related: [
     { href: "/ka-gydome/teniso-alkune", label: "Teniso alkūnė" },
     { href: "/ka-gydome/rieso-kanalo-sindromas", label: "Riešo kanalo sindromas" },

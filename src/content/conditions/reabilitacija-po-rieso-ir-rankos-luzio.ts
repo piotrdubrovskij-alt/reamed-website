@@ -9,7 +9,7 @@ export const reabilitacijaPoRiesoIrRankosLuzio: ConditionPage = {
   meta: {
     title: "Reabilitacija po riešo ir plaštakos lūžio | ReaMed",
     description:
-      "Riešo ir plaštakos judesių, suėmimo bei jėgos atkūrimas po lūžio. Planas pagal lūžio vietą, operaciją ir gydytojo nurodymus. Privati reabilitacija Vilniuje be siuntimo.",
+      "Riešo ir plaštakos judesių, suėmimo bei jėgos atkūrimas po lūžio. Planas pagal lūžio vietą, operaciją ir gydytojo nurodymus. Vilniaus centre, be siuntimo.",
   },
   conditionName: "Būklė po riešo ar plaštakos lūžio",
   hero: {
@@ -161,7 +161,7 @@ export const reabilitacijaPoRiesoIrRankosLuzio: ConditionPage = {
       url: "https://112.lt/kada-skambinti-greitoji-medicinos-pagalba/",
     },
   ],
-  reviewed: null,
+  reviewed: { by: "piotr-dubrovskij", date: "2026-11-08" },
   related: [
     {
       href: "/ka-gydome/alkunes-ir-rieso-skausmas",

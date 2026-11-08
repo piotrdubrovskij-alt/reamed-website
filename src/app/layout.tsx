@@ -85,7 +85,7 @@ const jsonLd = {
       closes: "16:00",
     },
   ],
-  medicalSpecialty: "PhysicalTherapy",
+  medicalSpecialty: "https://schema.org/Physiotherapy",
   isAcceptingNewPatients: true,
   knowsLanguage: ["lt", "en", "ru"],
   logo: "https://reamed.lt/logo.png",

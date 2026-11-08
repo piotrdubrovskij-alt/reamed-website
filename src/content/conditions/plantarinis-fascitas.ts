@@ -8,7 +8,7 @@ export const plantarinisFascitas: ConditionPage = {
   section: "ciurnos-ir-pedos-skausmas",
   navTitle: "Plantarinis fascitas",
   meta: {
-    title: "Plantarinis fascitas ir kulno skausmas: gydymas Vilniuje | ReaMed",
+    title: "Plantarinis fascitas ir kulno skausmas: gydymas Vilniuje",
     description:
       "Skauda kulną rytais ar po bėgimo? Plantarinis (padų) fascitas: priežastys, pratimai, įklotai, teipavimas ir kineziterapija Vilniaus centre. Siuntimo nereikia.",
   },
@@ -84,7 +84,7 @@ export const plantarinisFascitas: ConditionPage = {
     { q: "Ar reikia siuntimo?", a: "Ne. ReaMed yra privati klinika, registruojatės tiesiogiai." },
   ],
   sources: [HEEL_CPG, RIEL_2025],
-  reviewed: null,
+  reviewed: { by: "piotr-dubrovskij", date: "2026-11-08" },
   related: [
     { href: "/ka-gydome/tendinopatijos", label: "Sausgyslių uždegimas ir tendinopatijos" },
     { href: "/ka-gydome/sporto-traumos", label: "Sporto traumos" },

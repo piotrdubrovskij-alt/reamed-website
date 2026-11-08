@@ -7,7 +7,7 @@ export const kineziterapija: ServicePage = {
   slug: "kineziterapija",
   navTitle: "Kineziterapija",
   meta: {
-    title: "Kineziterapija Vilniuje: kaina, kaip vyksta, kada padeda | ReaMed",
+    title: "Kineziterapija Vilniuje: kaina, kaip vyksta, kada padeda",
     description: `Kineziterapija Vilniaus centre: ištyrimas, gydomieji pratimai ir aiškus planas. Pirmasis vizitas ${eur("pirmasis-vizitas")}, kineziterapija ${eur("kineziterapija")}. Privati klinika, siuntimo nereikia.`,
   },
   therapyName: "Kineziterapija",

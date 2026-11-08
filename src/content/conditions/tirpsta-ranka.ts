@@ -10,7 +10,7 @@ export const tirpstaRanka: ConditionPage = {
   meta: {
     title: "Tirpsta ranka ar pirštai: priežastys ir ką daryti | ReaMed",
     description:
-      "Tirpsta ranka naktį, dilgčioja pirštai ar ranka silpsta? Dažniausios priežastys: riešo kanalas, kaklas, alkūnė. Kada skubiai kviesti 112, kaip gydome. Vilniaus centre.",
+      "Tirpsta ranka naktį, dilgčioja pirštai ar ranka silpsta? Dažniausios priežastys: riešo kanalas, kaklas, alkūnė. Kada skubiai kviesti 112, kaip gydome.",
   },
   conditionName: "Rankos ir pirštų tirpimas",
   hero: {
@@ -101,7 +101,7 @@ export const tirpstaRanka: ConditionPage = {
     { q: "Ar reikia siuntimo?", a: "Ne. ReaMed yra privati klinika, registruojatės tiesiogiai." },
   ],
   sources: [PADUA_2016, CERVICAL_RADICULOPATHY_REVIEW, BOGDUK_2009],
-  reviewed: null,
+  reviewed: { by: "mangirdas-kazacenko", date: "2026-11-08" },
   related: [
     { href: "/ka-gydome/rieso-kanalo-sindromas", label: "Riešo kanalo sindromas" },
     { href: "/ka-gydome/kaklo-radikulopatija", label: "Kaklo radikulopatija" },

@@ -9,9 +9,9 @@ export const plintantisSkausmas: ConditionPage = {
   navTitle: "Plintantis skausmas",
   topicsTitle: "Su kuo dirbame",
   meta: {
-    title: "Plintantis skausmas ir tirpimas: iš nugaros į koją, iš kaklo į ranką | ReaMed",
+    title: "Plintantis skausmas ir tirpimas: į koją ar į ranką",
     description:
-      "Skausmas plinta į koją ar ranką, tirpsta, dilgčioja? Kaip atskirti nervo dirginimą nuo plintančio raumenų ir sąnarių skausmo, kada skubiai pas gydytoją, kaip gydome.",
+      "Skausmas plinta į koją ar ranką, tirpsta, dilgčioja? Kaip atskirti nervo dirginimą nuo raumenų ir sąnarių skausmo, kada skubiai pas gydytoją.",
   },
   conditionName: "Plintantis skausmas ir tirpimas",
   hero: {
@@ -102,7 +102,7 @@ export const plintantisSkausmas: ConditionPage = {
   ],
   reviews: "plintantis-skausmas",
   sources: [BOGDUK_2009, CERVICAL_RADICULOPATHY_REVIEW, BACK_PAIN_CPG, BRINJIKJI_2015],
-  reviewed: null,
+  reviewed: { by: "piotr-dubrovskij", date: "2026-11-08" },
   related: [
     { href: "/ka-gydome/isialgija-radikulopatija", label: "Išialgija ir radikulopatija" },
     { href: "/ka-gydome/kaklo-radikulopatija", label: "Kaklo radikulopatija" },

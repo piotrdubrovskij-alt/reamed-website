@@ -8,9 +8,9 @@ export const spondilolisteze: ConditionPage = {
   section: "nugaros-skausmas",
   navTitle: "Spondilolistezė",
   meta: {
-    title: "Spondilolistezė (slankstelio poslinkis): simptomai ir gydymas | ReaMed",
+    title: "Spondilolistezė (slankstelio poslinkis): gydymas",
     description:
-      "MRT ar rentgene rado slankstelio poslinkį? Kas yra spondilolistezė, kodėl dažniausiai gydoma be operacijos ir kokie pratimai padeda. Kineziterapija Vilniaus centre be siuntimo.",
+      "MRT ar rentgene rado slankstelio poslinkį? Kas yra spondilolistezė, kodėl dažniausiai gydoma be operacijos ir kokie pratimai padeda. Vilniuje, be siuntimo.",
   },
   conditionName: "Juosmeninė spondilolistezė",
   hero: {
@@ -87,7 +87,7 @@ export const spondilolisteze: ConditionPage = {
   ],
   reviews: "nugaros-skausmas",
   sources: [NASS_SPONDYLOLISTHESIS, BACK_PAIN_CPG],
-  reviewed: null,
+  reviewed: { by: "erikas-jatkauskas", date: "2026-11-08" },
   related: [
     { href: "/ka-gydome/nugaros-skausmas", label: "Nugaros skausmas" },
     { href: "/ka-gydome/stuburo-kanalo-stenoze", label: "Stuburo kanalo stenozė" },

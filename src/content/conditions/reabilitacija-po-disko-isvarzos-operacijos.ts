@@ -11,7 +11,7 @@ export const reabilitacijaPoDiskoIsvarzosOperacijos: ConditionPage = {
   meta: {
     title: "Reabilitacija po disko išvaržos operacijos | ReaMed",
     description:
-      "Reabilitacija po juosmens disko išvaržos operacijos. Kaip judėti, atkurti jėgą ir grįžti į darbą; kada kreiptis skubiai. Privati reabilitacija Vilniuje be siuntimo.",
+      "Reabilitacija po juosmens disko išvaržos operacijos. Kaip judėti, atkurti jėgą ir grįžti į darbą; kada kreiptis skubiai. Kineziterapija Vilniuje, be siuntimo.",
   },
   conditionName: "Būklė po juosmens disko išvaržos operacijos",
   hero: {
@@ -164,7 +164,7 @@ export const reabilitacijaPoDiskoIsvarzosOperacijos: ConditionPage = {
     },
     OOSTERHUIS_2014,
   ],
-  reviewed: null,
+  reviewed: { by: "piotr-dubrovskij", date: "2026-11-08" },
   related: [
     { href: "/ka-gydome/stuburo-isvarza", label: "Stuburo išvarža" },
     {

@@ -9,7 +9,7 @@ export const reabilitacijaPoPetiesStabilizacijos: ConditionPage = {
   meta: {
     title: "Reabilitacija po peties stabilizacijos Vilniuje | ReaMed",
     description:
-      "Atsistatymas po Bankart, Latarjet ar kitos peties stabilizacijos. Kaip saugiai atkurti judesį, jėgą ir grįžti prie darbo ar sporto. Privati reabilitacija Vilniuje be siuntimo.",
+      "Atsistatymas po Bankart, Latarjet ar kitos peties stabilizacijos. Kaip saugiai atkurti judesį, jėgą ir grįžti prie darbo ar sporto. Vilniuje, be siuntimo.",
   },
   conditionName: "Būklė po peties stabilizacijos operacijos",
   hero: {
@@ -159,7 +159,7 @@ export const reabilitacijaPoPetiesStabilizacijos: ConditionPage = {
       url: "https://112.lt/kada-skambinti-greitoji-medicinos-pagalba/",
     },
   ],
-  reviewed: null,
+  reviewed: { by: "kotryna-kairyte", date: "2026-11-08" },
   related: [
     { href: "/ka-gydome/peties-problemos", label: "Peties problemos" },
     {

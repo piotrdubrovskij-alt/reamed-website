@@ -9,9 +9,9 @@ export const reabilitacijaPoMeniskoOperacijos: ConditionPage = {
   section: "atsistatymas-po-operaciju",
   navTitle: "Po menisko operacijos",
   meta: {
-    title: "Reabilitacija po menisko operacijos Vilniuje: etapai ir trukmė | ReaMed",
+    title: "Reabilitacija po menisko operacijos Vilniuje: etapai",
     description:
-      "Kaip atsistatyti po menisko pašalinimo ar susiuvimo: etapai, kada galima vaikščioti, vairuoti ir sportuoti. Privati reabilitacija Vilniaus centre be siuntimo ir be eilės.",
+      "Kaip atsistatyti po menisko pašalinimo ar susiuvimo: etapai, kada galima vaikščioti, vairuoti ir sportuoti. Kineziterapija Vilniaus centre, be siuntimo.",
   },
   conditionName: "Būklė po menisko operacijos",
   hero: {
@@ -90,7 +90,7 @@ export const reabilitacijaPoMeniskoOperacijos: ConditionPage = {
   ],
   reviews: "atsistatymas-po-operaciju",
   sources: [MENISCUS_CONSENSUS, MENISCUS_ROOT_REHAB],
-  reviewed: null,
+  reviewed: { by: "kotryna-kairyte", date: "2026-11-08" },
   related: [
     { href: "/ka-gydome/kelio-skausmas", label: "Kelio skausmas" },
     { href: "/ka-gydome/menisko-plysimas", label: "Menisko plyšimas" },

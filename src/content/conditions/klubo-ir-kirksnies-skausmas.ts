@@ -10,9 +10,9 @@ export const kluboIrKirksniesSkausmas: ConditionPage = {
   navTitle: "Klubas ir kirkšnis",
   topicsTitle: "Su kuo dirbame",
   meta: {
-    title: "Klubo ir kirkšnies skausmas: priežastys ir gydymas Vilniuje | ReaMed",
+    title: "Klubo ir kirkšnies skausmas: priežastys ir gydymas Vilniuje",
     description:
-      "Skauda klubą, kirkšnį ar klubo šoną? Artrozė, sausgyslės, klubo įspaudimas (FAI), sportininkų kirkšnies skausmas ir sunkumai po endoprotezavimo. Kineziterapija Vilniaus centre be siuntimo.",
+      "Skauda klubą, kirkšnį ar klubo šoną? Artrozė, sausgyslės, klubo įspaudimas (FAI), sportininkų kirkšnies skausmas. Kineziterapija Vilniuje, be siuntimo.",
   },
   conditionName: "Klubo ir kirkšnies skausmas",
   hero: {
@@ -112,7 +112,7 @@ export const kluboIrKirksniesSkausmas: ConditionPage = {
     { q: "Ar reikia siuntimo?", a: "Ne. ReaMed yra privati klinika, registruojatės tiesiogiai." },
   ],
   sources: [HIP_OA_EXERCISE_2014, OARSI_2019, WARWICK_2016, DOHA_2015],
-  reviewed: null,
+  reviewed: { by: "piotr-dubrovskij", date: "2026-11-08" },
   related: [
     { href: "/ka-gydome/soninis-klubo-skausmas", label: "Šoninis klubo skausmas" },
     { href: "/ka-gydome/pritraukiamuju-raumenu-patempimas", label: "Pritraukiamųjų raumenų patempimas" },

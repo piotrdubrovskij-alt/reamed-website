@@ -138,7 +138,7 @@ export const sokejoKelis: ConditionPage = {
       url: "https://www.orthoinfo.org/diseases--conditions/sports-injuries/overuse-injuries-in-children/"
     }
   ],
-  reviewed: null,
+  reviewed: { by: "kotryna-kairyte", date: "2026-11-08" },
   related: [
     {
       href: "/ka-gydome/patelofemoralinis-skausmas",

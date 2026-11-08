@@ -8,9 +8,9 @@ export const ankstyvaReabilitacijaPoOperacijos: ConditionPage = {
   section: "atsistatymas-po-operaciju",
   navTitle: "Ankstyva reabilitacija su gipsu ar įtvaru",
   meta: {
-    title: "Gipsas ar įtvaras po operacijos: ankstyva reabilitacija | ReaMed",
+    title: "Gipsas ar įtvaras po operacijos: ankstyva reabilitacija",
     description:
-      "Po operacijos ar lūžio nešiojate gipsą, įtvarą ar ortezę? Ką jau galima daryti, kaip išsaugoti judesį ir jėgą, kada pradėti kineziterapiją. Vilniaus centre, be siuntimo.",
+      "Po operacijos ar lūžio nešiojate gipsą, įtvarą ar ortezę? Ką jau galima daryti, kaip išsaugoti judesį ir jėgą, kada pradėti kineziterapiją. Be siuntimo.",
   },
   conditionName: "Imobilizacija po operacijos ar lūžio",
   hero: {
@@ -86,7 +86,7 @@ export const ankstyvaReabilitacijaPoOperacijos: ConditionPage = {
   ],
   reviews: "atsistatymas-po-operaciju",
   sources: [ANKLE_FRACTURE_REHAB],
-  reviewed: null,
+  reviewed: { by: "kotryna-kairyte", date: "2026-11-08" },
   related: [
     { href: "/ka-gydome/atsistatymas-po-operaciju", label: "Reabilitacija po operacijų" },
     { href: "/ka-gydome/reabilitacija-po-kryzminio-raiscio-operacijos", label: "Reabilitacija po kryžminio raiščio operacijos" },

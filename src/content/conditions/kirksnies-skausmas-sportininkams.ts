@@ -146,7 +146,7 @@ export const kirksniesSkausmasSportininkams: ConditionPage = {
       url: "https://www.orthoinfo.org/diseases--conditions/sports-injuries/sports-hernia-athletic-pubalgia/"
     }
   ],
-  reviewed: null,
+  reviewed: { by: "piotr-dubrovskij", date: "2026-11-08" },
   related: [
     {
       href: "/ka-gydome/klubo-ir-kirksnies-skausmas",

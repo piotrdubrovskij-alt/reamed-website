@@ -9,7 +9,7 @@ export const reabilitacijaPoKelioLuzioOperacijos: ConditionPage = {
   meta: {
     title: "Reabilitacija po kelio lūžio operacijos Vilniuje | ReaMed",
     description:
-      "Reabilitacija po girnelės, blauzdikaulio ar šlaunikaulio lūžio operacijos. Judesiai, atrama ir jėgos atkūrimas pagal chirurgo nurodymus. Privati reabilitacija Vilniuje be siuntimo.",
+      "Reabilitacija po girnelės, blauzdikaulio ar šlaunikaulio lūžio operacijos. Judesiai, atrama ir jėgos atkūrimas pagal chirurgo nurodymus. Vilniuje, be siuntimo.",
   },
   conditionName: "Būklė po kelio lūžio operacijos",
   hero: {
@@ -143,7 +143,7 @@ export const reabilitacijaPoKelioLuzioOperacijos: ConditionPage = {
       url: "https://112.lt/kada-skambinti-greitoji-medicinos-pagalba/",
     },
   ],
-  reviewed: null,
+  reviewed: { by: "mangirdas-kazacenko", date: "2026-11-08" },
   related: [
     { href: "/ka-gydome/kelio-skausmas", label: "Kelio skausmas" },
     {

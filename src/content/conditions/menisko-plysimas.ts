@@ -8,7 +8,7 @@ export const meniskoPlysimas: ConditionPage = {
   section: "kelio-skausmas",
   navTitle: "Menisko plyšimas",
   meta: {
-    title: "Menisko plyšimas: simptomai ir gydymas be operacijos | ReaMed",
+    title: "Menisko plyšimas: simptomai ir gydymas be operacijos",
     description:
       "Menisko plyšimas po traumos ar dėl dėvėjimosi: kada padeda pratimai, kada reikia operacijos, kiek trunka gijimas. Kineziterapija Vilniaus centre, be siuntimo.",
   },
@@ -84,7 +84,7 @@ export const meniskoPlysimas: ConditionPage = {
   ],
   reviews: "kelio-skausmas",
   sources: [KISE_2016, ESSKA_DEGENERATIVE_MENISCUS],
-  reviewed: null,
+  reviewed: { by: "piotr-dubrovskij", date: "2026-11-08" },
   related: [
     { href: "/ka-gydome/reabilitacija-po-menisko-operacijos", label: "Reabilitacija po menisko operacijos" },
     { href: "/ka-gydome/kelio-skausmas", label: "Kelio skausmas" },

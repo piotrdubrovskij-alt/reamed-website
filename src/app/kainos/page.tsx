@@ -7,7 +7,7 @@ import KainosContent from "@/components/KainosContent";
 export const metadata: Metadata = {
   ...pageMetadata({
     path: "/kainos",
-    title: "Kainos — ReaMed klinika Vilniuje",
+    title: "Kineziterapijos kaina Vilniuje: vizitai ir paketai | ReaMed",
     description:
       "ReaMed klinikos kainos: pirmasis vizitas, kineziterapija, kompleksinė reabilitacija, masažas, fizioterapija. Paketai 5 ir 10 kartų.",
   }),
