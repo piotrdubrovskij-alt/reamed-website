@@ -130,6 +130,7 @@
 - Все страницы проблем на шаблоне G: разделы Po operacijų, Nugara, Kaklas, Petys, Kelias, Sporto traumos (пачки 1–4,
   PR #25, #27–#29), Sausgyslės и Plintantis skausmas (пачка 5, PR #30), Klubas ir kirkšnis, Čiurna pėda ir kulnas,
   Alkūnė ir riešas (пачка 7). С пачки 7 страницы есть у всех 11 разделов (`hasPage: true`).
+  С пачки 14 у всех тем дерева «Ką gydome» есть страницы (`page` у каждой темы в `sections.ts`).
 - Страницы услуг — тоже из данных (пачка 6): файл `src/content/services/<slug>.ts` (тип `ServicePage`), строка в `index.ts`;
   маршрут `src/app/paslaugos/[slug]`, вид — `ServicePageContent` (макет G), JSON-LD — `src/lib/service-schema.ts`.
   Цены в блоке «Kaina» и в текстах берутся из `src/data/prices.ts` по `id` (`price-text.ts`), руками не набирать.

@@ -15,7 +15,7 @@ const config = JSON.parse(fs.readFileSync(configPath, "utf8"));
 const seo = new Map(parseCsv(fs.readFileSync(path.join(config.sourceDir, "SEO.csv"), "utf8")).map((r) => [r.slug, r]));
 
 // Headings the template prints itself: they are structure, not text of the page.
-const TEMPLATE_HEADINGS = /^## (Kada verta kreiptis|Kaip vertiname|Kaip gydome ir kiek tai trunka|Ką galite daryti iki vizito|Kada reikia skubios pagalbos|Dažniausi klausimai)\??$/;
+const TEMPLATE_HEADINGS = /^## (Kada verta kreiptis|Kaip vertiname|Kaip gydome ir kiek tai trunka|Kaip dirbame ir kiek tai trunka|Ką galite daryti iki vizito|Kada reikia skubios pagalbos|Dažniausi klausimai)\??$/;
 const REMOVED_LINE = [
   /^\[←/,
   /^\[Ką gydome\]\(https:\/\/reamed\.lt\/ka-gydome\) → /,
@@ -148,6 +148,13 @@ function checkSources(block, page, problems) {
   });
 }
 
+function checkTreatmentTitle(md, page, problems) {
+  const heading = md.match(/^## (Kaip (?:gydome|dirbame) ir kiek tai trunka)\??$/m)?.[1];
+  if (!heading) problems.push("no «Kaip gydome/dirbame» heading in md");
+  const expected = heading?.startsWith("Kaip dirbame") ? heading : undefined;
+  if (page.treatment.title !== expected) problems.push(`treatment.title: md «${expected}», page «${page.treatment.title}»`);
+}
+
 function checkLeftovers(page, problems) {
   const walk = (v, at) => {
     if (typeof v === "string") {
@@ -197,6 +204,7 @@ for (const { slug, section, teamNote } of config.pages) {
   const row = seo.get(slug);
   if (page.meta.title !== row.title) problems.push("meta.title differs from SEO.csv");
   if (page.meta.description !== row.description) problems.push("meta.description differs from SEO.csv");
+  checkTreatmentTitle(md, page, problems);
   checkLeftovers(page, problems);
   checkTemplateFields(page, section, teamNote, problems);
 

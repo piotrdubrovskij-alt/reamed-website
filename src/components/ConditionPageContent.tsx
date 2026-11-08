@@ -134,7 +134,7 @@ export default function ConditionPageContent({ page }: { page: ConditionPage }) 
         <div className={`wrap ${twoCols}`}>
           <div>
             <h2 id="gydome-h" className={h2}>
-              Kaip gydome ir kiek tai trunka
+              {page.treatment.title ?? "Kaip gydome ir kiek tai trunka"}
             </h2>
             <p className="mt-6 text-small text-graphite max-w-[36ch]">
               Pirmasis vizitas: {FIRST_VISIT.name.lt.toLowerCase()}, {FIRST_VISIT.duration}, {formatPrice(FIRST_VISIT.price, "lt")}.{" "}

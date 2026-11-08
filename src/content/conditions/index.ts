@@ -89,6 +89,12 @@ import { ciurnosNestabilumas } from "./ciurnos-nestabilumas";
 import { stresiniaiPedosLuziai } from "./stresiniai-pedos-luziai";
 import { ciurnosSanarioArtroze } from "./ciurnos-sanario-artroze";
 import { blauzdosSkausmasBegikams } from "./blauzdos-skausmas-begikams";
+import { raumensSumusimas } from "./raumens-sumusimas";
+import { raisciuPatempimaiIrPlysimai } from "./raisciu-patempimai-ir-plysimai";
+import { luziaiIrGrizimasISportaPoLuzio } from "./luziai-ir-grizimas-i-sporta-po-luzio";
+import { stresiniaiLuziai } from "./stresiniai-luziai";
+import { begimoTraumos } from "./begimo-traumos";
+import { traumuPrevencija } from "./traumu-prevencija";
 
 // Problem pages built from data (/ka-gydome/<slug>). Order = order inside each section.
 // Older section pages not yet rewritten still live in their own folders under src/app/ka-gydome/.
@@ -198,6 +204,13 @@ export const conditionPages: ConditionPage[] = [
   stresiniaiPedosLuziai,
   ciurnosSanarioArtroze,
   blauzdosSkausmasBegikams,
+  // Batch 14: Piotr's six new texts for Sporto traumos (08.11.2026), moved by scripts/import-condition-texts.mjs.
+  raumensSumusimas,
+  raisciuPatempimaiIrPlysimai,
+  luziaiIrGrizimasISportaPoLuzio,
+  stresiniaiLuziai,
+  begimoTraumos,
+  traumuPrevencija,
 ];
 
 export function getConditionPage(slug: string): ConditionPage | undefined {

@@ -211,7 +211,9 @@ function buildPage({ slug, section, assessLeadWords, teamNote }) {
   };
   const when = parseWhen(take("kada verta kreiptis"));
   const { assess, note: assessNote } = parseAssess(slug, take("kaip vertiname"), assessLeadWords, removed);
-  const treatment = parseTreatment(take("kaip gydome ir kiek tai trunka"));
+  // «Traumų prevencija» names this block «Kaip dirbame…»: then the page carries its own heading.
+  const treatmentTitle = known.has("kaip dirbame ir kiek tai trunka") ? "Kaip dirbame ir kiek tai trunka" : undefined;
+  const treatment = parseTreatment(take(treatmentTitle ? "kaip dirbame ir kiek tai trunka" : "kaip gydome ir kiek tai trunka"));
   const beforeVisit = take("ką galite daryti iki vizito").map(dropCitations);
   const urgent = take("kada reikia skubios pagalbos").map((b) => dropCitations(b).replaceAll("**", ""));
   const faq = parseFaq(slug, take("dažniausi klausimai"), removed);
@@ -233,7 +235,7 @@ function buildPage({ slug, section, assessLeadWords, teamNote }) {
     assess,
     ...(assessNote ? { assessNote } : {}),
     services: parent.services,
-    treatment,
+    treatment: treatmentTitle ? { title: treatmentTitle, ...treatment } : treatment,
     beforeVisit,
     urgent: { note: "", items: urgent },
     // teamNote: false in the config: the section's team without its note (Piotr, 08.11.2026: the Kelias note

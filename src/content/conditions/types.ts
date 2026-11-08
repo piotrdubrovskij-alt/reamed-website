@@ -54,6 +54,8 @@ export type ConditionPage = {
   /** Service pages linked under "Kaip vertiname". */
   services: ServiceSlug[];
   treatment: {
+    /** Heading of the block when it is not "Kaip gydome ir kiek tai trunka" (prevention: "Kaip dirbame…"). */
+    title?: string;
     intro?: string;
     items: { title: string; text: string }[];
     paragraphs: string[];
