@@ -19,7 +19,9 @@ const config = JSON.parse(fs.readFileSync(configPath, "utf8"));
 const batchSlugs = new Set(config.pages.map((p) => p.slug));
 const seo = new Map(parseCsv(fs.readFileSync(path.join(config.sourceDir, "SEO.csv"), "utf8")).map((r) => [r.slug, r]));
 
-const dropCitations = (s) => s.replace(/\s*\[\d+(?:\s*,\s*\d+)*\]/g, "");
+// No citation numbers; a link to our own site keeps its words. Any other link in a text stops the run (checkClean).
+const dropCitations = (s) =>
+  s.replace(/\s*\[\d+(?:\s*,\s*\d+)*\]/g, "").replace(/\[([^\]]+)\]\(https:\/\/reamed\.lt\/[^)]*\)/g, "$1");
 const key = (title) => title.replace(/\?$/, "").trim().toLowerCase();
 const isSiteLine = (b) => /^\[Registruotis vizitui\]\(https:\/\/reamed\.lt\/registracija\)/.test(b);
 
@@ -40,6 +42,8 @@ function splitMarkdown(md) {
   for (const raw of md.split(/\n\s*\n/)) {
     const block = raw.trim();
     if (!block || /^<a id="[^"]+"><\/a>$/.test(block) || block.startsWith("[←")) continue;
+    // Breadcrumbs before the H1: «[Ką gydome](…) → [Klubo ir kirkšnies skausmas](…)».
+    if (/^\[Ką gydome\]\(https:\/\/reamed\.lt\/ka-gydome\) → /.test(block)) continue;
     if (block.startsWith("# ")) {
       doc.h1 = block.slice(2).trim();
       target = doc.intro;
@@ -75,11 +79,19 @@ function parseWhen(blocks) {
 }
 
 function parseAssess(slug, blocks, leadWords, removed) {
+  let note;
   const paragraphs = blocks.filter((b) => {
     // Worded differently from text to text; «Pirmasis susitarimas…» elsewhere is ordinary text.
     const price = /^Pirmasis\b/.test(b) && b.includes("80 €") && b.includes("reamed.lt/kainos");
-    if (price) removed.push(b);
-    return !price;
+    if (!price) return true;
+    removed.push(b);
+    // Text after the price link in the same paragraph is not the price: it stays on the page.
+    const after = dropCitations(b.slice(b.indexOf("reamed.lt/kainos")).replace(/^[^)]*\)\.?\s*/, ""));
+    if (after) {
+      note = after;
+      console.log(`  kept after the price: ${after}`);
+    }
+    return false;
   });
   if (paragraphs.length !== (leadWords ?? []).length) {
     throw new Error(
@@ -87,12 +99,13 @@ function parseAssess(slug, blocks, leadWords, removed) {
         paragraphs.map((p) => `  ${p.slice(0, 80)}`).join("\n"),
     );
   }
-  return paragraphs.map((p, i) => {
+  const assess = paragraphs.map((p, i) => {
     const words = dropCitations(p).split(" ");
     const n = leadWords[i];
     if (n < 2 || n > 5) throw new Error(`${slug}: lead of ${n} words`);
     return { lead: words.slice(0, n).join(" "), text: words.slice(n).join(" ") };
   });
+  return { assess, note };
 }
 
 function parseTreatment(blocks) {
@@ -150,8 +163,10 @@ function parseSources(slug, blocks) {
     .flatMap((b) => b.split("\n"))
     .map((line) => {
       const m = line.match(/^\d+\.\s+(.+?)\s+\[(.+?)\]\((\S+?)\)(.*)$/);
-      if (!m) throw new Error(`${slug}: cannot read source «${line}»`);
-      const [, authors, title, url, tail] = m;
+      // «1. [NHS — Joint pain](url).»: the organisation and the title are both inside the link text.
+      const inside = line.match(/^\d+\.\s+\[(.+?) — (.+?)\]\((\S+?)\)(.*)$/);
+      if (!m && !inside) throw new Error(`${slug}: cannot read source «${line}»`);
+      const [authors, title, url, tail] = m ? m.slice(1) : [`${inside[1]}.`, inside[2], inside[3], inside[4]];
       const doi = tail.match(/DOI:\s*(10\.\S+?)\.?\s*$/)?.[1];
       const rest = tail.replace(/DOI:.*$/, "");
       // «. J Rehabil Med, 2019;51:479–491.», «. Shoulder & Elbow, 2019.», a name with commas, or in *italics*.
@@ -195,7 +210,7 @@ function buildPage({ slug, section, assessLeadWords, teamNote }) {
     return blocks;
   };
   const when = parseWhen(take("kada verta kreiptis"));
-  const assess = parseAssess(slug, take("kaip vertiname"), assessLeadWords, removed);
+  const { assess, note: assessNote } = parseAssess(slug, take("kaip vertiname"), assessLeadWords, removed);
   const treatment = parseTreatment(take("kaip gydome ir kiek tai trunka"));
   const beforeVisit = take("ką galite daryti iki vizito").map(dropCitations);
   const urgent = take("kada reikia skubios pagalbos").map((b) => dropCitations(b).replaceAll("**", ""));
@@ -216,6 +231,7 @@ function buildPage({ slug, section, assessLeadWords, teamNote }) {
     about: { title: about.title, paragraphs: about.blocks.map((b) => dropCitations(b).replaceAll("**", "")) },
     when,
     assess,
+    ...(assessNote ? { assessNote } : {}),
     services: parent.services,
     treatment,
     beforeVisit,
