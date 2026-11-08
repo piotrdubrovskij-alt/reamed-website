@@ -151,6 +151,8 @@ Search Console — в аккаунте info@reamed.lt (`sc-domain:reamed.lt`), �
   - [x] Пачка 7: страницы разделов Alkūnė ir riešas, Klubas ir kirkšnis, Čiurna, pėda ir kulnas; po peties artroskopijos,
     po kelio artroskopijos, vidinio šoninio raiščio pažeidimas, galvos skausmas dėl kaklo, ūmus nugaros skausmas
     (итого 41 страница, все 11 разделов) — PR #39
+  - [x] Пачка 8: kaklo osteochondrozė, čiurnos patempimas, kulno atauga, spondilolistezė, stuburo kanalo stenozė,
+    kelio artrozė, kryžkaulio ir klubo sąnario skausmas — PR #41
   - [ ] Остальные темы всех разделов (решение Piotr 07.11: сначала закончить «Ką gydome», потом статьи)
 - [ ] **EN и RU** по адресам `/en`, `/ru` с hreflang (см. п. 8)
 - [ ] **Bing Webmaster + IndexNow, `llms.txt`**, Google Business, manodaktaras.lt, ссылки VU и федерации
