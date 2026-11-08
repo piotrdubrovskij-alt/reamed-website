@@ -161,6 +161,9 @@ Search Console — в аккаунте info@reamed.lt (`sc-domain:reamed.lt`), �
     skausmas sėdint, laikysenos problemos, užstrigęs kaklas, ribotas kaklo judrumas, kaklo trauma po avarijos); перенесены
     скриптами `scripts/import-condition-texts.mjs` и `verify-condition-texts.mjs` (Claude Code); темы Nugara и Kaklas
     все со страницами — PR #43
+  - [x] Пачка 11: тексты Piotr Petys (7 тем: rotatorių manžetės pažeidimas, dvigalvio raumens sausgyslės uždegimas,
+    kalcifikuojantis tendinitas, sustingęs petys, peties nestabilumas ir išnirimai, AC sąnario trauma, peties sąnario
+    artrozė); перенесены теми же скриптами; темы Petys все со страницами — PR #44
   - [ ] Остальные темы всех разделов (решение Piotr 07.11: сначала закончить «Ką gydome», потом статьи)
 - [ ] **EN и RU** по адресам `/en`, `/ru` с hreflang (см. п. 8)
 - [ ] **Bing Webmaster + IndexNow, `llms.txt`**, Google Business, manodaktaras.lt, ссылки VU и федерации
