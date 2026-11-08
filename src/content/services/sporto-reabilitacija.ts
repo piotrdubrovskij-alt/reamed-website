@@ -7,7 +7,7 @@ export const sportoReabilitacija: ServicePage = {
   slug: "sporto-reabilitacija",
   navTitle: "Sporto reabilitacija",
   meta: {
-    title: "Sporto reabilitacija Vilniuje: po traumų ir grįžimas į sportą | ReaMed",
+    title: "Sporto reabilitacija Vilniuje: grįžimas į sportą",
     description:
       "Sporto traumų reabilitacija Vilniaus centre: raumenų patempimai, raiščių traumos, sausgyslių perkrovos ir saugus grįžimas į sportą. Kineziterapeutai, dirbantys su Lietuvos rinktinėmis.",
   },

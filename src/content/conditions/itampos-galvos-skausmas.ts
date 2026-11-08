@@ -8,9 +8,9 @@ export const itamposGalvosSkausmas: ConditionPage = {
   section: "kaklo-skausmas",
   navTitle: "Įtampos galvos skausmas",
   meta: {
-    title: "Įtampos galvos skausmas: kodėl spaudžia galvą ir kas padeda | ReaMed",
+    title: "Įtampos galvos skausmas: kodėl spaudžia galvą ir kas padeda",
     description:
-      "Galvą spaudžia lyg lankas, skauda pakaušį ir sprandą? Įtampos galvos skausmas: priežastys, kada kreiptis į gydytoją, kaip padeda kineziterapija. Vilniaus centre.",
+      "Galvą spaudžia lyg lankas, skauda pakaušį ir sprandą? Įtampos galvos skausmas: priežastys, kada kreiptis į gydytoją, kaip padeda kineziterapija. Be siuntimo.",
   },
   conditionName: "Įtampos tipo galvos skausmas",
   hero: {
@@ -89,7 +89,7 @@ export const itamposGalvosSkausmas: ConditionPage = {
   ],
   reviews: "kaklo-skausmas",
   sources: [TTH_EFNS, NECK_PAIN_CPG],
-  reviewed: null,
+  reviewed: { by: "mangirdas-kazacenko", date: "2026-11-08" },
   related: [
     { href: "/ka-gydome/kaklo-skausmas", label: "Kaklo skausmas" },
     { href: "/ka-gydome/cervikalgija", label: "Cervikalgija" },

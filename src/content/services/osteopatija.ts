@@ -15,7 +15,7 @@ export const osteopatija: ServicePage = {
   slug: "osteopatija",
   navTitle: "Osteopatija",
   meta: {
-    title: "Osteopatas Vilniuje: kas yra osteopatija ir kada ji padeda | ReaMed",
+    title: "Osteopatas Vilniuje: kas yra osteopatija ir kada ji padeda",
     description:
       "Osteopatija Vilniaus centre: struktūrinės, kraniosakralinės ir visceralinės technikos nugaros, kaklo ir sąnarių skausmui, be pažadų išgydyti viską. Ką rodo tyrimai, kaina.",
   },

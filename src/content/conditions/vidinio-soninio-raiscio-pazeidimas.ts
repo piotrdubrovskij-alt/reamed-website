@@ -8,9 +8,9 @@ export const vidinioSoninioRaiscioPazeidimas: ConditionPage = {
   section: "kelio-skausmas",
   navTitle: "Vidinio šoninio raiščio pažeidimas",
   meta: {
-    title: "Kelio vidinio šoninio raiščio patempimas ir plyšimas: gydymas | ReaMed",
+    title: "Kelio vidinio šoninio raiščio patempimas ir plyšimas",
     description:
-      "Po traumos skauda kelio vidinę pusę? Vidinio šoninio raiščio patempimas ar plyšimas: simptomai, kiek gyja, kada reikia operacijos. Kineziterapija Vilniaus centre be siuntimo.",
+      "Po traumos skauda kelio vidinę pusę? Vidinio šoninio raiščio patempimas ar plyšimas: simptomai, kiek gyja, kada reikia operacijos. Vilniaus centre, be siuntimo.",
   },
   conditionName: "Kelio vidinio šoninio raiščio pažeidimas",
   hero: {
@@ -101,7 +101,7 @@ export const vidinioSoninioRaiscioPazeidimas: ConditionPage = {
   ],
   reviews: "kelio-skausmas",
   sources: [MCL_MANAGEMENT, MCL_ACL_META],
-  reviewed: null,
+  reviewed: { by: "kotryna-kairyte", date: "2026-11-08" },
   related: [
     { href: "/ka-gydome/kelio-skausmas", label: "Kelio skausmas" },
     { href: "/ka-gydome/priekinio-kryzminio-raiscio-plysimas", label: "Priekinio kryžminio raiščio plyšimas" },

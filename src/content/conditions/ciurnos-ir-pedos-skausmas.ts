@@ -11,7 +11,7 @@ export const ciurnosIrPedosSkausmas: ConditionPage = {
   meta: {
     title: "Čiurnos, pėdos ir kulno skausmas: gydymas Vilniuje | ReaMed",
     description:
-      "Skauda kulną rytais, pasisuko koja ar skauda Achilo sausgyslę? Plantarinis fascitas, čiurnos patempimas, Achilo tendinopatija: kas padeda. Kineziterapija Vilniaus centre be siuntimo.",
+      "Skauda kulną rytais, pasisuko koja ar skauda Achilo sausgyslę? Plantarinis fascitas, čiurnos patempimas, Achilo tendinopatija: kas padeda. Be siuntimo.",
   },
   conditionName: "Čiurnos, pėdos ir kulno skausmas",
   hero: {
@@ -110,7 +110,7 @@ export const ciurnosIrPedosSkausmas: ConditionPage = {
     { q: "Ar reikia siuntimo?", a: "Ne. ReaMed yra privati klinika, registruojatės tiesiogiai." },
   ],
   sources: [ANKLE_SPRAIN_GUIDELINE, HEEL_CPG, ACHILLES_CPG, PEACE_LOVE_2020],
-  reviewed: null,
+  reviewed: { by: "piotr-dubrovskij", date: "2026-11-08" },
   related: [
     { href: "/ka-gydome/plantarinis-fascitas", label: "Plantarinis fascitas" },
     { href: "/ka-gydome/achilo-tendinopatija", label: "Achilo tendinopatija" },

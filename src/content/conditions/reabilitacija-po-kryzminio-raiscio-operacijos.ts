@@ -8,9 +8,9 @@ export const reabilitacijaPoKryzminioRaiscioOperacijos: ConditionPage = {
   section: "atsistatymas-po-operaciju",
   navTitle: "Po kryžminio raiščio rekonstrukcijos",
   meta: {
-    title: "Reabilitacija po kryžminio raiščio operacijos: etapai ir trukmė | ReaMed",
+    title: "Reabilitacija po kryžminio raiščio operacijos: etapai",
     description:
-      "Kiek trunka reabilitacija po priekinio kryžminio raiščio rekonstrukcijos, kada galima bėgti ir grįžti į sportą. Etapai pagal tikslus. Privati klinika Vilniuje, be siuntimo.",
+      "Kiek trunka reabilitacija po priekinio kryžminio raiščio rekonstrukcijos, kada galima bėgti ir grįžti į sportą. Etapai pagal tikslus. Vilniuje, be siuntimo.",
   },
   conditionName: "Būklė po priekinio kryžminio raiščio rekonstrukcijos",
   hero: {
@@ -94,7 +94,7 @@ export const reabilitacijaPoKryzminioRaiscioOperacijos: ConditionPage = {
   ],
   reviews: "atsistatymas-po-operaciju",
   sources: [VAN_MELICK_2016, GRINDEM_2016, ARDERN_2016],
-  reviewed: null,
+  reviewed: { by: "kotryna-kairyte", date: "2026-11-08" },
   related: [
     { href: "/ka-gydome/priekinio-kryzminio-raiscio-plysimas", label: "Priekinio kryžminio raiščio plyšimas" },
     { href: "/ka-gydome/kelio-skausmas", label: "Kelio skausmas" },

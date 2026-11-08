@@ -8,7 +8,7 @@ export const pritraukiamujuRaumenuPatempimas: ConditionPage = {
   section: "sporto-traumos",
   navTitle: "Pritraukiamųjų raumenų patempimas",
   meta: {
-    title: "Pritraukiamųjų raumenų patempimas ir kirkšnies skausmas sportininkams | ReaMed",
+    title: "Pritraukiamųjų raumenų patempimas ir kirkšnies skausmas",
     description:
       "Skauda kirkšnį ar šlaunies vidinę pusę po spyrio, čiuožimo ar krypties keitimo? Kaip gydomas pritraukiamųjų raumenų patempimas ir kiek trunka grįžimas į sportą.",
   },
@@ -98,7 +98,7 @@ export const pritraukiamujuRaumenuPatempimas: ConditionPage = {
   ],
   reviews: "sporto-traumos",
   sources: [SERNER_2020, HAROY_2019, DOHA_2015, EKSTRAND_2011],
-  reviewed: null,
+  reviewed: { by: "piotr-dubrovskij", date: "2026-11-08" },
   related: [
     { href: "/ka-gydome/raumenu-patempimas", label: "Raumenų patempimai ir plyšimai" },
     { href: "/ka-gydome/slaunies-dvigalvio-raumens-patempimas", label: "Šlaunies dvigalvio raumens patempimas" },

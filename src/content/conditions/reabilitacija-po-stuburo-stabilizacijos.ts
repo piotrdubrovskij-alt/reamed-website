@@ -9,7 +9,7 @@ export const reabilitacijaPoStuburoStabilizacijos: ConditionPage = {
   meta: {
     title: "Reabilitacija po stuburo stabilizacijos Vilniuje | ReaMed",
     description:
-      "Atsistatymas po stuburo stabilizacijos ir spondilodezės. Saugus judėjimas, kasdienė veikla ir krūvio didinimas pagal chirurgo planą. Privati reabilitacija Vilniuje be siuntimo.",
+      "Atsistatymas po stuburo stabilizacijos ir spondilodezės. Saugus judėjimas, kasdienė veikla ir krūvio didinimas pagal chirurgo planą. Vilniuje, be siuntimo.",
   },
   conditionName: "Būklė po stuburo stabilizacijos operacijos",
   hero: {
@@ -162,7 +162,7 @@ export const reabilitacijaPoStuburoStabilizacijos: ConditionPage = {
       url: "https://www.cuh.nhs.uk/patient-information/post-operative-recovery-following-lumbar-decompression-surgery/",
     },
   ],
-  reviewed: null,
+  reviewed: { by: "mangirdas-kazacenko", date: "2026-11-08" },
   related: [
     {
       href: "/ka-gydome/atsistatymas-po-operaciju",

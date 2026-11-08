@@ -8,9 +8,9 @@ export const raumenuPatempimas: ConditionPage = {
   section: "sporto-traumos",
   navTitle: "Raumenų patempimai ir plyšimai",
   meta: {
-    title: "Raumens patempimas ir plyšimas: simptomai, gydymas, trukmė | ReaMed",
+    title: "Raumens patempimas ir plyšimas: simptomai, gydymas, trukmė",
     description:
-      "Patempėte raumenį? Kaip atskirti patempimą nuo plyšimo, ką daryti pirmomis dienomis, kiek trunka gijimas ir kada grįžti į sportą. Kineziterapija Vilniaus centre.",
+      "Patempėte raumenį? Kaip atskirti patempimą nuo plyšimo, ką daryti pirmomis dienomis, kiek trunka gijimas ir kada grįžti į sportą. Vilniaus centre, be siuntimo.",
   },
   conditionName: "Raumens patempimas ir plyšimas",
   hero: {
@@ -95,7 +95,7 @@ export const raumenuPatempimas: ConditionPage = {
   ],
   reviews: "sporto-traumos",
   sources: [MUNICH_2013, EKSTRAND_2011, PEACE_LOVE_2020],
-  reviewed: null,
+  reviewed: { by: "piotr-dubrovskij", date: "2026-11-08" },
   related: [
     { href: "/ka-gydome/slaunies-dvigalvio-raumens-patempimas", label: "Šlaunies dvigalvio raumens patempimas" },
     { href: "/ka-gydome/pritraukiamuju-raumenu-patempimas", label: "Pritraukiamųjų raumenų patempimas" },

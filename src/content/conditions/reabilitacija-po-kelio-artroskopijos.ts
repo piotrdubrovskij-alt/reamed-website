@@ -11,7 +11,7 @@ export const reabilitacijaPoKelioArtroskopijos: ConditionPage = {
   meta: {
     title: "Reabilitacija po kelio artroskopijos Vilniuje | ReaMed",
     description:
-      "Kodėl po kelio operacijos skauda ir tinsta, kada galima vaikščioti, vairuoti ir sportuoti. Reabilitacija po kelio artroskopijos Vilniaus centre be siuntimo ir be eilių.",
+      "Kodėl po kelio operacijos skauda ir tinsta, kada galima vaikščioti, vairuoti ir sportuoti. Kineziterapija Vilniaus centre, be siuntimo.",
   },
   conditionName: "Būklė po kelio artroskopijos",
   hero: {
@@ -96,7 +96,7 @@ export const reabilitacijaPoKelioArtroskopijos: ConditionPage = {
   ],
   reviews: "atsistatymas-po-operaciju",
   sources: [KNEE_ARTHROSCOPY_GUIDELINE, KISE_2016, MENISCUS_CONSENSUS],
-  reviewed: null,
+  reviewed: { by: "piotr-dubrovskij", date: "2026-11-08" },
   related: [
     { href: "/ka-gydome/kelio-skausmas", label: "Kelio skausmas" },
     { href: "/ka-gydome/reabilitacija-po-menisko-operacijos", label: "Reabilitacija po menisko operacijos" },

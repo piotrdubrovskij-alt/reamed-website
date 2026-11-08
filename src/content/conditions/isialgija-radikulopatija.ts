@@ -7,9 +7,9 @@ export const isialgijaRadikulopatija: ConditionPage = {
   section: "nugaros-skausmas",
   navTitle: "Išialgija ir radikulopatija",
   meta: {
-    title: "Išialgija ir radikulopatija (sėdimojo nervo uždegimas): gydymas Vilniuje | ReaMed",
+    title: "Išialgija ir radikulopatija: sėdimojo nervo uždegimas",
     description:
-      "Skausmas plinta iš nugaros į koją, tirpsta pėda? Paaiškiname, kas yra išialgija ir radikulopatija, kaip ji gydoma be operacijos ir kada reikia skubiai pas gydytoją.",
+      "Skausmas plinta iš nugaros į koją, tirpsta pėda? Kas yra išialgija ir radikulopatija, kaip ji gydoma be operacijos ir kada skubiai pas gydytoją.",
   },
   conditionName: "Išialgija (juosmens radikulopatija)",
   hero: {
@@ -88,7 +88,7 @@ export const isialgijaRadikulopatija: ConditionPage = {
   ],
   reviews: "plintantis-skausmas",
   sources: [BACK_PAIN_CPG, ZHU_2025, CHIU_2015],
-  reviewed: null,
+  reviewed: { by: "piotr-dubrovskij", date: "2026-11-08" },
   related: [
     { href: "/ka-gydome/stuburo-isvarza", label: "Stuburo išvarža" },
     { href: "/ka-gydome/skausmas-nugaros-apacioje", label: "Skausmas nugaros apačioje" },

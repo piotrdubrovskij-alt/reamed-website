@@ -241,10 +241,13 @@ export function SourcesSection({
   sources,
   reviewed,
   related,
+  neighbours = [],
 }: {
   sources: Source[];
   reviewed: { by: SpecialistSlug; date: string } | null;
   related: { href: string; label: string }[];
+  /** Other pages of the same section (problem pages only). */
+  neighbours?: { href: string; label: string }[];
 }) {
   const reviewer = reviewed ? getSpecialistBySlug(reviewed.by) : undefined;
   return (
@@ -292,6 +295,20 @@ export function SourcesSection({
               </li>
             ))}
           </ol>
+          {neighbours.length > 0 && (
+            <div>
+              <h2 className="text-body font-medium">Kitos šio skyriaus temos</h2>
+              <ul className="mt-2 flex flex-wrap gap-x-7 gap-y-1">
+                {neighbours.map((r) => (
+                  <li key={r.href}>
+                    <Link href={r.href} className="link-action inline-flex items-center min-h-11 text-body">
+                      {r.label}
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          )}
           {related.length > 0 && (
             <div>
               <h2 className="text-body font-medium">Susiję puslapiai</h2>

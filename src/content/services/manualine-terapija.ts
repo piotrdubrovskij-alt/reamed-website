@@ -8,7 +8,7 @@ export const manualineTerapija: ServicePage = {
   slug: "manualine-terapija",
   navTitle: "Manualinė terapija",
   meta: {
-    title: "Manualinė terapija Vilniuje pagal Maitland koncepciją | ReaMed",
+    title: "Manualinė terapija Vilniuje pagal Maitland koncepciją",
     description:
       "Manualinė terapija Vilniaus centre: sąnarių mobilizacijos ir manipuliacijos pagal Maitland koncepciją, visada kartu su pratimais. Kada padeda, kaip vyksta, kaina. Siuntimo nereikia.",
   },

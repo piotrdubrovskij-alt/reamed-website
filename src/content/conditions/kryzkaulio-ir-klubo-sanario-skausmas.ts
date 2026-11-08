@@ -9,9 +9,9 @@ export const kryzkaulioIrKluboSanarioSkausmas: ConditionPage = {
   section: "nugaros-skausmas",
   navTitle: "Kryžkaulio ir klubo sąnario skausmas",
   meta: {
-    title: "Kryžkaulio ir klubo sąnario skausmas: simptomai ir gydymas | ReaMed",
+    title: "Kryžkaulio ir klubo sąnario skausmas: simptomai ir gydymas",
     description:
-      "Skauda vienoje pusėje juosmens apačioje ar sėdmenyje, šalia kryžkaulio? Kryžkaulio ir klubo sąnario skausmas: kaip atpažįstamas ir kas padeda. Kineziterapija Vilniaus centre be siuntimo.",
+      "Skauda vienoje pusėje juosmens apačioje ar sėdmenyje, šalia kryžkaulio? Kryžkaulio ir klubo sąnario skausmas: kaip atpažįstamas ir kas padeda. Be siuntimo.",
   },
   conditionName: "Kryžkaulio ir klubo sąnario skausmas",
   hero: {
@@ -93,7 +93,7 @@ export const kryzkaulioIrKluboSanarioSkausmas: ConditionPage = {
   ],
   reviews: "nugaros-skausmas",
   sources: [LASLETT_2005, BACK_PAIN_CPG],
-  reviewed: null,
+  reviewed: { by: "mangirdas-kazacenko", date: "2026-11-08" },
   related: [
     { href: "/ka-gydome/nugaros-skausmas", label: "Nugaros skausmas" },
     { href: "/ka-gydome/skausmas-nugaros-apacioje", label: "Skausmas nugaros apačioje" },

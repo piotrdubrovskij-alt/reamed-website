@@ -8,9 +8,9 @@ export const grizimasISportaPoTraumos: ConditionPage = {
   section: "sporto-traumos",
   navTitle: "Grįžimas į sportą po traumos",
   meta: {
-    title: "Grįžimas į sportą po traumos ar operacijos: kada ir kaip saugu | ReaMed",
+    title: "Grįžimas į sportą po traumos ar operacijos: kada saugu",
     description:
-      "Kada saugu grįžti į sportą po traumos ar operacijos? Etapai, testai ir kriterijai, kurie mažina pakartotinės traumos riziką. Sporto reabilitacija Vilniaus centre.",
+      "Kada saugu grįžti į sportą po traumos ar operacijos? Etapai, testai ir kriterijai, kurie mažina pakartotinės traumos riziką. Sporto reabilitacija Vilniuje.",
   },
   conditionName: "Grįžimas į sportą po traumos",
   hero: {
@@ -92,7 +92,7 @@ export const grizimasISportaPoTraumos: ConditionPage = {
   ],
   reviews: "sporto-traumos",
   sources: [ARDERN_2016, GRINDEM_2016, SERNER_2020, LAUERSEN_2014],
-  reviewed: null,
+  reviewed: { by: "kotryna-kairyte", date: "2026-11-08" },
   related: [
     { href: "/ka-gydome/reabilitacija-po-kryzminio-raiscio-operacijos", label: "Po kryžminio raiščio rekonstrukcijos" },
     { href: "/ka-gydome/sporto-traumos", label: "Sporto traumos" },

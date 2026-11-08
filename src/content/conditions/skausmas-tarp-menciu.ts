@@ -150,7 +150,7 @@ export const skausmasTarpMenciu: ConditionPage = {
       url: "https://www.healthdirect.gov.au/symptoms/aches-and-pains/upper-back-thoracic-pain"
     }
   ],
-  reviewed: null,
+  reviewed: { by: "piotr-dubrovskij", date: "2026-11-08" },
   related: [
     {
       href: "/ka-gydome/nugaros-skausmas",

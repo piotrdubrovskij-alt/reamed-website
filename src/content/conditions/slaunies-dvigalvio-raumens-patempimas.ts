@@ -8,9 +8,9 @@ export const slauniesDvigalvioRaumensPatempimas: ConditionPage = {
   section: "sporto-traumos",
   navTitle: "Šlaunies dvigalvio raumens patempimas",
   meta: {
-    title: "Šlaunies užpakalinės pusės raumens patempimas: gydymas ir grįžimas | ReaMed",
+    title: "Šlaunies užpakalinės pusės raumens patempimas: gydymas",
     description:
-      "Sprintuojant „trūktelėjo“ šlaunies užpakalinėje pusėje? Kaip gydomas dvigalvio raumens patempimas, kiek tai trunka ir kaip sumažinti pasikartojimo riziką. Vilniaus centre.",
+      "Sprintuojant „trūktelėjo“ šlaunies užpakalinėje pusėje? Kaip gydomas dvigalvio raumens patempimas, kiek tai trunka ir kaip sumažinti pasikartojimo riziką.",
   },
   conditionName: "Šlaunies užpakalinės pusės raumenų patempimas",
   hero: {
@@ -97,7 +97,7 @@ export const slauniesDvigalvioRaumensPatempimas: ConditionPage = {
   ],
   reviews: "sporto-traumos",
   sources: [ASKLING_2013, VAN_DYK_2019, EKSTRAND_2011],
-  reviewed: null,
+  reviewed: { by: "piotr-dubrovskij", date: "2026-11-08" },
   related: [
     { href: "/ka-gydome/raumenu-patempimas", label: "Raumenų patempimai ir plyšimai" },
     { href: "/ka-gydome/pritraukiamuju-raumenu-patempimas", label: "Pritraukiamųjų raumenų patempimas" },

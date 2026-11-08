@@ -9,9 +9,9 @@ export const sportoTraumos: ConditionPage = {
   navTitle: "Sporto traumos",
   topicsTitle: "Su kuo dirbame",
   meta: {
-    title: "Sporto traumos: reabilitacija ir grįžimas į sportą Vilniuje | ReaMed",
+    title: "Sporto traumos: reabilitacija ir grįžimas į sportą Vilniuje",
     description:
-      "Patempėte raumenį ar susižeidėte per treniruotę? Kaip gydome sporto traumas, kiek trunka atsistatymas ir kada saugu grįžti į sportą. Vilniaus centre, be siuntimo.",
+      "Patempėte raumenį ar susižeidėte per treniruotę? Kaip gydome sporto traumas, kiek trunka atsistatymas ir kada saugu grįžti į sportą. Vilniuje, be siuntimo.",
   },
   conditionName: "Sporto traumos",
   hero: {
@@ -94,7 +94,7 @@ export const sportoTraumos: ConditionPage = {
   ],
   reviews: "sporto-traumos",
   sources: [EKSTRAND_2011, PEACE_LOVE_2020, LAUERSEN_2014, ARDERN_2016],
-  reviewed: null,
+  reviewed: { by: "piotr-dubrovskij", date: "2026-11-08" },
   related: [
     { href: "/ka-gydome/grizimas-i-sporta-po-traumos", label: "Grįžimas į sportą po traumos" },
     { href: "/ka-gydome/priekinio-kryzminio-raiscio-plysimas", label: "Priekinio kryžminio raiščio plyšimas" },

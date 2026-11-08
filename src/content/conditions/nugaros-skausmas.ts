@@ -95,7 +95,7 @@ export const nugarosSkausmas: ConditionPage = {
   ],
   reviews: "nugaros-skausmas",
   sources: [BACK_PAIN_CPG, LBP_LANCET_2018],
-  reviewed: null,
+  reviewed: { by: "piotr-dubrovskij", date: "2026-11-08" },
   related: [
     { href: "/ka-gydome/stuburo-isvarza", label: "Stuburo išvarža" },
     { href: "/ka-gydome/isialgija-radikulopatija", label: "Išialgija ir radikulopatija" },

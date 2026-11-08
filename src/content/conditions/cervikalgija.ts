@@ -10,7 +10,7 @@ export const cervikalgija: ConditionPage = {
   meta: {
     title: "Cervikalgija: kas tai yra ir kaip gydoma | ReaMed",
     description:
-      "Gydytojas parašė „cervikalgija“? Tai kaklo skausmas. Kodėl jis atsiranda, kiek trunka, kokie pratimai ir gydymas padeda. Kineziterapija Vilniaus centre, be siuntimo.",
+      "Gydytojas parašė „cervikalgija“? Tai kaklo skausmas. Kodėl jis atsiranda, kiek trunka, kokie pratimai ir gydymas padeda. Kineziterapija Vilniuje, be siuntimo.",
   },
   conditionName: "Cervikalgija (kaklo skausmas)",
   hero: {
@@ -85,7 +85,7 @@ export const cervikalgija: ConditionPage = {
   ],
   reviews: "kaklo-skausmas",
   sources: [NECK_PAIN_CPG],
-  reviewed: null,
+  reviewed: { by: "piotr-dubrovskij", date: "2026-11-08" },
   related: [
     { href: "/ka-gydome/kaklo-skausmas", label: "Kaklo skausmas" },
     { href: "/ka-gydome/itampos-galvos-skausmas", label: "Įtampos galvos skausmas" },

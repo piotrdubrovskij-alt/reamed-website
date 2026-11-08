@@ -8,9 +8,9 @@ export const kakloRadikulopatija: ConditionPage = {
   section: "kaklo-skausmas",
   navTitle: "Kaklo radikulopatija",
   meta: {
-    title: "Kaklo radikulopatija ir išvarža: skausmas plinta į ranką | ReaMed",
+    title: "Kaklo radikulopatija ir išvarža: skausmas plinta į ranką",
     description:
-      "Skausmas iš kaklo plinta į petį ir ranką, tirpsta pirštai? Kas yra kaklo radikulopatija, kiek trunka ir kaip gydoma be operacijos. Kineziterapija Vilniaus centre.",
+      "Skausmas iš kaklo plinta į petį ir ranką, tirpsta pirštai? Kas yra kaklo radikulopatija, kiek trunka ir kaip gydoma be operacijos. Vilniaus centre, be siuntimo.",
   },
   conditionName: "Kaklo radikulopatija",
   hero: {
@@ -86,7 +86,7 @@ export const kakloRadikulopatija: ConditionPage = {
   ],
   reviews: "plintantis-skausmas",
   sources: [CERVICAL_RADICULOPATHY_REVIEW, NECK_PAIN_CPG],
-  reviewed: null,
+  reviewed: { by: "piotr-dubrovskij", date: "2026-11-08" },
   related: [
     { href: "/ka-gydome/kaklo-skausmas", label: "Kaklo skausmas" },
     { href: "/ka-gydome/isialgija-radikulopatija", label: "Išialgija ir radikulopatija" },

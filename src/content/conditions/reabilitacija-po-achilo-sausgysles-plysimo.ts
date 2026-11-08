@@ -9,7 +9,7 @@ export const reabilitacijaPoAchiloSausgyslesPlysimo: ConditionPage = {
   meta: {
     title: "Reabilitacija po Achilo sausgyslės plyšimo | ReaMed",
     description:
-      "Atsistatymas po Achilo sausgyslės plyšimo su operacija ar be jos. Įtvaras, eisena, blauzdos jėga ir grįžimas į sportą. Privati reabilitacija Vilniuje be siuntimo.",
+      "Atsistatymas po Achilo sausgyslės plyšimo su operacija ar be jos. Įtvaras, eisena, blauzdos jėga ir grįžimas į sportą. Kineziterapija Vilniuje, be siuntimo.",
   },
   conditionName: "Būklė po Achilo sausgyslės plyšimo",
   hero: {
@@ -160,7 +160,7 @@ export const reabilitacijaPoAchiloSausgyslesPlysimo: ConditionPage = {
       url: "https://www.uclh.nhs.uk/patients-and-visitors/patient-information-pages/walking-boot-advice-patients",
     },
   ],
-  reviewed: null,
+  reviewed: { by: "piotr-dubrovskij", date: "2026-11-08" },
   related: [
     {
       href: "/ka-gydome/atsistatymas-po-operaciju",

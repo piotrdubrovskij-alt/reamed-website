@@ -9,7 +9,7 @@ export const reabilitacijaPoZastikaulioLuzio: ConditionPage = {
   meta: {
     title: "Reabilitacija po žastikaulio lūžio Vilniuje | ReaMed",
     description:
-      "Žastikaulio lūžis ties petimi, kaulo viduryje ar prie alkūnės: reabilitacijos etapai, judesio atkūrimas ir saugus krūvis. Privati reabilitacija Vilniuje be siuntimo.",
+      "Žastikaulio lūžis ties petimi, kaulo viduryje ar prie alkūnės: reabilitacijos etapai, judesio atkūrimas ir saugus krūvis. Kineziterapija Vilniuje, be siuntimo.",
   },
   conditionName: "Būklė po žastikaulio lūžio",
   hero: {
@@ -159,7 +159,7 @@ export const reabilitacijaPoZastikaulioLuzio: ConditionPage = {
       url: "https://112.lt/kada-skambinti-greitoji-medicinos-pagalba/",
     },
   ],
-  reviewed: null,
+  reviewed: { by: "mangirdas-kazacenko", date: "2026-11-08" },
   related: [
     {
       href: "/ka-gydome/atsistatymas-po-operaciju",

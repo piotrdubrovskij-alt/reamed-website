@@ -7,7 +7,7 @@ export const pooperacineReabilitacija: ServicePage = {
   slug: "pooperacine-reabilitacija",
   navTitle: "Pooperacinė reabilitacija",
   meta: {
-    title: "Reabilitacija po operacijos Vilniuje: privati, be siuntimo | ReaMed",
+    title: "Reabilitacija po operacijos Vilniuje: privati, be siuntimo",
     description:
       "Privati reabilitacija po kelio, peties, čiurnos ir stuburo operacijų Vilniaus centre. Pradedame anksti, pagal chirurgo nurodymus, be siuntimo ir be eilių. Etapai, kaina, specialistai.",
   },

@@ -9,9 +9,9 @@ export const ciurnosPatempimas: ConditionPage = {
   section: "ciurnos-ir-pedos-skausmas",
   navTitle: "Čiurnos patempimas",
   meta: {
-    title: "Čiurnos patempimas ir raiščių plyšimas: ką daryti, gydymas | ReaMed",
+    title: "Čiurnos patempimas ir raiščių plyšimas: ką daryti, gydymas",
     description:
-      "Pasisuko koja, tinsta ir skauda čiurną? Ką daryti pirmomis dienomis, kada reikia rentgeno, kaip atsistatyti ir kad nesikartotų. Kineziterapija Vilniaus centre be siuntimo.",
+      "Pasisuko koja, tinsta ir skauda čiurną? Ką daryti pirmomis dienomis, kada reikia rentgeno, kaip atsistatyti ir kad nesikartotų. Vilniaus centre, be siuntimo.",
   },
   conditionName: "Čiurnos raiščių patempimas",
   hero: {
@@ -91,7 +91,7 @@ export const ciurnosPatempimas: ConditionPage = {
   ],
   reviews: "sporto-traumos",
   sources: [ANKLE_SPRAIN_GUIDELINE, ANKLE_CPG_2021, PEACE_LOVE_2020],
-  reviewed: null,
+  reviewed: { by: "piotr-dubrovskij", date: "2026-11-08" },
   related: [
     { href: "/ka-gydome/ciurnos-ir-pedos-skausmas", label: "Čiurnos, pėdos ir kulno skausmas" },
     { href: "/ka-gydome/sporto-traumos", label: "Sporto traumos" },

@@ -10,7 +10,7 @@ export const atsistatymasPoOperaciju: ConditionPage = {
   navTitle: "Po operacijų",
   topicsTitle: "Po kokių operacijų ir lūžių padedame",
   meta: {
-    title: "Reabilitacija po operacijų Vilniuje: kelis, petys, čiurna, stuburas | ReaMed",
+    title: "Reabilitacija po operacijų Vilniuje: kelis, petys, stuburas",
     description:
       "Privati reabilitacija po kelio, peties, čiurnos, klubo ir stuburo operacijų bei lūžių. Pradedame anksti, kai leidžia chirurgas, be siuntimo ir be eilės.",
   },
@@ -96,7 +96,7 @@ export const atsistatymasPoOperaciju: ConditionPage = {
   ],
   reviews: "atsistatymas-po-operaciju",
   sources: [VAN_MELICK_2016, ANKLE_FRACTURE_REHAB, MENISCUS_CONSENSUS, ARDERN_2016],
-  reviewed: null,
+  reviewed: { by: "piotr-dubrovskij", date: "2026-11-08" },
   related: [
     { href: "/ka-gydome/kelio-skausmas", label: "Kelio skausmas" },
     { href: "/ka-gydome/ankstyva-reabilitacija-po-operacijos", label: "Ankstyva reabilitacija su gipsu ar įtvaru" },

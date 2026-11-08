@@ -151,7 +151,7 @@ export const nugarosSkausmasSedint: ConditionPage = {
       url: "https://www.worcsacute.nhs.uk/leaflets/lower-back-pain-a-self-management-guide/"
     }
   ],
-  reviewed: null,
+  reviewed: { by: "erikas-jatkauskas", date: "2026-11-08" },
   related: [
     {
       href: "/ka-gydome/nugaros-skausmas",

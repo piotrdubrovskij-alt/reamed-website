@@ -8,9 +8,9 @@ export const subakromialinisSkausmoSindromas: ConditionPage = {
   section: "peties-problemos",
   navTitle: "Subakromialinis skausmo sindromas",
   meta: {
-    title: "Skauda petį keliant ranką: subakromialinis skausmo sindromas | ReaMed",
+    title: "Skauda petį keliant ranką: subakromialinis skausmo sindromas",
     description:
-      "Petį skauda keliant ranką, gulint ant šono ar siekiant virš galvos? Subakromialinis skausmo sindromas: kas tai ir kaip gydoma be operacijos. Kineziterapija Vilniuje.",
+      "Petį skauda keliant ranką, gulint ant šono ar siekiant virš galvos? Subakromialinis skausmo sindromas: kas tai ir kaip gydoma be operacijos. Be siuntimo.",
   },
   conditionName: "Subakromialinis skausmo sindromas",
   hero: {
@@ -87,7 +87,7 @@ export const subakromialinisSkausmoSindromas: ConditionPage = {
   ],
   reviews: "peties-problemos",
   sources: [SAPS_GUIDELINE, CSAW_2018],
-  reviewed: null,
+  reviewed: { by: "piotr-dubrovskij", date: "2026-11-08" },
   related: [
     { href: "/ka-gydome/peties-problemos", label: "Peties skausmas" },
     { href: "/ka-gydome/kaklo-skausmas", label: "Kaklo skausmas" },

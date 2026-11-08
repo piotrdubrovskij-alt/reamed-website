@@ -7,9 +7,9 @@ export const stuburoIsvarza: ConditionPage = {
   section: "nugaros-skausmas",
   navTitle: "Stuburo išvarža",
   meta: {
-    title: "Stuburo išvarža: simptomai ir gydymas be operacijos Vilniuje | ReaMed",
+    title: "Stuburo išvarža: simptomai ir gydymas be operacijos Vilniuje",
     description:
-      "Kas yra stuburo (disko) išvarža, kokie jos simptomai, ar ji praeina be operacijos ir kada reikia skubiai pas gydytoją. Kineziterapija Vilniaus centre, siuntimo nereikia.",
+      "Kas yra stuburo (disko) išvarža, kokie jos simptomai, ar ji praeina be operacijos ir kada reikia skubiai pas gydytoją. Kineziterapija Vilniuje, be siuntimo.",
   },
   conditionName: "Stuburo (tarpslankstelinio disko) išvarža",
   hero: {
@@ -88,7 +88,7 @@ export const stuburoIsvarza: ConditionPage = {
   ],
   reviews: "nugaros-skausmas",
   sources: [BACK_PAIN_CPG, CHIU_2015, RASHED_2023, BRINJIKJI_2015],
-  reviewed: null,
+  reviewed: { by: "piotr-dubrovskij", date: "2026-11-08" },
   related: [
     { href: "/ka-gydome/isialgija-radikulopatija", label: "Radikulopatija ir išialgija" },
     { href: "/ka-gydome/skausmas-nugaros-apacioje", label: "Skausmas nugaros apačioje" },

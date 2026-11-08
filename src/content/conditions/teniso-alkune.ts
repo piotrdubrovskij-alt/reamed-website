@@ -9,9 +9,9 @@ export const tenisoAlkune: ConditionPage = {
   section: "alkunes-ir-rieso-skausmas",
   navTitle: "Teniso alkūnė",
   meta: {
-    title: "Teniso alkūnė (lateralinis epikondilitas): simptomai ir gydymas | ReaMed",
+    title: "Teniso alkūnė (lateralinis epikondilitas): gydymas",
     description:
-      "Skauda alkūnės išorę keliant puodelį ar spaudžiant ranką? Teniso alkūnė: kodėl atsiranda, kas padeda ir kodėl injekcija ne visada gera mintis. Kineziterapija Vilniaus centre.",
+      "Skauda alkūnės išorę keliant puodelį ar spaudžiant ranką? Teniso alkūnė: kodėl atsiranda, kas padeda ir kodėl injekcija ne visada gera mintis. Be siuntimo.",
   },
   conditionName: "Teniso alkūnė (lateralinis epikondilitas)",
   hero: {
@@ -103,7 +103,7 @@ export const tenisoAlkune: ConditionPage = {
   ],
   reviews: "tendinopatijos",
   sources: [COOMBES_2013, LATERAL_ELBOW_CPG, COOMBES_2010],
-  reviewed: null,
+  reviewed: { by: "piotr-dubrovskij", date: "2026-11-08" },
   related: [
     { href: "/ka-gydome/tendinopatijos", label: "Sausgyslių uždegimas ir tendinopatija" },
     { href: "/ka-gydome/rieso-kanalo-sindromas", label: "Riešo kanalo sindromas" },

@@ -144,7 +144,7 @@ export const alkunesSustingimasPoTraumos: ConditionPage = {
       url: "https://pmc.ncbi.nlm.nih.gov/articles/PMC4950468/"
     }
   ],
-  reviewed: null,
+  reviewed: { by: "piotr-dubrovskij", date: "2026-11-08" },
   related: [
     {
       href: "/ka-gydome/alkunes-ir-rieso-skausmas",

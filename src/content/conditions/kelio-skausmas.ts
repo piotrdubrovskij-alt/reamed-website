@@ -11,7 +11,7 @@ export const kelioSkausmas: ConditionPage = {
   meta: {
     title: "Kelio skausmas: priežastys ir gydymas Vilniuje | ReaMed",
     description:
-      "Skauda kelį lipant laiptais, tupiant ar po traumos? Raiščių ir menisko pažeidimai, bėgiko kelis, artrozė. Kineziterapija Vilniaus centre, be siuntimo ir be eilės.",
+      "Skauda kelį lipant laiptais, tupiant ar po traumos? Raiščių ir menisko pažeidimai, bėgiko kelis, artrozė. Kineziterapija Vilniaus centre, be siuntimo.",
   },
   conditionName: "Kelio skausmas",
   hero: {
@@ -91,7 +91,7 @@ export const kelioSkausmas: ConditionPage = {
   ],
   reviews: "kelio-skausmas",
   sources: [OARSI_2019, PFP_CPG, ACL_RUPTURE_RECOMMENDATIONS, ESSKA_DEGENERATIVE_MENISCUS],
-  reviewed: null,
+  reviewed: { by: "piotr-dubrovskij", date: "2026-11-08" },
   related: [
     { href: "/ka-gydome/menisko-plysimas", label: "Menisko plyšimas" },
     { href: "/ka-gydome/priekinio-kryzminio-raiscio-plysimas", label: "Priekinio kryžminio raiščio plyšimas" },

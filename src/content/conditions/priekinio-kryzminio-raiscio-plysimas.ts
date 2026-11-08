@@ -7,7 +7,7 @@ export const priekinioKryzminioRaiscioPlysimas: ConditionPage = {
   section: "kelio-skausmas",
   navTitle: "Priekinio kryžminio raiščio plyšimas",
   meta: {
-    title: "Priekinio kryžminio raiščio plyšimas: gydymas su operacija ir be jos | ReaMed",
+    title: "Priekinio kryžminio raiščio plyšimas: ar reikia operacijos",
     description:
       "Plyšo priekinis kryžminis raištis? Kada reikia operacijos, kada užtenka reabilitacijos, ką daryti iki operacijos. Kineziterapija Vilniaus centre, be siuntimo.",
   },
@@ -88,7 +88,7 @@ export const priekinioKryzminioRaiscioPlysimas: ConditionPage = {
   ],
   reviews: "kelio-skausmas",
   sources: [FROBELL_2010, ACL_RUPTURE_RECOMMENDATIONS, VAN_MELICK_2016],
-  reviewed: null,
+  reviewed: { by: "piotr-dubrovskij", date: "2026-11-08" },
   related: [
     { href: "/ka-gydome/reabilitacija-po-kryzminio-raiscio-operacijos", label: "Reabilitacija po kryžminio raiščio operacijos" },
     { href: "/ka-gydome/menisko-plysimas", label: "Menisko plyšimas" },

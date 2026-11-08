@@ -7,9 +7,9 @@ export const skausmasNugarosApacioje: ConditionPage = {
   section: "nugaros-skausmas",
   navTitle: "Skausmas nugaros apačioje",
   meta: {
-    title: "Skauda nugaros apačią: priežastys ir gydymas Vilniuje | ReaMed",
+    title: "Skauda nugaros apačią: priežastys ir gydymas Vilniuje",
     description:
-      "Juosmens skausmas, lumbago ar skausmas nugaros apačioje: dažniausios priežastys, ką daryti pirmomis dienomis, kada kreiptis skubiai. Kineziterapija Vilniaus centre, siuntimo nereikia.",
+      "Juosmens skausmas, lumbago ar skausmas nugaros apačioje: dažniausios priežastys, ką daryti pirmomis dienomis, kada kreiptis skubiai. Vilniuje, be siuntimo.",
   },
   conditionName: "Juosmens skausmas (skausmas nugaros apačioje)",
   hero: {
@@ -83,7 +83,7 @@ export const skausmasNugarosApacioje: ConditionPage = {
   ],
   reviews: "nugaros-skausmas",
   sources: [BACK_PAIN_CPG, BRINJIKJI_2015],
-  reviewed: null,
+  reviewed: { by: "mangirdas-kazacenko", date: "2026-11-08" },
   related: [
     { href: "/ka-gydome/stuburo-isvarza", label: "Stuburo išvarža" },
     { href: "/ka-gydome/isialgija-radikulopatija", label: "Radikulopatija ir išialgija" },

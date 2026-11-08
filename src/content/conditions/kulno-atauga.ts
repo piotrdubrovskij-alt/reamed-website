@@ -11,7 +11,7 @@ export const kulnoAtauga: ConditionPage = {
   meta: {
     title: "Kulno atauga (spuras): ar ji skauda ir kaip gydoma | ReaMed",
     description:
-      "Rentgene rado kulno ataugą ir skauda kulną? Kodėl atauga dažnai nėra skausmo priežastis, kas padeda ir kada reikia operacijos. Kineziterapija Vilniaus centre be siuntimo.",
+      "Rentgene rado kulno ataugą ir skauda kulną? Kodėl atauga dažnai nėra skausmo priežastis, kas padeda ir kada reikia operacijos. Vilniaus centre, be siuntimo.",
   },
   conditionName: "Kulno atauga",
   hero: {
@@ -88,7 +88,7 @@ export const kulnoAtauga: ConditionPage = {
     { q: "Ar reikia siuntimo?", a: "Ne. ReaMed yra privati klinika, registruojatės tiesiogiai." },
   ],
   sources: [KIRKPATRICK_2017, HEEL_CPG],
-  reviewed: null,
+  reviewed: { by: "kotryna-kairyte", date: "2026-11-08" },
   related: [
     { href: "/ka-gydome/plantarinis-fascitas", label: "Plantarinis fascitas" },
     { href: "/ka-gydome/ciurnos-ir-pedos-skausmas", label: "Čiurnos, pėdos ir kulno skausmas" },
