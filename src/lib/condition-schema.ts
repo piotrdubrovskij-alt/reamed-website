@@ -2,6 +2,7 @@ import type { ConditionPage } from "@/content/conditions/types";
 import { getSpecialistBySlug } from "@/lib/specialists";
 import { SITE_URL } from "@/lib/seo";
 import { sectionInfo } from "@/content/sections";
+import { sourceHref } from "@/content/conditions/types";
 
 // schema.org for a problem page: the page itself (MedicalWebPage about a MedicalCondition),
 // its questions (FAQPage) and the breadcrumb through its section. The clinic node lives in the root layout (#clinic).
@@ -34,14 +35,18 @@ export function conditionJsonLd(page: ConditionPage) {
               },
             }
           : {}),
-        citation: page.sources.map((s) => ({
-          "@type": "ScholarlyArticle",
-          name: s.title,
-          author: s.authors,
-          datePublished: String(s.year),
-          isPartOf: s.journal,
-          url: `https://doi.org/${s.doi}`,
-        })),
+        citation: page.sources.map((s) =>
+          s.doi
+            ? {
+                "@type": "ScholarlyArticle",
+                name: s.title,
+                author: s.authors,
+                datePublished: String(s.year),
+                isPartOf: s.journal,
+                url: sourceHref(s),
+              }
+            : { "@type": "WebPage", name: s.title, author: s.authors, url: sourceHref(s) },
+        ),
       },
       {
         "@type": "FAQPage",

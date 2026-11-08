@@ -1,7 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { ChevronDown, Phone } from "lucide-react";
-import type { Source } from "@/content/conditions/types";
+import { sourceHref, type Source } from "@/content/conditions/types";
 import type { Review, SpecialistSlug } from "@/data/reviews";
 import { GOOGLE_REVIEWS } from "@/data/reviews";
 import { getSpecialistBySlug } from "@/lib/specialists";
@@ -110,7 +110,7 @@ export function WarningSection({ id, title, note, items }: { id: string; title: 
           <h2 id={id} className="text-h3-m desk:text-h3 text-balance">
             {title}
           </h2>
-          <p className="mt-4 text-small text-graphite max-w-[36ch]">{note}</p>
+          {note && <p className="mt-4 text-small text-graphite max-w-[36ch]">{note}</p>}
         </div>
         <Dots items={items} dark />
       </div>
@@ -236,7 +236,7 @@ export function ReviewsSection({ reviews }: { reviews: Review[] }) {
   );
 }
 
-/** Sources with DOI, the reviewer (only once a specialist has approved the text), related pages. */
+/** Sources (DOI, or the page link when there is none), the reviewer (only once a specialist has approved the text), related pages. */
 export function SourcesSection({
   sources,
   reviewed,
@@ -267,10 +267,22 @@ export function SourcesSection({
         <div className="flex flex-col gap-10">
           <ol className="flex flex-col gap-3 text-small list-decimal pl-5 marker:text-graphite">
             {sources.map((s) => (
-              <li key={s.doi}>
-                {s.authors} {s.title} <i>{s.journal}</i>, {s.year}.{" "}
-                <a href={`https://doi.org/${s.doi}`} target="_blank" rel="noopener noreferrer" className="link-action break-all">
-                  doi:{s.doi}
+              <li key={sourceHref(s)}>
+                {s.authors} {s.title}
+                {s.journal ? (
+                  <>
+                    {" "}
+                    <i>{s.journal}</i>
+                    {s.year ? `, ${s.year}` : ""}.
+                  </>
+                ) : (
+                  <>
+                    {s.year ? `, ${s.year}` : ""}
+                    {/[.?!]$/.test(s.year ? "" : s.title) ? "" : "."}
+                  </>
+                )}{" "}
+                <a href={sourceHref(s)} target="_blank" rel="noopener noreferrer" className="link-action break-all">
+                  {s.doi ? `doi:${s.doi}` : new URL(sourceHref(s)).hostname.replace(/^www\./, "")}
                 </a>
               </li>
             ))}
