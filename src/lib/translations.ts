@@ -91,6 +91,9 @@ export const translations = {
     footer: {
       menu: "Apačios meniu",
       privacy: "Privatumo politika",
+      about: "Apie mus",
+      faq: "DUK",
+      noReferral: "Reabilitacija be siuntimo",
       map: "Atidaryti žemėlapį",
       mapLabel: "Atidaryti ReaMed vietą Google Maps",
     },
@@ -175,6 +178,9 @@ export const translations = {
     footer: {
       menu: "Footer menu",
       privacy: "Privacy policy",
+      about: "About us",
+      faq: "FAQ",
+      noReferral: "Rehabilitation without referral",
       map: "Open map",
       mapLabel: "Open ReaMed on Google Maps",
     },

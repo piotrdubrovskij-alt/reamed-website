@@ -1,9 +1,11 @@
 import Image from "next/image";
 import Link from "next/link";
 import { ChevronDown, Phone } from "lucide-react";
+import LinkedText from "@/components/g/LinkedText";
 import { sourceHref, type Source } from "@/content/conditions/types";
 import type { Review, SpecialistSlug } from "@/data/reviews";
 import { GOOGLE_REVIEWS } from "@/data/reviews";
+import { PAGE_LINK } from "@/lib/inline-links";
 import { getSpecialistBySlug } from "@/lib/specialists";
 import { translations } from "@/lib/translations";
 import { SPECIALIST_NAMES, firstSentences, formatRating, reviewsCountLabel, specialistPhoto } from "@/components/reviews/format";
@@ -156,22 +158,35 @@ export function TeamSection({ title, specialists, note }: { title: string; speci
   );
 }
 
-/** Questions: <details> works without script and stays in the HTML for search. */
-export function FaqSection({ faq }: { faq: { q: string; a: string }[] }) {
+/** Questions: <details> works without script and stays in the HTML for search. A page with several groups (/duk) gives each
+ *  its own title and id and alternates `tone`; answers may link to our pages. */
+export function FaqSection({
+  faq,
+  title = "Dažniausi klausimai",
+  id = "duk-h",
+  tone = "paper",
+}: {
+  faq: { q: string; a: string }[];
+  title?: string;
+  id?: string;
+  tone?: "paper" | "ground";
+}) {
   return (
-    <section aria-labelledby="duk-h" className="bg-paper section-y">
+    <section aria-labelledby={id} className={`${tone === "paper" ? "bg-paper" : "bg-ground"} section-y`}>
       <div className={`wrap ${twoCols}`}>
-        <h2 id="duk-h" className={h2}>
-          Dažniausi klausimai
+        <h2 id={id} className={h2}>
+          {title}
         </h2>
         <div className="flex flex-col gap-2">
           {faq.map((f) => (
-            <details key={f.q} className="group rounded-[24px] bg-ground px-6 desk:px-8 open:pb-6">
+            <details key={f.q} className={`group rounded-[24px] ${tone === "paper" ? "bg-ground" : "bg-paper"} px-6 desk:px-8 open:pb-6`}>
               <summary className="flex items-center justify-between gap-4 min-h-16 py-3 text-body desk:text-lead font-medium cursor-pointer list-none [&::-webkit-details-marker]:hidden">
                 {f.q}
                 <ChevronDown size={20} aria-hidden="true" className="shrink-0 transition-transform group-open:rotate-180 motion-reduce:transition-none" />
               </summary>
-              <p className="max-w-[62ch]">{f.a}</p>
+              <p className="max-w-[62ch]">
+                <LinkedText text={f.a} pattern={PAGE_LINK} />
+              </p>
             </details>
           ))}
         </div>
@@ -236,7 +251,8 @@ export function ReviewsSection({ reviews }: { reviews: Review[] }) {
   );
 }
 
-/** Sources (DOI, or the page link when there is none), the reviewer (only once a specialist has approved the text), related pages. */
+/** Sources (DOI, or the page link when there is none), the reviewer (only once a specialist has approved the text), related pages.
+ *  A standalone page without sources (/apie-mus, /duk) shows the related pages under the section heading. */
 export function SourcesSection({
   sources,
   reviewed,
@@ -255,7 +271,7 @@ export function SourcesSection({
       <div className={`wrap ${twoCols}`}>
         <div>
           <h2 id="saltiniai-h" className="text-h3-m desk:text-h3">
-            Šaltiniai
+            {sources.length > 0 ? "Šaltiniai" : "Susiję puslapiai"}
           </h2>
           {reviewer && reviewed && (
             <p className="mt-4 text-small text-graphite">
@@ -268,33 +284,35 @@ export function SourcesSection({
           )}
         </div>
         <div className="flex flex-col gap-10">
-          <ol className="flex flex-col gap-3 text-small list-decimal pl-5 marker:text-graphite">
-            {sources.map((s) => (
-              <li key={sourceHref(s)}>
-                {s.authors} {s.title}
-                {s.journal ? (
-                  <>
-                    {/[.?!]$/.test(s.title) ? "" : "."}{" "}
-                    <i>{s.journal}</i>
-                    {s.year ? `, ${s.year}` : ""}.
-                  </>
-                ) : (
-                  <>
-                    {s.year ? `, ${s.year}` : ""}
-                    {/[.?!]$/.test(s.year ? "" : s.title) ? "" : "."}
-                  </>
-                )}{" "}
-                <a
-                  href={sourceHref(s)}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className={`link-action ${s.doi ? "break-all" : "whitespace-nowrap"}`}
-                >
-                  {s.doi ? `doi:${s.doi}` : new URL(sourceHref(s)).hostname.replace(/^www\./, "")}
-                </a>
-              </li>
-            ))}
-          </ol>
+          {sources.length > 0 && (
+            <ol className="flex flex-col gap-3 text-small list-decimal pl-5 marker:text-graphite">
+              {sources.map((s) => (
+                <li key={sourceHref(s)}>
+                  {s.authors} {s.title}
+                  {s.journal ? (
+                    <>
+                      {/[.?!]$/.test(s.title) ? "" : "."}{" "}
+                      <i>{s.journal}</i>
+                      {s.year ? `, ${s.year}` : ""}.
+                    </>
+                  ) : (
+                    <>
+                      {s.year ? `, ${s.year}` : ""}
+                      {/[.?!]$/.test(s.year ? "" : s.title) ? "" : "."}
+                    </>
+                  )}{" "}
+                  <a
+                    href={sourceHref(s)}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className={`link-action ${s.doi ? "break-all" : "whitespace-nowrap"}`}
+                  >
+                    {s.doi ? `doi:${s.doi}` : new URL(sourceHref(s)).hostname.replace(/^www\./, "")}
+                  </a>
+                </li>
+              ))}
+            </ol>
+          )}
           {neighbours.length > 0 && (
             <div>
               <h2 className="text-body font-medium">Kitos šio skyriaus temos</h2>
@@ -311,8 +329,8 @@ export function SourcesSection({
           )}
           {related.length > 0 && (
             <div>
-              <h2 className="text-body font-medium">Susiję puslapiai</h2>
-              <ul className="mt-2 flex flex-wrap gap-x-7 gap-y-1">
+              {sources.length > 0 && <h2 className="text-body font-medium mb-2">Susiję puslapiai</h2>}
+              <ul className="flex flex-wrap gap-x-7 gap-y-1">
                 {related.map((r) => (
                   <li key={r.href}>
                     <Link href={r.href} className="link-action inline-flex items-center min-h-11 text-body">

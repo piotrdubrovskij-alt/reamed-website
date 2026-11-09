@@ -116,5 +116,6 @@ export const sportoReabilitacija: ServicePage = {
     { href: "/ka-gydome/grizimas-i-sporta-po-traumos", label: "Grįžimas į sportą po traumos" },
     { href: "/paslaugos/pooperacine-reabilitacija", label: "Reabilitacija po operacijos" },
     { href: "/paslaugos/kineziterapija", label: "Kineziterapija" },
+    { href: "/reabilitacija-be-siuntimo", label: "Privati reabilitacija be siuntimo" },
   ],
 };

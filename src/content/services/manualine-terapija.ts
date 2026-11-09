@@ -120,5 +120,6 @@ export const manualineTerapija: ServicePage = {
     { href: "/paslaugos/kineziterapija", label: "Kineziterapija" },
     { href: "/ka-gydome/stuburo-isvarza", label: "Stuburo išvarža" },
     { href: "/specialistai/mangirdas-kazacenko", label: "Mangirdas Kazačenko" },
+    { href: "/chiropraktikas-vilniuje", label: "Chiropraktikas Vilniuje?" },
   ],
 };

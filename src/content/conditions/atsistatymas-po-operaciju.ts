@@ -103,5 +103,6 @@ export const atsistatymasPoOperaciju: ConditionPage = {
     { href: "/ka-gydome/reabilitacija-po-kryzminio-raiscio-operacijos", label: "Reabilitacija po kryžminio raiščio operacijos" },
     { href: "/ka-gydome/reabilitacija-po-menisko-operacijos", label: "Reabilitacija po menisko operacijos" },
     { href: "/paslaugos/pooperacine-reabilitacija", label: "Pooperacinė reabilitacija" },
+    { href: "/reabilitacija-be-siuntimo", label: "Privati reabilitacija be siuntimo" },
   ],
 };

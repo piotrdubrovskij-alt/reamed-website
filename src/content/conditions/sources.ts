@@ -697,3 +697,49 @@ export const LASLETT_2005: Source = {
   year: 2005,
   doi: "10.1016/j.math.2005.01.003",
 };
+
+// Standalone pages (batch 15, /chiropraktikas-vilniuje and /reabilitacija-be-siuntimo).
+export const DE_ZOETE_2026: Source = {
+  authors: "de Zoete A ir kt.",
+  title: "Spinal manipulative therapy for adults with chronic low back pain.",
+  journal: "Cochrane Database Syst Rev",
+  year: 2026,
+  doi: "10.1002/14651858.CD008112.pub3",
+};
+
+export const PAIGE_2017: Source = {
+  authors: "Paige NM ir kt.",
+  title: "Association of Spinal Manipulative Therapy With Clinical Benefit and Harm for Acute Low Back Pain: Systematic Review and Meta-analysis.",
+  journal: "JAMA",
+  year: 2017,
+  doi: "10.1001/jama.2017.3086",
+};
+
+export const NIELSEN_2017: Source = {
+  authors: "Nielsen SM ir kt.",
+  title: "The risk associated with spinal manipulation: an overview of reviews.",
+  journal: "Syst Rev",
+  year: 2017,
+  doi: "10.1186/s13643-017-0458-y",
+};
+
+export const BILLER_2014: Source = {
+  authors: "Biller J ir kt.",
+  title: "Cervical arterial dissections and association with cervical manipulative therapy: a statement for healthcare professionals from the American Heart Association/American Stroke Association.",
+  journal: "Stroke",
+  year: 2014,
+  doi: "10.1161/STR.0000000000000016",
+};
+
+export const WFC_2013: Source = {
+  authors: "World Federation of Chiropractic.",
+  title: "The Current Status of the Chiropractic Profession",
+  year: 2012,
+  url: "https://wfc.org/news/documents/912_who_submission-final_jan2013.pdf",
+};
+
+export const VLK_FAQ: Source = {
+  authors: "Valstybinė ligonių kasa.",
+  title: "Dažniausiai užduodami klausimai: medicininė reabilitacija",
+  url: "https://ligoniukasa.lrv.lt/lt/dazniausiai-uzduodami-klausimai/",
+};

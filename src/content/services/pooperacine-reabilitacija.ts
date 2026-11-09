@@ -125,5 +125,6 @@ export const pooperacineReabilitacija: ServicePage = {
     { href: "/ka-gydome/reabilitacija-po-kryzminio-raiscio-operacijos", label: "Po kryžminio raiščio rekonstrukcijos" },
     { href: "/ka-gydome/reabilitacija-po-menisko-operacijos", label: "Po menisko operacijos" },
     { href: "/paslaugos/sporto-reabilitacija", label: "Sporto reabilitacija" },
+    { href: "/reabilitacija-be-siuntimo", label: "Privati reabilitacija be siuntimo" },
   ],
 };

@@ -85,7 +85,7 @@ const rules: Array<[string, string]> = [
   ["/tag/:path*", "/"],
 
   // Pages about the clinic, news, blog and WordPress service pages
-  ["/apie-mus/:path*", "/"],
+  ["/apie-mus/:path+", "/apie-mus"],
   ["/reamed/:path*", "/"],
   ["/lobacevske-reamed-klinika/:path*", "/"],
   ["/nieko-nekainuojanti-sveikatos-piliule/:path*", "/"],
