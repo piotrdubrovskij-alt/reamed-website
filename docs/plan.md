@@ -177,8 +177,9 @@ Search Console — в аккаунте info@reamed.lt (`sc-domain:reamed.lt`), �
     «Ką gydome» есть страницы — PR #47
   - [x] Остальные темы всех разделов (решение Piotr 07.11: сначала закончить «Ką gydome», потом статьи) — пачки 8–14, PR #41–#47
 - [ ] **EN и RU** по адресам `/en`, `/ru` с hreflang (см. п. 8)
-- [x] **`llms.txt`** (`src/app/llms.txt/route.ts`) и **IndexNow** (ключ в `public/`, после вливания: `node scripts/indexnow.mjs`), «Peržiūrėjo» на 95 страницах, `Person`, соседние темы, title и description до 60 и 160 знаков, настоящие даты в sitemap — PR #49; подпись на услугах — следующий PR
-- [ ] **Bing Webmaster**, Google Business, manodaktaras.lt, ссылки VU и федерации
+- [x] **`llms.txt`** (`src/app/llms.txt/route.ts`) и **IndexNow** (ключ в `public/`, после вливания: `node scripts/indexnow.mjs`), «Peržiūrėjo» на 95 страницах, `Person`, соседние темы, title и description до 60 и 160 знаков, настоящие даты в sitemap — PR #49; подпись на услугах и мета-тег Bing — PR #50
+- [x] **Bing Webmaster**: reamed.lt подтверждён мета-тегом, карта сайта отправлена (08.11.2026, PR #50). Карта сайта в Search Console отправлена 08.11.2026: найдено 114 адресов
+- [ ] Google Business, manodaktaras.lt, ссылки VU и федерации
 
 Не берём: замены суставов, сколиоз и детей (FitKid; старые детские адреса ведут на fitkid.lt), dry needling,
 челюсть, тазовое дно, беременных.
