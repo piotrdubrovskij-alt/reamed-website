@@ -1,11 +1,8 @@
 "use client";
 
-import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { ArrowUpRight } from "lucide-react";
 import { useLanguage } from "@/contexts/LanguageContext";
-import { GOOGLE_REVIEWS } from "@/data/reviews";
 import ContactDetails from "@/components/ContactDetails";
 
 const external = { target: "_blank", rel: "noopener noreferrer" } as const;
@@ -15,9 +12,10 @@ const social = [
   { label: "Facebook", href: "https://www.facebook.com/reamedklinika/" },
 ];
 
-// Booking, contacts and map in one graphite block, shared by every page. No logo, no rules.
-// On /kontaktai the page itself opens with the same list and map, so the footer there is one graphite strip with the
-// privacy policy link only, no social links (Piotr, 14.11.2026): the form above needs a way to the policy.
+// One graphite block on every page, three columns on a computer (Piotr 14.11.2026, after the footer review): the clinic in
+// one line with the booking button, the contacts, and the links a reader needs after the page. No logo (it is in the
+// header), no map (it lives on /kontaktai with the route), no rules: the bottom row is set apart by spacing alone.
+// On /kontaktai the page itself opens with the same list, so the footer there is one strip with the privacy policy link.
 export default function Footer() {
   const { t } = useLanguage();
   const pathname = usePathname();
@@ -34,55 +32,59 @@ export default function Footer() {
     );
   }
 
+  // The same targets as the header menu (07.11.2026: «Ką gydome» and «Paslaugos» open the home page blocks),
+  // plus the way to the door, the map and the parking on /kontaktai.
+  const links = [
+    { label: t.nav.whatWeTreat, href: "/#ka-gydome" },
+    { label: t.nav.services, href: "/#paslaugos" },
+    { label: t.nav.specialists, href: "/specialistai" },
+    { label: t.nav.prices, href: "/kainos" },
+    { label: t.footer.findUs, href: "/kontaktai#rasti-h" },
+  ];
+
   return (
     <footer
       id="kontaktai"
       aria-labelledby="footer-h"
-      className="bg-graphite text-white pt-12 desk:pt-16 pb-10 [--focus-ring:var(--color-mint)]"
+      className="bg-graphite text-white pt-12 desk:pt-16 pb-8 [--focus-ring:var(--color-mint)]"
     >
       <div className="wrap">
         <h2 id="footer-h" className="sr-only">
           {t.nav.contacts}
         </h2>
-        <div className="grid gap-10 desk:grid-cols-[auto_1fr] desk:gap-12 lg:gap-[72px]">
-          <div className="flex flex-col gap-8">
+        <div className="grid gap-10 desk:grid-cols-[minmax(0,1.1fr)_auto_auto] desk:gap-x-14 lg:gap-x-[72px] desk:items-start">
+          <div className="flex flex-col gap-6">
+            <p className="max-w-[22ch] text-lead font-medium text-balance">{t.footer.tagline}</p>
             {pathname !== "/registracija" && (
               <Link href="/registracija" className="btn btn-mint text-body w-full desk:w-auto desk:self-start">
                 {t.booking.online}
               </Link>
             )}
-            <ContactDetails />
           </div>
 
-          {/* Static OSM map from scripts/build-map.mjs: no iframe, nothing loads from Google or OSM.
-              The marker is the SVG's centre, so object-cover keeps it in view. Square corners, like the areas card. */}
-          <a
-            href={GOOGLE_REVIEWS.url}
-            {...external}
-            aria-label={t.footer.mapLabel}
-            className="relative block h-[200px] overflow-hidden bg-ground desk:h-auto desk:min-h-60"
-          >
-            <Image src="/map/reamed-map.svg" alt="" fill unoptimized sizes="(min-width: 821px) 60vw, 100vw" className="object-cover" />
-            <span className="absolute left-3 bottom-3 max-[360px]:bottom-8 inline-flex items-center gap-1.5 min-h-10 px-4 rounded-full bg-white text-ink text-small font-medium">
-              {t.footer.map}
-              <ArrowUpRight size={16} aria-hidden="true" />
-            </span>
-            {/* OSM attribution is required; 13px is the one exception to the type scale. Below 360px the pill sits above it. */}
-            <span className="absolute right-0 bottom-0 px-1.5 py-0.5 bg-white/75 text-ink text-[13px] leading-normal">
-              © OpenStreetMap
-            </span>
-          </a>
+          <ContactDetails />
+
+          <nav aria-label={t.footer.patients}>
+            <p className="text-small text-on-dark">{t.footer.patients}</p>
+            {/* Rows of 44px set like the contact list: the label row above, values below, nothing moves on hover. */}
+            <ul className="mt-3 flex flex-col gap-y-3">
+              {links.map((l) => (
+                <li key={l.href}>
+                  <Link href={l.href} className="inline-flex items-center min-h-11 -my-2 text-body font-medium hover:text-mint">
+                    {l.label}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </nav>
         </div>
 
-        {/* One line from 360px; below that Instagram and Facebook move to a second line together. */}
-        <nav aria-label={t.footer.menu} className="mt-10 desk:mt-12 flex flex-wrap items-center gap-x-1.5 text-small text-on-dark">
-          <a href="/privatumas" className="inline-flex items-center min-h-11 hover:underline">
+        {/* Documents on the left, social links on the right; on a phone two rows. No line between the block and the row. */}
+        <div className="mt-10 desk:mt-12 flex flex-col gap-y-1 sm:flex-row sm:items-center sm:justify-between text-small text-on-dark">
+          <a href="/privatumas" className="inline-flex items-center min-h-11 self-start hover:underline">
             {t.footer.privacy}
           </a>
-          <span aria-hidden="true" className="max-[360px]:hidden">
-            ·
-          </span>
-          <span className="inline-flex items-center gap-x-1.5 max-[360px]:w-full">
+          <nav aria-label={t.footer.menu} className="flex items-center gap-x-1.5">
             {social.map((s, i) => (
               <span key={s.href} className="contents">
                 {i > 0 && <span aria-hidden="true">·</span>}
@@ -91,8 +93,8 @@ export default function Footer() {
                 </a>
               </span>
             ))}
-          </span>
-        </nav>
+          </nav>
+        </div>
       </div>
     </footer>
   );

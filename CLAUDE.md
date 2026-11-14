@@ -200,7 +200,11 @@
   2) графит `#5F605F` на светло-сером `#ECEDEB` (или белом) — второе (5,4:1). Руки на светлом — `#7DB9B5`.
   Остальное (тёмный `#2B2C2B` на мяте, белый на тёмном, в один цвет) — по случаю, для печати.
   Не мятой на белом (1,6:1). Надпись ReaMed — не уже 96 px, вокруг — свободное поле не меньше высоты «e».
-- На сайте: шапка (светлая) — `reamed-wordmark-graphite.svg`; в футере логотипа нет: запись, контакты, карта (статичный SVG из OSM, `scripts/build-map.*`), ссылки Privatumo politika · Instagram · Facebook.
+- На сайте: шапка (светлая) — `reamed-wordmark-graphite.svg`; в футере логотипа нет. Футер (решение Piotr 14.11.2026 после
+  ревью): три колонки на компьютере — строка «Kineziterapijos ir reabilitacijos klinika Vilniuje» с кнопкой записи,
+  контакты, «Pacientams» (Ką gydome и Paslaugos на блоки главной, Specialistai, Kainos, «Kaip mus rasti» →
+  `/kontaktai#rasti-h`); внизу слева Privatumo politika, справа Instagram · Facebook, без линий. Карты в футере больше нет:
+  статичный SVG из OSM (`scripts/build-map.*`) живёт на `/kontaktai` с кнопкой маршрута. На телефоне всё одной колонкой.
   Список телефон · адрес · часы · e-mail — общий `src/components/ContactDetails.tsx`: в футере и наверху `/kontaktai`.
   На `/kontaktai` (`KontaktaiContent.tsx`, макет G, 14.11.2026) футер — одна графитовая полоса со ссылкой «Privatumo politika»,
   без соцсетей: контакты и карта уже в самой странице. Там же два фото (`public/photos/building.jpg` — дом с башней Гедимина,

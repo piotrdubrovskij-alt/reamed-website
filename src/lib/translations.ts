@@ -81,7 +81,9 @@ export const translations = {
       ],
     },
     booking: {
-      online: "Registruotis internetu",
+      // The footer button reads like every other booking button while /registracija is a request form;
+      // «Registruotis internetu» returns with the real online booking (/rezervacija).
+      online: "Registruotis vizitui",
       phone: "Telefonas",
       address: "Adresas",
       hours: "Darbo laikas",
@@ -91,8 +93,9 @@ export const translations = {
     footer: {
       menu: "Apačios meniu",
       privacy: "Privatumo politika",
-      map: "Atidaryti žemėlapį",
-      mapLabel: "Atidaryti ReaMed vietą Google Maps",
+      tagline: "Kineziterapijos ir reabilitacijos klinika Vilniuje",
+      patients: "Pacientams",
+      findUs: "Kaip mus rasti",
     },
     contact: {
       address: "Olimpiečių g. 1A-7, Vilnius",
@@ -165,7 +168,7 @@ export const translations = {
       ],
     },
     booking: {
-      online: "Book online",
+      online: "Book a visit",
       phone: "Phone",
       address: "Address",
       hours: "Opening hours",
@@ -175,8 +178,9 @@ export const translations = {
     footer: {
       menu: "Footer menu",
       privacy: "Privacy policy",
-      map: "Open map",
-      mapLabel: "Open ReaMed on Google Maps",
+      tagline: "Physiotherapy and rehabilitation clinic in Vilnius",
+      patients: "For patients",
+      findUs: "How to find us",
     },
     contact: {
       address: "Olimpiečių g. 1A-7, Vilnius",
