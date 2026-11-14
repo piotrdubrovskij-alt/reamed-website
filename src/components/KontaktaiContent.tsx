@@ -411,11 +411,12 @@ export default function KontaktaiContent() {
                   </p>
                 )}
 
-                {/* No note under the button (Piotr 14.11.2026): the privacy policy link is in the strip at the bottom of the page. */}
+                {/* Mint like «Registruotis vizitui» at the top (Piotr 14.11.2026). No note under the button: the privacy
+                    policy link is in the strip at the bottom of the page. */}
                 <button
                   type="submit"
                   disabled={state === "sending"}
-                  className="btn btn-dark w-full sm:w-auto self-start cursor-pointer disabled:opacity-40 disabled:cursor-not-allowed disabled:hover:bg-graphite"
+                  className="btn btn-mint w-full sm:w-auto self-start cursor-pointer disabled:opacity-40 disabled:cursor-not-allowed disabled:hover:bg-mint"
                 >
                   {state === "sending" ? c.sending : c.send}
                 </button>
