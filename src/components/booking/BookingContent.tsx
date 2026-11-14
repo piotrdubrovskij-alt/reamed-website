@@ -4,7 +4,7 @@ import { useEffect, useMemo, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { useSearchParams } from "next/navigation";
-import { ArrowLeft, ArrowRight, CalendarDays, Phone, Plus, X } from "lucide-react";
+import { ArrowLeft, ArrowRight, CalendarDays, Check, Phone, Plus, X } from "lucide-react";
 import { useLanguage } from "@/contexts/LanguageContext";
 import { specialists } from "@/lib/specialists";
 import { api } from "@/lib/booking/client";
@@ -119,6 +119,18 @@ export default function BookingContent() {
   const [error, setError] = useState<string | null>(null);
   const [now, setNow] = useState(() => Date.now());
   const [prefilled, setPrefilled] = useState(false);
+  // The e-mail is proven by a code from the letter before the hold (Piotr 14.11.2026): a typo would
+  // send the confirmation, the manage link and the invoice to a stranger. The code also signs the
+  // patient in, so "Mano vizitai" opens after payment without typing the address again.
+  const [sessionEmail, setSessionEmail] = useState<string | null>(null);
+  const [verifiedEmail, setVerifiedEmail] = useState<string | null>(null);
+  const [verify, setVerify] = useState<{
+    phase: "idle" | "sending" | "code" | "checking";
+    sentTo: string | null;
+    code: string;
+    error: string | null;
+    continueAfter: boolean;
+  }>({ phase: "idle", sentTo: null, code: "", error: null, continueAfter: false });
   // "Registruotis dar kartą" from the order page: ?specialistas=<slug>&paslauga=<service id>,
   // applied once the catalogue has arrived. (Read through the router: on a client-side
   // navigation window.location still shows the previous page when this mounts.)
@@ -142,7 +154,9 @@ export default function BookingContent() {
     api
       .me()
       .then((me) => {
-        if (!active || !me.profile) return;
+        if (!active) return;
+        setSessionEmail(me.email ? me.email.toLowerCase() : null);
+        if (!me.profile) return;
         setContacts((prev) =>
           prev.firstName || prev.lastName || prev.phone || prev.email
             ? prev
@@ -232,6 +246,46 @@ export default function BookingContent() {
 
   const emailSuggestion = useMemo(() => suggestEmail(contacts.email), [contacts.email]);
 
+  const emailValue = contacts.email.trim().toLowerCase();
+  const emailShape = EMAIL.test(emailValue);
+  const emailVerified = emailShape && (verifiedEmail === emailValue || sessionEmail === emailValue);
+
+  const sendCode = async (continueAfter: boolean) => {
+    if (!emailShape) {
+      setErrors((prev) => ({ ...prev, email: contacts.email.trim() ? c.invalidEmail : c.required }));
+      return;
+    }
+    setVerify((prev) => ({ ...prev, phase: "sending", error: null }));
+    try {
+      await api.requestCode(emailValue, lang);
+      setVerify({ phase: "code", sentTo: emailValue, code: "", error: null, continueAfter });
+    } catch (e) {
+      setVerify((prev) => ({ ...prev, phase: "idle", error: errorText(e, lang) }));
+    }
+  };
+
+  const confirmCode = async () => {
+    const code = verify.code.replace(/\s+/g, "");
+    if (!verify.sentTo) return;
+    if (!/^\d{6}$/.test(code)) {
+      setVerify((prev) => ({ ...prev, error: c.emailCodeRequired }));
+      return;
+    }
+    setVerify((prev) => ({ ...prev, phase: "checking", error: null }));
+    try {
+      const signedIn = await api.verifyCode(verify.sentTo, code);
+      const email = signedIn.email.toLowerCase();
+      setVerifiedEmail(email);
+      setSessionEmail(email);
+      setErrors((prev) => ({ ...prev, email: undefined }));
+      const goOn = verify.continueAfter;
+      setVerify({ phase: "idle", sentTo: null, code: "", error: null, continueAfter: false });
+      if (goOn) await toPayment(email);
+    } catch (e) {
+      setVerify((prev) => ({ ...prev, phase: "code", error: errorText(e, lang) }));
+    }
+  };
+
   const validateContacts = (): boolean => {
     const next: typeof errors = {};
     if (!contacts.firstName.trim()) next.firstName = c.required;
@@ -294,8 +348,17 @@ export default function BookingContent() {
     }
   };
 
-  const toPayment = async () => {
+  const toPayment = async (justVerified?: string) => {
     if (!validateContacts()) return;
+    if (!emailVerified && justVerified !== emailValue) {
+      // Everything else is fine: ask for the code now and carry on by itself once it is right.
+      if (verify.phase === "code" && verify.sentTo === emailValue) {
+        setVerify((prev) => ({ ...prev, continueAfter: true, error: prev.code ? prev.error : c.emailCodeRequired }));
+      } else {
+        await sendCode(true);
+      }
+      return;
+    }
     const held = await hold();
     if (held) {
       setStep(3);
@@ -591,6 +654,8 @@ export default function BookingContent() {
                         onChange={(e) => {
                           setContacts((prev) => ({ ...prev, [key]: e.target.value }));
                           if (errors[key]) setErrors((prev) => ({ ...prev, [key]: undefined }));
+                          if (key === "email" && verify.phase !== "idle")
+                            setVerify({ phase: "idle", sentTo: null, code: "", error: null, continueAfter: false });
                         }}
                         placeholder={type === "tel" ? "+370 …" : undefined}
                         className={inputClass(Boolean(errors[key]))}
@@ -607,9 +672,59 @@ export default function BookingContent() {
                           </button>
                         </p>
                       )}
+                      {key === "email" && emailVerified && (
+                        <p className="mt-1 flex items-center gap-1.5 text-small text-ink">
+                          <Check size={16} aria-hidden="true" className="text-[#437571]" />
+                          {c.emailVerified}
+                        </p>
+                      )}
+                      {key === "email" && !emailVerified && verify.phase !== "code" && verify.phase !== "checking" && (
+                        <p className="mt-1 text-small text-graphite">{c.emailWillVerify}</p>
+                      )}
                     </Field>
                   ))}
                 </div>
+                <p className="-mt-2 text-small text-graphite">{c.nameNote}</p>
+                {!emailVerified && (verify.phase === "code" || verify.phase === "checking") && verify.sentTo && (
+                  <div className="flex flex-col gap-3 rounded-2xl bg-ground p-4" role="group" aria-labelledby="booking-code-lead">
+                    <p id="booking-code-lead" className="text-small text-ink">
+                      {c.emailCodeSent(verify.sentTo)}
+                    </p>
+                    <div className="flex flex-wrap items-end gap-3">
+                      <Field label={c.codeLabel} htmlFor="booking-email-code" error={verify.error ?? undefined} className="w-[11rem]">
+                        <input
+                          id="booking-email-code"
+                          type="text"
+                          inputMode="numeric"
+                          autoComplete="one-time-code"
+                          maxLength={7}
+                          autoFocus
+                          value={verify.code}
+                          onChange={(e) => setVerify((prev) => ({ ...prev, code: e.target.value, error: null }))}
+                          onKeyDown={(e) => {
+                            if (e.key === "Enter") {
+                              e.preventDefault();
+                              void confirmCode();
+                            }
+                          }}
+                          className={`${inputClass(Boolean(verify.error))} tracking-[0.2em]`}
+                        />
+                      </Field>
+                      <Button type="button" onClick={() => void confirmCode()} disabled={verify.phase === "checking"}>
+                        {c.emailVerifyButton}
+                      </Button>
+                      <button
+                        type="button"
+                        onClick={() => void sendCode(verify.continueAfter)}
+                        disabled={verify.phase === "checking"}
+                        className="link-action min-h-11 text-small font-medium"
+                      >
+                        {c.emailResend}
+                      </button>
+                    </div>
+                  </div>
+                )}
+                {!emailVerified && verify.phase === "idle" && verify.error && <Notice kind="error">{verify.error}</Notice>}
                 {prefilled && <p className="text-small text-graphite">{c.prefilled}</p>}
                 <fieldset className="flex flex-col gap-3 rounded-2xl bg-ground p-4">
                   <legend className="sr-only">{c.invoiceTitle}</legend>
@@ -733,7 +848,7 @@ export default function BookingContent() {
                     <ArrowLeft size={20} aria-hidden="true" />
                     {c.back}
                   </Button>
-                  <Button type="submit" disabled={busy !== null}>
+                  <Button type="submit" disabled={busy !== null || verify.phase === "sending" || verify.phase === "checking"}>
                     {c.next}
                     <ArrowRight size={20} aria-hidden="true" />
                   </Button>

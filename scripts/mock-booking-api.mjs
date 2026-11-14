@@ -309,6 +309,10 @@ const server = createServer(async (req, res) => {
       const p = input.patient ?? {};
       for (const [k, msg] of [["firstName", "Įveskite vardą."], ["lastName", "Įveskite pavardę."], ["phone", "Įveskite telefono numerį."], ["email", "Įveskite el. pašto adresą."]])
         if (typeof p[k] !== "string" || !p[k].trim()) return bad(res, msg);
+      // Like the system from 0.9.53: the hold needs a session whose e-mail is the order's e-mail
+      // (the code from the letter proved the address; a typo would send the letters to a stranger).
+      const proven = typeof session === "string" && sessions.get(session);
+      if (!proven || proven !== p.email.trim().toLowerCase()) return bad(res, "Patvirtinkite el. paštą kodu iš laiško.");
       const existing = [...orders.values()].find((o) => o.requestId === input.requestId);
       if (existing) return json(res, 200, view(existing, now, true));
       const items = [];
@@ -425,7 +429,8 @@ const server = createServer(async (req, res) => {
     if (req.method === "GET" && (m = /^orders\/([^/]+)\/status$/.exec(route))) {
       const o = orders.get(m[1]);
       if (!o) return bad(res, "Užsakymas nerastas.");
-      return json(res, 200, view(o, now, false));
+      const [local, domain] = o.patient.email.split("@");
+      return json(res, 200, { ...view(o, now, false), emailHint: `${local.slice(0, 1)}•••@${domain}` });
     }
 
     if (req.method === "GET" && (m = /^orders\/([^/]+)$/.exec(route))) {

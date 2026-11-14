@@ -105,8 +105,11 @@ export type OrderView = {
   invoice?: InvoiceInfo | null;
 };
 
-/** The order by id alone, as the result page sees it: no contacts, no manage link. */
-export type OrderBrief = Omit<OrderView, "patient" | "manageUrl" | "visitType" | "invoiceBuyer" | "invoice">;
+/** The order by id alone, as the result page sees it: no contacts and no manage link, only a masked
+ *  address (`p•••@gmail.com`) so a typo in the e-mail shows at once. */
+export type OrderBrief = Omit<OrderView, "patient" | "manageUrl" | "visitType" | "invoiceBuyer" | "invoice"> & {
+  emailHint?: string;
+};
 
 export type CartItem = { serviceId: string; specialistId: string; start: number };
 

@@ -117,7 +117,9 @@ export default function ResultContent() {
   const text = paid
     ? order.status === "paid_conflict"
       ? c.resultConflictText
-      : c.resultPaidText
+      : order.emailHint
+        ? c.resultSentTo(order.emailHint)
+        : c.resultPaidText
     : order.status === "expired"
       ? c.resultExpiredText
       : order.status === "canceled"
@@ -138,6 +140,7 @@ export default function ResultContent() {
           <div className="flex flex-col gap-2">
             <CardTitle>{title}</CardTitle>
             {text && <p className="text-body text-graphite">{text}</p>}
+            {paid && <p className="text-small text-graphite">{c.resultNotReceived}</p>}
           </div>
         </div>
         {stillPolling && <Spinner label={c.resultChecking} />}
