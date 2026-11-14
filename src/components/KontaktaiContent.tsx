@@ -6,12 +6,12 @@ import Link from "next/link";
 import { ArrowUpRight } from "lucide-react";
 import { useLanguage } from "@/contexts/LanguageContext";
 import ContactDetails from "@/components/ContactDetails";
-import { Dots, twoCols } from "@/components/g/PageBlocks";
+import { Dots, dot, twoCols } from "@/components/g/PageBlocks";
 
 // /kontaktai in the G layout (Piotr, 14.11.2026): the page opens with the same graphite list as the footer, then how to
 // find the door (two photos, map, parking, bus), four lines before the first visit and a question form that answers by
-// e-mail, with nothing under its button. Nothing is repeated: the footer on this page is one graphite strip with the
-// privacy policy link. Booking goes to /registracija like everywhere else.
+// e-mail on a graphite band, with nothing under its button. Nothing is repeated: the footer on this page is one graphite
+// strip with the privacy policy link, which closes that band. Booking goes to /registracija like everywhere else.
 
 const external = { target: "_blank", rel: "noopener noreferrer" } as const;
 
@@ -40,14 +40,12 @@ const content = {
     directions: "Maršrutas",
     directionsLabel: "Maršrutas į kliniką Google Maps",
     carTitle: "Automobiliu",
-    carNone: "Prie pačios klinikos vietų nėra.",
-    carMuseum: "Artimiausia aikštelė prie Energetikos ir technikos muziejaus",
-    carMuseumWalk: "(Rinktinės g. 2), apie 2 min. pėsčiomis.",
-    carUnipark: "Mokamos UNIPARK aikštelės:",
-    carUp060: "Olimpiečių g. 3",
-    carUp060Walk: "(apie 4 min.) ir požeminė",
-    carUp071: "Business Stadium, Rinktinės g. 3",
-    carUp071Walk: "(apie 6 min.).",
+    carNone: "Prie pačios klinikos vietų nėra. Artimiausios aikštelės ir kiek eiti pėsčiomis:",
+    carLots: [
+      { name: "Energetikos ir technikos muziejus (Rinktinės g. 2)", walk: "apie 2 min.", place: "museum" },
+      { name: "UNIPARK, Olimpiečių g. 3", walk: "apie 4 min.", place: "up060" },
+      { name: "UNIPARK Business Stadium, Rinktinės g. 3 (požeminė)", walk: "apie 6 min.", place: "up071" },
+    ],
     busTitle: "Viešuoju transportu",
     busStopBefore: "Artimiausia stotelė",
     busStop: "„Žvejų st.“",
@@ -91,14 +89,12 @@ const content = {
     directions: "Directions",
     directionsLabel: "Directions to the clinic in Google Maps",
     carTitle: "By car",
-    carNone: "There is no parking at the clinic itself.",
-    carMuseum: "The nearest car park is at the Energy and Technology Museum",
-    carMuseumWalk: "(Rinktinės g. 2), about a 2-minute walk.",
-    carUnipark: "Paid UNIPARK car parks:",
-    carUp060: "Olimpiečių g. 3",
-    carUp060Walk: "(about 4 minutes) and the underground",
-    carUp071: "Business Stadium, Rinktinės g. 3",
-    carUp071Walk: "(about 6 minutes).",
+    carNone: "There is no parking at the clinic itself. The nearest car parks and the walk from each:",
+    carLots: [
+      { name: "Energy and Technology Museum (Rinktinės g. 2)", walk: "about 2 min", place: "museum" },
+      { name: "UNIPARK, Olimpiečių g. 3", walk: "about 4 min", place: "up060" },
+      { name: "UNIPARK Business Stadium, Rinktinės g. 3 (underground)", walk: "about 6 min", place: "up071" },
+    ],
     busTitle: "By public transport",
     busStopBefore: "The nearest stop is",
     busStop: "“Žvejų st.”",
@@ -285,28 +281,23 @@ export default function KontaktaiContent() {
               </span>
             </a>
 
-            <dl className="grid gap-7 sm:grid-cols-2">
+            {/* The car park rows need the wider column so names stay on one or two lines. */}
+            <dl className="grid gap-7 sm:grid-cols-[3fr_2fr]">
               <div>
                 <dt className="text-lead font-medium">{c.carTitle}</dt>
-                <dd className="mt-2 flex flex-col gap-2 text-body text-pretty">
-                  <p>
-                    {c.carNone}{" "}
-                    <a href={PLACES.museum} {...external} className={inline}>
-                      {c.carMuseum}
-                    </a>{" "}
-                    {c.carMuseumWalk}
-                  </p>
-                  <p>
-                    {c.carUnipark}{" "}
-                    <a href={PLACES.up060} {...external} className={inline}>
-                      {c.carUp060}
-                    </a>{" "}
-                    {c.carUp060Walk}{" "}
-                    <a href={PLACES.up071} {...external} className={inline}>
-                      {c.carUp071}
-                    </a>{" "}
-                    {c.carUp071Walk}
-                  </p>
+                <dd className="mt-2 text-body">
+                  <p className="text-pretty">{c.carNone}</p>
+                  {/* One car park per row, the walking time in its own column on the right (Piotr 14.11.2026). */}
+                  <ul className="mt-3 flex flex-col gap-2.5">
+                    {c.carLots.map((lot) => (
+                      <li key={lot.place} className={`${dot} before:bg-mint`}>
+                        <a href={PLACES[lot.place]} {...external} className={`${inline} flex-1`}>
+                          {lot.name}
+                        </a>
+                        <span className="shrink-0 whitespace-nowrap text-graphite">{lot.walk}</span>
+                      </li>
+                    ))}
+                  </ul>
                 </dd>
               </div>
               <div>
@@ -340,17 +331,21 @@ export default function KontaktaiContent() {
         </div>
       </section>
 
-      {/* 4. A question by e-mail: name, address, question. The answer comes by e-mail, so nothing else is asked. */}
-      <section aria-labelledby="klausimas-h" className="section-y">
+      {/* 4. A question by e-mail: name, address, question. The answer comes by e-mail, so nothing else is asked.
+          On graphite like the booking block at the foot of every other page (Piotr 14.11.2026: the form blended in). */}
+      <section
+        aria-labelledby="klausimas-h"
+        className="bg-graphite text-white section-y [--focus-ring:var(--color-mint)]"
+      >
         <div className={`wrap ${twoCols}`}>
           <div className="flex flex-col gap-4">
-            <h2 id="klausimas-h" className="text-h2 text-balance">
+            <h2 id="klausimas-h" className="text-h2 text-balance text-mint">
               {c.askTitle}
             </h2>
-            <p className="max-w-[40ch] text-body text-pretty">{c.askText}</p>
+            <p className="max-w-[40ch] text-body text-pretty text-on-dark">{c.askText}</p>
           </div>
 
-          <div className="rounded-[24px] desk:rounded-[28px] bg-paper p-5 md:p-8">
+          <div className="rounded-[24px] desk:rounded-[28px] bg-paper p-5 md:p-8 text-ink">
             {state === "success" ? (
               <div role="status" className="flex flex-col gap-3">
                 <p className="text-lead font-medium">{c.doneTitle}</p>
