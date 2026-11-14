@@ -79,11 +79,8 @@ export default function Footer() {
           </nav>
         </div>
 
-        {/* Documents on the left, social links on the right; on a phone two rows. No line between the block and the row. */}
-        <div className="mt-10 desk:mt-12 flex flex-col gap-y-1 sm:flex-row sm:items-center sm:justify-between text-small text-on-dark">
-          <a href="/privatumas" className="inline-flex items-center min-h-11 self-start hover:underline">
-            {t.footer.privacy}
-          </a>
+        {/* Social links, and the privacy policy as the very last line (Piotr 14.11.2026). No line above them. */}
+        <div className="mt-10 desk:mt-12 flex flex-col gap-y-1 text-small text-on-dark">
           <nav aria-label={t.footer.menu} className="flex items-center gap-x-1.5">
             {social.map((s, i) => (
               <span key={s.href} className="contents">
@@ -94,6 +91,9 @@ export default function Footer() {
               </span>
             ))}
           </nav>
+          <a href="/privatumas" className="inline-flex items-center min-h-11 self-start hover:underline">
+            {t.footer.privacy}
+          </a>
         </div>
       </div>
     </footer>
