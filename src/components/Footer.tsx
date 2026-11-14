@@ -55,7 +55,7 @@ export default function Footer() {
         <div className="grid gap-10 desk:grid-cols-[minmax(0,1.1fr)_auto_auto] desk:gap-x-14 lg:gap-x-[72px] desk:items-start">
           <div className="flex flex-col gap-6">
             <p className="max-w-[22ch] text-lead font-medium text-balance">{t.footer.tagline}</p>
-            {pathname !== "/registracija" && (
+            {pathname !== "/registracija" && !pathname.startsWith("/rezervacija") && (
               <Link href="/registracija" className="btn btn-mint text-body w-full desk:w-auto desk:self-start">
                 {t.booking.online}
               </Link>
