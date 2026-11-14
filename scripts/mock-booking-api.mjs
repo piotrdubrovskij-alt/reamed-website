@@ -18,12 +18,14 @@ const SITE = process.env.WEBSITE_ORIGIN ?? "http://localhost:3000";
 const HOLD_MINUTES = 20;
 const TZ = "Europe/Vilnius";
 
-const team = ["rm-kotryna", "rm-mangirdas", "rm-erikas"];
+const team = ["rm-kotryna", "rm-mangirdas", "rm-erikas", "rm-edmundas"];
+const massageTeam = ["rm-mangirdas", "rm-erikas", "rm-edmundas"];
 const people = {
   "rm-kotryna": "Kotryna Kairytė",
   "rm-mangirdas": "Mangirdas Kazačenko",
   "rm-piotr": "Piotr Dubrovskij",
   "rm-erikas": "Erikas Jatkauskas",
+  "rm-edmundas": "Edmundas Zlatkus",
 };
 const services = [
   ["reamed-consultation", "consultation", "Pirminė konsultacija + ištyrimas + planas", 8000, 60, 60, team, true],
@@ -32,8 +34,8 @@ const services = [
   ["reamed-extended", "kinesiotherapy", "Kompleksinė išplėstinė", 10000, 75, 75, team, false],
   ["reamed-piotr-consultation", "consultation", "Gydomasis seansas pas Piotr", 10000, 60, 60, ["rm-piotr"], true],
   ["reamed-piotr-individual", "kinesiotherapy", "Gydomasis seansas pas Piotr", 10000, 60, 60, ["rm-piotr"], false],
-  ["reamed-massage-30", "massage", "Masažas", 4000, 30, 30, ["rm-mangirdas", "rm-erikas"], false],
-  ["reamed-massage-60", "massage", "Masažas", 6500, 60, 60, ["rm-mangirdas", "rm-erikas"], false],
+  ["reamed-massage-30", "massage", "Masažas", 4000, 30, 30, massageTeam, false],
+  ["reamed-massage-60", "massage", "Masažas", 6500, 60, 60, massageTeam, false],
 ].map(([id, category, name, amountCents, durationMinutes, reservationMinutes, ids, firstVisitRecommended]) => ({
   id,
   category,

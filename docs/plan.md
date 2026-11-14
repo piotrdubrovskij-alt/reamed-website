@@ -39,6 +39,11 @@
   e-mail («Gal turėjote omenyje gmail.com?»); на странице заказа и в «Mano vizitai» у каждого визита конкретный
   срок «Pakeisti ar atšaukti galima iki …», «Pridėti į kalendorių» (.ics через прокси `orders/:id/calendar.ics`)
   и «Registruotis dar kartą» (`/rezervacija?specialistas=…&paslauga=…` выбирает специалиста и услугу).
+  14.11.2026 (решения Piotr): ветка догнала `main` (97 коммитов редизайна; в футере сохранено условие «без кнопки
+  записи на `/rezervacija`»); пятый специалист Edmundas Zlatkus — те же услуги, что у Erikas, карточки по три в ряд
+  от планшета; прокси берёт адрес пациента из последнего элемента `X-Forwarded-For` (его дописывает Cloud Run,
+  первый может подставить клиент); вливание по слову Piotr «запушить ветку», сервер остаётся в Test Mode Paysera с
+  тестовым календарём до его отдельного слова о боевом режиме.
 
 - [ ] **Перевыпустить ключ Resend сайта** (решение Piotr 02.11.2026). 02.11.2026 при проверке переменных сервиса
   `reamed-site` в Cloud Shell на экран попала часть значения `RESEND_API_KEY`. Порядок: в resend.com → API Keys создать

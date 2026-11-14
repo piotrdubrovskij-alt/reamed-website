@@ -103,6 +103,7 @@ export const SPECIALIST_SLUGS: Record<string, string> = {
   "rm-kotryna": "kotryna-kairyte",
   "rm-erikas": "erikas-jatkauskas",
   "rm-mangirdas": "mangirdas-kazacenko",
+  "rm-edmundas": "edmundas-zlatkus",
 };
 
 /** Short roles under the photos on the booking page (Piotr 02.11.2026), by clinic system id. */
@@ -111,6 +112,8 @@ const BOOKING_ROLES: Record<string, Record<Language, string>> = {
   "rm-kotryna": { lt: "Kineziterapeutė", en: "Physiotherapist" },
   "rm-erikas": { lt: "Kineziterapeutas, masažuotojas", en: "Physiotherapist, massage therapist" },
   "rm-mangirdas": { lt: "Kineziterapeutas, manualinis terapeutas", en: "Physiotherapist, manual therapist" },
+  // Edmundas (Piotr 14.11.2026): the same online services as Erikas, so the same two-part role.
+  "rm-edmundas": { lt: "Kineziterapeutas, masažuotojas", en: "Physiotherapist, massage therapist" },
 };
 
 export function bookingRole(specialistId: string, lang: Language): string | undefined {

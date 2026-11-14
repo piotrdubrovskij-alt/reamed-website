@@ -443,8 +443,9 @@ export default function BookingContent() {
                     <CardTitle>{c.specialist}</CardTitle>
                     {/* On the phone the grid bleeds to the card edge so two cards get room for a full
                         name on one line; name and each role part are sized to the card (container units)
-                        and never wrap (Piotr 02.11.2026). */}
-                    <ul className="grid grid-cols-2 gap-2 -mx-3 sm:mx-0 sm:gap-3 sm:grid-cols-4">
+                        and never wrap (Piotr 02.11.2026). Five specialists since 14.11.2026 (Edmundas):
+                        three to a row from the tablet up, so the cards keep their size. */}
+                    <ul className="grid grid-cols-2 gap-2 -mx-3 sm:mx-0 sm:gap-3 sm:grid-cols-3">
                       {availableSpecialists.map((person) => {
                         const id = idOf(person.slug);
                         const chosen = specialistId === id;

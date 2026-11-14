@@ -164,7 +164,11 @@
   `mano-vizitai` — вход по коду на email, `salygos` — условия), `src/components/booking/*`, `src/lib/booking/*`.
   Единственная дверь к системе — `src/app/api/booking/[...path]/route.ts`: прокси с белым списком маршрутов, ключ
   `X-Website-Key` и адрес системы только на сервере; сессия пациента — HttpOnly-cookie `reamed_patient`
-  (Path `/api/booking`), токен в браузер не попадает.
+  (Path `/api/booking`), токен в браузер не попадает. Адрес пациента для лимитов системы — последний элемент
+  `X-Forwarded-For` (его дописывает Cloud Run; первые элементы клиент может подставить сам).
+- Специалисты на странице записи — пересечение каталога системы и `src/lib/specialists.ts` через `SPECIALIST_SLUGS`
+  в `src/lib/booking/format.ts` (там же короткие роли под фото). Новый специалист системы появляется на странице
+  только после строки там. С 14.11.2026 пятеро (Edmundas Zlatkus — услуги как у Erikas), карточки по три в ряд.
 - Переменные: `KLINIKA_API_ORIGIN`, `WEBSITE_API_KEY` (секрет `klinika-website-api-key` в проекте reamed-site; подключается
   `scripts/cloud-booking-env.sh` в Cloud Shell). Без них страница говорит «registracija internetu dar neįjungta».
 - Локально без системы: `node scripts/mock-booking-api.mjs` и `KLINIKA_API_ORIGIN=http://127.0.0.1:4100

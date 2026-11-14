@@ -49,9 +49,12 @@ function config(): { origin: string; key: string } | null {
 }
 
 function clientIp(req: NextRequest): string | null {
+  // Cloud Run appends the address it saw as the LAST entry; anything before it came with the
+  // request and can be typed by the caller, so it must not steer the system's rate limits.
   const forwarded = req.headers.get("x-forwarded-for");
-  const first = forwarded?.split(",")[0]?.trim();
-  return first && /^[0-9a-fA-F.:]{3,45}$/.test(first) ? first : null;
+  const parts = forwarded?.split(",").map((part) => part.trim()).filter(Boolean) ?? [];
+  const last = parts[parts.length - 1];
+  return last && /^[0-9a-fA-F.:]{3,45}$/.test(last) ? last : null;
 }
 
 function json(status: number, body: unknown, extra?: (res: NextResponse) => void): NextResponse {
