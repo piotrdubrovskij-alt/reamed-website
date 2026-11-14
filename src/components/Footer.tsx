@@ -6,6 +6,7 @@ import { usePathname } from "next/navigation";
 import { ArrowUpRight } from "lucide-react";
 import { useLanguage } from "@/contexts/LanguageContext";
 import { GOOGLE_REVIEWS } from "@/data/reviews";
+import ContactDetails from "@/components/ContactDetails";
 
 const external = { target: "_blank", rel: "noopener noreferrer" } as const;
 
@@ -15,9 +16,23 @@ const social = [
 ];
 
 // Booking, contacts and map in one graphite block, shared by every page. No logo, no rules.
+// On /kontaktai the page itself opens with the same list and map, so the footer there is one graphite strip with the
+// privacy policy link only, no social links (Piotr, 14.11.2026): the form above needs a way to the policy.
 export default function Footer() {
   const { t } = useLanguage();
   const pathname = usePathname();
+
+  if (pathname === "/kontaktai") {
+    return (
+      <footer className="bg-graphite text-white py-3 [--focus-ring:var(--color-mint)]">
+        <nav aria-label={t.footer.menu} className="wrap flex items-center text-small text-on-dark">
+          <a href="/privatumas" className="inline-flex items-center min-h-11 hover:underline">
+            {t.footer.privacy}
+          </a>
+        </nav>
+      </footer>
+    );
+  }
 
   return (
     <footer
@@ -36,36 +51,7 @@ export default function Footer() {
                 {t.booking.online}
               </Link>
             )}
-            {/* Values share one column; links stretch to 44px without moving the rows. */}
-            <dl className="grid grid-cols-[auto_1fr] items-baseline gap-x-7 gap-y-3">
-              <dt className="text-small text-on-dark">{t.booking.phone}</dt>
-              <dd className="text-body font-medium">
-                <a href={t.contact.phoneHref} className="inline-flex items-center min-h-11 -my-2 whitespace-nowrap hover:text-mint">
-                  {t.contact.phone}
-                </a>
-              </dd>
-              <dt className="text-small text-on-dark">{t.booking.address}</dt>
-              <dd className="text-body font-medium">
-                <a href={GOOGLE_REVIEWS.url} {...external} className="inline-flex items-center min-h-11 -my-2 hover:text-mint">
-                  {t.contact.address}
-                </a>
-              </dd>
-              <dt className="text-small text-on-dark">{t.booking.hours}</dt>
-              {/* Weekdays and Saturday on their own lines, so the row never breaks mid-range at 320px. */}
-              <dd className="text-body font-medium">
-                {t.booking.hoursValue.split(", ").map((line) => (
-                  <span key={line} className="block whitespace-nowrap">
-                    {line}
-                  </span>
-                ))}
-              </dd>
-              <dt className="text-small text-on-dark">{t.booking.email}</dt>
-              <dd className="text-body font-medium">
-                <a href={`mailto:${t.contact.email}`} className="inline-flex items-center min-h-11 -my-2 hover:text-mint">
-                  {t.contact.email}
-                </a>
-              </dd>
-            </dl>
+            <ContactDetails />
           </div>
 
           {/* Static OSM map from scripts/build-map.mjs: no iframe, nothing loads from Google or OSM.
