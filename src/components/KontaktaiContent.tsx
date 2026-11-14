@@ -1,510 +1,426 @@
 "use client";
 
-import { useState } from "react";
+import { useId, useState } from "react";
+import Image from "next/image";
 import Link from "next/link";
-import { MapPin, Phone, Mail, Clock, ArrowRight, CheckCircle } from "lucide-react";
+import { ArrowUpRight } from "lucide-react";
 import { useLanguage } from "@/contexts/LanguageContext";
+import ContactDetails from "@/components/ContactDetails";
+import { Dots, twoCols } from "@/components/g/PageBlocks";
+
+// /kontaktai in the G layout (Piotr, 14.11.2026): the page opens with the same graphite list as the footer, then how to
+// find the door, a short note before the first visit and a question form that answers by e-mail. Nothing is repeated:
+// the footer on this page keeps only its bottom line. Booking goes to /registracija like everywhere else.
+
+const external = { target: "_blank", rel: "noopener noreferrer" } as const;
+
+// The clinic's point (schema.org geo in layout.tsx) and the places around it, from the plus codes of the old page.
+const CLINIC = "54.6900422,25.2899553";
+const DIRECTIONS = `https://www.google.com/maps/dir/?api=1&destination=${CLINIC}`;
+const place = (lat: number, lng: number) => `https://www.google.com/maps/search/?api=1&query=${lat}%2C${lng}`;
+const PLACES = {
+  museum: place(54.69006, 25.28819),
+  up060: place(54.69094, 25.29331),
+  up071: place(54.69356, 25.28919),
+  stop: place(54.69006, 25.28869),
+};
 
 const content = {
   lt: {
-    pageTitle: "Kontaktai",
-    pageSubtitle: "Susisiekite su mumis telefonu, el. paštu arba užpildykite užklausos formą — atsakysime per 24 val. darbo dienomis.",
-    btnRegister: "Registruotis vizitui",
-    btnCall: "Paskambinti",
-    btnEmail: "El. paštas",
-    contactTitle: "Kontaktinė informacija",
-    labelAddress: "Adresas",
-    entranceNote: "Įėjimas į kliniką:",
-    entranceText: "atskiras įėjimas pirmame pastato aukšte, iš Sporto rūmų pusės.",
-    labelPhone: "Telefonas",
-    labelEmail: "El. paštas",
-    labelHours: "Darbo laikas",
-    weekdays: "Pirmadienis–Penktadienis",
-    saturday: "Šeštadienis",
-    sunday: "Sekmadienis",
-    sundayClosed: "Nedirbame",
-    privateNote: "Privati klinika: paslaugos mokamos, gydytojo siuntimo nereikia, su ligonių kasomis nedirbame.",
-    mapCaption: "Olimpiečių g. 1A-7, Vilnius",
-    mapClickHint: "Spustelėkite norėdami atidaryti žemėlapį",
-    formTitle: "Palikite užklausą",
-    formSubtitle: "Jei norite užsiregistruoti ar turite klausimų, užpildykite formą — susisieksime su Jumis per 24 val. darbo dienomis.",
-    successTitle: "Užklausa gauta!",
-    successText: "Susisieksime su Jumis per 24 val. darbo dienomis.",
-    successBtn: "Siųsti naują užklausą",
-    labelName: "Vardas *",
-    placeholderName: "Jūsų vardas",
-    labelContactMethod: "Pageidaujamas susisiekimo būdas",
-    byPhone: "Telefonu",
-    byEmail: "El. paštu",
-    formLabelEmail: "El. paštas *",
-    formLabelPhone: "Telefonas",
-    emailHint: "Reikalingas, kad galėtume atsakyti į Jūsų užklausą",
-    placeholderEmail: "vardas@email.com",
-    placeholderPhone: "+370 600 00000",
-    labelMessage: "Žinutė / klausimas",
-    placeholderMessage: "Trumpai aprašykite savo situaciją arba klausimą...",
-    sending: "Siunčiama...",
-    submit: "Siųsti užklausą",
-    callDirect: "Arba skambinkite tiesiai:",
-    privacy: "Pateikta informacija bus naudojama tik susisiekti su Jumis dėl registracijos ar konsultacijos.",
-    howToFindTitle: "Kaip mus rasti",
-    carTitle: "Automobiliu · parkavimas",
-    carBullet1: "Prie klinikos parkavimo vietų nėra.",
-    carBullet2: "Artimiausias stovėjimas — prie Energetikos ir technikos muziejaus.",
-    carBullet3: "Taip pat galima statyti automobilį UNIPARK aikštelėse netoliese.",
-    publicTitle: "Viešuoju transportu",
-    publicStopLabel: "Artimiausia viešojo transporto stotelė —",
-    publicBusesLabel: "Autobusai:",
-    publicAnd: "ir",
-    firstVisitTitle: "Prieš pirmą vizitą",
-    firstVisitText: "Prašome atvykti 5–10 min. anksčiau ir vilkėti patogią aprangą. Jei turite, atsineškite atliktų tyrimų atsakymus, gydytojų rekomendacijas ar kitą su jūsų būkle susijusią medicininę informaciją.",
+    title: "Kontaktai",
+    lead: "Kineziterapijos klinika Vilniuje, prie Sporto rūmų.",
+    book: "Registruotis vizitui",
+
+    findTitle: "Kaip mus rasti",
+    photoAlt: "ReaMed klinikos įėjimas: pilkos stiklinės durys Nr. 7 su ReaMed iškaba",
+    entrance: "Mūsų durys – Nr. 7 su ReaMed iškaba, iš Sporto rūmų pusės, pirmame aukšte.",
+    directions: "Maršrutas",
+    directionsLabel: "Maršrutas į kliniką Google Maps",
+    carTitle: "Automobiliu",
+    carNone: "Prie pačios klinikos vietų nėra.",
+    carMuseum: "Artimiausia aikštelė prie Energetikos ir technikos muziejaus",
+    carMuseumWalk: "(Rinktinės g. 2), apie 2 min. pėsčiomis.",
+    carUnipark: "Mokamos UNIPARK aikštelės:",
+    carUp060: "Olimpiečių g. 3",
+    carUp060Walk: "(apie 4 min.) ir požeminė",
+    carUp071: "Business Stadium, Rinktinės g. 3",
+    carUp071Walk: "(apie 6 min.).",
+    busTitle: "Viešuoju transportu",
+    busStopBefore: "Artimiausia stotelė",
+    busStop: "„Žvejų st.“",
+    busStopAfter: ", 1 min. pėsčiomis. Autobusai 33 ir 89.",
+
+    visitTitle: "Prieš pirmą vizitą",
+    visitItems: [
+      "Atvykite 5–10 min. anksčiau.",
+      "Vilkėkite patogią aprangą, kurioje lengva judėti.",
+      "Jei turite, pasiimkite tyrimų atsakymus ir gydytojų išvadas.",
+      "Gydytojo siuntimo nereikia. Klinika privati: paslaugos mokamos, su ligonių kasomis nedirbame.",
+    ],
+    prices: "Kainos ir paketai",
+
+    askTitle: "Turite klausimą?",
+    askText: "Parašykite, atsakysime el. paštu per 1 darbo dieną. Dėl vizito laiko greičiausia registruotis internetu arba paskambinti.",
+    name: "Vardas",
+    email: "El. paštas",
+    question: "Klausimas",
+    send: "Siųsti",
+    sending: "Siunčiama…",
+    needName: "Įrašykite vardą.",
+    needEmail: "Įrašykite el. paštą, kuriuo atsakyti.",
+    badEmail: "Patikrinkite el. pašto adresą.",
+    needQuestion: "Parašykite klausimą.",
+    failed: "Nepavyko išsiųsti. Parašykite info@reamed.lt arba paskambinkite +370 601 34304.",
+    doneTitle: "Ačiū, gavome Jūsų klausimą.",
+    doneText: "Atsakysime el. paštu per 1 darbo dieną.",
+    again: "Rašyti dar kartą",
+    privacy: "Duomenis naudojame tik atsakyti į klausimą. Čia nesiųskite sveikatos informacijos.",
+    privacyLink: "Privatumo politika",
   },
   en: {
-    pageTitle: "Contact Us",
-    pageSubtitle: "Reach us by phone, email or fill in the enquiry form — we will respond within 24 working hours.",
-    btnRegister: "Book a visit",
-    btnCall: "Call us",
-    btnEmail: "Email",
-    contactTitle: "Contact information",
-    labelAddress: "Address",
-    entranceNote: "Clinic entrance:",
-    entranceText: "separate entrance on the ground floor, from the Sports Palace side.",
-    labelPhone: "Phone",
-    labelEmail: "Email",
-    labelHours: "Working hours",
-    weekdays: "Monday–Friday",
-    saturday: "Saturday",
-    sunday: "Sunday",
-    sundayClosed: "Closed",
-    privateNote: "Private clinic: services are paid, no doctor's referral is needed, we do not work with the state health insurance fund.",
-    mapCaption: "Olimpiečių g. 1A-7, Vilnius",
-    mapClickHint: "Click to open map",
-    formTitle: "Leave a request",
-    formSubtitle: "If you'd like to book or have any questions, fill in the form — we'll get back to you within 24 working hours.",
-    successTitle: "Request received!",
-    successText: "We will get back to you within 24 working hours.",
-    successBtn: "Send another request",
-    labelName: "Name *",
-    placeholderName: "Your name",
-    labelContactMethod: "Preferred contact method",
-    byPhone: "By phone",
-    byEmail: "By email",
-    formLabelEmail: "Email *",
-    formLabelPhone: "Phone",
-    emailHint: "We need it so we can reply to your request",
-    placeholderEmail: "name@email.com",
-    placeholderPhone: "+370 600 00000",
-    labelMessage: "Message / question",
-    placeholderMessage: "Briefly describe your situation or question...",
-    sending: "Sending...",
-    submit: "Send request",
-    callDirect: "Or call us directly:",
-    privacy: "The information provided will only be used to contact you regarding your booking or consultation.",
-    howToFindTitle: "How to find us",
-    carTitle: "By car · parking",
-    carBullet1: "There is no parking directly at the clinic.",
-    carBullet2: "The nearest parking is at the Energy and Technology Museum.",
-    carBullet3: "You can also park at the nearby UNIPARK car parks.",
-    publicTitle: "By public transport",
-    publicStopLabel: "The nearest public transport stop is",
-    publicBusesLabel: "Buses:",
-    publicAnd: "and",
-    firstVisitTitle: "Before your first visit",
-    firstVisitText: "Please arrive 5–10 minutes early and wear comfortable clothing. If available, bring any test results, doctors' recommendations or other medical information related to your condition.",
+    title: "Contacts",
+    lead: "Physiotherapy clinic in Vilnius, next to the Sports Palace.",
+    book: "Book a visit",
+
+    findTitle: "How to find us",
+    photoAlt: "ReaMed clinic entrance: grey glass door No. 7 with the ReaMed sign",
+    entrance: "Our door is No. 7 with the ReaMed sign, on the Sports Palace side, ground floor.",
+    directions: "Directions",
+    directionsLabel: "Directions to the clinic in Google Maps",
+    carTitle: "By car",
+    carNone: "There is no parking at the clinic itself.",
+    carMuseum: "The nearest car park is at the Energy and Technology Museum",
+    carMuseumWalk: "(Rinktinės g. 2), about a 2-minute walk.",
+    carUnipark: "Paid UNIPARK car parks:",
+    carUp060: "Olimpiečių g. 3",
+    carUp060Walk: "(about 4 minutes) and the underground",
+    carUp071: "Business Stadium, Rinktinės g. 3",
+    carUp071Walk: "(about 6 minutes).",
+    busTitle: "By public transport",
+    busStopBefore: "The nearest stop is",
+    busStop: "“Žvejų st.”",
+    busStopAfter: ", a 1-minute walk. Buses 33 and 89.",
+
+    visitTitle: "Before your first visit",
+    visitItems: [
+      "Arrive 5–10 minutes early.",
+      "Wear comfortable clothes you can move in.",
+      "Bring any test results and doctors' reports you have.",
+      "No referral is needed. We are a private clinic: services are paid, we do not work with the state health insurance fund.",
+    ],
+    prices: "Prices and packages",
+
+    askTitle: "Have a question?",
+    askText: "Write to us and we will reply by e-mail within one working day. For a visit time, booking online or calling is quickest.",
+    name: "Name",
+    email: "E-mail",
+    question: "Question",
+    send: "Send",
+    sending: "Sending…",
+    needName: "Enter your name.",
+    needEmail: "Enter the e-mail address to reply to.",
+    badEmail: "Check the e-mail address.",
+    needQuestion: "Write your question.",
+    failed: "Could not send. Write to info@reamed.lt or call +370 601 34304.",
+    doneTitle: "Thank you, we have your question.",
+    doneText: "We will reply by e-mail within one working day.",
+    again: "Write again",
+    privacy: "We use your details only to answer your question. Do not send health information here.",
+    privacyLink: "Privacy policy",
   },
 } as const;
 
-type FormState = "idle" | "sending" | "success";
+type Fields = { name: string; email: string; question: string };
+type Errors = Partial<Record<keyof Fields, string>>;
+type SendState = "idle" | "sending" | "success" | "error";
+
+const empty: Fields = { name: "", email: "", question: "" };
+const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+const inputClass = (error: boolean) =>
+  `w-full min-h-[52px] rounded-2xl bg-white px-4 text-body text-ink ring-1 ring-inset outline-none ${
+    error ? "ring-2 ring-[#B3261E]" : "ring-ground-hover focus:ring-2 focus:ring-focus"
+  }`;
+
+const inline = "link-action font-normal";
 
 export default function KontaktaiContent() {
   const { lang } = useLanguage();
   const c = content[lang];
+  const ids = useId();
 
-  const [form, setForm] = useState({ name: "", phone: "", email: "", message: "", contact: "phone" as "phone" | "email" });
-  const [state, setState] = useState<FormState>("idle");
-  const [mapLoaded, setMapLoaded] = useState(false);
+  const [fields, setFields] = useState<Fields>(empty);
+  const [errors, setErrors] = useState<Errors>({});
+  const [state, setState] = useState<SendState>("idle");
 
-  function handleChange(e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) {
-    setForm((f) => ({ ...f, [e.target.name]: e.target.value }));
-  }
+  const onChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+    const { name, value } = e.target;
+    setFields((f) => ({ ...f, [name]: value }));
+    if (errors[name as keyof Fields]) setErrors((er) => ({ ...er, [name]: undefined }));
+  };
 
-  async function handleSubmit(e: React.FormEvent) {
+  const onSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    const next: Errors = {};
+    if (!fields.name.trim()) next.name = c.needName;
+    if (!fields.email.trim()) next.email = c.needEmail;
+    else if (!EMAIL_RE.test(fields.email.trim())) next.email = c.badEmail;
+    if (!fields.question.trim()) next.question = c.needQuestion;
+    if (Object.keys(next).length) {
+      setErrors(next);
+      const first = (["name", "email", "question"] as const).find((k) => next[k]);
+      if (first) e.currentTarget.querySelector<HTMLElement>(`[name="${first}"]`)?.focus();
+      return;
+    }
+
     setState("sending");
     const controller = new AbortController();
-    const timeout = setTimeout(() => controller.abort(), 15000);
+    const timer = setTimeout(() => controller.abort(), 15000);
     try {
+      const email = fields.email.trim();
       const res = await fetch("/api/contact", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
+        signal: controller.signal,
         body: JSON.stringify({
-          ...form,
-          contactDetail: form.contact === "phone" ? form.phone : form.email,
+          kind: "question",
+          name: fields.name.trim(),
+          email,
+          contactDetail: email,
+          contact: "email",
+          message: fields.question.trim(),
           lang,
         }),
-        signal: controller.signal,
       });
-      clearTimeout(timeout);
-      if (!res.ok) {
-        const data = await res.json().catch(() => ({}));
-        throw new Error(data.error ?? "send failed");
-      }
-      setState("success");
+      setState(res.ok ? "success" : "error");
     } catch {
-      clearTimeout(timeout);
-      setState("idle");
-      alert(
-        lang === "en"
-          ? "Failed to send. Please call us: +370 601 34304"
-          : "Nepavyko išsiųsti. Skambinkite: +370 601 34304"
-      );
+      setState("error");
+    } finally {
+      clearTimeout(timer);
     }
-  }
+  };
+
+  const field = (key: keyof Fields) => ({
+    id: `${ids}-${key}`,
+    name: key,
+    value: fields[key],
+    onChange,
+    "aria-invalid": errors[key] ? true : undefined,
+    "aria-describedby": errors[key] ? `${ids}-${key}-error` : undefined,
+  });
 
   return (
-    <div className="min-h-screen" style={{ background: "#F7FAF9" }}>
-
-      {/* ── HERO ── */}
-      <div className="container-xl pt-8 pb-7 md:pt-10 md:pb-8 border-b border-[#DDE9E8]">
-        <h1 className="text-[1.875rem] md:text-[2.375rem] font-bold text-foreground mb-2.5 leading-tight">
-          {c.pageTitle}
-        </h1>
-        <p className="text-[0.9375rem] text-muted max-w-[520px] leading-relaxed mb-6">
-          {c.pageSubtitle}
-        </p>
-        <div className="flex flex-wrap gap-2.5">
-          <a
-            href="#forma"
-            className="inline-flex items-center gap-2 px-5 py-2.5 bg-[#7DB9B5] text-white text-[0.875rem] font-semibold rounded-xl hover:bg-[#68A7A2] transition-colors duration-200 shadow-[0_3px_12px_rgba(125,185,181,0.25)]"
-          >
-            <ArrowRight size={14} strokeWidth={2.2} />
-            {c.btnRegister}
-          </a>
-          <a
-            href="tel:+37060134304"
-            className="inline-flex items-center gap-2 px-5 py-2.5 bg-white border-2 border-[#DDE9E8] text-secondary text-[0.875rem] font-semibold rounded-xl hover:border-[#90CECA] hover:text-[#7DB9B5] transition-colors duration-200"
-          >
-            <Phone size={14} strokeWidth={2.2} />
-            {c.btnCall}
-          </a>
-          <a
-            href="mailto:info@reamed.lt"
-            className="inline-flex items-center gap-2 px-5 py-2.5 bg-white border-2 border-[#DDE9E8] text-secondary text-[0.875rem] font-semibold rounded-xl hover:border-[#90CECA] hover:text-[#7DB9B5] transition-colors duration-200"
-          >
-            <Mail size={14} strokeWidth={2.2} />
-            {c.btnEmail}
-          </a>
-        </div>
-      </div>
-
-      <div className="container-xl py-8 md:py-10 flex flex-col gap-6">
-
-        {/* ── SECTION 1: Contact info + Map ── */}
-        <div className="grid lg:grid-cols-2 gap-5">
-
-          {/* Contact info */}
-          <div className="bg-white rounded-2xl border border-[#DDE9E8] p-6 flex flex-col">
-            <h2 className="text-[1rem] font-bold text-foreground mb-5">{c.contactTitle}</h2>
-            <ul className="flex flex-col gap-5 flex-1">
-
-              <li>
-                <p className="text-[0.72rem] font-semibold uppercase tracking-widest text-muted/50 mb-1.5">{c.labelAddress}</p>
-                <a href="https://maps.google.com/?q=Olimpieciu+g.+1A-7,+Vilnius" target="_blank" rel="noopener noreferrer" className="inline-flex items-start gap-2.5 group">
-                  <MapPin size={15} strokeWidth={1.8} className="text-[#7DB9B5] mt-0.5 flex-shrink-0" />
-                  <span className="text-[0.9375rem] font-medium text-secondary group-hover:text-[#7DB9B5] transition-colors duration-200">
-                    Olimpiečių g. 1A-7, Vilnius
-                  </span>
-                </a>
-                <div className="mt-3 rounded-lg bg-[#F7FAF9] border border-[#EEF5F4] px-3 py-2 overflow-x-auto">
-                  <p className="text-[0.75rem] sm:text-[0.8125rem] text-secondary leading-snug whitespace-nowrap">
-                    <span className="font-semibold text-foreground">{c.entranceNote}</span>{" "}
-                    {c.entranceText}
-                  </p>
-                </div>
-              </li>
-
-              <li>
-                <p className="text-[0.72rem] font-semibold uppercase tracking-widest text-muted/50 mb-1.5">{c.labelPhone}</p>
-                <a href="tel:+37060134304" className="inline-flex items-center gap-2.5 group">
-                  <Phone size={15} strokeWidth={1.8} className="text-[#7DB9B5] flex-shrink-0" />
-                  <span className="text-[0.9375rem] font-medium text-secondary group-hover:text-[#7DB9B5] transition-colors duration-200">
-                    +370 601 34304
-                  </span>
-                </a>
-              </li>
-
-              <li>
-                <p className="text-[0.72rem] font-semibold uppercase tracking-widest text-muted/50 mb-1.5">{c.labelEmail}</p>
-                <a href="mailto:info@reamed.lt" className="inline-flex items-center gap-2.5 group">
-                  <Mail size={15} strokeWidth={1.8} className="text-[#7DB9B5] flex-shrink-0" />
-                  <span className="text-[0.9375rem] font-medium text-secondary group-hover:text-[#7DB9B5] transition-colors duration-200">
-                    info@reamed.lt
-                  </span>
-                </a>
-              </li>
-
-              <li>
-                <p className="text-[0.72rem] font-semibold uppercase tracking-widest text-muted/50 mb-1.5">{c.labelHours}</p>
-                <div className="flex items-start gap-2.5">
-                  <Clock size={15} strokeWidth={1.8} className="text-[#7DB9B5] mt-0.5 flex-shrink-0" />
-                  <div className="flex flex-col gap-1.5">
-                    <div className="flex gap-3 text-[0.875rem]">
-                      <span className="text-muted w-[176px] flex-shrink-0">{c.weekdays}</span>
-                      <span className="font-medium text-secondary">8:00–19:00</span>
-                    </div>
-                    <div className="flex gap-3 text-[0.875rem]">
-                      <span className="text-muted w-[176px] flex-shrink-0">{c.saturday}</span>
-                      <span className="font-medium text-secondary">8:00–16:00</span>
-                    </div>
-                    <div className="flex gap-3 text-[0.875rem]">
-                      <span className="text-muted w-[176px] flex-shrink-0">{c.sunday}</span>
-                      <span className="font-medium text-muted/40">{c.sundayClosed}</span>
-                    </div>
-                    <p className="mt-2 text-[0.875rem] leading-relaxed text-muted">{c.privateNote}</p>
-                  </div>
-                </div>
-              </li>
-
-            </ul>
+    <>
+      {/* 1. The contacts themselves: the footer's list, opened as the first screen. */}
+      <section
+        aria-labelledby="kontaktai-h"
+        className="bg-graphite text-white pt-8 pb-12 desk:pt-14 desk:pb-18 [--focus-ring:var(--color-mint)]"
+      >
+        <div className="wrap grid gap-8 desk:grid-cols-2 desk:grid-rows-[auto_auto] desk:items-start desk:gap-x-14 min-[68.8125rem]:gap-x-24">
+          <div className="flex flex-col gap-4 desk:gap-6">
+            <h1 id="kontaktai-h" className="text-h1-m desk:text-h1 text-balance text-mint">
+              {c.title}
+            </h1>
+            <p className="max-w-[36ch] text-lead-m desk:text-lead text-on-dark text-balance">{c.lead}</p>
           </div>
+          <div className="desk:col-start-2 desk:row-start-1 desk:row-span-2">
+            <ContactDetails />
+          </div>
+          <Link href="/registracija" className="btn btn-mint w-full sm:w-auto justify-self-start desk:col-start-1 desk:row-start-2">
+            {c.book}
+          </Link>
+        </div>
+      </section>
 
-          {/* Map — click to load */}
-          <div
-            className="relative rounded-2xl border border-[#DDE9E8] overflow-hidden bg-white transition-all duration-300 hover:border-[#90CECA] hover:shadow-[0_6px_24px_rgba(125,185,181,0.14)]"
-            style={{ minHeight: "340px" }}
-          >
-            {mapLoaded ? (
-              <iframe
-                title="ReaMed klinikos vieta žemėlapyje"
-                src="https://maps.google.com/maps?q=M7RQ%2B2X+Vilnius,+Vilniaus+m.+sav.&output=embed"
-                width="100%"
-                height="340"
-                style={{ border: 0, display: "block" }}
-                allowFullScreen
-                loading="lazy"
-                referrerPolicy="no-referrer-when-downgrade"
+      {/* 2. The door, the map with a route, parking and the bus stop: everything an arriving person needs, before any form. */}
+      <section aria-labelledby="rasti-h" className="section-y">
+        <div className="wrap">
+          <h2 id="rasti-h" className="text-h2 text-balance">
+            {c.findTitle}
+          </h2>
+          <div className={`mt-8 desk:mt-12 ${twoCols}`}>
+            {/* Up to 520px: on a tablet below the desktop switch a full-width square would fill the screen. */}
+            <figure className="flex flex-col gap-4 max-w-[520px]">
+              <Image
+                src="/photos/entrance.jpg"
+                alt={c.photoAlt}
+                width={1200}
+                height={1200}
+                sizes="(min-width: 821px) 520px, 100vw"
+                className="w-full aspect-square object-cover rounded-[24px] desk:rounded-[28px]"
               />
-            ) : (
-              <button
-                type="button"
-                onClick={() => setMapLoaded(true)}
-                aria-label="Atidaryti žemėlapį su ReaMed klinikos vieta"
-                className="group absolute inset-0 w-full flex flex-col items-center justify-center gap-4 cursor-pointer bg-[#F3F8F7]"
-              >
-                {/* Pulse ring + icon */}
-                <div className="relative flex items-center justify-center">
-                  <div className="absolute w-20 h-20 rounded-full bg-[#7DB9B5]/10 group-hover:scale-110 transition-transform duration-300" />
-                  <div className="relative w-14 h-14 rounded-full bg-white shadow-[0_4px_20px_rgba(125,185,181,0.25)] flex items-center justify-center group-hover:shadow-[0_6px_28px_rgba(125,185,181,0.4)] transition-shadow duration-300">
-                    <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#7DB9B5" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-                      <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/>
-                      <circle cx="12" cy="10" r="3"/>
-                    </svg>
-                  </div>
-                </div>
+              <figcaption className="text-body text-pretty max-w-[40ch]">{c.entrance}</figcaption>
+            </figure>
 
-                {/* Label */}
-                <div className="text-center px-4">
-                  <p className="text-[0.9375rem] font-bold text-foreground mb-0.5">ReaMed</p>
-                  <p className="text-[0.8125rem] text-muted mb-2">{c.mapCaption}</p>
-                  <p className="text-[0.78rem] text-[#7DB9B5] font-medium group-hover:underline underline-offset-2 transition-all">
-                    {c.mapClickHint}
-                  </p>
+            <div className="flex flex-col gap-8">
+              {/* The footer's static OSM map, here as the way to a route. Nothing loads from Google or OSM. */}
+              <a
+                href={DIRECTIONS}
+                {...external}
+                aria-label={c.directionsLabel}
+                className="relative block h-[200px] desk:h-[260px] overflow-hidden rounded-[24px] desk:rounded-[28px] bg-paper"
+              >
+                <Image src="/map/reamed-map.svg" alt="" fill unoptimized sizes="(min-width: 821px) 60vw, 100vw" className="object-cover" />
+                <span className="absolute left-3 bottom-3 max-[360px]:bottom-8 inline-flex items-center gap-1.5 min-h-10 px-4 rounded-full bg-graphite text-white text-small font-medium">
+                  {c.directions}
+                  <ArrowUpRight size={16} aria-hidden="true" />
+                </span>
+                {/* OSM attribution is required; 13px is the one exception to the type scale. */}
+                <span className="absolute right-0 bottom-0 px-1.5 py-0.5 bg-white/75 text-ink text-[13px] leading-normal">
+                  © OpenStreetMap
+                </span>
+              </a>
+
+              <dl className="grid gap-7 sm:grid-cols-2 desk:grid-cols-1">
+                <div>
+                  <dt className="text-lead font-medium">{c.carTitle}</dt>
+                  <dd className="mt-2 flex flex-col gap-2 text-body text-pretty">
+                    <p>
+                      {c.carNone}{" "}
+                      <a href={PLACES.museum} {...external} className={inline}>
+                        {c.carMuseum}
+                      </a>{" "}
+                      {c.carMuseumWalk}
+                    </p>
+                    <p>
+                      {c.carUnipark}{" "}
+                      <a href={PLACES.up060} {...external} className={inline}>
+                        {c.carUp060}
+                      </a>{" "}
+                      {c.carUp060Walk}{" "}
+                      <a href={PLACES.up071} {...external} className={inline}>
+                        {c.carUp071}
+                      </a>{" "}
+                      {c.carUp071Walk}
+                    </p>
+                  </dd>
                 </div>
-              </button>
-            )}
+                <div>
+                  <dt className="text-lead font-medium">{c.busTitle}</dt>
+                  <dd className="mt-2 text-body text-pretty">
+                    {c.busStopBefore}{" "}
+                    <a href={PLACES.stop} {...external} className={inline}>
+                      {c.busStop}
+                    </a>
+                    {c.busStopAfter}
+                  </dd>
+                </div>
+              </dl>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* 3. Before the first visit: four lines, no more text on this page. */}
+      <section aria-labelledby="vizitas-h" className="bg-paper section-y">
+        <div className="wrap grid gap-8 desk:grid-cols-[5fr_7fr] desk:grid-rows-[auto_auto] desk:gap-x-[72px] desk:gap-y-4 desk:items-start">
+          <h2 id="vizitas-h" className="text-h3-m desk:text-h3 text-balance">
+            {c.visitTitle}
+          </h2>
+          <div className="desk:col-start-2 desk:row-start-1 desk:row-span-2">
+            <Dots items={[...c.visitItems]} />
+          </div>
+          {/* On the phone the link follows the list; on a computer it sits under the heading. */}
+          <Link href="/kainos" className="link-action justify-self-start inline-flex items-center min-h-11 text-body desk:col-start-1 desk:row-start-2">
+            {c.prices}
+          </Link>
+        </div>
+      </section>
+
+      {/* 4. A question by e-mail: name, address, question. The answer comes by e-mail, so nothing else is asked. */}
+      <section aria-labelledby="klausimas-h" className="section-y">
+        <div className={`wrap ${twoCols}`}>
+          <div className="flex flex-col gap-4">
+            <h2 id="klausimas-h" className="text-h2 text-balance">
+              {c.askTitle}
+            </h2>
+            <p className="max-w-[40ch] text-body text-pretty">{c.askText}</p>
           </div>
 
-        </div>
-
-        {/* ── SECTION 2: Form + How to find us ── */}
-        <div id="forma" className="grid lg:grid-cols-2 gap-5">
-
-          {/* Form */}
-          <div className="bg-white rounded-2xl border border-[#DDE9E8] p-6">
-            <h2 className="text-[1rem] font-bold text-foreground mb-2">{c.formTitle}</h2>
-            <p className="text-[0.8375rem] text-muted leading-relaxed mb-5">{c.formSubtitle}</p>
-
+          <div className="rounded-[24px] desk:rounded-[28px] bg-paper p-5 md:p-8">
             {state === "success" ? (
-              <div className="flex flex-col items-center gap-3 py-8 text-center">
-                <CheckCircle size={38} strokeWidth={1.5} className="text-[#7DB9B5]" />
-                <p className="text-[1rem] font-semibold text-foreground">{c.successTitle}</p>
-                <p className="text-[0.875rem] text-muted max-w-[280px]">{c.successText}</p>
+              <div role="status" className="flex flex-col gap-3">
+                <p className="text-lead font-medium">{c.doneTitle}</p>
+                <p className="text-body">{c.doneText}</p>
                 <button
-                  onClick={() => { setState("idle"); setForm({ name: "", phone: "", email: "", message: "", contact: "phone" }); }}
-                  className="mt-1 text-[0.8125rem] font-semibold text-[#7DB9B5] hover:text-[#68A7A2] transition-colors duration-200"
+                  type="button"
+                  onClick={() => {
+                    setFields(empty);
+                    setErrors({});
+                    setState("idle");
+                  }}
+                  className="link-action self-start inline-flex items-center min-h-11 text-body cursor-pointer"
                 >
-                  {c.successBtn}
+                  {c.again}
                 </button>
               </div>
             ) : (
-              <form onSubmit={handleSubmit} className="flex flex-col gap-4">
-                <div>
-                  <label className="block text-[0.8rem] font-medium text-muted mb-1.5" htmlFor="name">{c.labelName}</label>
-                  <input
-                    id="name" name="name" type="text" required
-                    value={form.name} onChange={handleChange}
-                    placeholder={c.placeholderName}
-                    className="w-full px-4 py-2.5 rounded-xl border border-[#DDE9E8] text-[0.9rem] text-foreground placeholder:text-muted/40 bg-[#F7FAF9] focus:outline-none focus:border-[#90CECA] focus:bg-white transition-colors duration-200"
-                  />
+              <form onSubmit={onSubmit} noValidate className="flex flex-col gap-5">
+                <div className="flex flex-col gap-1.5">
+                  <label htmlFor={`${ids}-name`} className="text-small font-medium">
+                    {c.name}
+                  </label>
+                  <input type="text" autoComplete="name" maxLength={100} {...field("name")} className={inputClass(!!errors.name)} />
+                  {errors.name && (
+                    <p id={`${ids}-name-error`} className="text-small text-[#B3261E]">
+                      {errors.name}
+                    </p>
+                  )}
                 </div>
-                <div>
-                  <label className="block text-[0.8rem] font-medium text-muted mb-1.5">{c.labelContactMethod}</label>
-                  <div className="flex gap-2">
-                    {([{ val: "phone" as const, label: c.byPhone }, { val: "email" as const, label: c.byEmail }]).map(({ val, label }) => (
-                      <button
-                        key={val}
-                        type="button"
-                        onClick={() => setForm((f) => (f.contact === val ? f : { ...f, contact: val }))}
-                        className={`flex-1 py-2 text-[0.8375rem] font-medium rounded-lg border-2 transition-colors duration-200 ${
-                          form.contact === val
-                            ? "border-[#90CECA] bg-[#EEF5F4] text-[#7DB9B5]"
-                            : "border-[#DDE9E8] text-muted hover:border-[#90CECA]"
-                        }`}
-                      >
-                        {label}
-                      </button>
-                    ))}
-                  </div>
-                </div>
-
-                <div>
-                  <label className="block text-[0.8rem] font-medium text-muted mb-1.5" htmlFor="email">
-                    {c.formLabelEmail}
+                <div className="flex flex-col gap-1.5">
+                  <label htmlFor={`${ids}-email`} className="text-small font-medium">
+                    {c.email}
                   </label>
                   <input
-                    id="email"
-                    name="email"
                     type="email"
-                    required
-                    value={form.email}
-                    onChange={handleChange}
-                    placeholder={c.placeholderEmail}
+                    inputMode="email"
                     autoComplete="email"
-                    className="w-full px-4 py-2.5 rounded-xl border border-[#DDE9E8] text-[0.9rem] text-foreground placeholder:text-muted/40 bg-[#F7FAF9] focus:outline-none focus:border-[#90CECA] focus:bg-white transition-colors duration-200"
+                    maxLength={200}
+                    {...field("email")}
+                    className={inputClass(!!errors.email)}
                   />
-                  <p className="text-[0.72rem] text-muted/60 mt-1">{c.emailHint}</p>
+                  {errors.email && (
+                    <p id={`${ids}-email-error`} className="text-small text-[#B3261E]">
+                      {errors.email}
+                    </p>
+                  )}
                 </div>
-
-                <div>
-                  <label className="block text-[0.8rem] font-medium text-muted mb-1.5" htmlFor="phone">
-                    {c.formLabelPhone}
-                    {form.contact === "phone" && <span className="ml-0.5">*</span>}
+                <div className="flex flex-col gap-1.5">
+                  <label htmlFor={`${ids}-question`} className="text-small font-medium">
+                    {c.question}
                   </label>
-                  <input
-                    id="phone"
-                    name="phone"
-                    type="tel"
-                    required={form.contact === "phone"}
-                    value={form.phone}
-                    onChange={handleChange}
-                    placeholder={c.placeholderPhone}
-                    autoComplete="tel"
-                    className="w-full px-4 py-2.5 rounded-xl border border-[#DDE9E8] text-[0.9rem] text-foreground placeholder:text-muted/40 bg-[#F7FAF9] focus:outline-none focus:border-[#90CECA] focus:bg-white transition-colors duration-200"
-                  />
+                  <textarea rows={4} maxLength={2000} {...field("question")} className={`${inputClass(!!errors.question)} py-3 resize-y`} />
+                  {errors.question && (
+                    <p id={`${ids}-question-error`} className="text-small text-[#B3261E]">
+                      {errors.question}
+                    </p>
+                  )}
                 </div>
 
-                <div>
-                  <label className="block text-[0.8rem] font-medium text-muted mb-1.5" htmlFor="message">{c.labelMessage}</label>
-                  <textarea
-                    id="message" name="message" rows={3}
-                    value={form.message} onChange={handleChange}
-                    placeholder={c.placeholderMessage}
-                    className="w-full px-4 py-2.5 rounded-xl border border-[#DDE9E8] text-[0.9rem] text-foreground placeholder:text-muted/40 bg-[#F7FAF9] focus:outline-none focus:border-[#90CECA] focus:bg-white transition-colors duration-200 resize-none"
-                  />
-                </div>
+                {state === "error" && (
+                  <p role="alert" className="rounded-2xl bg-[#F6E3E1] px-4 py-3 text-small text-[#7A1F17]">
+                    {c.failed}
+                  </p>
+                )}
 
                 <button
                   type="submit"
                   disabled={state === "sending"}
-                  className="inline-flex items-center justify-center gap-2 px-6 py-3 bg-[#7DB9B5] text-white text-[0.9rem] font-bold rounded-xl hover:bg-[#68A7A2] transition-colors duration-200 shadow-[0_3px_12px_rgba(125,185,181,0.25)] disabled:opacity-60"
+                  className="btn btn-dark w-full sm:w-auto self-start cursor-pointer disabled:opacity-40 disabled:cursor-not-allowed disabled:hover:bg-graphite"
                 >
-                  {state === "sending" ? c.sending : c.submit}
-                  {state !== "sending" && <ArrowRight size={15} strokeWidth={2.5} />}
+                  {state === "sending" ? c.sending : c.send}
                 </button>
-                <p className="text-[0.75rem] text-muted/50 text-center">
-                  {c.callDirect}{" "}
-                  <a href="tel:+37060134304" className="text-[#7DB9B5] font-medium hover:text-[#68A7A2] transition-colors duration-200">
-                    +370 601 34304
-                  </a>
-                </p>
-                <p className="text-[0.6875rem] text-muted/45 text-center leading-relaxed mt-3 max-w-[320px] mx-auto">
-                  {lang === "lt" ? "Duomenis naudojame atsakyti į užklausą. Čia nesiųskite sveikatos informacijos. " : "We use your details to answer your request. Do not send health information here. "}
-                  <Link href="/privatumas" className="underline underline-offset-2 text-[#427974]">{lang === "lt" ? "Privatumo politika" : "Privacy policy"}</Link>
+                <p className="text-small text-graphite text-pretty">
+                  {c.privacy}{" "}
+                  <Link href="/privatumas" className="link-action font-normal text-ink">
+                    {c.privacyLink}
+                  </Link>
                 </p>
               </form>
             )}
           </div>
-
-          {/* How to find us + Pirmas vizitas */}
-          <div className="flex flex-col gap-5">
-
-            <div className="bg-white rounded-2xl border border-[#DDE9E8] p-6 flex flex-col gap-4">
-              <h2 className="text-[1rem] font-bold text-foreground">{c.howToFindTitle}</h2>
-
-              {/* Parkavimas */}
-              <div className="flex items-start gap-4 p-4 rounded-xl bg-[#F7FAF9] border border-[#EEF5F4]">
-                <span className="text-[1.25rem] leading-none mt-0.5">🚗</span>
-                <div className="min-w-0 flex-1">
-                  <p className="text-[0.875rem] font-semibold text-foreground mb-2">{c.carTitle}</p>
-                  <ul className="text-[0.8125rem] text-muted space-y-1.5 list-none pl-0 mb-3">
-                    <li className="flex gap-2"><span className="text-[#7DB9B5] flex-shrink-0">•</span><span>{c.carBullet1}</span></li>
-                    <li className="flex gap-2"><span className="text-[#7DB9B5] flex-shrink-0">•</span><span>{c.carBullet2}</span></li>
-                    <li className="flex gap-2"><span className="text-[#7DB9B5] flex-shrink-0">•</span><span>{c.carBullet3}</span></li>
-                  </ul>
-                  <div className="flex flex-wrap gap-2">
-                    <a href="https://www.google.com/maps/search/?api=1&query=M7RQ%2B27+Vilnius" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-1 px-2.5 py-1 text-[0.75rem] font-medium text-[#7DB9B5] border border-[#D8E6E4] rounded-lg hover:bg-[#EEF5F4] transition-colors duration-200">
-                      <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
-                      Muziejus
-                    </a>
-                    <a href="https://www.google.com/maps/search/?api=1&query=M7RV%2B98+Vilnius" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-1 px-2.5 py-1 text-[0.75rem] font-medium text-[#7DB9B5] border border-[#D8E6E4] rounded-lg hover:bg-[#EEF5F4] transition-colors duration-200">
-                      <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
-                      UNIPARK UP060
-                    </a>
-                    <a href="https://www.google.com/maps/search/?api=1&query=M7VQ%2BCM+Vilnius" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-1 px-2.5 py-1 text-[0.75rem] font-medium text-[#7DB9B5] border border-[#D8E6E4] rounded-lg hover:bg-[#EEF5F4] transition-colors duration-200">
-                      <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
-                      UNIPARK UP071
-                    </a>
-                  </div>
-                </div>
-              </div>
-
-              {/* Viešasis transportas */}
-              <div className="flex items-start gap-4 p-4 rounded-xl bg-[#F7FAF9] border border-[#EEF5F4]">
-                <span className="text-[1.25rem] leading-none mt-0.5">🚌</span>
-                <div className="min-w-0 flex-1">
-                  <p className="text-[0.875rem] font-semibold text-foreground mb-2">{c.publicTitle}</p>
-                  <p className="text-[0.8125rem] text-muted leading-relaxed">
-                    {c.publicStopLabel}{" "}
-                    <a
-                      href="https://www.google.com/maps/search/?api=1&query=M7RQ%2B2F+Vilnius"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="text-[#7DB9B5] font-medium hover:text-[#68A7A2] underline underline-offset-2"
-                    >
-                      {`„Žvejų st." (M7RQ+2F Vilnius)`}
-                    </a>
-                    . {c.publicBusesLabel} <span className="font-medium text-secondary">33</span> {c.publicAnd}{" "}
-                    <span className="font-medium text-secondary">89</span>.
-                  </p>
-                </div>
-              </div>
-            </div>
-
-            {/* Pirmas vizitas */}
-            <div className="rounded-2xl border border-[#D8E6E4] bg-[#EEF5F4] p-5">
-              <div className="flex items-start gap-3">
-                <span className="text-[1.25rem] leading-none mt-0.5">📋</span>
-                <div>
-                  <p className="text-[0.9rem] font-bold text-foreground mb-1.5">{c.firstVisitTitle}</p>
-                  <p className="text-[0.8375rem] text-secondary leading-relaxed">{c.firstVisitText}</p>
-                </div>
-              </div>
-            </div>
-
-          </div>
-
         </div>
-      </div>
-    </div>
+      </section>
+    </>
   );
 }
