@@ -15,7 +15,20 @@ export type Pack = {
   total: number;
 };
 
+/** Stable names for linking a price from other pages (service pages show their own lines). */
+export type PriceId =
+  | "pirmasis-vizitas"
+  | "kineziterapija"
+  | "kompleksine"
+  | "kompleksine-isplestine"
+  | "papildomas-modulis"
+  | "masazas-30"
+  | "masazas-60"
+  | "fizioterapija"
+  | "piotr";
+
 export type PricedService = {
+  id?: PriceId;
   name: Text;
   /** €. */
   price: number;
@@ -32,6 +45,7 @@ export type PriceGroup = {
 };
 
 const firstVisit = {
+  id: "pirmasis-vizitas",
   name: { lt: "Konsultacija, ištyrimas ir gydymo planas", en: "Consultation, assessment and treatment plan" },
   price: 80,
   duration: "60 min",
@@ -48,6 +62,7 @@ export const priceGroups: PriceGroup[] = [
     title: { lt: "Gydymas", en: "Treatment" },
     services: [
       {
+        id: "kineziterapija",
         name: { lt: "Kineziterapija", en: "Physiotherapy" },
         price: 70,
         duration: "45 min",
@@ -57,6 +72,7 @@ export const priceGroups: PriceGroup[] = [
         ],
       },
       {
+        id: "kompleksine",
         name: { lt: "Kompleksinė reabilitacija", en: "Combined rehabilitation" },
         price: 85,
         duration: "60 min",
@@ -70,6 +86,7 @@ export const priceGroups: PriceGroup[] = [
         ],
       },
       {
+        id: "kompleksine-isplestine",
         name: { lt: "Kompleksinė išplėstinė", en: "Combined extended" },
         price: 100,
         duration: "75 min",
@@ -89,6 +106,7 @@ export const priceGroups: PriceGroup[] = [
     title: { lt: "Papildomai", en: "Additional" },
     services: [
       {
+        id: "papildomas-modulis",
         name: { lt: "Papildomas modulis", en: "Add-on module" },
         price: 20,
         duration: "15 min",
@@ -98,6 +116,7 @@ export const priceGroups: PriceGroup[] = [
         },
       },
       {
+        id: "masazas-30",
         name: { lt: "Masažas, 30 min", en: "Massage, 30 min" },
         price: 40,
         packs: [
@@ -106,6 +125,7 @@ export const priceGroups: PriceGroup[] = [
         ],
       },
       {
+        id: "masazas-60",
         name: { lt: "Masažas, 60 min", en: "Massage, 60 min" },
         price: 65,
         packs: [
@@ -114,6 +134,7 @@ export const priceGroups: PriceGroup[] = [
         ],
       },
       {
+        id: "fizioterapija",
         name: { lt: "Fizioterapija", en: "Physiotherapy modalities" },
         price: 20,
         duration: "15–20 min",
@@ -131,6 +152,7 @@ export const priceGroups: PriceGroup[] = [
 export const specialistVisit = {
   slug: "piotr-dubrovskij",
   service: {
+    id: "piotr",
     name: { lt: "Individualus vizitas", en: "Individual visit" },
     price: 100,
     duration: "60 min",
@@ -140,6 +162,14 @@ export const specialistVisit = {
     },
   } satisfies PricedService,
 };
+
+/** One price line by its id (service pages). The build stops if an id is missing. */
+export function getPricedService(id: PriceId): PricedService {
+  const all = [...priceGroups.flatMap((g) => g.services), specialistVisit.service];
+  const found = all.find((s) => s.id === id);
+  if (!found) throw new Error(`prices.ts: no price line «${id}»`);
+  return found;
+}
 
 /** The first visit, for the home page facts. */
 export const FIRST_VISIT = firstVisit;

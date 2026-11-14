@@ -1,0 +1,64 @@
+{
+  "_comment": "Пачка 13 (08.11.2026): готовые тексты Piotr, Klubas ir kirkšnis 5 и Čiurna, pėda ir kulnas 4. assessLeadWords: сколько первых слов каждого абзаца «Kaip vertiname» выделить жирным (2–5, по смыслу). dashes: тире между словами и чем его заменить; каждая строка «было» должна встретиться в md ровно один раз; где тире заменяет пропущенный глагол, знак не ставится (решение Piotr 08.11.2026).",
+  "batch": "Batch 13 (08.11.2026)",
+  "sourceDir": "/Users/piotrdubrovskij/Desktop/Patalpų dizainas/output/reamed_klubas_ciurna_peda_2026-11-08",
+  "pages": [
+    { "slug": "klubo-sanario-artroze", "section": "klubo-ir-kirksnies-skausmas", "assessLeadWords": [5, 4, 4] },
+    { "slug": "skausmas-ir-sustingimas-po-klubo-endoprotezavimo", "section": "klubo-ir-kirksnies-skausmas", "assessLeadWords": [3, 5, 5] },
+    { "slug": "kirksnies-skausmas-sportininkams", "section": "klubo-ir-kirksnies-skausmas", "assessLeadWords": [4, 5, 3] },
+    { "slug": "klubo-fai-ir-sanario-lupos-plysimas", "section": "klubo-ir-kirksnies-skausmas", "assessLeadWords": [3, 4, 4] },
+    { "slug": "piriformio-sindromas", "section": "klubo-ir-kirksnies-skausmas", "assessLeadWords": [4, 5, 4] },
+    { "slug": "ciurnos-nestabilumas", "section": "ciurnos-ir-pedos-skausmas", "assessLeadWords": [5, 3, 5] },
+    { "slug": "stresiniai-pedos-luziai", "section": "ciurnos-ir-pedos-skausmas", "assessLeadWords": [4, 3, 2] },
+    { "slug": "ciurnos-sanario-artroze", "section": "ciurnos-ir-pedos-skausmas", "assessLeadWords": [4, 2, 5] },
+    { "slug": "blauzdos-skausmas-begikams", "section": "ciurnos-ir-pedos-skausmas", "assessLeadWords": [4, 4, 4] }
+  ],
+  "dashes": {
+    "klubo-sanario-artroze": [
+      ["ilgiau paeiti, kitam — grįžti", "ilgiau paeiti, kitam grįžti"]
+    ],
+    "skausmas-ir-sustingimas-po-klubo-endoprotezavimo": [
+      ["sumažėjo skausmas — vadovaujamės", "sumažėjo skausmas: vadovaujamės"],
+      ["kitam — programos", "kitam programos"]
+    ],
+    "kirksnies-skausmas-sportininkams": [
+      ["skirtingų priežasčių – ne visada", "skirtingų priežasčių: ne visada"]
+    ],
+    "klubo-fai-ir-sanario-lupos-plysimas": [
+      ["FAI – femoroacetabulinis", "FAI: femoroacetabulinis"],
+      ["„pincer“ – didesnis", "„pincer“ didesnis"],
+      ["Jos tikslas – sumažinti", "Jos tikslas: sumažinti"]
+    ],
+    "piriformio-sindromas": [
+      ["platesnis terminas – gilusis", "platesnis terminas: gilusis"],
+      ["kitam – sumažinti", "kitam sumažinti"],
+      ["Tikslas – kad", "Tikslas: kad"]
+    ],
+    "ciurnos-nestabilumas": [
+      ["kitiems – išlipant", "kitiems išlipant"],
+      ["prilaiko sąnarį – tai", "prilaiko sąnarį: tai"],
+      ["gydymo tikslą – saugiai", "gydymo tikslą: saugiai"],
+      ["Gydymo pagrindas – nuosekliai", "Gydymo pagrindas: nuosekliai"],
+      ["o krepšiniui – nusileisti", "o krepšiniui nusileisti"],
+      ["pratimų planą – aptarsime", "pratimų planą: aptarsime"]
+    ],
+    "stresiniai-pedos-luziai": [
+      ["gali nepakakti – reikalingas", "gali nepakakti: reikalingas"],
+      ["aptarkite individualiai – jie", "aptarkite individualiai: jie"],
+      ["Įtariant stresinį lūžį – ne", "Įtariant stresinį lūžį: ne"],
+      ["Metatarsal stress fractures – aftercare", "Metatarsal stress fractures: aftercare"]
+    ],
+    "ciurnos-sanario-artroze": [
+      ["kelia sunkumų — pavyzdžiui", "kelia sunkumų, pavyzdžiui"],
+      ["Pagrindinis tikslas — padėti", "Pagrindinis tikslas: padėti"]
+    ],
+    "blauzdos-skausmas-begikams": [
+      ["dažnų priežasčių – medialinis", "dažnų priežasčių: medialinis"],
+      ["kitoks scenarijus – bėgant", "kitoks scenarijus: bėgant"],
+      ["raumenų nuovargiu – skubaus", "raumenų nuovargiu: skubaus"],
+      ["pratimai nereikalingi – svarbu", "pratimai nereikalingi: svarbu"],
+      ["užsitęsusi problema – trukti", "užsitęsusi problema trukti"],
+      ["po krūvio – tai", "po krūvio: tai"]
+    ]
+  }
+}

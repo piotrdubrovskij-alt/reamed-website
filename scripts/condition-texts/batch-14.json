@@ -1,0 +1,53 @@
+{
+  "_comment": "teamNote: false — команда раздела без подписи об операциях (Piotr 08.11.2026: страницы без операций). Пачка 14 (08.11.2026): готовые тексты Piotr, Sporto traumos, 6 новых тем (origin new в manifest.json; четыре reused_unchanged уже на сайте). assessLeadWords: сколько первых слов каждого абзаца «Kaip vertiname» выделить жирным (2–5, по смыслу). dashes: тире между словами и чем его заменить; каждая строка «было» должна встретиться в md ровно один раз; где тире заменяет пропущенный глагол, знак не ставится (решение Piotr 08.11.2026), запятая остаётся только там, где без неё нельзя перед «ar», «kad».",
+  "batch": "Batch 14 (08.11.2026)",
+  "sourceDir": "/Users/piotrdubrovskij/Desktop/Patalpų dizainas/output/reamed_sportas_skausmas_sausgysles_2026-11-08",
+  "pages": [
+    { "slug": "raumens-sumusimas", "section": "sporto-traumos", "assessLeadWords": [4, 5, 3], "teamNote": false },
+    { "slug": "raisciu-patempimai-ir-plysimai", "section": "sporto-traumos", "assessLeadWords": [4, 2, 4] },
+    { "slug": "luziai-ir-grizimas-i-sporta-po-luzio", "section": "sporto-traumos", "assessLeadWords": [4, 3] },
+    { "slug": "stresiniai-luziai", "section": "sporto-traumos", "assessLeadWords": [5, 5, 2], "teamNote": false },
+    { "slug": "begimo-traumos", "section": "sporto-traumos", "assessLeadWords": [4, 2, 4, 4], "teamNote": false },
+    { "slug": "traumu-prevencija", "section": "sporto-traumos", "assessLeadWords": [5, 4, 5], "teamNote": false }
+  ],
+  "dashes": {
+    "raumens-sumusimas": [
+      ["kineziterapijos vizito — pirmiau", "kineziterapijos vizito: pirmiau"],
+      ["po žasto traumos — rankos", "po žasto traumos rankos"],
+      ["muscle injuries — recommendations", "muscle injuries: recommendations"]
+    ],
+    "raisciu-patempimai-ir-plysimai": [
+      ["tinimas, vėliau — ar", "tinimas, vėliau, ar"],
+      ["antras — dalinį", "antras dalinį"],
+      ["trečias — visišką", "trečias visišką"],
+      ["kitu — griežtesnis", "kitu griežtesnis"],
+      ["neribotam laikui — planą", "neribotam laikui: planą"]
+    ],
+    "luziai-ir-grizimas-i-sporta-po-luzio": [
+      ["riešo lūžio, – ir", "riešo lūžio, ir"],
+      ["o ši – nuo", "o ši nuo"],
+      ["sudėtingesnė trauma – ilgiau", "sudėtingesnė trauma ilgiau"],
+      ["krepšinio rungtynes – planui", "krepšinio rungtynes: planui"],
+      ["po gipsu – nelaukite", "po gipsu: nelaukite"]
+    ],
+    "stresiniai-luziai": [
+      ["stresinis pažeidimas – blauzdoje", "stresinis pažeidimas: blauzdoje"],
+      ["tikėtiną vietą – ne", "tikėtiną vietą: ne"],
+      ["Pirmas žingsnis – nustoti", "Pirmas žingsnis: nustoti"],
+      ["tik vėliau – prie", "tik vėliau prie"],
+      ["mažinti maisto – gijimui", "mažinti maisto: gijimui"]
+    ],
+    "begimo-traumos": [
+      ["kulno dalimi – su", "kulno dalimi su"],
+      ["visos programos – bus", "visos programos: bus"]
+    ],
+    "traumu-prevencija": [
+      ["Prevencijos tikslas – geriau", "Prevencijos tikslas: geriau"],
+      ["žygeiviui – kojų", "žygeiviui kojų"],
+      ["o geras – kad", "o geras, kad"],
+      ["planą – pavyzdžiui", "planą, pavyzdžiui"],
+      ["„pratreniruoti“ – pirmiau", "„pratreniruoti“: pirmiau"],
+      ["reikalingus judesius – vien", "reikalingus judesius: vien"]
+    ]
+  }
+}

@@ -14,7 +14,7 @@ export default function SpecialistsSection() {
     <section
       id="specialistai"
       aria-labelledby="team-h"
-      className="bg-graphite text-white section-y [&_:focus-visible]:outline-mint"
+      className="bg-graphite text-white section-y [--focus-ring:var(--color-mint)]"
     >
       <div className="wrap">
         <div className="mb-10 md:mb-14">
@@ -23,7 +23,8 @@ export default function SpecialistsSection() {
           </h2>
           <p className="mt-4 text-lead text-on-dark max-w-[46ch]">{t.team.lead}</p>
         </div>
-        <ul className="grid grid-cols-2 gap-x-3.5 gap-y-7 md:grid-cols-4 md:gap-6">
+        {/* Five arches: 2 per row on the phone, 3 from md, all 5 in one row from lg. */}
+        <ul className="grid grid-cols-2 gap-x-3.5 gap-y-7 md:grid-cols-3 md:gap-6 lg:grid-cols-5">
           {specialists.map((p) => {
             const slug = p.slug as SpecialistSlug;
             return (
@@ -34,7 +35,7 @@ export default function SpecialistsSection() {
                     alt=""
                     width={640}
                     height={800}
-                    sizes="(min-width: 768px) 25vw, 50vw"
+                    sizes="(min-width: 1024px) 20vw, (min-width: 768px) 33vw, 50vw"
                     className="w-full aspect-[4/5] object-cover rounded-t-full"
                   />
                   <span className="block mt-[18px] text-body md:text-lead font-medium group-hover:underline group-hover:decoration-mint group-hover:decoration-2 group-hover:underline-offset-[5px]">

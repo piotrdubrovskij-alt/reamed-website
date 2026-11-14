@@ -2,32 +2,60 @@
 
 import { useState } from "react";
 import Link from "next/link";
-import { ChevronDown, ChevronRight } from "lucide-react";
+import { ArrowRight, ChevronDown, ChevronRight } from "lucide-react";
 import { useLanguage } from "@/contexts/LanguageContext";
-import type { translations } from "@/lib/translations";
+import SectionTopics from "@/components/SectionTopics";
+import { SECTIONS, type Section } from "@/content/sections";
 
-type Area = (typeof translations)["lt" | "en"]["areas"]["items"][number];
+// «Ką gydome» (was «Kada galime padėti?»): the sections of the plan's table (src/content/sections.ts), in its order.
+// Each one opens to: a short text, the link to the section's own page right under it (named by that page's H1,
+// e.g. «Klubo ir kirkšnies skausmas»), the topics (pages as links), and booking. Piotr 07.11.2026: on the phone
+// the section page was only a «Plačiau apie tai» at the very bottom and could not be found.
 
 // Row button: full column width, 52px, ground pill on the paper section.
 const row =
   "flex w-full items-center justify-between gap-4 min-h-13 px-6 rounded-full text-left text-body font-medium cursor-pointer transition-colors duration-200";
 
-function AreaActions({ area }: { area: Area }) {
+function AreaActions() {
   const { t } = useLanguage();
   return (
-    <div className="flex flex-wrap items-center gap-x-7 gap-y-3.5">
+    <div>
       <Link href="/registracija" className="btn btn-dark text-body">
         {t.areas.register}
-      </Link>
-      <Link href={`/ka-gydome/${area.slug}`} className="link-action inline-flex items-center min-h-11">
-        {t.areas.more}
       </Link>
     </div>
   );
 }
 
+// The section's own page: the first thing after the text, a full-width mint row with an arrow.
+function AreaPageLink({ area }: { area: Section }) {
+  const { lang, t } = useLanguage();
+  if (!area.hasPage) return null;
+  return (
+    <Link
+      href={`/ka-gydome/${area.slug}`}
+      className="flex items-center justify-between gap-4 min-h-13 rounded-[20px] bg-mint-light px-5 py-3 text-body font-medium text-ink transition-colors duration-200 hover:bg-mint"
+    >
+      <span>{lang === "lt" && area.pageTitle ? area.pageTitle : t.areas.more}</span>
+      <ArrowRight size={20} aria-hidden="true" className="shrink-0" />
+    </Link>
+  );
+}
+
+function AreaBody({ area }: { area: Section }) {
+  const { lang } = useLanguage();
+  return (
+    <>
+      <p className="max-w-[46ch]">{area.text[lang]}</p>
+      <AreaPageLink area={area} />
+      {lang === "lt" && <SectionTopics topics={area.topics} />}
+    </>
+  );
+}
+
 // Phone (< 821px): accordion. All closed at first, at most one open.
-function AreasAccordion({ items }: { items: readonly Area[] }) {
+function AreasAccordion({ items }: { items: readonly Section[] }) {
+  const { lang } = useLanguage();
   const [open, setOpen] = useState<number | null>(null);
 
   return (
@@ -46,7 +74,7 @@ function AreasAccordion({ items }: { items: readonly Area[] }) {
               onClick={() => setOpen(expanded ? null : i)}
               className={`${row} ${expanded ? "bg-graphite text-white" : "bg-ground text-ink"}`}
             >
-              {area.title}
+              {area.name[lang]}
               <ChevronDown
                 size={20}
                 aria-hidden="true"
@@ -65,8 +93,8 @@ function AreasAccordion({ items }: { items: readonly Area[] }) {
             >
               <div className="overflow-hidden">
                 <div className="flex flex-col gap-5 px-6 pt-4 pb-4">
-                  <p>{area.text}</p>
-                  <AreaActions area={area} />
+                  <AreaBody area={area} />
+                  <AreaActions />
                 </div>
               </div>
             </div>
@@ -78,25 +106,26 @@ function AreasAccordion({ items }: { items: readonly Area[] }) {
 }
 
 // Desktop: the picked area's card on the right; the first one is picked at first.
-function AreaCard({ area }: { area: Area }) {
+function AreaCard({ area }: { area: Section }) {
+  const { lang } = useLanguage();
   const headingId = `area-${area.slug}-title`;
   return (
     <section aria-labelledby={headingId} className="hidden desk:flex flex-col gap-6 bg-ground p-10">
       <h3 id={headingId} className="text-h3 max-w-[20ch]">
-        {area.title}
+        {area.name[lang]}
       </h3>
-      <p className="max-w-[46ch]">{area.text}</p>
+      <AreaBody area={area} />
       <div className="mt-2">
-        <AreaActions area={area} />
+        <AreaActions />
       </div>
     </section>
   );
 }
 
 export default function AreasSection() {
-  const { t } = useLanguage();
+  const { lang, t } = useLanguage();
   const [selected, setSelected] = useState(0);
-  const items = t.areas.items;
+  const items = SECTIONS;
   const current = items[selected];
 
   return (
@@ -116,7 +145,7 @@ export default function AreasSection() {
                   onClick={() => setSelected(i)}
                   className={`${row} ${i === selected ? "bg-graphite text-white" : "bg-ground text-ink hover:bg-ground-hover"}`}
                 >
-                  {area.title}
+                  {area.name[lang]}
                   <ChevronRight size={20} aria-hidden="true" className="shrink-0" />
                 </button>
               </li>

@@ -1,19 +1,11 @@
 "use client";
 
-import type { ReactNode } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { useLanguage } from "@/contexts/LanguageContext";
 import { getSpecialistBySlug } from "@/lib/specialists";
-import type { Language } from "@/lib/translations";
-import {
-  formatCount,
-  formatPrice,
-  priceGroups,
-  serviceMeta,
-  specialistVisit,
-  type PricedService,
-} from "@/data/prices";
+import { priceGroups, specialistVisit } from "@/data/prices";
+import { Service } from "@/components/prices/PriceLines";
 
 const content = {
   lt: {
@@ -23,11 +15,22 @@ const content = {
     about: "Apie Piotrą",
     notesTitle: "Paketai ir apmokėjimas",
     notes: [
-      { title: "Galiojimas", text: "5 kartų paketas galioja 8 savaites, 10 kartų paketas galioja 4 mėnesius." },
-      { title: "Atšaukimas", text: "Atšaukus vizitą vėliau nei prieš 24 val., jis nurašomas iš paketo." },
+      // Package and cancellation terms: decision of 04–05.11.2026 (project doc claude/reamed-booking-terms.md).
+      {
+        title: "Galiojimas",
+        text: "5 vizitų paketas galioja 49 dienas, 10 vizitų paketas galioja 84 dienas nuo pirkimo dienos. Paketas vardinis, skirtas vienai paslaugai, bet ne konkrečiam specialistui.",
+      },
+      {
+        title: "Pasibaigus galiojimui",
+        text: "Paketas nepratęsiamas. Įvykę vizitai perskaičiuojami pagal vienkartinio vizito kainą, o likutis lieka jūsų sąskaitoje ir gali būti naudojamas bet kurioms ReaMed paslaugoms pagal tos dienos kainas. Paprašius likutį grąžiname, išskyrus dovanų kuponu apmokėtą dalį.",
+      },
+      {
+        title: "Atšaukimas ir perkėlimas",
+        text: "Vizitą nemokamai pakeisti ar atšaukti galima, kol iki jo liko ne mažiau kaip 12 valandų. Vėliau perkelti galima tik per administraciją, mokestis 20 €. Vėlesnis atšaukimas ar neatvykimas prilygsta įvykusiam vizitui: iš paketo jis nurašomas, už vienkartinį vizitą pinigai negrąžinami.",
+      },
       {
         title: "Apmokėjimas ir draudimas",
-        text: "Mokėti galima grynaisiais, banko kortele arba pavedimu. Jei turite sveikatos draudimą, po vizito išrašome sąskaitą faktūrą draudimo bendrovei.",
+        text: "ReaMed yra privati klinika: visos paslaugos mokamos, gydytojo siuntimo nereikia, su ligonių kasomis nedirbame. Mokėti galima grynaisiais, banko kortele arba pavedimu. Jei turite sveikatos draudimą, po vizito išrašome sąskaitą faktūrą draudimo bendrovei.",
       },
     ],
   },
@@ -38,76 +41,25 @@ const content = {
     about: "About Piotr",
     notesTitle: "Packages and payment",
     notes: [
-      { title: "Validity", text: "A 5-session package is valid for 8 weeks, a 10-session package for 4 months." },
-      { title: "Cancellation", text: "If a visit is cancelled less than 24 hours in advance, it is deducted from the package." },
+      {
+        title: "Validity",
+        text: "A 5-visit package is valid for 49 days and a 10-visit package for 84 days from the date of purchase. A package is personal and tied to one service, not to a particular specialist.",
+      },
+      {
+        title: "After expiry",
+        text: "A package is not extended. Visits already used are recalculated at the single-visit price, and the remainder stays on your account for any ReaMed service at that day's prices. On request we refund the remainder, except any part paid with a gift voucher.",
+      },
+      {
+        title: "Cancelling and rescheduling",
+        text: "You can change or cancel a visit free of charge up to 12 hours before it. Later, rescheduling is possible only through the administration and costs €20. A later cancellation or a no-show counts as a visit that took place: it is deducted from the package, and a single visit is not refunded.",
+      },
       {
         title: "Payment and insurance",
-        text: "You can pay in cash, by bank card or by bank transfer. If you have health insurance, after the visit we issue an invoice for your insurance company.",
+        text: "ReaMed is a private clinic: all services are paid, no doctor's referral is needed, and we do not work with the state health insurance fund. You can pay in cash, by bank card or by bank transfer. If you have health insurance, after the visit we issue an invoice for your insurance company.",
       },
     ],
   },
 } as const;
-
-// Name, dotted leader, price. The leader is empty, so reading or copying the text gives no dots.
-// Package rows never wrap; below 360px they lose the indent so "10 sessions × €60" still fits.
-function PriceRow({
-  name,
-  price,
-  sub = false,
-  dots = "text-graphite/55",
-}: {
-  name: ReactNode;
-  price: string;
-  sub?: boolean;
-  dots?: string;
-}) {
-  return (
-    <div
-      className={`flex items-end ${
-        sub ? "mt-2 pl-3.5 max-[360px]:pl-0 desk:pl-5 text-small text-graphite" : "text-body desk:text-lead leading-[1.35] font-medium"
-      }`}
-    >
-      <span className={`max-w-[78%] ${sub ? "whitespace-nowrap" : ""}`}>{name}</span>
-      <span aria-hidden="true" className={`leader mx-2.5 ${sub ? "mb-[0.4em] max-[360px]:mx-2" : "mb-[0.42em]"} ${dots}`} />
-      <span className="whitespace-nowrap tabular-nums">{price}</span>
-    </div>
-  );
-}
-
-function Service({ service, lang, onMint = false }: { service: PricedService; lang: Language; onMint?: boolean }) {
-  const meta = serviceMeta(service, lang);
-  return (
-    <>
-      <PriceRow
-        name={service.name[lang]}
-        price={formatPrice(service.price, lang)}
-        dots={onMint ? "text-graphite" : undefined}
-      />
-      {meta && <p className={`mt-1 text-small max-w-[46ch] ${onMint ? "text-ink" : "text-graphite"}`}>{meta}</p>}
-      {service.packs && (
-        <ul className={meta ? "mt-2.5" : undefined}>
-          {service.packs.map((pack) => (
-            <li key={pack.count}>
-              {/* The count sits in a fixed-width column (wider for "10 sessions"), so every "× 65 €" starts on one line. */}
-              <PriceRow
-                sub
-                name={
-                  <>
-                    <span className={`inline-block ${lang === "en" ? "min-w-[5.6em]" : "min-w-[4.6em]"}`}>
-                      {formatCount(pack.count, lang)}
-                    </span>{" "}
-                    <span>×{"\u00a0"}{formatPrice(pack.unit, lang)}</span>
-                  </>
-                }
-                price={formatPrice(pack.total, lang)}
-              />
-            </li>
-          ))}
-        </ul>
-      )}
-    </>
-  );
-}
 
 const groupTitle = "text-lead desk:text-h3-m font-medium tracking-[-0.01em] leading-[1.2]";
 const rule = "border-b-2 border-dashed border-rule";

@@ -129,7 +129,9 @@ export async function POST(req: NextRequest) {
     return NextResponse.json({ error: "Invalid request body" }, { status: 400 });
   }
 
-  const { name, contactDetail, contact, message, lang, phone, email } = body;
+  const { name, contactDetail, contact, message, lang, phone, email, kind } = body;
+  // /kontaktai sends a question answered by e-mail (kind "question"); /registracija sends a booking request.
+  const isQuestion = kind === "question";
 
   if (
     typeof name !== "string" ||
@@ -204,9 +206,13 @@ export async function POST(req: NextRequest) {
         };
 
   const subject = stripControls(
-    safeLang === "en"
-      ? `Appointment request — ${name}`
-      : `Registracija vizitui — ${name}`
+    isQuestion
+      ? safeLang === "en"
+        ? `Question from the website — ${name}`
+        : `Klausimas iš svetainės — ${name}`
+      : safeLang === "en"
+        ? `Appointment request — ${name}`
+        : `Registracija vizitui — ${name}`
   );
 
   const linkStyle = "color: #2f7d78; font-weight: 600; text-decoration: none;";
@@ -219,7 +225,7 @@ export async function POST(req: NextRequest) {
     <div style="font-family: sans-serif; max-width: 520px; color: #1a2120;">
       <div style="background: #7DB9B5; padding: 20px 28px; border-radius: 12px 12px 0 0;">
         <p style="margin: 0; color: white; font-size: 13px; font-weight: 600; letter-spacing: 0.05em; text-transform: uppercase;">
-          ReaMed — ${safeLang === "en" ? "New appointment request" : "Nauja užklausa"}
+          ReaMed — ${isQuestion ? (safeLang === "en" ? "New question" : "Naujas klausimas") : safeLang === "en" ? "New appointment request" : "Nauja užklausa"}
         </p>
       </div>
       <div style="background: #f7faf9; padding: 24px 28px; border-radius: 0 0 12px 12px; border: 1px solid #dde9e8; border-top: none;">
@@ -245,7 +251,7 @@ export async function POST(req: NextRequest) {
           ${safeMessage ? `
           <tr>
             <td colspan="2" style="padding-top: 16px;">
-              <p style="margin: 0 0 6px; font-size: 13px; color: #6b7c7a;">${safeLang === "en" ? "Message" : "Žinutė"}</p>
+              <p style="margin: 0 0 6px; font-size: 13px; color: #6b7c7a;">${isQuestion ? (safeLang === "en" ? "Question" : "Klausimas") : safeLang === "en" ? "Message" : "Žinutė"}</p>
               <div style="background: white; border: 1px solid #dde9e8; border-radius: 8px; padding: 12px 14px; font-size: 14px; color: #1a2120; line-height: 1.6; white-space: pre-wrap;">${safeMessage}</div>
             </td>
           </tr>` : ""}

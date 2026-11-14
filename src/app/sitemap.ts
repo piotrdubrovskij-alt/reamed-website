@@ -1,59 +1,34 @@
 import type { MetadataRoute } from "next";
+import { SITE_URL } from "@/lib/seo";
+import { specialists } from "@/lib/specialists";
+import { translations } from "@/lib/translations";
+import { conditionPages } from "@/content/conditions";
+import { SECTIONS } from "@/content/sections";
+import { servicePages } from "@/content/services";
 
-const BASE_URL = "https://reamed.lt";
+// lastModified only where a real date exists: the day a specialist last reviewed the text (`reviewed.date`).
+// Change a page's text, and its reviewed date changes with it. A date that is always "now" teaches Google to ignore it.
+//
+// /registracija is noindex and stays out.
+
+const staticPaths = ["/", "/ka-gydome", "/paslaugos", "/specialistai", "/kainos", "/kontaktai", "/privatumas"];
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const now = new Date();
-
-  const staticRoutes: MetadataRoute.Sitemap = [
-    { url: BASE_URL, lastModified: now, changeFrequency: "monthly", priority: 1 },
-    { url: `${BASE_URL}/kontaktai`, lastModified: now, changeFrequency: "yearly", priority: 0.8 },
-    { url: `${BASE_URL}/kainos`, lastModified: now, changeFrequency: "monthly", priority: 0.8 },
-    { url: `${BASE_URL}/privatumas`, lastModified: now, changeFrequency: "yearly", priority: 0.3 },
-    // /registracija is noindex — intentionally excluded from sitemap
+  const lt = translations.lt;
+  const reviewedOn = new Map<string, string>();
+  for (const p of conditionPages) if (p.reviewed) reviewedOn.set(`/ka-gydome/${p.slug}`, p.reviewed.date);
+  for (const p of servicePages) if (p.reviewed) reviewedOn.set(`/paslaugos/${p.slug}`, p.reviewed.date);
+  const paths = [
+    ...staticPaths,
+    ...SECTIONS.filter((s) => s.hasPage).map((s) => `/ka-gydome/${s.slug}`),
+    ...conditionPages.map((p) => `/ka-gydome/${p.slug}`),
+    ...lt.services.items.map((s) => `/paslaugos/${s.slug}`),
+    ...specialists.map((s) => `/specialistai/${s.slug}`),
   ];
 
-  const serviceRoutes: MetadataRoute.Sitemap = [
-    "kineziterapija",
-    "manualine-terapija",
-    "osteopatija",
-    "sporto-reabilitacija",
-    "pooperacine-reabilitacija",
-    "gydomasis-masazas",
-  ].map((slug) => ({
-    url: `${BASE_URL}/paslaugos/${slug}`,
-    lastModified: now,
-    changeFrequency: "monthly" as const,
-    priority: 0.9,
-  }));
-
-  const conditionRoutes: MetadataRoute.Sitemap = [
-    "nugaros-skausmas",
-    "kaklo-skausmas",
-    "sporto-traumos",
-    "kelio-skausmas",
-    "peties-problemos",
-    "plintantis-skausmas",
-    "tendinopatijos",
-    "atsistatymas-po-operaciju",
-  ].map((slug) => ({
-    url: `${BASE_URL}/ka-gydome/${slug}`,
-    lastModified: now,
-    changeFrequency: "monthly" as const,
-    priority: 0.8,
-  }));
-
-  const specialistRoutes: MetadataRoute.Sitemap = [
-    "piotr-dubrovskij",
-    "mangirdas-kazacenko",
-    "kotryna-kairyte",
-    "erikas-jatkauskas",
-  ].map((slug) => ({
-    url: `${BASE_URL}/specialistai/${slug}`,
-    lastModified: now,
-    changeFrequency: "yearly" as const,
-    priority: 0.7,
-  }));
-
-  return [...staticRoutes, ...serviceRoutes, ...conditionRoutes, ...specialistRoutes];
+  // A section's own page can be both a section and a data page: list it once.
+  return [...new Set(paths)].map((path) => {
+    const lastModified = reviewedOn.get(path);
+    return { url: path === "/" ? SITE_URL : `${SITE_URL}${path}`, ...(lastModified ? { lastModified } : {}) };
+  });
 }

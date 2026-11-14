@@ -9,6 +9,7 @@ export const SPECIALIST_NAMES: Record<SpecialistSlug, string> = {
   "kotryna-kairyte": "Kotryna Kairytė",
   "erikas-jatkauskas": "Erikas Jatkauskas",
   "mangirdas-kazacenko": "Mangirdas Kazačenko",
+  "edmundas-zlatkus": "Edmundas Zlatkus",
 };
 
 const LT_MONTHS_GEN = [

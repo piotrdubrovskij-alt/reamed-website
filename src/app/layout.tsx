@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Onest } from "next/font/google";
 import { Providers } from "./providers";
+import { OG_IMAGE } from "@/lib/seo";
 import "./globals.css";
 
 // Onest: variable font (one file for all weights); latin-ext covers ąčęėįšųūž.
@@ -12,6 +13,8 @@ const onest = Onest({
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://reamed.lt"),
+  // Bing Webmaster Tools: site ownership check, must stay on the page after verification.
+  verification: { other: { "msvalidate.01": "80A4B606C933FF07CE831BAECF2C3CE1" } },
   icons: {
     icon: [
       { url: "/favicon.ico", sizes: "any" },
@@ -35,20 +38,23 @@ export const metadata: Metadata = {
     "manualinė terapija",
     "ReaMed",
   ],
+  // No url here: every page sets its own og:url and canonical through pageMetadata()
+  // (src/lib/seo.ts), otherwise all pages would point to the home page.
   openGraph: {
     title: "ReaMed — Kineziterapijos klinika Vilniuje",
     description:
       "Šiuolaikinė kineziterapijos ir reabilitacijos klinika Vilniuje.",
-    url: "https://reamed.lt",
     siteName: "ReaMed",
     locale: "lt_LT",
     type: "website",
+    images: [OG_IMAGE],
   },
 };
 
 const jsonLd = {
   "@context": "https://schema.org",
-  "@type": "MedicalBusiness",
+  "@type": "MedicalClinic",
+  "@id": "https://reamed.lt/#clinic",
   name: "ReaMed",
   description:
     "Kineziterapijos ir reabilitacijos klinika Vilniuje. Stuburo ir kaklo skausmai, sporto traumos, sąnarių problemos, pooperacinis atsistatymas.",
@@ -74,9 +80,18 @@ const jsonLd = {
       opens: "08:00",
       closes: "19:00",
     },
+    {
+      "@type": "OpeningHoursSpecification",
+      dayOfWeek: "Saturday",
+      opens: "08:00",
+      closes: "16:00",
+    },
   ],
-  medicalSpecialty: "PhysicalTherapy",
-  image: "https://reamed.lt/logo.png",
+  medicalSpecialty: "https://schema.org/Physiotherapy",
+  isAcceptingNewPatients: true,
+  knowsLanguage: ["lt", "en", "ru"],
+  logo: "https://reamed.lt/logo.png",
+  image: "https://reamed.lt/og/reamed-og.png",
   sameAs: [
     "https://www.google.com/maps?cid=5379242466351535503",
     "https://www.instagram.com/reamedklinika/",

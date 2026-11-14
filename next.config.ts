@@ -1,4 +1,5 @@
 import type { NextConfig } from "next";
+import { legacyRedirects } from "./src/data/legacy-redirects";
 
 const cspHeader = [
   "default-src 'self'",
@@ -25,6 +26,8 @@ const nextConfig: NextConfig = {
         destination: "https://reamed.lt/:path*",
         permanent: true,
       },
+      // Old WordPress addresses → current pages (see the file for the list).
+      ...legacyRedirects.map((r) => ({ ...r, permanent: true })),
     ];
   },
   async headers() {

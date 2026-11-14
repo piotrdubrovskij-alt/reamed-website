@@ -136,9 +136,12 @@ export default function Header() {
   }, [open]);
 
   const navItems = [
+    // «Ką gydome» and «Paslaugos» go to their blocks on the home page, not to the index pages (Piotr, 07.11.2026:
+    // the index pages repeat the home page and feel heavy). /ka-gydome and /paslaugos stay for breadcrumbs,
+    // «← Paslaugos» links and the sitemap. The sticky header is offset by scroll-padding-top in globals.css.
     { label: t.nav.whatWeTreat, href: "/#ka-gydome" },
     { label: t.nav.services, href: "/#paslaugos" },
-    { label: t.nav.specialists, href: "/#specialistai" },
+    { label: t.nav.specialists, href: "/specialistai" },
     { label: t.nav.prices, href: "/kainos" },
     { label: t.nav.contacts, href: "/kontaktai" },
   ];
@@ -161,12 +164,12 @@ export default function Header() {
           <ul className="flex gap-[30px] text-small font-medium">
             {navItems.map((item) => (
               <li key={item.href}>
-                <a
+                <Link
                   href={item.href}
                   className="inline-flex items-center min-h-11 hover:underline hover:decoration-mint hover:decoration-2 hover:underline-offset-[6px]"
                 >
                   {item.label}
-                </a>
+                </Link>
               </li>
             ))}
           </ul>
@@ -214,13 +217,13 @@ export default function Header() {
           <ul className="flex flex-col">
             {navItems.map((item) => (
               <li key={item.href}>
-                <a
+                <Link
                   href={item.href}
                   onClick={() => setOpen(false)}
                   className="flex items-center min-h-14 text-lead font-medium"
                 >
                   {item.label}
-                </a>
+                </Link>
               </li>
             ))}
           </ul>

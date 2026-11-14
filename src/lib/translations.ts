@@ -1,4 +1,8 @@
-import { FIRST_VISIT, formatPrice } from "@/data/prices";
+import { FIRST_VISIT, formatPrice, getPricedService } from "@/data/prices";
+
+// «Pirmasis vizitas» offer line: one kinesitherapy visit vs the cheapest visit in a package, from prices.ts.
+const KT = getPricedService("kineziterapija");
+const KT_FROM = Math.min(...(KT.packs ?? []).map((p) => p.unit));
 
 export type Language = "lt" | "en";
 
@@ -33,58 +37,18 @@ export const translations = {
       cta: "Registruotis vizitui",
     },
     areas: {
-      title: "Kada galime padėti?",
+      // Same name as the menu item that leads here (Piotr, 07.11.2026): one name for one place.
+      title: "Ką gydome",
       register: "Registruotis",
       more: "Plačiau apie tai",
-      items: [
-        {
-          slug: "nugaros-skausmas",
-          title: "Nugaros skausmas",
-          text: "Ūmus ar pasikartojantis skausmas, sustingimas, judesio ribotumas. Įvertiname problemos pobūdį ir parenkame tinkamiausią gydymo kryptį.",
-        },
-        {
-          slug: "kaklo-skausmas",
-          title: "Kaklo skausmas",
-          text: "Įtampa, skausmas, judesio ribotumas ar pojūčiai, plintantys į petį ar ranką. Įvertiname ir parenkame tinkamiausią gydymo kryptį.",
-        },
-        {
-          slug: "peties-problemos",
-          title: "Peties problemos",
-          text: "Skausmas, ribotas judesys, trauminė ar lėtinė būklė, trukdanti dirbti, sportuoti ir ilsėtis.",
-        },
-        {
-          slug: "kelio-skausmas",
-          title: "Kelio skausmas ir traumos",
-          text: "Raiščių ir menisko problemos, perkrovos, atsistatymas po kelio operacijos.",
-        },
-        {
-          slug: "sporto-traumos",
-          title: "Sporto traumos",
-          text: "Traumos, perkrovos ir pasikartojantis skausmas, kurie sustabdo treniruotes. Planas grįžti į krūvį saugiai.",
-        },
-        {
-          slug: "atsistatymas-po-operaciju",
-          title: "Atsistatymas po operacijų",
-          text: "Saugiai atkuriame judrumą, jėgą ir pasitikėjimą judesiu pagal konkretų gijimo etapą.",
-        },
-        {
-          slug: "plintantis-skausmas",
-          title: "Plintantis skausmas ir tirpimas",
-          text: "Skausmas, plintantis į ranką ar koją, tirpimas, dilgčiojimas. Įvertiname simptomų pobūdį ir parenkame kryptį.",
-        },
-        {
-          slug: "tendinopatijos",
-          title: "Tendinopatijos ir perkrovos",
-          text: "Skausmas krūvio metu ar po jo, jautrumas, sumažėjusi apkrovos tolerancija.",
-        },
-      ],
     },
     services: {
-      title: "Kineziterapija, manualinė terapija ir osteopatija",
+      title: "Mūsų paslaugos",
       items: [
         { slug: "kineziterapija", title: "Kineziterapija", text: "Skausmui mažinti, judesio kokybei gerinti ir funkcijai atkurti." },
         { slug: "manualine-terapija", title: "Manualinė terapija", text: "Skausmui mažinti ir sąnarių judrumui gerinti." },
         { slug: "osteopatija", title: "Osteopatija", text: "Gydymas, orientuotas į kūno struktūrą ir funkcinius ryšius." },
+        { slug: "fizioterapija", title: "Fizioterapija", text: "Elektrostimuliacija, TENS ir ultragarsas kartu su pratimais." },
         { slug: "gydomasis-masazas", title: "Gydomasis masažas", text: "Raumenų įtampai ir diskomfortui mažinti." },
         { slug: "sporto-reabilitacija", title: "Sporto reabilitacija", text: "Po traumų ir perkrovų, grįžtant į sportą." },
         { slug: "pooperacine-reabilitacija", title: "Pooperacinė reabilitacija", text: "Po ortopedinių ir stuburo operacijų, pagal gijimo etapą." },
@@ -96,9 +60,11 @@ export const translations = {
     },
     visit: {
       title: "Pirmasis vizitas",
-      statement: "Išklausome, ištiriame judesį ir paaiškiname, kas vyksta. Sudarome planą ir pradedame gydymą.",
+      // Piotr, 07.11.2026: say plainly that the 60 minutes hold everything, without a long text.
+      statement: "Konsultacija, ištyrimas, gydymo planas ir gydymas: viskas viename vizite.",
       // From src/data/prices.ts, so the home page and /kainos always agree.
       facts: [FIRST_VISIT.duration, formatPrice(FIRST_VISIT.price, "lt")],
+      offer: `Su paketu tolesni vizitai pigesni: kineziterapija nuo ${formatPrice(KT_FROM, "lt")} vietoj ${formatPrice(KT.price, "lt")}.`,
       cta: "Registruotis vizitui",
       prices: "Visos kainos ir paketai",
       photoAlt: "Kineziterapeutas dirba su paciente",
@@ -115,18 +81,21 @@ export const translations = {
       ],
     },
     booking: {
-      online: "Registruotis internetu",
+      // The footer button reads like every other booking button while /registracija is a request form;
+      // «Registruotis internetu» returns with the real online booking (/rezervacija).
+      online: "Registruotis vizitui",
       phone: "Telefonas",
       address: "Adresas",
       hours: "Darbo laikas",
-      hoursValue: "I–V 8:00–19:00",
+      hoursValue: "I–V 8:00–19:00, VI 8:00–16:00",
       email: "El. paštas",
     },
     footer: {
       menu: "Apačios meniu",
       privacy: "Privatumo politika",
-      map: "Atidaryti žemėlapį",
-      mapLabel: "Atidaryti ReaMed vietą Google Maps",
+      tagline: "Kineziterapijos ir reabilitacijos klinika Vilniuje",
+      patients: "Pacientams",
+      findUs: "Kaip mus rasti",
     },
     contact: {
       address: "Olimpiečių g. 1A-7, Vilnius",
@@ -160,58 +129,17 @@ export const translations = {
       cta: "Book a visit",
     },
     areas: {
-      title: "When can we help?",
+      title: "What we treat",
       register: "Book a visit",
       more: "Read more",
-      items: [
-        {
-          slug: "nugaros-skausmas",
-          title: "Back pain",
-          text: "Acute or recurring pain, stiffness, restricted movement. We assess the nature of the problem and choose the most suitable treatment direction.",
-        },
-        {
-          slug: "kaklo-skausmas",
-          title: "Neck pain",
-          text: "Tension, pain, restricted movement or sensations spreading to the shoulder or arm. We assess and choose the most suitable treatment direction.",
-        },
-        {
-          slug: "peties-problemos",
-          title: "Shoulder problems",
-          text: "Pain, restricted movement, an injury or a long-standing condition that gets in the way of work, sport and rest.",
-        },
-        {
-          slug: "kelio-skausmas",
-          title: "Knee pain and injuries",
-          text: "Ligament and meniscus problems, overuse, recovery after knee surgery.",
-        },
-        {
-          slug: "sporto-traumos",
-          title: "Sports injuries",
-          text: "Injuries, overuse and recurring pain that stop your training. A plan to return to load safely.",
-        },
-        {
-          slug: "atsistatymas-po-operaciju",
-          title: "Recovery after surgery",
-          text: "We safely rebuild mobility, strength and confidence in movement, matched to your stage of healing.",
-        },
-        {
-          slug: "plintantis-skausmas",
-          title: "Radiating pain and numbness",
-          text: "Pain spreading to the arm or leg, numbness, tingling. We assess the nature of the symptoms and choose a direction.",
-        },
-        {
-          slug: "tendinopatijos",
-          title: "Tendinopathies and overuse",
-          text: "Pain during or after load, tenderness, lower tolerance to load.",
-        },
-      ],
     },
     services: {
-      title: "Physiotherapy, manual therapy and osteopathy",
+      title: "Our services",
       items: [
         { slug: "kineziterapija", title: "Physiotherapy", text: "To reduce pain, improve movement quality and restore function." },
         { slug: "manualine-terapija", title: "Manual therapy", text: "To reduce pain and improve joint mobility." },
         { slug: "osteopatija", title: "Osteopathy", text: "Treatment focused on the body's structure and functional connections." },
+        { slug: "fizioterapija", title: "Electrotherapy and ultrasound", text: "Electrical muscle stimulation, TENS and ultrasound alongside exercise." },
         { slug: "gydomasis-masazas", title: "Therapeutic massage", text: "To ease muscle tension and discomfort." },
         { slug: "sporto-reabilitacija", title: "Sports rehabilitation", text: "After injuries and overload, on the way back to sport." },
         { slug: "pooperacine-reabilitacija", title: "Post-surgical rehabilitation", text: "After orthopaedic and spinal surgery, matched to the healing stage." },
@@ -223,8 +151,9 @@ export const translations = {
     },
     visit: {
       title: "First visit",
-      statement: "We listen, assess how you move and explain what is going on. We make a plan and start treatment.",
+      statement: "Consultation, assessment, a treatment plan and treatment: all in one visit.",
       facts: [FIRST_VISIT.duration, formatPrice(FIRST_VISIT.price, "en")],
+      offer: `Follow-up visits cost less in a package: physiotherapy from ${formatPrice(KT_FROM, "en")} instead of ${formatPrice(KT.price, "en")}.`,
       cta: "Book a visit",
       prices: "All prices and packages",
       photoAlt: "A physiotherapist working with a patient",
@@ -239,18 +168,19 @@ export const translations = {
       ],
     },
     booking: {
-      online: "Book online",
+      online: "Book a visit",
       phone: "Phone",
       address: "Address",
       hours: "Opening hours",
-      hoursValue: "Mon–Fri 8:00–19:00",
+      hoursValue: "Mon–Fri 8:00–19:00, Sat 8:00–16:00",
       email: "Email",
     },
     footer: {
       menu: "Footer menu",
       privacy: "Privacy policy",
-      map: "Open map",
-      mapLabel: "Open ReaMed on Google Maps",
+      tagline: "Physiotherapy and rehabilitation clinic in Vilnius",
+      patients: "For patients",
+      findUs: "How to find us",
     },
     contact: {
       address: "Olimpiečių g. 1A-7, Vilnius",

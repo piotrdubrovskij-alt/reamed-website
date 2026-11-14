@@ -3,6 +3,7 @@
 import { Fragment } from "react";
 import Image from "next/image";
 import Link from "next/link";
+import { Tag } from "lucide-react";
 import { useLanguage } from "@/contexts/LanguageContext";
 
 // Replaces the old 01–04 "how we work" tiles.
@@ -24,6 +25,11 @@ export default function FirstVisitSection() {
                 <span className="whitespace-nowrap">{fact}</span>
               </Fragment>
             ))}
+          </p>
+          {/* A modest offer line (Piotr, 07.11.2026): packages make the next visits cheaper. Prices come from prices.ts. */}
+          <p className="self-start flex items-start gap-2.5 rounded-[20px] bg-mint-light px-4 py-3 text-small text-ink max-w-[44ch]">
+            <Tag size={18} aria-hidden="true" className="shrink-0 mt-[3px]" />
+            <span>{t.visit.offer}</span>
           </p>
           <div className="mt-2 flex flex-wrap items-center gap-x-7 gap-y-3.5">
             <Link href="/registracija" className="btn btn-dark text-body">

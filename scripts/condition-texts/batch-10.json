@@ -1,0 +1,46 @@
+{
+  "_comment": "Пачка 10 (08.11.2026): готовые тексты Piotr, Nugara 4 и Kaklas 3. assessLeadWords: сколько первых слов каждого абзаца «Kaip vertiname» выделить жирным (2–5, по смыслу). dashes: тире между словами и чем его заменить; каждая строка «было» должна встретиться в md ровно один раз.",
+  "batch": "Batch 10 (08.11.2026)",
+  "sourceDir": "/Users/piotrdubrovskij/Desktop/Patalpų dizainas/output/reamed_nugara_kaklas_2026-11-08",
+  "pages": [
+    { "slug": "nugaros-skausmas-ir-raumenu-itampa", "section": "nugaros-skausmas", "assessLeadWords": [4, 5] },
+    { "slug": "skausmas-tarp-menciu", "section": "nugaros-skausmas", "assessLeadWords": [5, 4, 5] },
+    { "slug": "nugaros-skausmas-sedint", "section": "nugaros-skausmas", "assessLeadWords": [3, 5] },
+    { "slug": "laikysenos-problemos", "section": "nugaros-skausmas", "assessLeadWords": [2, 4] },
+    { "slug": "uzstriges-kaklas", "section": "kaklo-skausmas", "assessLeadWords": [5, 3, 2] },
+    { "slug": "ribotas-kaklo-judrumas", "section": "kaklo-skausmas", "assessLeadWords": [4, 4, 5] },
+    { "slug": "kaklo-trauma-po-avarijos", "section": "kaklo-skausmas", "assessLeadWords": [2, 5, 3] }
+  ],
+  "dashes": {
+    "nugaros-skausmas-ir-raumenu-itampa": [
+      ["duomenimis — jis", "duomenimis: jis"],
+      ["and management — recommendations", "and management: recommendations"]
+    ],
+    "skausmas-tarp-menciu": [
+      ["vaistus — tai", "vaistus: tai"]
+    ],
+    "nugaros-skausmas-sedint": [
+      ["NG59 – Recommendations", "NG59: Recommendations"],
+      ["equipment – Work", "equipment: Work"],
+      ["Kada skambinti – greitoji", "Kada skambinti: greitoji"],
+      ["Back Pain – A", "Back Pain: A"]
+    ],
+    "laikysenos-problemos": [
+      ["Tikslas – daugiau", "Tikslas: daugiau"],
+      ["Scoliosis – Treatment", "Scoliosis: Treatment"],
+      ["NG59 – Recommendations", "NG59: Recommendations"],
+      ["equipment – Work", "equipment: Work"],
+      ["Kada skambinti – greitoji", "Kada skambinti: greitoji"],
+      ["Back Pain – A", "Back Pain: A"]
+    ],
+    "uzstriges-kaklas": [
+      ["paaiškinimų – ūminė", "paaiškinimų: ūminė"]
+    ],
+    "kaklo-trauma-po-avarijos": [
+      ["pykinimą – jų", "pykinimą: jų"],
+      ["prireikus – kaklo", "prireikus, kaklo"],
+      ["initial management — recommendations", "initial management: recommendations"],
+      ["early management — recommendations", "early management: recommendations"]
+    ]
+  }
+}
