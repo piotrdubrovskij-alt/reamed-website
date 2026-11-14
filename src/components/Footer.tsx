@@ -16,59 +16,66 @@ const social = [
 ];
 
 // Booking, contacts and map in one graphite block, shared by every page. No logo, no rules.
-// On /kontaktai the page itself opens with the same list and map, so only the bottom line stays (Piotr, 14.11.2026).
+// On /kontaktai the page itself opens with the same list and map, so the footer there is one graphite strip with the
+// privacy policy link only, no social links (Piotr, 14.11.2026): the form above needs a way to the policy.
 export default function Footer() {
   const { t } = useLanguage();
   const pathname = usePathname();
-  const compact = pathname === "/kontaktai";
+
+  if (pathname === "/kontaktai") {
+    return (
+      <footer className="bg-graphite text-white py-3 [--focus-ring:var(--color-mint)]">
+        <nav aria-label={t.footer.menu} className="wrap flex items-center text-small text-on-dark">
+          <a href="/privatumas" className="inline-flex items-center min-h-11 hover:underline">
+            {t.footer.privacy}
+          </a>
+        </nav>
+      </footer>
+    );
+  }
 
   return (
     <footer
       id="kontaktai"
       aria-labelledby="footer-h"
-      className={`bg-graphite text-white pb-10 [--focus-ring:var(--color-mint)] ${compact ? "pt-4" : "pt-12 desk:pt-16"}`}
+      className="bg-graphite text-white pt-12 desk:pt-16 pb-10 [--focus-ring:var(--color-mint)]"
     >
       <div className="wrap">
         <h2 id="footer-h" className="sr-only">
           {t.nav.contacts}
         </h2>
-        {!compact && (
-          <div className="grid gap-10 desk:grid-cols-[auto_1fr] desk:gap-12 lg:gap-[72px]">
-            <div className="flex flex-col gap-8">
-              {pathname !== "/registracija" && (
-                <Link href="/registracija" className="btn btn-mint text-body w-full desk:w-auto desk:self-start">
-                  {t.booking.online}
-                </Link>
-              )}
-              <ContactDetails />
-            </div>
-
-            {/* Static OSM map from scripts/build-map.mjs: no iframe, nothing loads from Google or OSM.
-                The marker is the SVG's centre, so object-cover keeps it in view. Square corners, like the areas card. */}
-            <a
-              href={GOOGLE_REVIEWS.url}
-              {...external}
-              aria-label={t.footer.mapLabel}
-              className="relative block h-[200px] overflow-hidden bg-ground desk:h-auto desk:min-h-60"
-            >
-              <Image src="/map/reamed-map.svg" alt="" fill unoptimized sizes="(min-width: 821px) 60vw, 100vw" className="object-cover" />
-              <span className="absolute left-3 bottom-3 max-[360px]:bottom-8 inline-flex items-center gap-1.5 min-h-10 px-4 rounded-full bg-white text-ink text-small font-medium">
-                {t.footer.map}
-                <ArrowUpRight size={16} aria-hidden="true" />
-              </span>
-              {/* OSM attribution is required; 13px is the one exception to the type scale. Below 360px the pill sits above it. */}
-              <span className="absolute right-0 bottom-0 px-1.5 py-0.5 bg-white/75 text-ink text-[13px] leading-normal">
-                © OpenStreetMap
-              </span>
-            </a>
+        <div className="grid gap-10 desk:grid-cols-[auto_1fr] desk:gap-12 lg:gap-[72px]">
+          <div className="flex flex-col gap-8">
+            {pathname !== "/registracija" && (
+              <Link href="/registracija" className="btn btn-mint text-body w-full desk:w-auto desk:self-start">
+                {t.booking.online}
+              </Link>
+            )}
+            <ContactDetails />
           </div>
-        )}
+
+          {/* Static OSM map from scripts/build-map.mjs: no iframe, nothing loads from Google or OSM.
+              The marker is the SVG's centre, so object-cover keeps it in view. Square corners, like the areas card. */}
+          <a
+            href={GOOGLE_REVIEWS.url}
+            {...external}
+            aria-label={t.footer.mapLabel}
+            className="relative block h-[200px] overflow-hidden bg-ground desk:h-auto desk:min-h-60"
+          >
+            <Image src="/map/reamed-map.svg" alt="" fill unoptimized sizes="(min-width: 821px) 60vw, 100vw" className="object-cover" />
+            <span className="absolute left-3 bottom-3 max-[360px]:bottom-8 inline-flex items-center gap-1.5 min-h-10 px-4 rounded-full bg-white text-ink text-small font-medium">
+              {t.footer.map}
+              <ArrowUpRight size={16} aria-hidden="true" />
+            </span>
+            {/* OSM attribution is required; 13px is the one exception to the type scale. Below 360px the pill sits above it. */}
+            <span className="absolute right-0 bottom-0 px-1.5 py-0.5 bg-white/75 text-ink text-[13px] leading-normal">
+              © OpenStreetMap
+            </span>
+          </a>
+        </div>
 
         {/* One line from 360px; below that Instagram and Facebook move to a second line together. */}
-        <nav
-          aria-label={t.footer.menu}
-          className={`flex flex-wrap items-center gap-x-1.5 text-small text-on-dark ${compact ? "" : "mt-10 desk:mt-12"}`}
-        >
+        <nav aria-label={t.footer.menu} className="mt-10 desk:mt-12 flex flex-wrap items-center gap-x-1.5 text-small text-on-dark">
           <a href="/privatumas" className="inline-flex items-center min-h-11 hover:underline">
             {t.footer.privacy}
           </a>

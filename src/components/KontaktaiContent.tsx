@@ -9,8 +9,9 @@ import ContactDetails from "@/components/ContactDetails";
 import { Dots, twoCols } from "@/components/g/PageBlocks";
 
 // /kontaktai in the G layout (Piotr, 14.11.2026): the page opens with the same graphite list as the footer, then how to
-// find the door, a short note before the first visit and a question form that answers by e-mail. Nothing is repeated:
-// the footer on this page keeps only its bottom line. Booking goes to /registracija like everywhere else.
+// find the door (two photos, map, parking, bus), four lines before the first visit and a question form that answers by
+// e-mail, with nothing under its button. Nothing is repeated: the footer on this page is one graphite strip with the
+// privacy policy link. Booking goes to /registracija like everywhere else.
 
 const external = { target: "_blank", rel: "noopener noreferrer" } as const;
 
@@ -32,8 +33,10 @@ const content = {
     book: "Registruotis vizitui",
 
     findTitle: "Kaip mus rasti",
-    photoAlt: "ReaMed klinikos įėjimas: pilkos stiklinės durys Nr. 7 su ReaMed iškaba",
-    entrance: "Mūsų durys – Nr. 7 su ReaMed iškaba, iš Sporto rūmų pusės, pirmame aukšte.",
+    buildingAlt: "ReaMed klinikos pastatas Olimpiečių g. 1A, tolumoje Gedimino pilies bokštas",
+    building: "Pastatas Olimpiečių g. 1A, prie Sporto rūmų. Įėjimas iš šios pusės.",
+    doorAlt: "ReaMed klinikos durys Nr. 7 su ReaMed iškaba",
+    door: "Durys Nr. 7 su ReaMed iškaba. Pirmas aukštas, be laiptų.",
     directions: "Maršrutas",
     directionsLabel: "Maršrutas į kliniką Google Maps",
     carTitle: "Automobiliu",
@@ -60,7 +63,7 @@ const content = {
     prices: "Kainos ir paketai",
 
     askTitle: "Turite klausimą?",
-    askText: "Parašykite, atsakysime el. paštu per 1 darbo dieną. Dėl vizito laiko greičiausia registruotis internetu arba paskambinti.",
+    askText: "Atsakysime el. paštu per 1 darbo dieną. Dėl vizito laiko patogiausia registruotis internetu arba paskambinti.",
     name: "Vardas",
     email: "El. paštas",
     question: "Klausimas",
@@ -74,8 +77,6 @@ const content = {
     doneTitle: "Ačiū, gavome Jūsų klausimą.",
     doneText: "Atsakysime el. paštu per 1 darbo dieną.",
     again: "Rašyti dar kartą",
-    privacy: "Duomenis naudojame tik atsakyti į klausimą. Čia nesiųskite sveikatos informacijos.",
-    privacyLink: "Privatumo politika",
   },
   en: {
     title: "Contacts",
@@ -83,8 +84,10 @@ const content = {
     book: "Book a visit",
 
     findTitle: "How to find us",
-    photoAlt: "ReaMed clinic entrance: grey glass door No. 7 with the ReaMed sign",
-    entrance: "Our door is No. 7 with the ReaMed sign, on the Sports Palace side, ground floor.",
+    buildingAlt: "The ReaMed clinic building at Olimpiečių g. 1A, Gediminas Tower in the distance",
+    building: "The building at Olimpiečių g. 1A, next to the Sports Palace. The entrance is on this side.",
+    doorAlt: "ReaMed clinic door No. 7 with the ReaMed sign",
+    door: "Door No. 7 with the ReaMed sign. Ground floor, no steps.",
     directions: "Directions",
     directionsLabel: "Directions to the clinic in Google Maps",
     carTitle: "By car",
@@ -111,7 +114,7 @@ const content = {
     prices: "Prices and packages",
 
     askTitle: "Have a question?",
-    askText: "Write to us and we will reply by e-mail within one working day. For a visit time, booking online or calling is quickest.",
+    askText: "We reply by e-mail within one working day. For a visit time, booking online or calling is quickest.",
     name: "Name",
     email: "E-mail",
     question: "Question",
@@ -125,8 +128,6 @@ const content = {
     doneTitle: "Thank you, we have your question.",
     doneText: "We will reply by e-mail within one working day.",
     again: "Write again",
-    privacy: "We use your details only to answer your question. Do not send health information here.",
-    privacyLink: "Privacy policy",
   },
 } as const;
 
@@ -232,81 +233,93 @@ export default function KontaktaiContent() {
         </div>
       </section>
 
-      {/* 2. The door, the map with a route, parking and the bus stop: everything an arriving person needs, before any form. */}
+      {/* 2. Two photos (the building with the tower, the door), then the map with a route, parking and the bus stop:
+          everything an arriving person needs, before any form. Piotr 14.11.2026: the door whole, not a tight crop. */}
       <section aria-labelledby="rasti-h" className="section-y">
         <div className="wrap">
           <h2 id="rasti-h" className="text-h2 text-balance">
             {c.findTitle}
           </h2>
-          <div className={`mt-8 desk:mt-12 ${twoCols}`}>
-            {/* Up to 520px: on a tablet below the desktop switch a full-width square would fill the screen. */}
-            <figure className="flex flex-col gap-4 max-w-[520px]">
+          {/* 3:2 and 3:4 at one height: the row is 2fr + 1fr. Below the desktop switch the two stack. */}
+          <div className="mt-8 desk:mt-12 grid gap-8 desk:grid-cols-[2fr_1fr] desk:gap-x-8 desk:items-start">
+            <figure className="flex flex-col gap-3.5">
+              <Image
+                src="/photos/building.jpg"
+                alt={c.buildingAlt}
+                width={1500}
+                height={1000}
+                sizes="(min-width: 821px) 66vw, 100vw"
+                className="w-full aspect-[3/2] object-cover rounded-[24px] desk:rounded-[28px]"
+              />
+              <figcaption className="text-body text-pretty">{c.building}</figcaption>
+            </figure>
+            <figure className="flex flex-col gap-3.5 max-w-[440px] desk:max-w-none">
               <Image
                 src="/photos/entrance.jpg"
-                alt={c.photoAlt}
+                alt={c.doorAlt}
                 width={1200}
-                height={1200}
-                sizes="(min-width: 821px) 520px, 100vw"
-                className="w-full aspect-square object-cover rounded-[24px] desk:rounded-[28px]"
+                height={1600}
+                sizes="(min-width: 821px) 33vw, 100vw"
+                className="w-full aspect-[3/4] object-cover rounded-[24px] desk:rounded-[28px]"
               />
-              <figcaption className="text-body text-pretty max-w-[40ch]">{c.entrance}</figcaption>
+              <figcaption className="text-body text-pretty">{c.door}</figcaption>
             </figure>
+          </div>
 
-            <div className="flex flex-col gap-8">
-              {/* The footer's static OSM map, here as the way to a route. Nothing loads from Google or OSM. */}
-              <a
-                href={DIRECTIONS}
-                {...external}
-                aria-label={c.directionsLabel}
-                className="relative block h-[200px] desk:h-[260px] overflow-hidden rounded-[24px] desk:rounded-[28px] bg-paper"
-              >
-                <Image src="/map/reamed-map.svg" alt="" fill unoptimized sizes="(min-width: 821px) 60vw, 100vw" className="object-cover" />
-                <span className="absolute left-3 bottom-3 max-[360px]:bottom-8 inline-flex items-center gap-1.5 min-h-10 px-4 rounded-full bg-graphite text-white text-small font-medium">
-                  {c.directions}
-                  <ArrowUpRight size={16} aria-hidden="true" />
-                </span>
-                {/* OSM attribution is required; 13px is the one exception to the type scale. */}
-                <span className="absolute right-0 bottom-0 px-1.5 py-0.5 bg-white/75 text-ink text-[13px] leading-normal">
-                  © OpenStreetMap
-                </span>
-              </a>
+          <div className={`mt-10 desk:mt-14 ${twoCols}`}>
+            {/* The footer's static OSM map, here as the way to a route. Nothing loads from Google or OSM. */}
+            <a
+              href={DIRECTIONS}
+              {...external}
+              aria-label={c.directionsLabel}
+              className="relative block h-[200px] desk:h-[260px] overflow-hidden rounded-[24px] desk:rounded-[28px] bg-paper"
+            >
+              <Image src="/map/reamed-map.svg" alt="" fill unoptimized sizes="(min-width: 821px) 40vw, 100vw" className="object-cover" />
+              <span className="absolute left-3 bottom-3 max-[360px]:bottom-8 inline-flex items-center gap-1.5 min-h-10 px-4 rounded-full bg-graphite text-white text-small font-medium">
+                {c.directions}
+                <ArrowUpRight size={16} aria-hidden="true" />
+              </span>
+              {/* OSM attribution is required; 13px is the one exception to the type scale. */}
+              <span className="absolute right-0 bottom-0 px-1.5 py-0.5 bg-white/75 text-ink text-[13px] leading-normal">
+                © OpenStreetMap
+              </span>
+            </a>
 
-              <dl className="grid gap-7 sm:grid-cols-2 desk:grid-cols-1">
-                <div>
-                  <dt className="text-lead font-medium">{c.carTitle}</dt>
-                  <dd className="mt-2 flex flex-col gap-2 text-body text-pretty">
-                    <p>
-                      {c.carNone}{" "}
-                      <a href={PLACES.museum} {...external} className={inline}>
-                        {c.carMuseum}
-                      </a>{" "}
-                      {c.carMuseumWalk}
-                    </p>
-                    <p>
-                      {c.carUnipark}{" "}
-                      <a href={PLACES.up060} {...external} className={inline}>
-                        {c.carUp060}
-                      </a>{" "}
-                      {c.carUp060Walk}{" "}
-                      <a href={PLACES.up071} {...external} className={inline}>
-                        {c.carUp071}
-                      </a>{" "}
-                      {c.carUp071Walk}
-                    </p>
-                  </dd>
-                </div>
-                <div>
-                  <dt className="text-lead font-medium">{c.busTitle}</dt>
-                  <dd className="mt-2 text-body text-pretty">
-                    {c.busStopBefore}{" "}
-                    <a href={PLACES.stop} {...external} className={inline}>
-                      {c.busStop}
-                    </a>
-                    {c.busStopAfter}
-                  </dd>
-                </div>
-              </dl>
-            </div>
+            <dl className="grid gap-7 sm:grid-cols-2">
+              <div>
+                <dt className="text-lead font-medium">{c.carTitle}</dt>
+                <dd className="mt-2 flex flex-col gap-2 text-body text-pretty">
+                  <p>
+                    {c.carNone}{" "}
+                    <a href={PLACES.museum} {...external} className={inline}>
+                      {c.carMuseum}
+                    </a>{" "}
+                    {c.carMuseumWalk}
+                  </p>
+                  <p>
+                    {c.carUnipark}{" "}
+                    <a href={PLACES.up060} {...external} className={inline}>
+                      {c.carUp060}
+                    </a>{" "}
+                    {c.carUp060Walk}{" "}
+                    <a href={PLACES.up071} {...external} className={inline}>
+                      {c.carUp071}
+                    </a>{" "}
+                    {c.carUp071Walk}
+                  </p>
+                </dd>
+              </div>
+              <div>
+                <dt className="text-lead font-medium">{c.busTitle}</dt>
+                <dd className="mt-2 text-body text-pretty">
+                  {c.busStopBefore}{" "}
+                  <a href={PLACES.stop} {...external} className={inline}>
+                    {c.busStop}
+                  </a>
+                  {c.busStopAfter}
+                </dd>
+              </div>
+            </dl>
           </div>
         </div>
       </section>
@@ -403,6 +416,7 @@ export default function KontaktaiContent() {
                   </p>
                 )}
 
+                {/* No note under the button (Piotr 14.11.2026): the privacy policy link is in the strip at the bottom of the page. */}
                 <button
                   type="submit"
                   disabled={state === "sending"}
@@ -410,12 +424,6 @@ export default function KontaktaiContent() {
                 >
                   {state === "sending" ? c.sending : c.send}
                 </button>
-                <p className="text-small text-graphite text-pretty">
-                  {c.privacy}{" "}
-                  <Link href="/privatumas" className="link-action font-normal text-ink">
-                    {c.privacyLink}
-                  </Link>
-                </p>
               </form>
             )}
           </div>

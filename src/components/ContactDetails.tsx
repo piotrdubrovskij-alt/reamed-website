@@ -6,8 +6,8 @@ import { GOOGLE_REVIEWS } from "@/data/reviews";
 const external = { target: "_blank", rel: "noopener noreferrer" } as const;
 
 // Phone, address, hours and e-mail as one list on graphite: the footer of every page and the top of /kontaktai.
-// Values share one column; links stretch to 44px without moving the rows. `addressNote` adds the entrance line.
-export default function ContactDetails({ addressNote }: { addressNote?: string }) {
+// Values share one column; links stretch to 44px without moving the rows.
+export default function ContactDetails() {
   const { t } = useLanguage();
 
   return (
@@ -23,7 +23,6 @@ export default function ContactDetails({ addressNote }: { addressNote?: string }
         <a href={GOOGLE_REVIEWS.url} {...external} className="inline-flex items-center min-h-11 -my-2 hover:text-mint">
           {t.contact.address}
         </a>
-        {addressNote && <span className="block mt-1 text-small font-normal text-on-dark text-pretty">{addressNote}</span>}
       </dd>
       <dt className="text-small text-on-dark">{t.booking.hours}</dt>
       {/* Weekdays and Saturday on their own lines, so the row never breaks mid-range at 320px. */}
