@@ -46,8 +46,8 @@ export default function HeroSection() {
           <Image
             src="/photos/team.jpg"
             alt={t.hero.photoAlt}
-            width={1536}
-            height={1024}
+            width={3072}
+            height={2048}
             priority
             quality={90}
             sizes="(min-width: 1440px) 686px, (min-width: 821px) 55vw, 100vw"
