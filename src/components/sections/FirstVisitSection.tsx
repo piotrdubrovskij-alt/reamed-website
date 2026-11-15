@@ -40,18 +40,18 @@ export default function FirstVisitSection() {
             </Link>
           </div>
         </div>
-        {/* The photo is low quality: toned into the mint and blurred. It overhangs the
-            circle by 16px so the blurred edge never shows as a light rim. */}
-        <div className="relative isolate w-full aspect-square rounded-full overflow-hidden bg-mint md:max-w-[440px] md:justify-self-end">
-          <div className="absolute -inset-4">
-            <Image
-              src="/photos/clinic.jpg"
-              alt={t.visit.photoAlt}
-              fill
-              sizes="(min-width: 768px) 472px, calc(100vw + 32px)"
-              className="object-cover object-[100%_50%] mix-blend-multiply [filter:grayscale(1)_contrast(.85)_brightness(1.15)_blur(4px)] desk:[filter:grayscale(1)_contrast(.85)_brightness(1.15)_blur(6px)]"
-            />
-          </div>
+        {/* The manual therapy room (square photo, 15.11.2026), whole and as it is: a square with 20/24px
+            corners instead of the old circle, full column width on the phone, up to 520px on the desktop.
+            The blurred, mint-toned clinic.jpg that stood here was low quality. */}
+        <div className="relative w-full aspect-square rounded-[20px] desk:rounded-[24px] overflow-hidden bg-ground-hover md:max-w-[520px] md:justify-self-end">
+          <Image
+            src="/photos/manual-therapy-room.jpg"
+            alt={t.visit.photoAlt}
+            fill
+            quality={90}
+            sizes="(min-width: 768px) 520px, calc(100vw - 40px)"
+            className="object-cover"
+          />
         </div>
       </div>
     </section>

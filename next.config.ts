@@ -18,6 +18,9 @@ const cspHeader = [
 
 const nextConfig: NextConfig = {
   output: "standalone",
+  // 90: the team photo on the first screen and the room photo in «Pirmasis vizitas» (faces and detail;
+  // the default 75 makes them visibly soft on a phone). Everything else stays at 75.
+  images: { qualities: [75, 90] },
   async redirects() {
     return [
       {
