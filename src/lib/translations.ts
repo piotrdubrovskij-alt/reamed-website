@@ -93,6 +93,8 @@ export const translations = {
     footer: {
       menu: "Apačios meniu",
       privacy: "Privatumo politika",
+      terms: "Registracijos ir atšaukimo sąlygos",
+      legal: "Teisinė informacija",
       tagline: "Kineziterapijos ir reabilitacijos klinika Vilniuje",
       patients: "Pacientams",
       findUs: "Kaip mus rasti",
@@ -178,6 +180,8 @@ export const translations = {
     footer: {
       menu: "Footer menu",
       privacy: "Privacy policy",
+      terms: "Booking and cancellation terms",
+      legal: "Legal",
       tagline: "Physiotherapy and rehabilitation clinic in Vilnius",
       patients: "For patients",
       findUs: "How to find us",
