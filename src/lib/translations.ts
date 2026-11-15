@@ -35,6 +35,7 @@ export const translations = {
       title: "Kineziterapijos klinika Vilniuje",
       lead: "ReaMed klinikoje padedame žmonėms, kuriems skauda nugarą, kaklą ar sąnarius, taip pat atsigaunantiems po traumų ir operacijų. Jau per pirmąjį vizitą įvertiname jūsų būklę, sudarome planą ir pradedame gydymą.",
       cta: "Registruotis vizitui",
+      photoAlt: "ReaMed klinikos komanda: penki kineziterapeutai",
     },
     areas: {
       // Same name as the menu item that leads here (Piotr, 07.11.2026): one name for one place.
@@ -67,7 +68,7 @@ export const translations = {
       offer: `Su paketu tolesni vizitai pigesni: kineziterapija nuo ${formatPrice(KT_FROM, "lt")} vietoj ${formatPrice(KT.price, "lt")}.`,
       cta: "Registruotis vizitui",
       prices: "Visos kainos ir paketai",
-      photoAlt: "Kineziterapeutas dirba su paciente",
+      photoAlt: "Manualinės terapijos kabinetas ReaMed klinikoje",
     },
     reviews: {
       title: "Atsiliepimai",
@@ -129,6 +130,7 @@ export const translations = {
       title: "Physiotherapy clinic in Vilnius",
       lead: "At ReaMed we help people with back, neck or joint pain, and people recovering after injuries and surgery. Already at the first visit we assess your condition, make a plan and start treatment.",
       cta: "Book a visit",
+      photoAlt: "The ReaMed clinic team: five physiotherapists",
     },
     areas: {
       title: "What we treat",
@@ -158,7 +160,7 @@ export const translations = {
       offer: `Follow-up visits cost less in a package: physiotherapy from ${formatPrice(KT_FROM, "en")} instead of ${formatPrice(KT.price, "en")}.`,
       cta: "Book a visit",
       prices: "All prices and packages",
-      photoAlt: "A physiotherapist working with a patient",
+      photoAlt: "The manual therapy room at the ReaMed clinic",
     },
     reviews: {
       title: "Reviews",

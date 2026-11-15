@@ -7,20 +7,6 @@ import { useLanguage } from "@/contexts/LanguageContext";
 import { GOOGLE_REVIEWS } from "@/data/reviews";
 import { formatRating } from "@/components/reviews/format";
 
-// White hands from the logo, decoration only (viewBox 100 × 66.14).
-function Hands({ className }: { className: string }) {
-  return (
-    <Image
-      src="/brand/reamed-hands-white.svg"
-      alt=""
-      aria-hidden="true"
-      width={100}
-      height={66}
-      className={`absolute h-auto -translate-x-1/2 -translate-y-1/2 pointer-events-none ${className}`}
-    />
-  );
-}
-
 export default function HeroSection() {
   const { lang, t } = useLanguage();
 
@@ -57,14 +43,26 @@ export default function HeroSection() {
         <div className="hidden desk:block absolute left-[calc(50%+24px)] -top-[160px] size-[max(1040px,calc(50vw+120px))] rounded-full bg-mint" />
       </div>
 
-      {/* Phone: a 200px mint band, edge to edge, closes the first screen. Hands 140px high. */}
-      <div className="desk:hidden relative mt-6 h-[200px] bg-mint">
-        <Hands className="top-1/2 left-1/2 w-[212px]" />
+      {/* The team photo (3:2, whole, never cropped), replacing the white hands (15.11.2026).
+          Phone: a rounded card inside the gutters, standing on a mint shelf that starts at 40% of its
+          height and runs 40px below it, edge to edge, and closes the first screen.
+          Desktop: the same card inside the visible part of the circle (container middle + 24px to the
+          screen's right edge), centred 24px right of that part's middle, 76% of its width, max 640px:
+          at 1280–1920px the mint margin around the card stays at least 48px on every side. */}
+      <div className="relative mt-6 desk:mt-0 desk:absolute desk:top-1/2 desk:left-[calc(75%+24px)] desk:-translate-x-1/2 desk:-translate-y-1/2 desk:w-[min(calc((50%_-_24px)_*_0.76),640px)]">
+        <div aria-hidden="true" className="desk:hidden absolute inset-x-0 top-[40%] bottom-0 bg-mint" />
+        <div className="relative px-gutter pb-10 md:px-gutter-md desk:p-0">
+          <Image
+            src="/photos/team.jpg"
+            alt={t.hero.photoAlt}
+            width={1536}
+            height={1024}
+            priority
+            sizes="(min-width: 821px) min(calc((50vw - 24px) * 0.76), 640px), calc(100vw - 40px)"
+            className="w-full h-auto rounded-[24px] desk:rounded-[28px]"
+          />
+        </div>
       </div>
-
-      {/* Desktop: centred in the visible part of the circle (container middle + 24px
-          to the screen's right edge, full 640px height); 60% of its width, max 520px. */}
-      <Hands className="hidden desk:block top-1/2 left-[calc(75%+12px)] w-[min(calc((50%_-_24px)_*_0.6),520px)]" />
     </section>
   );
 }
