@@ -49,6 +49,7 @@ export default function HeroSection() {
             width={1536}
             height={1024}
             priority
+            quality={90}
             sizes="(min-width: 1440px) 686px, (min-width: 821px) 55vw, 100vw"
             className="block w-full h-auto"
           />

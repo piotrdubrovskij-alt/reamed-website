@@ -48,6 +48,7 @@ export default function FirstVisitSection() {
             src="/photos/manual-therapy-room.jpg"
             alt={t.visit.photoAlt}
             fill
+            quality={90}
             sizes="(min-width: 768px) 520px, calc(100vw - 40px)"
             className="object-cover"
           />
