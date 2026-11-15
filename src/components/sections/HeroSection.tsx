@@ -7,14 +7,18 @@ import { useLanguage } from "@/contexts/LanguageContext";
 import { GOOGLE_REVIEWS } from "@/data/reviews";
 import { formatRating } from "@/components/reviews/format";
 
+// First screen (Piotr, 15.11.2026): text and the team photo, nothing else. No mint circle, no mint band,
+// no card: the photo keeps its own studio grey and straight edges, whole, never cropped (3:2).
+// Phone: title, lead, button with the rating, then the photo edge to edge; the next section follows it directly.
+// Desktop: two columns, 45% text and 55% photo; the photo fills its column, the text is centred against it,
+// and the screen's height follows the photo.
 export default function HeroSection() {
   const { lang, t } = useLanguage();
 
   return (
-    <section aria-labelledby="hero-h" className="relative overflow-hidden bg-ground desk:h-[640px]">
-      <div className="wrap relative h-full">
-        {/* Desktop: text stays in the left half of the container, 48px short of the middle. */}
-        <div className="relative z-10 flex flex-col gap-[18px] pt-6 desk:gap-7 desk:pt-24 desk:max-w-[calc(50%-48px)]">
+    <section aria-labelledby="hero-h" className="bg-ground">
+      <div className="wrap desk:grid desk:grid-cols-[45fr_55fr] desk:items-center desk:gap-10 lg:gap-16 desk:py-12">
+        <div className="flex flex-col gap-[18px] pt-6 desk:gap-7 desk:pt-0">
           <h1 id="hero-h" className="text-h1-m desk:text-h1 text-balance">
             {t.hero.title}
           </h1>
@@ -37,29 +41,16 @@ export default function HeroSection() {
           </div>
         </div>
 
-        {/* Desktop: mint circle, left edge at the container middle + 24px; at least
-            1040px (taller than the 640px screen) and always wider than what is left
-            of the viewport, so the right edge cuts it. */}
-        <div className="hidden desk:block absolute left-[calc(50%+24px)] -top-[160px] size-[max(1040px,calc(50vw+120px))] rounded-full bg-mint" />
-      </div>
-
-      {/* The team photo (3:2, whole, never cropped), replacing the white hands (15.11.2026).
-          Phone: a rounded card inside the gutters, standing on a mint shelf that starts at 40% of its
-          height and runs 40px below it, edge to edge, and closes the first screen.
-          Desktop: the same card inside the visible part of the circle (container middle + 24px to the
-          screen's right edge), centred 24px right of that part's middle, 76% of its width, max 640px:
-          at 1280–1920px the mint margin around the card stays at least 48px on every side. */}
-      <div className="relative mt-6 desk:mt-0 desk:absolute desk:top-1/2 desk:left-[calc(75%+24px)] desk:-translate-x-1/2 desk:-translate-y-1/2 desk:w-[min(calc((50%_-_24px)_*_0.76),640px)]">
-        <div aria-hidden="true" className="desk:hidden absolute inset-x-0 top-[40%] bottom-0 bg-mint" />
-        <div className="relative px-gutter pb-10 md:px-gutter-md desk:p-0">
+        {/* Phone: the negative margins undo the page gutters, so the photo runs edge to edge. */}
+        <div className="mt-6 -mx-gutter md:-mx-gutter-md desk:mx-0 desk:mt-0">
           <Image
             src="/photos/team.jpg"
             alt={t.hero.photoAlt}
             width={1536}
             height={1024}
             priority
-            sizes="(min-width: 821px) min(calc((50vw - 24px) * 0.76), 640px), calc(100vw - 40px)"
-            className="w-full h-auto rounded-[24px] desk:rounded-[28px]"
+            sizes="(min-width: 1440px) 686px, (min-width: 821px) 55vw, 100vw"
+            className="block w-full h-auto"
           />
         </div>
       </div>

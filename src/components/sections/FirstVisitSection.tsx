@@ -40,15 +40,15 @@ export default function FirstVisitSection() {
             </Link>
           </div>
         </div>
-        {/* The manual therapy room (square photo, 15.11.2026), shown as it is: the circle keeps the
-            table, the device and the green radiator, only the window corners go. The blurred, mint-toned
-            clinic.jpg that stood here was low quality. */}
-        <div className="relative w-full aspect-square rounded-full overflow-hidden bg-ground-hover md:max-w-[440px] md:justify-self-end">
+        {/* The manual therapy room (square photo, 15.11.2026), whole and as it is: a square with 20/24px
+            corners instead of the old circle, full column width on the phone, up to 520px on the desktop.
+            The blurred, mint-toned clinic.jpg that stood here was low quality. */}
+        <div className="relative w-full aspect-square rounded-[20px] desk:rounded-[24px] overflow-hidden bg-ground-hover md:max-w-[520px] md:justify-self-end">
           <Image
             src="/photos/manual-therapy-room.jpg"
             alt={t.visit.photoAlt}
             fill
-            sizes="(min-width: 768px) 440px, calc(100vw - 40px)"
+            sizes="(min-width: 768px) 520px, calc(100vw - 40px)"
             className="object-cover"
           />
         </div>
