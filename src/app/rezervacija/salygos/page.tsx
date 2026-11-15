@@ -2,11 +2,16 @@ import type { Metadata } from "next";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import TermsContent from "@/components/booking/TermsContent";
+import { pageMetadata } from "@/lib/seo";
 
-export const metadata: Metadata = {
+// A public page since 15.11.2026 (Paysera's review wants the sale terms reachable on the site); the booking page
+// itself stays noindex and unlinked until the Paysera project is activated.
+export const metadata: Metadata = pageMetadata({
+  path: "/rezervacija/salygos",
   title: "Registracijos, apmokėjimo ir atšaukimo sąlygos — ReaMed",
-  robots: { index: false, follow: false },
-};
+  description:
+    "Registracijos internetu sąlygos ReaMed klinikoje: apmokėjimas per Paysera, vizito keitimas ir atšaukimas likus bent 12 valandų, sumokėtų lėšų grąžinimas.",
+});
 
 export default function SalygosPage() {
   return (

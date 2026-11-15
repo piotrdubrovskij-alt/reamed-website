@@ -16,6 +16,12 @@ const social = [
 // one line with the booking button, the contacts, and the links a reader needs after the page. No logo (it is in the
 // header), no map (it lives on /kontaktai with the route), no rules: the bottom row is set apart by spacing alone.
 // On /kontaktai the page itself opens with the same list, so the footer there is one strip with the privacy policy link.
+// The booking terms (payment, 12-hour cancellation, refunds) stand next to it since 15.11.2026: Paysera's review
+// asks that the sale terms be reachable on the site itself, not only from the booking form.
+const legal = (t: { footer: { privacy: string; terms: string } }) => [
+  { label: t.footer.privacy, href: "/privatumas" },
+  { label: t.footer.terms, href: "/rezervacija/salygos" },
+];
 export default function Footer() {
   const { t } = useLanguage();
   const pathname = usePathname();
@@ -23,10 +29,22 @@ export default function Footer() {
   if (pathname === "/kontaktai") {
     return (
       <footer className="bg-graphite text-white py-3 [--focus-ring:var(--color-mint)]">
-        <nav aria-label={t.footer.menu} className="wrap flex items-center text-small text-on-dark">
-          <a href="/privatumas" className="inline-flex items-center min-h-11 hover:underline">
-            {t.footer.privacy}
-          </a>
+        <nav
+          aria-label={t.footer.legal}
+          className="wrap flex flex-col sm:flex-row sm:flex-wrap sm:items-center sm:gap-x-1.5 text-small text-on-dark"
+        >
+          {legal(t).map((l, i) => (
+            <span key={l.href} className="contents">
+              {i > 0 && (
+                <span aria-hidden="true" className="hidden sm:inline">
+                  ·
+                </span>
+              )}
+              <a href={l.href} className="inline-flex items-center min-h-11 hover:underline">
+                {l.label}
+              </a>
+            </span>
+          ))}
         </nav>
       </footer>
     );
@@ -79,7 +97,7 @@ export default function Footer() {
           </nav>
         </div>
 
-        {/* Social links, and the privacy policy as the very last line (Piotr 14.11.2026). No line above them. */}
+        {/* Social links, then the privacy policy and the booking terms as the very last line (Piotr 14.11.2026; terms 15.11.2026). No line above them. */}
         <div className="mt-10 desk:mt-12 flex flex-col gap-y-1 text-small text-on-dark">
           <nav aria-label={t.footer.menu} className="flex items-center gap-x-1.5">
             {social.map((s, i) => (
@@ -91,9 +109,23 @@ export default function Footer() {
               </span>
             ))}
           </nav>
-          <a href="/privatumas" className="inline-flex items-center min-h-11 self-start hover:underline">
-            {t.footer.privacy}
-          </a>
+          <nav
+            aria-label={t.footer.legal}
+            className="flex flex-col sm:flex-row sm:flex-wrap sm:items-center sm:gap-x-1.5 self-start"
+          >
+            {legal(t).map((l, i) => (
+              <span key={l.href} className="contents">
+                {i > 0 && (
+                  <span aria-hidden="true" className="hidden sm:inline">
+                    ·
+                  </span>
+                )}
+                <a href={l.href} className="inline-flex items-center min-h-11 hover:underline">
+                  {l.label}
+                </a>
+              </span>
+            ))}
+          </nav>
         </div>
       </div>
     </footer>
