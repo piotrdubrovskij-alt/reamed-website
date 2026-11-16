@@ -20,7 +20,7 @@ function AreaActions() {
   const { t } = useLanguage();
   return (
     <div>
-      <Link href="/registracija" className="btn btn-dark text-body">
+      <Link href="/rezervacija" className="btn btn-dark text-body">
         {t.areas.register}
       </Link>
     </div>

@@ -190,13 +190,13 @@ export default function Header() {
             <Phone size={22} aria-hidden="true" />
           </a>
           <Link
-            href="/registracija"
+            href="/rezervacija"
             aria-label={t.header.book}
             className="lg:hidden inline-flex items-center justify-center size-11 rounded-full bg-graphite text-white hover:bg-ink transition-colors duration-150"
           >
             <CalendarDays size={22} aria-hidden="true" />
           </Link>
-          <Link href="/registracija" className="max-lg:hidden btn btn-dark min-h-[46px] px-[22px] text-small">
+          <Link href="/rezervacija" className="max-lg:hidden btn btn-dark min-h-[46px] px-[22px] text-small">
             {t.header.register}
           </Link>
           <button

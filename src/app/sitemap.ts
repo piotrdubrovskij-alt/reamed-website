@@ -9,9 +9,19 @@ import { servicePages } from "@/content/services";
 // lastModified only where a real date exists: the day a specialist last reviewed the text (`reviewed.date`).
 // Change a page's text, and its reviewed date changes with it. A date that is always "now" teaches Google to ignore it.
 //
-// /registracija is noindex and stays out.
+// /registracija is noindex and stays out; the online booking and its terms are in since 16.11.2026.
 
-const staticPaths = ["/", "/ka-gydome", "/paslaugos", "/specialistai", "/kainos", "/kontaktai", "/privatumas"];
+const staticPaths = [
+  "/",
+  "/ka-gydome",
+  "/paslaugos",
+  "/specialistai",
+  "/kainos",
+  "/kontaktai",
+  "/rezervacija",
+  "/rezervacija/salygos",
+  "/privatumas",
+];
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const lt = translations.lt;

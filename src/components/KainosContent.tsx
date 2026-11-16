@@ -82,7 +82,7 @@ export default function KainosContent() {
             {c.title}
           </h1>
           <p className="mt-5 mx-auto max-w-[28ch] text-lead-m desk:mt-7 desk:mx-0 desk:text-lead-l">{c.lead}</p>
-          <Link href="/registracija" className="btn btn-mint mt-7 desk:mt-10">
+          <Link href="/rezervacija" className="btn btn-mint mt-7 desk:mt-10">
             {c.book}
           </Link>
         </div>
@@ -120,7 +120,7 @@ export default function KainosContent() {
             </section>
           ))}
 
-          <Link href="/registracija" className="btn btn-dark mt-8 flex w-full">
+          <Link href="/rezervacija" className="btn btn-dark mt-8 flex w-full">
             {c.book}
           </Link>
         </article>

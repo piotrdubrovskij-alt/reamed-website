@@ -24,7 +24,7 @@ export default function HeroSection() {
           </h1>
           <p className="text-lead-m desk:text-lead">{t.hero.lead}</p>
           <div className="flex flex-wrap items-center gap-x-4 gap-y-2 desk:gap-x-7">
-            <Link href="/registracija" className="btn btn-dark text-body">
+            <Link href="/rezervacija" className="btn btn-dark text-body">
               {t.hero.cta}
             </Link>
             <a

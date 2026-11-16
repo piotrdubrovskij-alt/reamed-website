@@ -223,7 +223,7 @@ export default function KontaktaiContent() {
           <div className="desk:col-start-2 desk:row-start-1 desk:row-span-2">
             <ContactDetails />
           </div>
-          <Link href="/registracija" className="btn btn-mint w-full sm:w-auto justify-self-start desk:col-start-1 desk:row-start-2">
+          <Link href="/rezervacija" className="btn btn-mint w-full sm:w-auto justify-self-start desk:col-start-1 desk:row-start-2">
             {c.book}
           </Link>
         </div>

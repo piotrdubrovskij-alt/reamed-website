@@ -173,9 +173,13 @@
   `scripts/cloud-booking-env.sh` в Cloud Shell). Без них страница говорит «registracija internetu dar neįjungta».
 - Локально без системы: `node scripts/mock-booking-api.mjs` и `KLINIKA_API_ORIGIN=http://127.0.0.1:4100
   WEBSITE_API_KEY=mock-website-key-0123456789abcdef0123 npm run dev` (код входа 123456, фальшивая страница Paysera).
-- До запуска страницы `noindex`, в меню и футере не ссылаются; `/registracija` с формой остаётся. Замена — после
-  сквозной проверки (klinika-system, этап 3). Тексты условий на `/rezervacija/salygos` — утверждённая редакция
-  условий системы клиники (12 часов, 15 €, Paysera); менять только через `docs/DECISIONS.md` там.
+- Запущено 16.11.2026 (Paysera активировала проект, система в боевом режиме): все кнопки «Registruotis» на сайте
+  (шапка, футер, главная, страницы болезней и услуг, kainos, kontaktai, 404) ведут на `/rezervacija`; со страницы
+  специалиста — `/rezervacija?specialistas=<slug>` (специалист уже выбран). `/rezervacija` и `/rezervacija/salygos`
+  индексируются и есть в sitemap; `rezultatas`, `uzsakymas`, `mano-vizitai` остаются `noindex`. `/registracija` с
+  формой вопроса остаётся (на неё ведёт запасная ссылка со страницы записи, когда запись недоступна), сама `noindex`.
+  Тексты условий на `/rezervacija/salygos` — утверждённая редакция условий системы клиники (12 часов, 15 €, Paysera);
+  менять только через `docs/DECISIONS.md` там.
 - Счёт-фактура (03.11.2026): на шаге «Jūsų duomenys» переключатель «Fiziniam asmeniui / Įmonei» (фирма: pavadinimas,
   kodas 7–12 цифр, PVM kodas необязателен, adresas) уходит с заказом полем `invoice`; система выписывает счёт после
   оплаты и шлёт его сама. На странице заказа — кнопка «Atsisiųsti sąskaitą faktūrą»: PDF идёт через прокси
