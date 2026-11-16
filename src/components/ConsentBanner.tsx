@@ -15,14 +15,14 @@ import {
 const copy = {
   lt: {
     label: "Slapukų sutikimas",
-    text: "Su jūsų sutikimu naudosime „Google Analytics“ slapukus: matysime, kiek lankytojų ateina ir kiek užsiregistruoja, o „Google Ads“ sužinos, kurie skelbimai atvedė pacientų. Reklamos pagal jus nesuasmeniname.",
+    text: "Naudojame statistikos ir reklamos slapukus.",
     more: "Plačiau",
     decline: "Nesutinku",
     accept: "Sutinku",
   },
   en: {
     label: "Cookie consent",
-    text: "With your consent we will use Google Analytics cookies to see how many visitors come and how many book a visit, and Google Ads will learn which ads brought patients. We do not personalise ads to you.",
+    text: "We use statistics and advertising cookies.",
     more: "More",
     decline: "Decline",
     accept: "Accept",
@@ -73,18 +73,19 @@ export default function ConsentBanner() {
       aria-label={c.label}
       className="fixed inset-x-0 bottom-0 z-50 p-3 desk:p-6 pointer-events-none"
     >
-      <div className="pointer-events-auto mx-auto desk:mx-0 max-w-[600px] rounded-[20px] border border-rule bg-paper p-5 desk:p-6 text-ink shadow-[0_8px_32px_rgba(43,44,43,0.16)]">
-        <p className="text-small">
+      {/* One line and two buttons (Piotr 17.11.2026: no explanations on the banner, the details are behind «Plačiau»). */}
+      <div className="pointer-events-auto mx-auto desk:mx-0 max-w-[760px] rounded-[20px] border border-rule bg-paper p-4 desk:py-4 desk:px-5 text-ink shadow-[0_8px_32px_rgba(43,44,43,0.16)] flex flex-col gap-3 desk:flex-row desk:items-center desk:gap-5">
+        <p className="text-small desk:flex-1">
           {c.text}{" "}
           <Link href="/privatumas#slapukai" className="link-action whitespace-nowrap">
             {c.more}
           </Link>
         </p>
-        <div className="mt-4 grid grid-cols-2 gap-3">
-          <button type="button" onClick={() => answer(false)} className="btn btn-dark px-4 text-small">
+        <div className="grid grid-cols-2 gap-3 desk:shrink-0">
+          <button type="button" onClick={() => answer(false)} className="btn btn-dark min-h-11 px-5 text-small">
             {c.decline}
           </button>
-          <button type="button" onClick={() => answer(true)} className="btn btn-dark px-4 text-small">
+          <button type="button" onClick={() => answer(true)} className="btn btn-dark min-h-11 px-5 text-small">
             {c.accept}
           </button>
         </div>
