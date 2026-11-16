@@ -4,6 +4,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useLanguage } from "@/contexts/LanguageContext";
 import ContactDetails from "@/components/ContactDetails";
+import { GIFT_VOUCHER_LIVE } from "@/lib/voucher/launch";
 
 const external = { target: "_blank", rel: "noopener noreferrer" } as const;
 
@@ -57,6 +58,7 @@ export default function Footer() {
     { label: t.nav.services, href: "/#paslaugos" },
     { label: t.nav.specialists, href: "/specialistai" },
     { label: t.nav.prices, href: "/kainos" },
+    ...(GIFT_VOUCHER_LIVE ? [{ label: t.nav.giftVoucher, href: "/dovanu-kuponas" }] : []),
     { label: t.footer.findUs, href: "/kontaktai#rasti-h" },
   ];
 

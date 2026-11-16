@@ -36,6 +36,12 @@ const routes: Route[] = [
   { method: "POST", pattern: /^sign-in\/out$/ },
   { method: "GET", pattern: /^me$/ },
   { method: "GET", pattern: /^me\/orders$/ },
+  // Gift vouchers (15.11.2026): the purchase is an order of its own kind, paid through orders/:id/pay.
+  { method: "GET", pattern: /^vouchers\/config$/ },
+  { method: "POST", pattern: /^vouchers\/orders$/ },
+  { method: "GET", pattern: new RegExp(`^vouchers/orders/${UUID}$`) },
+  { method: "GET", pattern: new RegExp(`^vouchers/orders/${UUID}/voucher\\.pdf$`), file: "application/pdf" },
+  { method: "GET", pattern: /^vouchers\/balance$/, query: ["code"] },
 ];
 
 function config(): { origin: string; key: string } | null {
@@ -147,7 +153,8 @@ async function handle(req: NextRequest, params: Promise<{ path: string[] }>): Pr
   }
   // The system answers 404 while its website API is switched off: to the patient that is the
   // same as "not available yet". A 403 from the key gate would be our misconfiguration.
-  if (upstream.status === 404 && (route === "catalogue" || route === "availability")) return unavailable();
+  if (upstream.status === 404 && (route === "catalogue" || route === "availability" || route === "vouchers/config"))
+    return unavailable();
 
   if (route === "sign-in/verify" && upstream.ok && payload && typeof payload === "object") {
     const { token, ...rest } = payload as { token?: string; email?: string; expiresAt?: number };

@@ -5,6 +5,7 @@ import { translations } from "@/lib/translations";
 import { conditionPages } from "@/content/conditions";
 import { SECTIONS } from "@/content/sections";
 import { servicePages } from "@/content/services";
+import { GIFT_VOUCHER_LIVE } from "@/lib/voucher/launch";
 
 // lastModified only where a real date exists: the day a specialist last reviewed the text (`reviewed.date`).
 // Change a page's text, and its reviewed date changes with it. A date that is always "now" teaches Google to ignore it.
@@ -30,6 +31,8 @@ export default function sitemap(): MetadataRoute.Sitemap {
   for (const p of servicePages) if (p.reviewed) reviewedOn.set(`/paslaugos/${p.slug}`, p.reviewed.date);
   const paths = [
     ...staticPaths,
+    // The gift voucher and its terms enter with the launch; the balance and result pages never do.
+    ...(GIFT_VOUCHER_LIVE ? ["/dovanu-kuponas", "/dovanu-kuponas/salygos"] : []),
     ...SECTIONS.filter((s) => s.hasPage).map((s) => `/ka-gydome/${s.slug}`),
     ...conditionPages.map((p) => `/ka-gydome/${p.slug}`),
     ...lt.services.items.map((s) => `/paslaugos/${s.slug}`),

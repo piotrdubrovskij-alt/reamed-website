@@ -1,4 +1,12 @@
 import type {
+  VoucherBalance,
+  VoucherConfig,
+  VoucherOrderCreated,
+  VoucherOrderInput,
+  VoucherOrderStatus,
+  VoucherOrderView,
+} from "@/lib/voucher/types";
+import type {
   Availability,
   Catalogue,
   OrderBrief,
@@ -77,4 +85,14 @@ export const api = {
   /** The session, if any: the proxy answers with email null when the visitor is not signed in. */
   me: () => call<{ email: string | null; expiresAt: number; profile: Profile | null }>("GET", "me"),
   myOrders: () => call<{ email: string; orders: OrderView[] }>("GET", "me/orders"),
+
+  // Gift vouchers (15.11.2026): the same proxy, the same session cookie.
+  voucherConfig: () => call<VoucherConfig>("GET", "vouchers/config"),
+  voucherOrder: (input: VoucherOrderInput) => call<VoucherOrderCreated>("POST", "vouchers/orders", input),
+  voucherStatus: (orderId: string) => call<VoucherOrderStatus>("GET", `orders/${orderId}/status`),
+  /** The buyer's own order with the code: needs the session of the buyer's e-mail. */
+  voucherOrderView: (orderId: string) => call<VoucherOrderView>("GET", `vouchers/orders/${orderId}`),
+  voucherPdfUrl: (orderId: string) => `/api/booking/vouchers/orders/${orderId}/voucher.pdf`,
+  voucherBalance: (code: string) =>
+    call<VoucherBalance>("GET", `vouchers/balance?${new URLSearchParams({ code })}`),
 };
