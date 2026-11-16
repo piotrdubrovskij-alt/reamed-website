@@ -4,6 +4,7 @@ import { useState } from "react";
 import Link from "next/link";
 import { Phone, ArrowLeft, ArrowRight, Check } from "lucide-react";
 import { useLanguage } from "@/contexts/LanguageContext";
+import { track } from "@/lib/analytics";
 
 const content = {
   lt: {
@@ -151,6 +152,7 @@ export default function RegistracijaContent() {
       });
       clearTimeout(timer);
       setSendState(res.ok ? "success" : "error");
+      if (res.ok) track("generate_lead", { form_name: "registracija" });
     } catch {
       clearTimeout(timer);
       setSendState("error");

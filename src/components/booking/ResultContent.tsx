@@ -5,6 +5,7 @@ import Link from "next/link";
 import { useSearchParams } from "next/navigation";
 import { CalendarDays, Check, MapPin } from "lucide-react";
 import { useLanguage } from "@/contexts/LanguageContext";
+import { trackOnce } from "@/lib/analytics";
 import { api, BookingError } from "@/lib/booking/client";
 import { bookingCopy } from "@/lib/booking/copy";
 import { money, visitWhen } from "@/lib/booking/format";
@@ -65,6 +66,16 @@ export default function ResultContent() {
       if (timer) clearTimeout(timer);
     };
   }, [orderId, validId, failed, lang]);
+
+  // The Google Ads conversion: a booking the clinic system confirmed as paid. Only the order id and the sum go out.
+  useEffect(() => {
+    if (order?.status !== "paid") return;
+    trackOnce(`purchase-${order.id}`, "purchase", {
+      transaction_id: order.id,
+      value: (order.amountPaidCents || order.totalCents) / 100,
+      currency: "EUR",
+    });
+  }, [order]);
 
   const payAgain = async () => {
     if (!orderId) return;

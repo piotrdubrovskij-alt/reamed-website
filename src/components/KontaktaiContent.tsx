@@ -7,6 +7,7 @@ import { ArrowUpRight } from "lucide-react";
 import { useLanguage } from "@/contexts/LanguageContext";
 import ContactDetails from "@/components/ContactDetails";
 import { Dots, dot, twoCols } from "@/components/g/PageBlocks";
+import { track } from "@/lib/analytics";
 
 // /kontaktai in the G layout (Piotr, 14.11.2026): the page opens with the same graphite list as the footer, then how to
 // find the door (two photos, map, parking, bus), four lines before the first visit and a question form that answers by
@@ -190,6 +191,7 @@ export default function KontaktaiContent() {
         }),
       });
       setState(res.ok ? "success" : "error");
+      if (res.ok) track("generate_lead", { form_name: "kontaktai_klausimas" });
     } catch {
       setState("error");
     } finally {
