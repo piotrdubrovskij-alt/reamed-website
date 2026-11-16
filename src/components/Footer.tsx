@@ -5,6 +5,7 @@ import { usePathname } from "next/navigation";
 import { useLanguage } from "@/contexts/LanguageContext";
 import ContactDetails from "@/components/ContactDetails";
 import { GIFT_VOUCHER_LIVE } from "@/lib/voucher/launch";
+import { openConsentSettings } from "@/lib/analytics";
 
 const external = { target: "_blank", rel: "noopener noreferrer" } as const;
 
@@ -19,10 +20,41 @@ const social = [
 // On /kontaktai the page itself opens with the same list, so the footer there is one strip with the privacy policy link.
 // The booking terms (payment, 12-hour cancellation, refunds) stand next to it since 15.11.2026: Paysera's review
 // asks that the sale terms be reachable on the site itself, not only from the booking form.
-const legal = (t: { footer: { privacy: string; terms: string } }) => [
-  { label: t.footer.privacy, href: "/privatumas" },
-  { label: t.footer.terms, href: "/rezervacija/salygos" },
-];
+// «Slapukų nustatymai» (16.11.2026) reopens the cookie banner, so consent can be withdrawn as easily as given.
+function LegalLinks({ className }: { className: string }) {
+  const { t } = useLanguage();
+  const items = [
+    { label: t.footer.privacy, href: "/privatumas" },
+    { label: t.footer.terms, href: "/rezervacija/salygos" },
+  ];
+  return (
+    <nav aria-label={t.footer.legal} className={className}>
+      {items.map((l, i) => (
+        <span key={l.href} className="contents">
+          {i > 0 && (
+            <span aria-hidden="true" className="hidden sm:inline">
+              ·
+            </span>
+          )}
+          <a href={l.href} className="inline-flex items-center min-h-11 hover:underline">
+            {l.label}
+          </a>
+        </span>
+      ))}
+      <span aria-hidden="true" className="hidden sm:inline">
+        ·
+      </span>
+      <button
+        type="button"
+        onClick={openConsentSettings}
+        className="inline-flex items-center min-h-11 text-left hover:underline cursor-pointer"
+      >
+        {t.footer.cookies}
+      </button>
+    </nav>
+  );
+}
+
 export default function Footer() {
   const { t } = useLanguage();
   const pathname = usePathname();
@@ -30,23 +62,7 @@ export default function Footer() {
   if (pathname === "/kontaktai") {
     return (
       <footer className="bg-graphite text-white py-3 [--focus-ring:var(--color-mint)]">
-        <nav
-          aria-label={t.footer.legal}
-          className="wrap flex flex-col sm:flex-row sm:flex-wrap sm:items-center sm:gap-x-1.5 text-small text-on-dark"
-        >
-          {legal(t).map((l, i) => (
-            <span key={l.href} className="contents">
-              {i > 0 && (
-                <span aria-hidden="true" className="hidden sm:inline">
-                  ·
-                </span>
-              )}
-              <a href={l.href} className="inline-flex items-center min-h-11 hover:underline">
-                {l.label}
-              </a>
-            </span>
-          ))}
-        </nav>
+        <LegalLinks className="wrap flex flex-col sm:flex-row sm:flex-wrap sm:items-center sm:gap-x-1.5 text-small text-on-dark" />
       </footer>
     );
   }
@@ -111,23 +127,7 @@ export default function Footer() {
               </span>
             ))}
           </nav>
-          <nav
-            aria-label={t.footer.legal}
-            className="flex flex-col sm:flex-row sm:flex-wrap sm:items-center sm:gap-x-1.5 self-start"
-          >
-            {legal(t).map((l, i) => (
-              <span key={l.href} className="contents">
-                {i > 0 && (
-                  <span aria-hidden="true" className="hidden sm:inline">
-                    ·
-                  </span>
-                )}
-                <a href={l.href} className="inline-flex items-center min-h-11 hover:underline">
-                  {l.label}
-                </a>
-              </span>
-            ))}
-          </nav>
+          <LegalLinks className="flex flex-col sm:flex-row sm:flex-wrap sm:items-center sm:gap-x-1.5 self-start" />
         </div>
       </div>
     </footer>

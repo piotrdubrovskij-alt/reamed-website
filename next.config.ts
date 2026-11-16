@@ -1,16 +1,34 @@
 import type { NextConfig } from "next";
 import { legacyRedirects } from "./src/data/legacy-redirects";
 
+// Google tag (GA4 + Google Ads conversions), loaded only after cookie consent (Piotr 16.11.2026,
+// src/lib/analytics.ts). Hosts from Google's CSP guide for GA4 with Ads features; google.<TLD> must be
+// listed per country, so only .lt besides .com. Nothing else third-party is allowed in.
+const googleTag = {
+  script: "https://www.googletagmanager.com",
+  connect: [
+    "https://www.googletagmanager.com",
+    "https://*.google-analytics.com",
+    "https://*.analytics.google.com",
+    "https://*.google.com",
+    "https://*.google.lt",
+    "https://*.g.doubleclick.net",
+    "https://pagead2.googlesyndication.com",
+    "https://www.googleadservices.com",
+  ].join(" "),
+  frame: "https://www.googletagmanager.com",
+};
+
 const cspHeader = [
   "default-src 'self'",
   // Next.js requires unsafe-inline/unsafe-eval for hydration chunks
-  "script-src 'self' 'unsafe-inline' 'unsafe-eval' https://www.manodaktaras.lt",
+  `script-src 'self' 'unsafe-inline' 'unsafe-eval' https://www.manodaktaras.lt ${googleTag.script}`,
   "style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://www.manodaktaras.lt",
   "font-src 'self' https://fonts.gstatic.com",
   "img-src 'self' data: blob: https:",
   // Google Maps + manodaktaras booking widget iframes
-  "frame-src https://maps.google.com https://www.google.com https://www.manodaktaras.lt",
-  "connect-src 'self' https://www.manodaktaras.lt",
+  `frame-src https://maps.google.com https://www.google.com https://www.manodaktaras.lt ${googleTag.frame}`,
+  `connect-src 'self' https://www.manodaktaras.lt ${googleTag.connect}`,
   "object-src 'none'",
   "base-uri 'self'",
   "form-action 'self'",

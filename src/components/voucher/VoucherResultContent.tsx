@@ -5,6 +5,7 @@ import Link from "next/link";
 import { useSearchParams } from "next/navigation";
 import { Check, Download } from "lucide-react";
 import { useLanguage } from "@/contexts/LanguageContext";
+import { trackOnce } from "@/lib/analytics";
 import { api, BookingError } from "@/lib/booking/client";
 import { bookingCopy } from "@/lib/booking/copy";
 import { voucherCopy } from "@/lib/voucher/copy";
@@ -81,6 +82,16 @@ export default function VoucherResultContent() {
       if (timer) clearTimeout(timer);
     };
   }, [orderId, validId, failed, lang]);
+
+  // A paid gift voucher: its own event, not the booking conversion. Only the order id and the sum go out.
+  useEffect(() => {
+    if (order?.status !== "paid") return;
+    trackOnce(`voucher-${order.id}`, "voucher_purchase", {
+      transaction_id: order.id,
+      value: order.totalCents / 100,
+      currency: "EUR",
+    });
+  }, [order]);
 
   const payAgain = async () => {
     if (!orderId) return;
