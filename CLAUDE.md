@@ -169,6 +169,8 @@
 - Специалисты на странице записи — пересечение каталога системы и `src/lib/specialists.ts` через `SPECIALIST_SLUGS`
   в `src/lib/booking/format.ts` (там же короткие роли под фото). Новый специалист системы появляется на странице
   только после строки там. С 14.11.2026 пятеро (Edmundas Zlatkus — услуги как у Erikas), карточки по три в ряд.
+  Набор услуг каждого задаёт каталог системы (с 16.11.2026 у Mangirdas онлайн только часовой массаж, решение Piotr);
+  мок `scripts/mock-booking-api.mjs` повторяет этот каталог и правится вместе с ним.
 - Переменные: `KLINIKA_API_ORIGIN`, `WEBSITE_API_KEY` (секрет `klinika-website-api-key` в проекте reamed-site; подключается
   `scripts/cloud-booking-env.sh` в Cloud Shell). Без них страница говорит «registracija internetu dar neįjungta».
 - Локально без системы: `node scripts/mock-booking-api.mjs` и `KLINIKA_API_ORIGIN=http://127.0.0.1:4100

@@ -20,6 +20,8 @@ const TZ = "Europe/Vilnius";
 
 const team = ["rm-kotryna", "rm-mangirdas", "rm-erikas", "rm-edmundas"];
 const massageTeam = ["rm-mangirdas", "rm-erikas", "rm-edmundas"];
+// Mangirdas offers only the hour-long massage online (Piotr 16.11.2026) — as in the system's catalogue.
+const shortMassageTeam = ["rm-erikas", "rm-edmundas"];
 const people = {
   "rm-kotryna": "Kotryna Kairytė",
   "rm-mangirdas": "Mangirdas Kazačenko",
@@ -34,7 +36,7 @@ const services = [
   ["reamed-extended", "kinesiotherapy", "Kompleksinė išplėstinė", 10000, 75, 75, team, false],
   ["reamed-piotr-consultation", "consultation", "Gydomasis seansas pas Piotr", 10000, 60, 60, ["rm-piotr"], true],
   ["reamed-piotr-individual", "kinesiotherapy", "Gydomasis seansas pas Piotr", 10000, 60, 60, ["rm-piotr"], false],
-  ["reamed-massage-30", "massage", "Masažas", 4000, 30, 30, massageTeam, false],
+  ["reamed-massage-30", "massage", "Masažas", 4000, 30, 30, shortMassageTeam, false],
   ["reamed-massage-60", "massage", "Masažas", 6500, 60, 60, massageTeam, false],
 ].map(([id, category, name, amountCents, durationMinutes, reservationMinutes, ids, firstVisitRecommended]) => ({
   id,
