@@ -131,14 +131,15 @@ export default function BookingContent() {
     error: string | null;
     continueAfter: boolean;
   }>({ phase: "idle", sentTo: null, code: "", error: null, continueAfter: false });
-  // "Registruotis dar kartą" from the order page: ?specialistas=<slug>&paslauga=<service id>,
-  // applied once the catalogue has arrived. (Read through the router: on a client-side
-  // navigation window.location still shows the previous page when this mounts.)
+  // "Registruotis dar kartą" from the order page: ?specialistas=<slug>&paslauga=<service id>, and
+  // the specialist's own page: ?specialistas=<slug> alone (16.11.2026) — applied once the catalogue
+  // has arrived. (Read through the router: on a client-side navigation window.location still
+  // shows the previous page when this mounts.)
   const searchParams = useSearchParams();
-  const [preselect, setPreselect] = useState<{ specialist: string; service: string } | null>(() => {
+  const [preselect, setPreselect] = useState<{ specialist: string; service: string | null } | null>(() => {
     const specialist = searchParams.get("specialistas");
     const service = searchParams.get("paslauga");
-    return specialist && service ? { specialist, service } : null;
+    return specialist ? { specialist, service } : null;
   });
 
   useEffect(() => {
@@ -175,7 +176,7 @@ export default function BookingContent() {
 
   if (preselect && services.length) {
     // Adjusting state while rendering (the documented pattern): once, when the catalogue is here.
-    const found = services.find((s) => s.id === preselect.service);
+    const found = preselect.service ? services.find((s) => s.id === preselect.service) : undefined;
     const id = Object.keys(SPECIALIST_SLUGS).find((key) => SPECIALIST_SLUGS[key] === preselect.specialist);
     setPreselect(null);
     if (found && id) {
@@ -185,6 +186,13 @@ export default function BookingContent() {
         setSpecialistId(id);
         setServiceId(found.id);
       }
+    } else if (
+      !preselect.service &&
+      id &&
+      services.some((service) => offers(service, id, "first_visit") || offers(service, id, "returning"))
+    ) {
+      // From the specialist's page: the person still answers first/returning, the specialist is chosen.
+      setSpecialistId(id);
     }
   }
 

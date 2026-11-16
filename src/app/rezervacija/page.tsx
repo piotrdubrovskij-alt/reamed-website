@@ -4,15 +4,16 @@ import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import BookingHeading from "@/components/booking/BookingHeading";
 import BookingContent from "@/components/booking/BookingContent";
+import { pageMetadata } from "@/lib/seo";
 
-// Not indexed and not linked from the menu until the booking launches (klinika-system
-// docs/WEBSITE_BOOKING.md, stage 3). /registracija with the request form stays until then.
-export const metadata: Metadata = {
+// Live since 16.11.2026 (Paysera project activated; klinika-system docs/WEBSITE_BOOKING.md): every
+// "Registruotis" button leads here. /registracija stays as the question form for those who prefer it.
+export const metadata: Metadata = pageMetadata({
+  path: "/rezervacija",
   title: "Registracija vizitui internetu — ReaMed",
   description:
     "Pasirinkite specialistą, paslaugą ir laiką, apmokėkite internetu, ir vizitas ReaMed klinikoje patvirtintas.",
-  robots: { index: false, follow: false },
-};
+});
 
 export default function RezervacijaPage() {
   return (

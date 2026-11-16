@@ -46,7 +46,7 @@ export function PageHero({ back, h1, lead }: { back: { href: string; label: stri
           </h1>
           <p className="max-w-[52ch] text-lead-m desk:text-lead">{lead}</p>
           <div className="flex flex-wrap items-center gap-x-7 gap-y-4">
-            <Link href="/registracija" className="btn btn-dark w-full sm:w-auto">
+            <Link href="/rezervacija" className="btn btn-dark w-full sm:w-auto">
               Registruotis vizitui
             </Link>
             <a href={t.contact.phoneHref} className="link-action inline-flex items-center gap-2.5 min-h-11 text-body">

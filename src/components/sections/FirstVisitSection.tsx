@@ -32,7 +32,7 @@ export default function FirstVisitSection() {
             <span>{t.visit.offer}</span>
           </p>
           <div className="mt-2 flex flex-wrap items-center gap-x-7 gap-y-3.5">
-            <Link href="/registracija" className="btn btn-dark text-body">
+            <Link href="/rezervacija" className="btn btn-dark text-body">
               {t.visit.cta}
             </Link>
             <Link href="/kainos" className="link-action inline-flex items-center min-h-11">

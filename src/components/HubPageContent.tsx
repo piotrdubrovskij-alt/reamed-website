@@ -149,7 +149,7 @@ export default function HubPageContent({ kind }: { kind: HubKind }) {
               {c.firstVisit}: {FIRST_VISIT.duration}, {formatPrice(FIRST_VISIT.price, lang)}.
             </p>
           </div>
-          <Link href="/registracija" className="btn btn-dark self-start desk:self-auto">
+          <Link href="/rezervacija" className="btn btn-dark self-start desk:self-auto">
             {c.book}
           </Link>
         </div>

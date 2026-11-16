@@ -190,7 +190,7 @@ export default function SpecialistPageContent({ specialist: s }: { specialist: S
                 </ul>
               )}
               <div className="mt-7 desk:mt-10 flex flex-wrap items-center justify-center desk:justify-start gap-x-7 gap-y-4">
-                <Link href="/registracija" className="btn btn-mint w-full desk:w-auto">
+                <Link href={`/rezervacija?specialistas=${s.slug}`} className="btn btn-mint w-full desk:w-auto">
                   {nameIn(c.book)}
                 </Link>
                 <a

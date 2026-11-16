@@ -53,7 +53,7 @@ export default function NotFoundContent() {
           ))}
         </ul>
         <div className="mt-10 flex flex-wrap items-center gap-x-7 gap-y-3.5">
-          <Link href="/registracija" className="btn btn-dark">
+          <Link href="/rezervacija" className="btn btn-dark">
             {c.book}
           </Link>
           <Link href="/" className="link-action inline-flex items-center min-h-11">
