@@ -8,7 +8,7 @@ import { useLanguage } from "@/contexts/LanguageContext";
 import { api, BookingError } from "@/lib/booking/client";
 import { bookingCopy } from "@/lib/booking/copy";
 import { voucherCopy } from "@/lib/voucher/copy";
-import { fullDay, wholeEuros } from "@/lib/voucher/format";
+import { fullDaySentence, wholeEuros } from "@/lib/voucher/format";
 import type { VoucherOrderStatus, VoucherOrderView } from "@/lib/voucher/types";
 import { errorText } from "@/components/booking/OrderItems";
 import { Button, Card, CardTitle, Notice, Spinner } from "@/components/booking/ui";
@@ -127,7 +127,7 @@ export default function VoucherResultContent() {
   const text = paid
     ? gift?.delivery === "recipient" && gift.recipientEmailHint
       ? gift.deliverOn
-        ? c.resultToRecipientLater(gift.recipientEmailHint, fullDay(gift.deliverOn, lang), order.emailHint)
+        ? c.resultToRecipientLater(gift.recipientEmailHint, fullDaySentence(gift.deliverOn, lang), order.emailHint)
         : c.resultToRecipientNow(gift.recipientEmailHint, order.emailHint)
       : c.resultToBuyer(order.emailHint)
     : order.status === "expired"
@@ -137,8 +137,8 @@ export default function VoucherResultContent() {
         : c.resultPendingText;
 
   return (
-    <div className="grid gap-6 lg:grid-cols-[minmax(0,1fr)_400px] lg:items-start max-w-[1120px]">
-      <Card className="flex flex-col gap-5">
+    <div className="grid gap-6 lg:grid-cols-[minmax(0,1fr)_minmax(420px,50%)] lg:items-start max-w-[1180px]">
+      <Card className="flex flex-col gap-5 lg:col-start-1 lg:row-start-1">
         <div className="flex items-start gap-4">
           {paid && (
             <span className="shrink-0 inline-flex size-12 items-center justify-center rounded-full bg-mint text-ink">
@@ -154,7 +154,8 @@ export default function VoucherResultContent() {
         {stillPolling && <Spinner label={c.resultChecking} />}
         {error && <Notice kind="error">{error}</Notice>}
         {mine?.voucher?.test && <Notice>{c.test}</Notice>}
-        <div className="flex flex-wrap gap-3 pt-1">
+        {/* The gift is the main thing here; the invoice is a quiet link under it. */}
+        <div className="flex flex-wrap items-center gap-x-6 gap-y-3 pt-1">
           {paid && mine?.voucher && (
             <a href={api.voucherPdfUrl(order.id)} target="_blank" rel="noopener" className="btn btn-dark">
               <Download size={20} aria-hidden="true" />
@@ -162,7 +163,7 @@ export default function VoucherResultContent() {
             </a>
           )}
           {paid && mine?.invoice && (
-            <a href={api.invoiceUrl(order.id)} target="_blank" rel="noopener" className="btn btn-mint">
+            <a href={api.invoiceUrl(order.id)} target="_blank" rel="noopener" className="link-action text-body">
               {b.invoiceDownload}
             </a>
           )}
@@ -179,7 +180,7 @@ export default function VoucherResultContent() {
         </div>
       </Card>
 
-      <aside className="flex flex-col gap-3">
+      <aside className="order-first lg:order-none flex flex-col gap-3 lg:col-start-2 lg:row-start-1">
         {mine?.voucher ? (
           <VoucherPreview
             lang={lang}

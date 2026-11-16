@@ -10,6 +10,12 @@ export function fullDay(day: string, lang: Language): string {
   }).format(new Date(`${day}T12:00:00Z`));
 }
 
+/** The same day ending a sentence: Lithuanian dates already end with "d.", English ones get the period. */
+export function fullDaySentence(day: string, lang: Language): string {
+  const text = fullDay(day, lang);
+  return text.endsWith(".") ? text : `${text}.`;
+}
+
 /** Whole euros without cents: "100 €" / "€100". */
 export function wholeEuros(cents: number, lang: Language): string {
   return new Intl.NumberFormat(lang === "lt" ? "lt-LT" : "en-IE", {

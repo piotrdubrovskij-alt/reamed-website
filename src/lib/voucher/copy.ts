@@ -46,10 +46,11 @@ const lt = {
   payNote: "Apmokėsite per Paysera: el. bankininkyste arba kortele. Kuponą sukursime, kai gausime mokėjimo patvirtinimą.",
   paymentsOff: "Mokėjimai internetu dar neįjungti. Paskambinkite +370 601 34304: kuponą parengsime kitaip.",
 
+  line: "Laikas pasirūpinti savimi.",
   previewFor: "ReaMed kineziterapijos ir reabilitacijos klinikos paslaugoms",
   previewCode: "Kupono kodas",
   previewValid: "Galioja iki",
-  previewNote: "Taip atrodys kuponas. Kodą sukursime po apmokėjimo.",
+  previewNote: "Taip atrodys kuponas (PDF, A5). Kodą sukursime po apmokėjimo.",
   facts: [
     "Galioja 12 mėnesių visoms ReaMed paslaugoms",
     "Sumą galima naudoti dalimis per kelis vizitus",
@@ -67,7 +68,7 @@ const lt = {
   resultToRecipientNow: (to: string, email: string) =>
     `Kuponą jau siunčiame gavėjui (${to}). Kopiją ir sąskaitą faktūrą išsiuntėme jums adresu ${email}.`,
   resultToRecipientLater: (to: string, day: string, email: string) =>
-    `Kuponą gavėjui (${to}) išsiųsime ${day}. Kopiją ir sąskaitą faktūrą išsiuntėme jums adresu ${email}.`,
+    `Kuponą gavėjui (${to}) išsiųsime ${day} Kopiją ir sąskaitą faktūrą išsiuntėme jums adresu ${email}.`,
   resultNotReceived: "Negavote laiško per 5 min.? Patikrinkite šlamšto aplanką arba skambinkite +370 601 34304.",
   resultPending: "Laukiame mokėjimo patvirtinimo",
   resultPendingText: "Paysera patvirtinimas paprastai ateina per kelias sekundes. Šio puslapio galite neuždaryti.",
@@ -76,7 +77,7 @@ const lt = {
   resultExpired: "Mokėjimo laikas baigėsi",
   resultExpiredText: "Kuponas nesukurtas. Užpildykite užsakymą iš naujo.",
   resultNotFound: "Užsakymas nerastas",
-  download: "Atsisiųsti kuponą (PDF)",
+  download: "Atsisiųsti kuponą",
   buyAgain: "Pirkti kuponą",
   tryAgain: "Bandyti dar kartą",
   yourVoucher: "Jūsų kuponas",
@@ -190,10 +191,11 @@ const en: typeof lt = {
   payNote: "You pay through Paysera: online banking or card. The voucher is created once the payment is confirmed.",
   paymentsOff: "Online payments are not switched on yet. Call +370 601 34304 and we will arrange the voucher another way.",
 
+  line: "Time to take care of yourself.",
   previewFor: "For the services of ReaMed physiotherapy and rehabilitation clinic",
   previewCode: "Voucher code",
   previewValid: "Valid until",
-  previewNote: "This is how the voucher will look. The code is created after the payment.",
+  previewNote: "This is how the voucher will look (PDF, A5). The code is created after the payment.",
   facts: [
     "Valid for 12 months for all ReaMed services",
     "The sum can be used in parts over several visits",
@@ -211,7 +213,7 @@ const en: typeof lt = {
   resultToRecipientNow: (to: string, email: string) =>
     `We are sending the voucher to the recipient (${to}) now. A copy and the invoice went to you at ${email}.`,
   resultToRecipientLater: (to: string, day: string, email: string) =>
-    `We will send the voucher to the recipient (${to}) on ${day}. A copy and the invoice went to you at ${email}.`,
+    `We will send the voucher to the recipient (${to}) on ${day} A copy and the invoice went to you at ${email}.`,
   resultNotReceived: "No e-mail within 5 minutes? Check your spam folder or call +370 601 34304.",
   resultPending: "Waiting for the payment confirmation",
   resultPendingText: "Paysera usually confirms within seconds. You may keep this page open.",
@@ -220,7 +222,7 @@ const en: typeof lt = {
   resultExpired: "The payment time has run out",
   resultExpiredText: "No voucher was created. Please fill in the order again.",
   resultNotFound: "Order not found",
-  download: "Download the voucher (PDF)",
+  download: "Download the voucher",
   buyAgain: "Buy a voucher",
   tryAgain: "Try again",
   yourVoucher: "Your voucher",

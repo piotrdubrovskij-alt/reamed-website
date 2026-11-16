@@ -10,7 +10,7 @@ import { suggestEmail } from "@/lib/booking/email-hint";
 import { addDays, clinicDay } from "@/lib/booking/format";
 import type { InvoiceBuyerInput } from "@/lib/booking/types";
 import { voucherCopy } from "@/lib/voucher/copy";
-import { fullDay, wholeEuros } from "@/lib/voucher/format";
+import { fullDaySentence, wholeEuros } from "@/lib/voucher/format";
 import type { VoucherConfig } from "@/lib/voucher/types";
 import { errorText } from "@/components/booking/OrderItems";
 import { Button, Card, CardTitle, Choice, Field, Notice, Spinner, inputClass } from "@/components/booking/ui";
@@ -318,9 +318,11 @@ export default function VoucherContent() {
         e.preventDefault();
         void submit();
       }}
-      className="grid gap-6 lg:grid-cols-[minmax(0,1fr)_400px] lg:items-start max-w-[1120px]"
+      className="grid gap-6 lg:grid-cols-[minmax(0,1fr)_minmax(420px,50%)] lg:items-start max-w-[1180px]"
     >
-      <Card className="flex flex-col gap-5 lg:col-start-1">
+      {/* One sheet of paper, the steps as sections with air between them; the gift itself beside it. */}
+      <Card className="flex flex-col lg:col-start-1 lg:row-start-1">
+        <section className="flex flex-col gap-5">
         <CardTitle id="voucher-amount-title">{c.amountTitle}</CardTitle>
         <div role="group" aria-labelledby="voucher-amount-title" className="flex flex-wrap gap-2">
           {config.presetCents.map((cents) => (
@@ -390,9 +392,9 @@ export default function VoucherContent() {
             {errors.amount}
           </p>
         )}
-      </Card>
+        </section>
 
-      <Card className="flex flex-col gap-5 lg:col-start-1">
+        <section className="flex flex-col gap-5 mt-8 pt-8 border-t border-ink/10">
         <div className="flex flex-col gap-1.5">
           <CardTitle>{c.giftTitle}</CardTitle>
           <p className="text-small text-graphite">{c.giftLead}</p>
@@ -446,30 +448,9 @@ export default function VoucherContent() {
             className={`${inputClass(Boolean(errors.message))} py-3 min-h-[108px] resize-y`}
           />
         </Field>
-      </Card>
+        </section>
 
-      {/* On a phone the card follows the words it shows; on a computer it stays beside the form. */}
-      <aside className="flex flex-col gap-4 lg:col-start-2 lg:row-start-1 lg:row-span-4 lg:sticky lg:top-[calc(var(--header-h)+16px)]">
-        <VoucherPreview
-          lang={lang}
-          amountCents={validAmount(amount) ? amount : null}
-          to={words.to}
-          from={words.from}
-          message={words.message}
-          validUntil={until}
-        />
-        <p className="text-small text-graphite px-1">{c.previewNote}</p>
-        <ul className="flex flex-col gap-2 px-1">
-          {c.facts.map((fact) => (
-            <li key={fact} className="flex items-start gap-2 text-small text-ink">
-              <Check size={18} aria-hidden="true" className="mt-0.5 shrink-0 text-focus" />
-              {fact}
-            </li>
-          ))}
-        </ul>
-      </aside>
-
-      <Card className="flex flex-col gap-5 lg:col-start-1">
+        <section className="flex flex-col gap-5 mt-8 pt-8 border-t border-ink/10">
         <CardTitle id="voucher-delivery-title">{c.deliveryTitle}</CardTitle>
         <div role="radiogroup" aria-labelledby="voucher-delivery-title" className="grid gap-2 sm:grid-cols-2">
           {(
@@ -545,7 +526,7 @@ export default function VoucherContent() {
                 label={c.sendDate}
                 htmlFor="voucher-date"
                 error={errors.date}
-                hint={date ? `${fullDay(date, lang)}. ${c.sendDateHint}` : c.sendDateHint}
+                hint={date ? `${fullDaySentence(date, lang)} ${c.sendDateHint}` : c.sendDateHint}
                 className="max-w-[320px]"
               >
                 <input
@@ -564,9 +545,9 @@ export default function VoucherContent() {
             )}
           </div>
         )}
-      </Card>
+        </section>
 
-      <Card className="flex flex-col gap-5 lg:col-start-1">
+        <section className="flex flex-col gap-5 mt-8 pt-8 border-t border-ink/10">
         <CardTitle>{c.buyerTitle}</CardTitle>
         <div className="grid gap-4 sm:grid-cols-2">
           {(
@@ -771,7 +752,29 @@ export default function VoucherContent() {
           </Button>
           <p className="text-small text-graphite">{c.payNote}</p>
         </div>
+        </section>
       </Card>
+
+      {/* The gift: first on a phone, beside the form and following the scroll on a computer. */}
+      <aside className="order-first lg:order-none flex flex-col gap-4 lg:col-start-2 lg:row-start-1 lg:sticky lg:top-[calc(var(--header-h)+16px)]">
+        <VoucherPreview
+          lang={lang}
+          amountCents={validAmount(amount) ? amount : null}
+          to={words.to}
+          from={words.from}
+          message={words.message}
+          validUntil={until}
+        />
+        <p className="text-small text-graphite px-1">{c.previewNote}</p>
+        <ul className="hidden lg:flex flex-col gap-2 px-1">
+          {c.facts.map((fact) => (
+            <li key={fact} className="flex items-start gap-2 text-small text-ink">
+              <Check size={18} aria-hidden="true" className="mt-0.5 shrink-0 text-focus" />
+              {fact}
+            </li>
+          ))}
+        </ul>
+      </aside>
     </form>
   );
 }
