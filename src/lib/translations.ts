@@ -19,6 +19,7 @@ export const translations = {
       specialists: "Specialistai",
       prices: "Kainos",
       contacts: "Kontaktai",
+      giftVoucher: "Dovanų kuponas",
     },
     header: {
       register: "Registruotis",
@@ -114,6 +115,7 @@ export const translations = {
       specialists: "Specialists",
       prices: "Prices",
       contacts: "Contacts",
+      giftVoucher: "Gift voucher",
     },
     header: {
       register: "Book a visit",

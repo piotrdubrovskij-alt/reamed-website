@@ -8,6 +8,7 @@
 //   KLINIKA_API_ORIGIN=http://127.0.0.1:4100 WEBSITE_API_KEY=mock-website-key-0123456789abcdef0123 npm run dev
 //
 // Sign-in code for every address: 123456. Order link token: <orderId>.9999999999.mock
+// Gift vouchers (/dovanu-kuponas) are mocked too: the code RM-TEST-2345 always exists.
 
 import { createServer } from "node:http";
 import { randomUUID } from "node:crypto";
@@ -49,6 +50,15 @@ const services = [
   specialists: ids.map((sid) => ({ id: sid, name: people[sid], status: "enabled" })),
 }));
 
+const VOUCHER = { minCents: 5000, maxCents: 200000, stepCents: 1000, presetCents: [5000, 10000, 15000], validityMonths: 12, messageMax: 300, nameMax: 60, deliveryMaxDays: 90, payMinutes: 30, termsVersion: "mock" };
+const vouchers = new Map([["RM-TEST-2345", { code: "RM-TEST-2345", amountCents: 15000, balanceCents: 6500, validUntil: "2027-11-15", state: "active", test: true }]]);
+const voucherCode = () => {
+  const abc = "ABCDEFGHJKMNPQRSTUVWXYZ23456789";
+  const pick = () => Array.from({ length: 4 }, () => abc[Math.floor(Math.random() * abc.length)]).join("");
+  return `RM-${pick()}-${pick()}`;
+};
+const hint = (email) => `${email.slice(0, 1)}•••@${email.split("@")[1]}`;
+const giftSummary = (o) => ({ amountCents: o.totalCents, delivery: o.gift.delivery, deliverOn: o.gift.deliverOn, recipientEmailHint: o.gift.recipientEmail ? hint(o.gift.recipientEmail) : null });
 const orders = new Map(); // id -> order
 const sessions = new Map(); // token -> email
 const codes = new Map(); // email -> code
@@ -235,12 +245,18 @@ const server = createServer(async (req, res) => {
         o.paidAt = Date.now();
         o.invoiceNumber = ++invoiceCounter;
         for (const it of o.items) it.status = "confirmed";
+        if (o.kind === "voucher") {
+          const day = clinicDayOf(o.paidAt);
+          const validUntil = `${Number(day.slice(0, 4)) + 1}${day.slice(4)}`;
+          o.voucher = { code: voucherCode(), amountCents: o.totalCents, balanceCents: o.totalCents, validUntil, state: "active", test: true };
+          vouchers.set(o.voucher.code, o.voucher);
+        }
       }, 2500);
-      res.writeHead(303, { Location: `${SITE}/rezervacija/rezultatas?order=${o.id}` });
+      res.writeHead(303, { Location: `${SITE}/${o.kind === "voucher" ? "dovanu-kuponas" : "rezervacija"}/rezultatas?order=${o.id}` });
       return res.end();
     }
     if (action === "fail") {
-      res.writeHead(303, { Location: `${SITE}/rezervacija/rezultatas?order=${o.id}&result=failure` });
+      res.writeHead(303, { Location: `${SITE}/${o.kind === "voucher" ? "dovanu-kuponas" : "rezervacija"}/rezultatas?order=${o.id}&result=failure` });
       return res.end();
     }
     return html(
@@ -368,6 +384,81 @@ const server = createServer(async (req, res) => {
       return json(res, 200, view(o, now, true));
     }
 
+    // ---- gift vouchers ---------------------------------------------------------------------
+    if (req.method === "GET" && route === "vouchers/config") return json(res, 200, { ...VOUCHER, paymentsEnabled: true });
+    if (req.method === "GET" && route === "vouchers/balance") {
+      const typed = String(url.searchParams.get("code") ?? "").toUpperCase().replace(/[^A-Z0-9]/g, "").replace(/^RM(?=.{8}$)/, "");
+      const found = vouchers.get(`RM-${typed.slice(0, 4)}-${typed.slice(4)}`);
+      return found ? json(res, 200, found) : bad(res, "Kuponas nerastas. Patikrinkite kodą.");
+    }
+    if (req.method === "POST" && route === "vouchers/orders") {
+      const input = await body(req);
+      if (!input || input.acceptedTerms !== true) return bad(res, "Reikia sutikti su dovanų kupono sąlygomis.");
+      const cents = input.amountCents;
+      if (!Number.isInteger(cents) || cents < VOUCHER.minCents || cents > VOUCHER.maxCents || cents % VOUCHER.stepCents)
+        return bad(res, "Kupono suma: nuo 50 € iki 2 000 €, kas 10 €.");
+      const p = input.buyer ?? {};
+      for (const [k, msg] of [["firstName", "Įveskite vardą."], ["lastName", "Įveskite pavardę."], ["email", "Įveskite el. pašto adresą."]])
+        if (typeof p[k] !== "string" || !p[k].trim()) return bad(res, msg);
+      const proven = typeof session === "string" && sessions.get(session);
+      if (!proven || proven !== p.email.trim().toLowerCase()) return bad(res, "Patvirtinkite el. paštą kodu iš laiško.");
+      const way = input.delivery ?? {};
+      if (way.to !== "buyer" && way.to !== "recipient") return bad(res, "Pasirinkite, kam išsiųsti kuponą.");
+      if (way.to === "recipient" && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(String(way.email ?? ""))) return bad(res, "Įveskite gavėjo el. pašto adresą.");
+      const existing = [...orders.values()].find((o) => o.requestId === input.requestId);
+      const o = existing ?? {
+        id: randomUUID(),
+        kind: "voucher",
+        requestId: input.requestId,
+        createdAt: now,
+        status: "held",
+        locale: input.locale === "en" ? "en" : "lt",
+        patient: { firstName: p.firstName.trim(), lastName: p.lastName.trim(), phone: "", email: p.email.trim().toLowerCase() },
+        items: [],
+        totalCents: cents,
+        expiresAt: now + VOUCHER.payMinutes * 60_000,
+        paidAt: null,
+        checkoutUrl: null,
+        invoice: input.invoice?.type === "company" ? { type: "company", name: String(input.invoice.name ?? "").trim(), code: String(input.invoice.code ?? ""), vatCode: null, address: String(input.invoice.address ?? "").trim() } : { type: "person", name: null, code: null, vatCode: null, address: null },
+        invoiceNumber: 0,
+        gift: {
+          recipientName: input.recipientName ?? null,
+          fromName: input.fromName ?? null,
+          message: input.message ?? null,
+          delivery: way.to,
+          recipientEmail: way.to === "recipient" ? String(way.email).toLowerCase() : null,
+          deliverOn: way.to === "recipient" && way.date ? way.date : null,
+        },
+        voucher: null,
+      };
+      orders.set(o.id, o);
+      return json(res, 200, { id: o.id, kind: "voucher", status: o.status, totalCents: o.totalCents, currency: "EUR", expiresAt: o.expiresAt, gift: giftSummary(o) });
+    }
+    if (req.method === "GET" && (m = /^vouchers\/orders\/([^/]+)(\/voucher\.pdf)?$/.exec(route))) {
+      const o = orders.get(m[1]);
+      if (!o || o.kind !== "voucher") return bad(res, "Užsakymas nerastas.");
+      if (!owner(o, url.searchParams.get("t"), session)) return json(res, 403, { error: "Neleista." });
+      if (m[2]) {
+        if (!o.voucher) return bad(res, "Kuponas dar neparuoštas.");
+        const pdf = invoicePdf(`Dovanu kuponas ${o.voucher.code}`);
+        res.writeHead(200, { "Content-Type": "application/pdf", "Content-Length": pdf.length, "Content-Disposition": `inline; filename="ReaMed-dovanu-kuponas-${o.voucher.code}.pdf"`, "Cache-Control": "private, no-store" });
+        return res.end(pdf);
+      }
+      const label = `RMW ${String(o.invoiceNumber).padStart(6, "0")}`;
+      return json(res, 200, {
+        id: o.id,
+        kind: "voucher",
+        status: o.status,
+        locale: o.locale,
+        totalCents: o.totalCents,
+        paidAt: o.paidAt,
+        buyer: { firstName: o.patient.firstName, lastName: o.patient.lastName, email: o.patient.email },
+        gift: { amountCents: o.totalCents, ...o.gift },
+        voucher: o.voucher,
+        invoice: o.invoiceNumber ? { series: "RMW", number: o.invoiceNumber, label, fileName: `${label.replace(" ", "-")}.pdf`, issuedAt: o.paidAt, buyerType: o.invoice.type, totalCents: o.totalCents } : null,
+      });
+    }
+
     if (req.method === "POST" && (m = /^orders\/([^/]+)\/pay$/.exec(route))) {
       const o = orders.get(m[1]);
       if (!o) return bad(res, "Užsakymas nerastas.");
@@ -430,7 +521,12 @@ const server = createServer(async (req, res) => {
       const o = orders.get(m[1]);
       if (!o) return bad(res, "Užsakymas nerastas.");
       const [local, domain] = o.patient.email.split("@");
-      return json(res, 200, { ...view(o, now, false), emailHint: `${local.slice(0, 1)}•••@${domain}` });
+      return json(res, 200, {
+        ...view(o, now, false),
+        kind: o.kind ?? "visits",
+        emailHint: `${local.slice(0, 1)}•••@${domain}`,
+        ...(o.kind === "voucher" ? { gift: giftSummary(o) } : {}),
+      });
     }
 
     if (req.method === "GET" && (m = /^orders\/([^/]+)$/.exec(route))) {
@@ -503,7 +599,7 @@ const server = createServer(async (req, res) => {
     if (req.method === "GET" && route === "me/orders") {
       const email = typeof session === "string" && sessions.get(session);
       if (!email) return json(res, 403, { error: "Neleista." });
-      const mine = [...orders.values()].filter((o) => o.patient.email === email && (o.status === "paid" || o.status === "paid_conflict"));
+      const mine = [...orders.values()].filter((o) => o.kind !== "voucher" && o.patient.email === email && (o.status === "paid" || o.status === "paid_conflict"));
       return json(res, 200, { email, orders: mine.map((o) => view(o, now, true)) });
     }
     return json(res, 404, { error: "Nerasta." });

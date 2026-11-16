@@ -7,6 +7,7 @@ import { usePathname } from "next/navigation";
 import { CalendarDays, Check, ChevronDown, Menu, Phone, X } from "lucide-react";
 import { useLanguage } from "@/contexts/LanguageContext";
 import type { Language } from "@/lib/translations";
+import { GIFT_VOUCHER_LIVE } from "@/lib/voucher/launch";
 
 function LanguageSwitch({ className = "" }: { className?: string }) {
   const { lang, setLang, t } = useLanguage();
@@ -143,6 +144,8 @@ export default function Header() {
     { label: t.nav.services, href: "/#paslaugos" },
     { label: t.nav.specialists, href: "/specialistai" },
     { label: t.nav.prices, href: "/kainos" },
+    // The gift voucher (Piotr 15.11.2026: its own menu item, nothing on the home page); shown from the launch.
+    ...(GIFT_VOUCHER_LIVE ? [{ label: t.nav.giftVoucher, href: "/dovanu-kuponas" }] : []),
     { label: t.nav.contacts, href: "/kontaktai" },
   ];
 
@@ -156,17 +159,18 @@ export default function Header() {
             width={150}
             height={31}
             priority
-            className="w-[96px] min-[360px]:w-[124px] lg:w-[150px] h-auto"
+            className="w-[96px] min-[360px]:w-[124px] xl:w-[150px] h-auto"
           />
         </Link>
 
         <nav className="hidden lg:block" aria-label={t.header.mainMenu}>
-          <ul className="flex gap-[30px] text-small font-medium">
+          {/* Six items since the gift voucher: below xl a tighter gap and the phone-size wordmark, and no item breaks into two lines. */}
+          <ul className="flex gap-4 xl:gap-[30px] text-small font-medium">
             {navItems.map((item) => (
               <li key={item.href}>
                 <Link
                   href={item.href}
-                  className="inline-flex items-center min-h-11 hover:underline hover:decoration-mint hover:decoration-2 hover:underline-offset-[6px]"
+                  className="inline-flex items-center min-h-11 whitespace-nowrap hover:underline hover:decoration-mint hover:decoration-2 hover:underline-offset-[6px]"
                 >
                   {item.label}
                 </Link>
