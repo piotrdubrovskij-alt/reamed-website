@@ -7,13 +7,19 @@ export const kineziterapija: ServicePage = {
   slug: "kineziterapija",
   navTitle: "Kineziterapija",
   meta: {
-    title: "Kineziterapija Vilniuje: kaina, kaip vyksta, kada padeda",
+    // Piotr 17.11.2026: «kineziterapija Vilniuje» belongs to the home page; this page is for people choosing the
+    // service: price, what a visit includes, whom to book. So no «Vilniuje» in the title and H1.
+    title: "Kineziterapija: kaina, kaip vyksta vizitas, pas ką registruotis",
     description: `Kineziterapija Vilniaus centre: ištyrimas, gydomieji pratimai ir aiškus planas. Pirmasis vizitas ${eur("pirmasis-vizitas")}, kineziterapija ${eur("kineziterapija")}. Privati klinika, siuntimo nereikia.`,
   },
   therapyName: "Kineziterapija",
   hero: {
-    h1: "Kineziterapija Vilniuje",
+    h1: "Kineziterapija: kaina ir kaip vyksta vizitas",
     lead: "Kineziterapija yra gydymas judesiu: kineziterapeutas ištiria, kas sukelia skausmą ar riboja judesį, ir parenka pratimus, rankų technikas ir krūvį, kurie padeda atkurti funkciją. Tai pagrindinis nugaros, kaklo ir sąnarių skausmo gydymo būdas, taip pat reabilitacija po traumų ir operacijų. ReaMed yra privati klinika Vilniaus centre: siuntimo nereikia, eilių nėra.",
+    entry: {
+      note: `Pradėkite nuo pirmojo vizito: ${eur("pirmasis-vizitas")}, ${minutes("pirmasis-vizitas")}, ištyrimas, gydymo planas ir gydymas. Toliau ${eur("kineziterapija")}, ${minutes("kineziterapija")}, su paketu pigiau.`,
+      specialists: ["kotryna-kairyte", "erikas-jatkauskas", "mangirdas-kazacenko", "edmundas-zlatkus"],
+    },
   },
   about: {
     paragraphs: [

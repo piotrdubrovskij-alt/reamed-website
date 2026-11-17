@@ -6,6 +6,7 @@ import { Star } from "lucide-react";
 import { useLanguage } from "@/contexts/LanguageContext";
 import { GOOGLE_REVIEWS } from "@/data/reviews";
 import { formatRating } from "@/components/reviews/format";
+import { FIRST_VISIT, formatPrice } from "@/data/prices";
 
 // First screen (Piotr, 15.11.2026): text and the team photo, nothing else. No mint circle, no mint band,
 // no card: the photo keeps its own studio grey and straight edges, whole, never cropped (3:2).
@@ -39,6 +40,13 @@ export default function HeroSection() {
               </span>
             </a>
           </div>
+          {/* Piotr 17.11.2026: what the first visit costs and includes, right by the button. */}
+          <p className="-mt-1 text-small text-graphite desk:-mt-3">
+            <b className="font-semibold text-ink">
+              {t.hero.firstVisit}: {formatPrice(FIRST_VISIT.price, lang)} · {FIRST_VISIT.duration}.
+            </b>{" "}
+            {t.hero.firstVisitWhat}
+          </p>
         </div>
 
         {/* Phone: the negative margins undo the page gutters, so the photo runs edge to edge. */}

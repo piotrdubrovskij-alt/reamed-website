@@ -16,6 +16,11 @@ export const manualineTerapija: ServicePage = {
   hero: {
     h1: "Manualinė terapija Vilniuje",
     lead: "Manualinė terapija yra gydymas rankomis: specialistas mobilizuoja sąnarius ir minkštuosius audinius, kad sumažėtų skausmas ir judesiai taptų laisvesni. ReaMed klinikoje dirbame pagal Maitland koncepciją: techniką renkamės pagal ištyrimą ir iš karto patikriname, ar judesys pagerėjo. Manualinę terapiją visada deriname su pratimais.",
+    // Piotr 17.11.2026: the query «manualinė terapija Vilniuje» belongs to this page; who, which visit and price by the button.
+    entry: {
+      note: `Pradėkite nuo pirmojo vizito: ${eur("pirmasis-vizitas")}, ${minutes("pirmasis-vizitas")}, ištyrimas, gydymo planas ir gydymas. Toliau ${eur("kineziterapija")}, ${minutes("kineziterapija")}: manualinė terapija atliekama kineziterapijos vizito metu.`,
+      specialists: ["mangirdas-kazacenko", "erikas-jatkauskas"],
+    },
   },
   about: {
     paragraphs: [
