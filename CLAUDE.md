@@ -237,6 +237,8 @@
   (медицина: без ремаркетинга). «Nesutinku» и «Slapukų nustatymai» (футер, политика) удаляют `_ga*`/`_gcl*` и
   перезагружают страницу. Выбор хранится в `localStorage` (`reamed-consent`) год, потом баннер спрашивает снова.
   Обе кнопки баннера одного вида: отказаться так же просто, как согласиться.
+  Текст баннера — одна строка «Naudojame statistikos ir reklamos slapukus. Plačiau» и кнопки «Nesutinku» / «Sutinku»,
+  без объяснений (решение Piotr 17.11.2026); подробности — в `/privatumas#slapukai`.
 - События: `phone_click`, `email_click`, `generate_lead` (формы `/registracija` и `/kontaktai` после ответа сервера),
   `purchase` (запись, оплаченная по данным системы: номер заказа, сумма, EUR), `voucher_purchase` (купон).
   В Google не отправлять имена, e-mail, телефоны, текст форм и названия услуг.
