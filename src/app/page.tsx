@@ -11,7 +11,8 @@ import Footer from "@/components/Footer";
 
 export const metadata: Metadata = pageMetadata({
   path: "/",
-  title: "ReaMed — kineziterapijos ir reabilitacijos klinika Vilniuje",
+  // Piotr 17.11.2026: the home page answers «kineziterapija Vilniuje» (Google already ranks it, not /paslaugos/kineziterapija).
+  title: "Kineziterapija Vilniuje | ReaMed klinika",
   description:
     "Privati kineziterapijos, manualinės terapijos ir osteopatijos klinika Vilniaus centre. Nugaros, kaklo, peties ir kelio skausmas, sporto traumos, atsistatymas po operacijų. Siuntimo nereikia.",
 });

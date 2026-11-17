@@ -18,6 +18,11 @@ export type ServicePage = {
     h1: string;
     /** Two or three sentences: the direct answer Google and AI assistants quote. */
     lead: string;
+    /**
+     * Under the booking button (Piotr 17.11.2026): which visit to book and what it costs, and who sees patients,
+     * each name opening the booking with that specialist already chosen. Prices come from prices.ts.
+     */
+    entry?: { note: string; specialists?: string[] };
   };
   about: { title?: string; paragraphs: string[]; list?: { intro: string; items: string[] } };
   /** "Kam tai padeda": complaints in plain words, then links to the problem pages (/ka-gydome/<slug>). */

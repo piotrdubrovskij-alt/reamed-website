@@ -33,7 +33,22 @@ export function Dots({ items, dark = false }: { items: string[]; dark?: boolean 
 
 /** First screen: back link, title, direct answer, booking. No specialist photo here (Piotr, 07.11.2026):
  *  the circle read like a passport photo. If a photo comes back, it is an arch as on the home page. */
-export function PageHero({ back, h1, lead }: { back: { href: string; label: string }; h1: string; lead: string }) {
+export function PageHero({
+  back,
+  h1,
+  lead,
+  entry,
+}: {
+  back: { href: string; label: string };
+  h1: string;
+  lead: string;
+  /** Service pages (17.11.2026): the visit and price to book, and links that book straight with a specialist. */
+  entry?: { note: string; specialists?: string[] };
+}) {
+  const bookWith = (entry?.specialists ?? []).flatMap((slug) => {
+    const s = getSpecialistBySlug(slug);
+    return s ? [{ slug, name: s.name }] : [];
+  });
   return (
     <section aria-labelledby="h1" className="bg-ground">
       <div className="wrap pt-8 pb-16 desk:pt-14 desk:pb-24">
@@ -54,6 +69,24 @@ export function PageHero({ back, h1, lead }: { back: { href: string; label: stri
               {t.contact.phone}
             </a>
           </div>
+          {entry && (
+            <div className="flex flex-col gap-1 max-w-[60ch] text-body text-graphite">
+              <p>{entry.note}</p>
+              {bookWith.length > 0 && (
+                <p>
+                  Registruotis pas{" "}
+                  {bookWith.map((s, i) => (
+                    <span key={s.slug}>
+                      {i > 0 && (i === bookWith.length - 1 ? " arba " : ", ")}
+                      <Link href={`/rezervacija?specialistas=${s.slug}`} className="link-action">
+                        {s.name}
+                      </Link>
+                    </span>
+                  ))}
+                </p>
+              )}
+            </div>
+          )}
         </div>
       </div>
     </section>

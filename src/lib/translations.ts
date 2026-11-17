@@ -36,6 +36,9 @@ export const translations = {
       title: "Kineziterapijos klinika Vilniuje",
       lead: "ReaMed klinikoje padedame žmonėms, kuriems skauda nugarą, kaklą ar sąnarius, taip pat atsigaunantiems po traumų ir operacijų. Jau per pirmąjį vizitą įvertiname jūsų būklę, sudarome planą ir pradedame gydymą.",
       cta: "Registruotis vizitui",
+      // Under the button (Piotr 17.11.2026); price and length come from prices.ts.
+      firstVisit: "Pirmasis vizitas",
+      firstVisitWhat: "Ištyrimas, gydymo planas ir gydymas.",
       photoAlt: "ReaMed klinikos komanda: penki kineziterapeutai",
     },
     areas: {
@@ -133,6 +136,8 @@ export const translations = {
       title: "Physiotherapy clinic in Vilnius",
       lead: "At ReaMed we help people with back, neck or joint pain, and people recovering after injuries and surgery. Already at the first visit we assess your condition, make a plan and start treatment.",
       cta: "Book a visit",
+      firstVisit: "First visit",
+      firstVisitWhat: "Assessment, treatment plan and treatment.",
       photoAlt: "The ReaMed clinic team: five physiotherapists",
     },
     areas: {

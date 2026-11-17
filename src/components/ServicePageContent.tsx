@@ -34,7 +34,7 @@ export default function ServicePageContent({ page }: { page: ServicePage }) {
   return (
     <>
       {/* «← Paslaugos» goes to the services block on the home page, as the menu does (Piotr, 07.11.2026). */}
-      <PageHero back={{ href: "/#paslaugos", label: "Paslaugos" }} h1={page.hero.h1} lead={page.hero.lead} />
+      <PageHero back={{ href: "/#paslaugos", label: "Paslaugos" }} h1={page.hero.h1} lead={page.hero.lead} entry={page.hero.entry} />
 
       {/* What it is */}
       <section aria-labelledby="kas-tai-h" className="bg-paper section-y">
