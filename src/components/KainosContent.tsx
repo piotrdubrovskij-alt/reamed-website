@@ -15,22 +15,23 @@ const content = {
     about: "Apie Piotrą",
     notesTitle: "Paketai ir apmokėjimas",
     notes: [
-      // Package and cancellation terms: decision of 04–05.11.2026 (project doc claude/reamed-booking-terms.md).
+      // Package and cancellation terms: decision of 04–05.11.2026, updated to the patient document
+      // redakcija 2026-11-22 (Piotr 2026-11-21; klinika-system docs/DECISIONS.md).
       {
         title: "Galiojimas",
-        text: "5 vizitų paketas galioja 49 dienas, 10 vizitų paketas galioja 84 dienas nuo pirkimo dienos. Paketas vardinis, skirtas vienai paslaugai, bet ne konkrečiam specialistui.",
+        text: "5 vizitų paketas galioja 45 dienas, 10 vizitų paketas – 90 dienų nuo pirkimo dienos. Paketas vardinis, skirtas vienai paslaugai, bet ne konkrečiam specialistui. Paketai įsigyjami klinikoje.",
       },
       {
         title: "Pasibaigus galiojimui",
-        text: "Paketas nepratęsiamas. Įvykę vizitai perskaičiuojami pagal vienkartinio vizito kainą, o likutis lieka jūsų sąskaitoje ir gali būti naudojamas bet kurioms ReaMed paslaugoms pagal tos dienos kainas. Paprašius likutį grąžiname, išskyrus dovanų kuponu apmokėtą dalį.",
+        text: "Paketas pratęsiamas tik tada, kai vizitą atšaukia klinika. Pasibaigus galiojimui ar nutraukus paketą, įvykę vizitai perskaičiuojami pagal vienkartinio vizito kainą, galiojusią pirkimo dieną (ne daugiau, nei sumokėjote už paketą), o likutis lieka jūsų sąskaitoje ir gali būti naudojamas bet kurioms ReaMed paslaugoms pagal tos dienos kainas. Paprašius likutį grąžiname, išskyrus dovanų kuponu apmokėtą dalį.",
       },
       {
         title: "Atšaukimas ir perkėlimas",
-        text: "Vizitą nemokamai pakeisti ar atšaukti galima, kol iki jo liko ne mažiau kaip 12 valandų. Vėliau perkelti galima tik per administraciją, mokestis 20 €. Vėlesnis atšaukimas ar neatvykimas prilygsta įvykusiam vizitui: iš paketo jis nurašomas, už vienkartinį vizitą pinigai negrąžinami.",
+        text: "Vizitą nemokamai pakeisti ar atšaukti galima, kol iki jo liko ne mažiau kaip 12 valandų. Vėliau perkelti galima tik per administraciją, mokestis 20 € (susirgus ir pateikus gydytojo pažymą – nemokamai); perkeltas vizitas turi įvykti per 30 dienų. Vėlesnis atšaukimas ar neatvykimas prilygsta įvykusiam vizitui: iš paketo jis nurašomas, už vienkartinį vizitą pinigai negrąžinami.",
       },
       {
         title: "Apmokėjimas ir draudimas",
-        text: "ReaMed yra privati klinika: visos paslaugos mokamos, gydytojo siuntimo nereikia, su ligonių kasomis nedirbame. Mokėti galima grynaisiais, banko kortele arba pavedimu. Jei turite sveikatos draudimą, po vizito išrašome sąskaitą faktūrą draudimo bendrovei.",
+        text: "ReaMed yra privati klinika: visos paslaugos mokamos, gydytojo siuntimo nereikia, su ligonių kasomis nedirbame. Mokėti galima grynaisiais, banko kortele, pavedimu, internetu per „Paysera“ arba ReaMed dovanų kuponu. Jei turite sveikatos draudimą, po vizito išrašome sąskaitą faktūrą, kurią pateikiate savo draudimo bendrovei; draudikas gali prašyti gydytojo siuntimo, todėl sąlygas verta pasitikrinti iš anksto.",
       },
     ],
   },
@@ -43,19 +44,19 @@ const content = {
     notes: [
       {
         title: "Validity",
-        text: "A 5-visit package is valid for 49 days and a 10-visit package for 84 days from the date of purchase. A package is personal and tied to one service, not to a particular specialist.",
+        text: "A 5-visit package is valid for 45 days and a 10-visit package for 90 days from the date of purchase. A package is personal and tied to one service, not to a particular specialist. Packages are bought at the clinic.",
       },
       {
         title: "After expiry",
-        text: "A package is not extended. Visits already used are recalculated at the single-visit price, and the remainder stays on your account for any ReaMed service at that day's prices. On request we refund the remainder, except any part paid with a gift voucher.",
+        text: "A package is extended only when the clinic cancels a visit. When it expires or you end it, visits already used are recalculated at the single-visit price valid on the date of purchase (never more than you paid for the package), and the remainder stays on your account for any ReaMed service at that day's prices. On request we refund the remainder, except any part paid with a gift voucher.",
       },
       {
         title: "Cancelling and rescheduling",
-        text: "You can change or cancel a visit free of charge up to 12 hours before it. Later, rescheduling is possible only through the administration and costs €20. A later cancellation or a no-show counts as a visit that took place: it is deducted from the package, and a single visit is not refunded.",
+        text: "You can change or cancel a visit free of charge up to 12 hours before it. Later, rescheduling is possible only through the administration and costs €20 (free if you are ill and bring a doctor's certificate); the rescheduled visit must take place within 30 days. A later cancellation or a no-show counts as a visit that took place: it is deducted from the package, and a single visit is not refunded.",
       },
       {
         title: "Payment and insurance",
-        text: "ReaMed is a private clinic: all services are paid, no doctor's referral is needed, and we do not work with the state health insurance fund. You can pay in cash, by bank card or by bank transfer. If you have health insurance, after the visit we issue an invoice for your insurance company.",
+        text: "ReaMed is a private clinic: all services are paid, no doctor's referral is needed, and we do not work with the state health insurance fund. You can pay in cash, by bank card, by bank transfer, online through Paysera or with a ReaMed gift voucher. If you have health insurance, after the visit we issue an invoice that you submit to your insurance company; the insurer may ask for a doctor's referral, so check its terms in advance.",
       },
     ],
   },

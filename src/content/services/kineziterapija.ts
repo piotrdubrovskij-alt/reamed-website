@@ -114,13 +114,13 @@ export const kineziterapija: ServicePage = {
     },
     {
       q: "Ar draudimas kompensuoja kineziterapiją?",
-      a: "Jei turite sveikatos draudimą, po vizito išrašome sąskaitą faktūrą draudimo bendrovei. Kiek kompensuos, priklauso nuo jūsų draudimo sąlygų.",
+      a: "Jei turite sveikatos draudimą, po vizito išrašome sąskaitą faktūrą, kurią pateikiate draudimo bendrovei. Kiek kompensuos, priklauso nuo jūsų draudimo sąlygų.",
     },
     { q: "Ar galima konsultuotis angliškai ar rusiškai?", a: "Taip, konsultuojame lietuvių, anglų ir rusų kalbomis." },
   ],
   reviews: "kineziterapija",
   sources: [HAYDEN_2021, BACK_PAIN_CPG, NECK_PAIN_CPG, OARSI_2019],
-  reviewed: { by: "piotr-dubrovskij", date: "2026-11-08" },
+  reviewed: { by: "piotr-dubrovskij", date: "2026-11-21" },
   related: [
     { href: "/paslaugos/manualine-terapija", label: "Manualinė terapija" },
     { href: "/paslaugos/sporto-reabilitacija", label: "Sporto reabilitacija" },
