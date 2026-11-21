@@ -3,11 +3,12 @@
 import { useLanguage } from "@/contexts/LanguageContext";
 
 // Approved wording from the clinic system's registration terms (2026-10-04, adapted to Paysera
-// on 2026-11-01). Changes to the rules go through docs/DECISIONS.md in klinika-system first.
+// on 2026-11-01), brought in line with the ReaMed patient document, redakcija 2026-11-22 (Piotr
+// 2026-11-21). Changes to the rules go through docs/DECISIONS.md in klinika-system first.
 const terms = {
   lt: {
     title: "Registracijos, apmokėjimo ir atšaukimo sąlygos",
-    updated: "Galioja registracijai internetu reamed.lt svetainėje.",
+    updated: "Galioja registracijai internetu reamed.lt svetainėje. Redakcija 2026-11-22.",
     sections: [
       {
         h: "Paslaugų teikėjas",
@@ -29,17 +30,21 @@ const terms = {
         ],
       },
       {
-        h: "Vizito keitimas ir atšaukimas",
+        h: "Vizito perkėlimas ir atšaukimas",
         p: [
-          "Savitarnoje registraciją galima pakeisti ar atšaukti, kol iki vizito liko bent 12 valandų. Laikas vertinamas pagal Lietuvos laiko juostą. Vėliau įprastas atšaukimas ar perkėlimas nebegalimas.",
-          "Susirgus ir likus mažiau nei 12 valandų iki vizito, suaugusiojo vizitą ReaMed galima perkelti suderinus su administracija. Perkėlimo mokestis – 15 €.",
+          "Vizitą perkelti ar atšaukti galite per užsakymo nuorodą iš patvirtinimo laiško, telefonu +370 601 34304 arba el. paštu info@reamed.lt. Laikas skaičiuojamas nuo pokalbio, praleisto skambučio ar el. laiško gavimo momento (Lietuvos laiku).",
+          "Kol iki vizito pradžios liko ne mažiau kaip 12 valandų, vizitą galima nemokamai perkelti arba atšaukti. Jei vizitas užregistruotas likus mažiau kaip 12 valandų, nemokamo atšaukimo laikotarpis netaikomas.",
+          "Likus mažiau kaip 12 valandų, vizitą iki jo pradžios galima perkelti per administraciją už 20 € mokestį. Mokestis netaikomas, jei susirgote ir pateikiate gydytojo pažymą arba nedarbingumo pažymėjimą. Perkeltas vizitas turi įvykti per 30 dienų nuo pirminės vizito datos; per šį laiką jį galima perkelti dar kartą tomis pačiomis sąlygomis. Per 30 dienų neįvykęs vizitas laikomas neatvykimu.",
+          "Pavėlavus vizitas trumpinamas, kaina nemažinama; pavėlavus daugiau kaip 15 minučių, vizitas gali būti laikomas neatvykimu.",
         ],
       },
       {
         h: "Sumokėtų lėšų grąžinimas",
         p: [
-          "Klientui atsisakius apmokėtos paslaugos, įmoka negrąžinama, išskyrus teisės aktuose numatytus atvejus. Dėl kito vizito laiko ar paslaugos pakeitimo kreipkitės į administraciją.",
-          "Šios sąlygos neriboja privalomų kliento teisių, įskaitant teises dėl klinikos nesuteiktos ar netinkamai suteiktos paslaugos.",
+          "Atšaukus vizitą, kai iki jo liko ne mažiau kaip 12 valandų, sumokėta suma grąžinama tuo pačiu būdu per 14 dienų.",
+          "Jei likus mažiau kaip 12 valandų vizito atsisakote jo neperkeldami arba neatvykstate, sumokėta vizito kaina negrąžinama: taip padengiamos klinikos išlaidos jums rezervuotam specialisto laikui ir kabinetui.",
+          "Jei vizitą atšaukia klinika, galite pasirinkti kitą laiką arba atgauti visą sumokėtą sumą. Jei po įvertinimo specialistas dėl medicininių priežasčių procedūros neatlieka, mokama pusė vizito kainos, o likusi dalis jūsų pasirinkimu grąžinama arba įskaitoma į kitą vizitą.",
+          "Šios sąlygos neriboja jūsų teisės bet kada nutraukti sveikatos priežiūros paslaugų sutartį ir kitų įstatymuose nustatytų teisių.",
         ],
       },
       {
@@ -52,7 +57,7 @@ const terms = {
   },
   en: {
     title: "Booking, payment and cancellation terms",
-    updated: "Apply to online booking on reamed.lt.",
+    updated: "Apply to online booking on reamed.lt. Version of 22 November 2026.",
     sections: [
       {
         h: "Service provider",
@@ -74,17 +79,21 @@ const terms = {
         ],
       },
       {
-        h: "Changing and cancelling a visit",
+        h: "Rescheduling and cancelling a visit",
         p: [
-          "Self-service cancellation or rescheduling is available at least 12 hours before the appointment, using Lithuanian local time. Standard cancellation or rescheduling is not available after that deadline.",
-          "In case of illness less than 12 hours before the appointment, an adult ReaMed appointment may be rescheduled by agreement with the administration. The rescheduling fee is €15.",
+          "You can reschedule or cancel a visit through the order link in the confirmation e-mail, by phone on +370 601 34304 or by e-mail to info@reamed.lt. The time counts from the call, the missed call or the receipt of the e-mail (Lithuanian time).",
+          "While at least 12 hours remain before the visit starts, it can be rescheduled or cancelled free of charge. If a visit is booked less than 12 hours in advance, there is no free cancellation period.",
+          "With less than 12 hours left, a visit can be rescheduled through the administration before it starts for a €20 fee. No fee applies if you are ill and present a doctor's certificate or a certificate of incapacity for work. A rescheduled visit must take place within 30 days of the original visit date; within that period it can be rescheduled again on the same terms. A visit that does not take place within 30 days counts as a missed visit.",
+          "If you are late, the visit is shortened and the price stays the same; if you are more than 15 minutes late, the visit may count as a missed visit.",
         ],
       },
       {
         h: "Refunds",
         p: [
-          "If the client declines a paid service, the payment is non-refundable except where required by law. Contact the administration about another appointment time or a change of service.",
-          "These terms do not restrict mandatory client rights, including rights relating to a service not provided or improperly provided by the clinic.",
+          "If you cancel a visit at least 12 hours before it, the amount paid is refunded by the same method within 14 days.",
+          "If, with less than 12 hours left, you cancel without rescheduling or do not attend, the price paid is not refunded: this covers the clinic's costs for the specialist's time and the room reserved for you.",
+          "If the clinic cancels a visit, you can choose another time or receive a full refund. If, after assessment, the specialist does not perform the procedure for medical reasons, half of the visit price is paid and the other half is refunded or credited to another visit, as you choose.",
+          "These terms do not limit your right to terminate the healthcare services agreement at any time or other rights provided by law.",
         ],
       },
       {

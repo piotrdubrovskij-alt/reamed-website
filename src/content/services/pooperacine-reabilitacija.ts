@@ -21,7 +21,7 @@ export const pooperacineReabilitacija: ServicePage = {
       "Operacija sutvarko pažeistą struktūrą: susiuva raištį, sausgyslę ar meniską, sutvirtina lūžį. Judesys, jėga ir pasitikėjimas koja ar ranka grįžta per reabilitaciją. Kuo anksčiau ir nuosekliau ji pradedama, tuo mažiau sustingimo ir raumenų silpnumo.",
       "Reabilitacija įmanoma ir su gipsu ar įtvaru: dirbame su laisvais sąnariais, mažiname tinimą, mokome saugiai judėti ir vaikščioti su ramentais.",
       "Visada laikomės chirurgo nurodymų: kiek leidžiama apkrauti koją, kokia amplitude galima judinti, kiek laiko nešioti įtvarą. Jei chirurgas davė reabilitacijos protokolą, dirbame pagal jį.",
-      "Reabilitacija mūsų klinikoje yra privati ir mokama: siuntimo nereikia, eilių nėra, su ligonių kasomis nedirbame. Jei turite sveikatos draudimą, išrašome sąskaitą faktūrą draudimo bendrovei.",
+      "Reabilitacija mūsų klinikoje yra privati ir mokama: siuntimo nereikia, eilių nėra, su ligonių kasomis nedirbame. Jei turite sveikatos draudimą, išrašome sąskaitą faktūrą, kurią pateikiate draudimo bendrovei.",
     ],
   },
   helps: {
@@ -72,7 +72,7 @@ export const pooperacineReabilitacija: ServicePage = {
   },
   price: {
     lines: ["pirmasis-vizitas", "kineziterapija", "kompleksine"],
-    note: "Ilgesnei reabilitacijai patogiausias 10 vizitų paketas: jis galioja 84 dienas nuo pirkimo.",
+    note: "Ilgesnei reabilitacijai patogiausias 10 vizitų paketas: jis galioja 90 dienų nuo pirkimo.",
   },
   limits: {
     title: "Kada skubiai kreiptis į chirurgą?",
@@ -119,7 +119,7 @@ export const pooperacineReabilitacija: ServicePage = {
   ],
   reviews: "pooperacine-reabilitacija",
   sources: [VAN_MELICK_2016, MAZUQUIN_2021, OOSTERHUIS_2014, ANKLE_FRACTURE_REHAB],
-  reviewed: { by: "piotr-dubrovskij", date: "2026-11-08" },
+  reviewed: { by: "piotr-dubrovskij", date: "2026-11-21" },
   related: [
     { href: "/ka-gydome/atsistatymas-po-operaciju", label: "Po operacijų: visos temos" },
     { href: "/ka-gydome/reabilitacija-po-kryzminio-raiscio-operacijos", label: "Po kryžminio raiščio rekonstrukcijos" },
