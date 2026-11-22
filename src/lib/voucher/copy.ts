@@ -41,7 +41,7 @@ const lt = {
 
   buyerTitle: "Jūsų duomenys",
   acceptTitle: "Susipažinau su:",
-  acceptTerms: "dovanų kupono sąlygomis",
+  acceptTerms: "dovanų kuponų taisyklėmis",
   pay: (sum: string) => `Apmokėti ${sum}`,
   payNote: "Apmokėsite per Paysera: el. bankininkyste arba kortele. Kuponą sukursime, kai gausime mokėjimo patvirtinimą.",
   paymentsOff: "Mokėjimai internetu dar neįjungti. Paskambinkite +370 601 34304: kuponą parengsime kitaip.",
@@ -97,54 +97,6 @@ const lt = {
   stateExpired: "Nebegalioja",
   balanceBook: "Vizitui registruokitės tel. +370 601 34304 ir pasakykite, kad turite dovanų kuponą. Atvykę pateikite kodą.",
 
-  termsTitle: "Dovanų kupono sąlygos",
-  termsUpdated: "Redakcija: 2026 m. lapkričio 15 d.",
-  terms: [
-    {
-      heading: "Kas yra dovanų kuponas",
-      body: [
-        "ReaMed dovanų kuponas yra išankstinis apmokėjimas už ReaMed klinikos paslaugas. Kuponą parduoda ir paslaugas teikia MB „Kineziterapija“ (įmonės kodas 305136936, Olimpiečių g. 1A-7, Vilnius).",
-        "Kupono suma pasirenkama perkant: nuo 50 €, kas 10 €.",
-      ],
-    },
-    {
-      heading: "Pirkimas ir pristatymas",
-      body: [
-        "Kuponas apmokamas internetu per Paysera. Gavę mokėjimo patvirtinimą sukuriame kuponą su unikaliu kodu ir išsiunčiame jį (PDF) el. paštu: pirkėjui arba, pirkėjui pasirinkus, tiesiai gavėjui pasirinktą dieną. Popierinio kupono nesiunčiame.",
-        "Pirkėjui išrašome sąskaitą faktūrą ir išsiunčiame ją atskiru laišku. Gavėjo el. pašto adresą naudojame tik kuponui išsiųsti.",
-      ],
-    },
-    {
-      heading: "Galiojimas",
-      body: [
-        "Kuponas galioja 12 mėnesių nuo apmokėjimo dienos. Paskutinė galiojimo diena nurodyta kupone.",
-        "Pasibaigus galiojimui kuponu atsiskaityti nebegalima, o nepanaudota suma negrąžinama.",
-      ],
-    },
-    {
-      heading: "Kaip pasinaudoti",
-      body: [
-        "Kuponu atsiskaitoma klinikoje už bet kurią ReaMed paslaugą pagal tos dienos kainas. Vizitui registruokitės iš anksto telefonu +370 601 34304 ir pasakykite, kad turite dovanų kuponą; atvykę pateikite kupono kodą.",
-        "Sumą galima naudoti dalimis per kelis vizitus, likutis lieka kupone iki galiojimo pabaigos. Jei paslauga kainuoja daugiau, nei liko kupone, skirtumas primokamas klinikoje. Likutį galite pasitikrinti puslapyje „Kupono likutis“.",
-        "Kuponu gali pasinaudoti kiekvienas, kas pateikia jo kodą, todėl kodą saugokite kaip pinigus.",
-      ],
-    },
-    {
-      heading: "Keitimas ir grąžinimas",
-      body: [
-        "Kuponas į pinigus nekeičiamas. Nepanaudoto kupono pirkėjas gali atsisakyti per 14 dienų nuo įsigijimo, parašęs info@reamed.lt: sumokėtą sumą grąžiname tuo pačiu būdu, kuriuo ji buvo sumokėta.",
-        "Vizitų registracijai, perkėlimui ir atšaukimui taikomos ReaMed paslaugų pirkimo, registracijos ir atšaukimo taisyklės.",
-      ],
-    },
-    {
-      heading: "Jei pametėte kuponą",
-      body: [
-        "Parašykite info@reamed.lt iš to adreso, kuriuo pirkote kuponą, arba paskambinkite +370 601 34304: kuponą išsiųsime dar kartą.",
-      ],
-    },
-  ],
-  termsBooking: "Paslaugų pirkimo, registracijos ir atšaukimo taisyklės",
-  termsBalance: "Kupono likutis",
 };
 
 const en: typeof lt = {
@@ -186,7 +138,7 @@ const en: typeof lt = {
 
   buyerTitle: "Your details",
   acceptTitle: "I have read:",
-  acceptTerms: "the gift voucher terms",
+  acceptTerms: "the gift voucher rules",
   pay: (sum: string) => `Pay ${sum}`,
   payNote: "You pay through Paysera: online banking or card. The voucher is created once the payment is confirmed.",
   paymentsOff: "Online payments are not switched on yet. Call +370 601 34304 and we will arrange the voucher another way.",
@@ -242,54 +194,6 @@ const en: typeof lt = {
   stateExpired: "Expired",
   balanceBook: "Book a visit by phone +370 601 34304 and say you have a gift voucher. Bring the code with you.",
 
-  termsTitle: "Gift voucher terms",
-  termsUpdated: "Version of 15 November 2026",
-  terms: [
-    {
-      heading: "What the gift voucher is",
-      body: [
-        "A ReaMed gift voucher is a prepayment for the services of the ReaMed clinic. It is sold, and the services are provided, by MB „Kineziterapija“ (company code 305136936, Olimpiečių g. 1A-7, Vilnius).",
-        "The amount is chosen at purchase: from €50, in steps of €10.",
-      ],
-    },
-    {
-      heading: "Purchase and delivery",
-      body: [
-        "The voucher is paid online through Paysera. Once the payment is confirmed we create the voucher with a unique code and e-mail it (PDF): to the buyer or, if the buyer chooses so, straight to the recipient on a chosen day. No paper voucher is posted.",
-        "The buyer receives an invoice in a separate e-mail. The recipient's e-mail address is used only to send the voucher.",
-      ],
-    },
-    {
-      heading: "Validity",
-      body: [
-        "The voucher is valid for 12 months from the day of payment. The last valid day is printed on the voucher.",
-        "After that day the voucher can no longer be used, and an unused sum is not refunded.",
-      ],
-    },
-    {
-      heading: "How to use it",
-      body: [
-        "The voucher pays at the clinic for any ReaMed service at that day's prices. Book a visit in advance by phone +370 601 34304 and say you have a gift voucher; at the clinic, give the voucher code.",
-        "The sum can be used in parts over several visits; the rest stays on the voucher until it expires. If a service costs more than is left, the difference is paid at the clinic. The balance can be checked on the “Voucher balance” page.",
-        "Anyone who gives the code can use the voucher, so keep the code as you would keep money.",
-      ],
-    },
-    {
-      heading: "Exchange and refund",
-      body: [
-        "The voucher is not exchanged for money. The buyer may withdraw from an unused voucher within 14 days of the purchase by writing to info@reamed.lt: the sum is refunded by the same means it was paid.",
-        "Booking, rescheduling and cancelling visits follow the ReaMed rules for buying services, booking and cancellation.",
-      ],
-    },
-    {
-      heading: "If you lose the voucher",
-      body: [
-        "Write to info@reamed.lt from the address you bought the voucher with, or call +370 601 34304: we will send the voucher again.",
-      ],
-    },
-  ],
-  termsBooking: "Rules for buying services, booking and cancellation",
-  termsBalance: "Voucher balance",
 };
 
 export const voucherCopy: Record<Language, typeof lt> = { lt, en };
