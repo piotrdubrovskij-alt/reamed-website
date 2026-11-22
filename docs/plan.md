@@ -244,6 +244,9 @@ Search Console — в аккаунте info@reamed.lt (`sc-domain:reamed.lt`), �
   - [x] Остальные темы всех разделов (решение Piotr 07.11: сначала закончить «Ką gydome», потом статьи) — пачки 8–14, PR #41–#47
 - [ ] **EN и RU** по адресам `/en`, `/ru` с hreflang (см. п. 8)
 - [x] **`llms.txt`** (`src/app/llms.txt/route.ts`) и **IndexNow** (ключ в `public/`, после вливания: `node scripts/indexnow.mjs`), «Peržiūrėjo» на 95 страницах, `Person`, соседние темы, title и description до 60 и 160 знаков, настоящие даты в sitemap — PR #49; подпись на услугах — следующий PR
+- [x] **Аудит Ahrefs 22.11** (Health 99): 13 описаний в пределах 110–155 знаков, разметка услуг без `provider`,
+  IndexNow автоматически после каждого выхода сайта (`.github/workflows/indexnow.yml`; первый запуск 22.11 отправил
+  все адреса sitemap) — PR #79. Две «ошибки» Ahrefs — /ka-gydome и /paslaugos без входящих ссылок — так задумано (меню на блоки главной)
 - [ ] **Bing Webmaster**, Google Business, manodaktaras.lt, ссылки VU и федерации
 
 Не берём: замены суставов, сколиоз и детей (FitKid; старые детские адреса ведут на fitkid.lt), dry needling,
