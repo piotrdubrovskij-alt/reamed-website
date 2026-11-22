@@ -21,12 +21,12 @@ const social = [
 // The booking terms (payment, 12-hour cancellation, refunds) stand next to it since 15.11.2026: Paysera's review
 // asks that the sale terms be reachable on the site itself, not only from the booking form.
 // «Slapukų nustatymai» (16.11.2026) reopens the cookie banner, so consent can be withdrawn as easily as given.
-// «Slapukų politika» (22.11.2026) is its own document since redakcija 2026-11-22.
+// «Slapukų politika» (22.11.2026) is its own document, but not a footer link (Piotr 22.11.2026: two cookie items read as
+// the same thing twice). It opens from the banner's «Plačiau» and from the privacy policy; the button stays here.
 function LegalLinks({ className }: { className: string }) {
   const { t } = useLanguage();
   const items = [
     { label: t.footer.privacy, href: "/privatumas" },
-    { label: t.footer.cookiePolicy, href: "/slapukai" },
     { label: t.footer.terms, href: "/rezervacija/salygos" },
   ];
   return (

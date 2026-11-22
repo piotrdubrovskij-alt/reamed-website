@@ -95,7 +95,6 @@ export const translations = {
     footer: {
       menu: "Apačios meniu",
       privacy: "Privatumo politika",
-      cookiePolicy: "Slapukų politika",
       terms: "Pirkimo ir atšaukimo taisyklės",
       cookies: "Slapukų nustatymai",
       legal: "Teisinė informacija",
@@ -186,7 +185,6 @@ export const translations = {
     footer: {
       menu: "Footer menu",
       privacy: "Privacy policy",
-      cookiePolicy: "Cookie policy",
       terms: "Purchase and cancellation rules",
       cookies: "Cookie settings",
       legal: "Legal",

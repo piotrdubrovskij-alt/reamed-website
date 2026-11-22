@@ -320,7 +320,9 @@
 - На сайте: шапка (светлая) — `reamed-wordmark-graphite.svg`; в футере логотипа нет. Футер (решение Piotr 14.11.2026 после
   ревью): три колонки на компьютере — строка «Kineziterapijos ir reabilitacijos klinika Vilniuje» с кнопкой записи,
   контакты, «Pacientams» (Ką gydome и Paslaugos на блоки главной, Specialistai, Kainos, «Kaip mus rasti» →
-  `/kontaktai#rasti-h`); внизу Instagram · Facebook и последней строкой Privatumo politika, без линий. Карты в футере больше нет:
+  `/kontaktai#rasti-h`); внизу Instagram · Facebook и последней строкой Privatumo politika · Pirkimo ir atšaukimo taisyklės · Slapukų nustatymai,
+  без линий. «Slapukų politika» в футер не ставим (решение Piotr 22.11.2026: два пункта о cookies — одно и то же дважды):
+  она открывается из баннера («Plačiau») и из политики приватности, а кнопка «Slapukų nustatymai» остаётся в футере. Карты в футере больше нет:
   статичный SVG из OSM (`scripts/build-map.*`) живёт на `/kontaktai` с кнопкой маршрута. На телефоне всё одной колонкой.
   Список телефон · адрес · часы · e-mail — общий `src/components/ContactDetails.tsx`: в футере и наверху `/kontaktai`.
   На `/kontaktai` (`KontaktaiContent.tsx`, макет G, 14.11.2026) футер — одна графитовая полоса со ссылкой «Privatumo politika»,
