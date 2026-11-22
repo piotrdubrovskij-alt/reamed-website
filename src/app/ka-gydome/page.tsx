@@ -8,7 +8,7 @@ export const metadata: Metadata = pageMetadata({
   path: "/ka-gydome",
   title: "Ką gydome: reabilitacija po operacijų, kelio, peties, nugaros ir kaklo skausmas | ReaMed",
   description:
-    "Reabilitacija po operacijų, kelio, peties, nugaros ir kaklo skausmas, sporto traumos ir sausgyslių perkrovos. Privati kineziterapijos klinika Vilniaus centre, siuntimo nereikia.",
+    "Reabilitacija po operacijų, nugaros, kaklo, peties ir kelio skausmas, sporto traumos, sausgyslių perkrovos. Privati klinika Vilniuje, be siuntimo.",
 });
 
 export default function KaGydomePage() {

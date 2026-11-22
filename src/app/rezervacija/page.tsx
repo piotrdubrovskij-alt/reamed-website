@@ -12,7 +12,7 @@ export const metadata: Metadata = pageMetadata({
   path: "/rezervacija",
   title: "Registracija vizitui internetu — ReaMed",
   description:
-    "Pasirinkite specialistą, paslaugą ir laiką, apmokėkite internetu, ir vizitas ReaMed klinikoje patvirtintas.",
+    "Registracija internetu į ReaMed kliniką Vilniuje: pasirinkite specialistą, paslaugą ir laiką, apmokėkite, ir vizitas patvirtintas.",
 });
 
 export default function RezervacijaPage() {

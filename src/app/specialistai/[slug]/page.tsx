@@ -22,7 +22,7 @@ export async function generateMetadata({
   return pageMetadata({
     path: `/specialistai/${spec.slug}`,
     title: `${spec.name} — ReaMed klinika Vilniuje`,
-    description: `${spec.role}. ${spec.tagline}. Registruotis vizitui ReaMed klinikoje Vilniuje.`,
+    description: spec.metaDescription ?? `${spec.role}. ${spec.tagline}. Registruotis vizitui ReaMed klinikoje Vilniuje.`,
   });
 }
 

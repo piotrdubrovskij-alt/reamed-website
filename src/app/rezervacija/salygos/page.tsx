@@ -10,7 +10,7 @@ export const metadata: Metadata = pageMetadata({
   path: "/rezervacija/salygos",
   title: "Paslaugų pirkimo, registracijos ir atšaukimo taisyklės — ReaMed",
   description:
-    "ReaMed paslaugų pirkimo taisyklės: kaina ir apmokėjimas per Paysera, vizitų paketai, perkėlimas ir atšaukimas likus bent 12 valandų, pinigų grąžinimas ir skundai.",
+    "ReaMed paslaugų pirkimo taisyklės: apmokėjimas per Paysera, vizitų paketai, perkėlimas ir atšaukimas likus bent 12 valandų, pinigų grąžinimas.",
 });
 
 export default function SalygosPage() {

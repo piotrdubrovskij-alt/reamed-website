@@ -9,7 +9,7 @@ export const pooperacineReabilitacija: ServicePage = {
   meta: {
     title: "Reabilitacija po operacijos Vilniuje: privati, be siuntimo",
     description:
-      "Privati reabilitacija po kelio, peties, čiurnos ir stuburo operacijų Vilniaus centre. Pradedame anksti, pagal chirurgo nurodymus, be siuntimo ir be eilių. Etapai, kaina, specialistai.",
+      "Privati reabilitacija po kelio, peties, čiurnos ir stuburo operacijų Vilniaus centre. Pradedame anksti, pagal chirurgo nurodymus, be siuntimo ir be eilių.",
   },
   therapyName: "Pooperacinė reabilitacija",
   hero: {
