@@ -23,7 +23,7 @@ const content = {
       },
       {
         title: "Pasibaigus galiojimui",
-        text: "Paketas pratęsiamas tik tada, kai vizitą atšaukia klinika. Pasibaigus galiojimui ar nutraukus paketą, įvykę vizitai perskaičiuojami pagal vienkartinio vizito kainą, galiojusią pirkimo dieną (ne daugiau, nei sumokėjote už paketą), o likutis lieka jūsų sąskaitoje ir gali būti naudojamas bet kurioms ReaMed paslaugoms pagal tos dienos kainas. Paprašius likutį grąžiname, išskyrus dovanų kuponu apmokėtą dalį.",
+        text: "Paketas pratęsiamas, kai vizitą atšaukia klinika arba nėra laisvų laikų, o susirgus – vieną kartą iki 14 dienų. Pasibaigus galiojimui ar nutraukus paketą, įvykę vizitai perskaičiuojami pagal vienkartinio vizito kainą, galiojusią pirkimo dieną (ne daugiau, nei sumokėjote už paketą), o likutis lieka jūsų sąskaitoje ir gali būti naudojamas bet kurioms ReaMed paslaugoms pagal tos dienos kainas. Paprašius likutį grąžiname, išskyrus dovanų kuponu apmokėtą dalį.",
       },
       {
         title: "Atšaukimas ir perkėlimas",
@@ -48,7 +48,7 @@ const content = {
       },
       {
         title: "After expiry",
-        text: "A package is extended only when the clinic cancels a visit. When it expires or you end it, visits already used are recalculated at the single-visit price valid on the date of purchase (never more than you paid for the package), and the remainder stays on your account for any ReaMed service at that day's prices. On request we refund the remainder, except any part paid with a gift voucher.",
+        text: "A package is extended when the clinic cancels a visit or there are no free times, and once by up to 14 days if you are ill. When it expires or you end it, visits already used are recalculated at the single-visit price valid on the date of purchase (never more than you paid for the package), and the remainder stays on your account for any ReaMed service at that day's prices. On request we refund the remainder, except any part paid with a gift voucher.",
       },
       {
         title: "Cancelling and rescheduling",

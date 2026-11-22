@@ -77,7 +77,7 @@ export default function ConsentBanner() {
       <div className="pointer-events-auto mx-auto desk:mx-0 max-w-[760px] rounded-[20px] border border-rule bg-paper p-4 desk:py-4 desk:px-5 text-ink shadow-[0_8px_32px_rgba(43,44,43,0.16)] flex flex-col gap-3 desk:flex-row desk:items-center desk:gap-5">
         <p className="text-small desk:flex-1">
           {c.text}{" "}
-          <Link href="/privatumas#slapukai" className="link-action whitespace-nowrap">
+          <Link href="/slapukai" className="link-action whitespace-nowrap">
             {c.more}
           </Link>
         </p>

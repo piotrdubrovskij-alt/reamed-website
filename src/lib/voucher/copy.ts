@@ -133,7 +133,7 @@ const lt = {
       heading: "Keitimas ir grąžinimas",
       body: [
         "Kuponas į pinigus nekeičiamas. Nepanaudoto kupono pirkėjas gali atsisakyti per 14 dienų nuo įsigijimo, parašęs info@reamed.lt: sumokėtą sumą grąžiname tuo pačiu būdu, kuriuo ji buvo sumokėta.",
-        "Vizitų registracijai, perkėlimui ir atšaukimui taikomos bendros ReaMed registracijos sąlygos.",
+        "Vizitų registracijai, perkėlimui ir atšaukimui taikomos ReaMed paslaugų pirkimo, registracijos ir atšaukimo taisyklės.",
       ],
     },
     {
@@ -143,7 +143,7 @@ const lt = {
       ],
     },
   ],
-  termsBooking: "Registracijos ir atšaukimo sąlygos",
+  termsBooking: "Paslaugų pirkimo, registracijos ir atšaukimo taisyklės",
   termsBalance: "Kupono likutis",
 };
 
@@ -278,7 +278,7 @@ const en: typeof lt = {
       heading: "Exchange and refund",
       body: [
         "The voucher is not exchanged for money. The buyer may withdraw from an unused voucher within 14 days of the purchase by writing to info@reamed.lt: the sum is refunded by the same means it was paid.",
-        "Booking, rescheduling and cancelling visits follow the general ReaMed booking terms.",
+        "Booking, rescheduling and cancelling visits follow the ReaMed rules for buying services, booking and cancellation.",
       ],
     },
     {
@@ -288,7 +288,7 @@ const en: typeof lt = {
       ],
     },
   ],
-  termsBooking: "Booking and cancellation terms",
+  termsBooking: "Rules for buying services, booking and cancellation",
   termsBalance: "Voucher balance",
 };
 
