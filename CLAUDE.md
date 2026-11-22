@@ -13,6 +13,12 @@
   7.11.2026 он оказался закреплён за одной ревизией, и влитые PR не выходили на сайт, хотя сборка проходила.
   Превью через `--no-traffic --tag` после проверки возвращать командой
   `gcloud run services update-traffic reamed-site --to-latest --region europe-west1`.
+- После каждого push в `main` GitHub Actions (`.github/workflows/indexnow.yml`, решение Piotr 22.11.2026) ждёт, пока
+  Cloud Build закончит и reamed.lt начнёт отдавать новую сборку (`scripts/wait-for-deploy.mjs`), и отправляет в IndexNow
+  (Bing, а через него поиск ChatGPT и Copilot) страницы, у которых изменились title, description, canonical, robots или текст
+  (`scripts/indexnow.mjs --changed`; отпечатки прошлого раза — в кэше Actions). Упала сборка или сайт за 10 минут не
+  переключился на новую версию — workflow падает, GitHub пишет владельцу: проверить трафик Cloud Run (пункт выше).
+  Вручную все адреса sitemap: `node scripts/indexnow.mjs`.
 - Никогда не коммитить и не пушить прямо в `main`.
 - Каждая задача — отдельная ветка и PR. Вливает Piotr (или по его явной просьбе).
 - Перед PR: `npx tsc --noEmit`, `npm run lint`, `npm run build` и проверка страницы в браузере на 375 px и 1280 px.
@@ -105,6 +111,8 @@
 - `src/app/**/page.tsx` — маршруты и `metadata`. Тело страниц — в `src/components/*Content.tsx`.
   `metadata` каждой страницы — через `pageMetadata({ path, title, description })` из `src/lib/seo.ts`:
   он ставит canonical, og:url и og:image. Без него страница остаётся без canonical.
+  `description` — от 110 до 155 знаков (Google обрезает около 155, Ahrefs считает длиннее 160 и короче 110 ошибкой);
+  главное и цену — в начало. У специалистов, которым не хватает шаблона, — поле `metaDescription` в `specialists.ts`.
 - Старые адреса прежнего WordPress-сайта → `src/data/legacy-redirects.ts` (подключён в `next.config.ts`).
   Появилась более точная страница (например, disko išvarža) — перенаправить старый адрес на неё.
 - Разделы `/ka-gydome`, `/paslaugos`, `/specialistai` — `HubPageContent`; списки берутся из

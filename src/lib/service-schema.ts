@@ -19,7 +19,9 @@ export function serviceJsonLd(page: ServicePage) {
         name: page.meta.title,
         description: page.meta.description,
         inLanguage: "lt",
-        about: { "@type": "MedicalTherapy", name: page.therapyName, provider: { "@id": `${SITE_URL}/#clinic` } },
+        // MedicalTherapy has no `provider` in schema.org (Ahrefs 22.11.2026: validation error on all 7 service pages);
+        // the clinic is linked through `publisher`.
+        about: { "@type": "MedicalTherapy", name: page.therapyName },
         publisher: { "@id": `${SITE_URL}/#clinic` },
         ...(reviewer && page.reviewed
           ? {

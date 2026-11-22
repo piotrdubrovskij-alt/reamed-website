@@ -1,0 +1,58 @@
+name: IndexNow
+
+# After each push to main: wait until the new version is live on reamed.lt (Cloud Build → Cloud Run, about 4 minutes),
+# then send the pages whose content changed to IndexNow (Bing, Yandex, Seznam, Naver). Piotr, 22.11.2026.
+# If Cloud Build fails or the site keeps serving the old version, this run fails and GitHub emails the owner.
+on:
+  push:
+    branches: [main]
+    paths-ignore:
+      - "docs/**"
+      - "**/*.md"
+  # Manual run from the Actions tab: no waiting, sends what changed since the last run.
+  workflow_dispatch:
+
+# A newer push cancels the older run; the newer one compares with the last saved state, so nothing is lost.
+concurrency:
+  group: indexnow
+  cancel-in-progress: true
+
+permissions:
+  contents: read
+  checks: read
+
+jobs:
+  indexnow:
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Build id reamed.lt serves before the deploy
+        id: before
+        if: github.event_name == 'push'
+        run: echo "id=$(node scripts/wait-for-deploy.mjs build-id || true)" >> "$GITHUB_OUTPUT"
+
+      - name: Wait until the new version is live
+        if: github.event_name == 'push'
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+        run: node scripts/wait-for-deploy.mjs wait "${{ github.sha }}" "${{ steps.before.outputs.id }}"
+
+      # Fingerprints of the pages as last sent. GitHub drops a cache unused for 7 days;
+      # then the next run simply sends the whole sitemap once.
+      - name: Restore the last sent state
+        uses: actions/cache/restore@v4
+        with:
+          path: .indexnow-state.json
+          key: indexnow-state-${{ github.run_id }}
+          restore-keys: indexnow-state-
+
+      - name: Send changed pages to IndexNow
+        run: node scripts/indexnow.mjs --changed --state .indexnow-state.json
+
+      - name: Save the state
+        uses: actions/cache/save@v4
+        with:
+          path: .indexnow-state.json
+          key: indexnow-state-${{ github.run_id }}

@@ -9,6 +9,8 @@ export interface Specialist {
   roleEn: string;
   tagline: string;
   taglineEn: string;
+  /** Google snippet when role + tagline + "Registruotis…" is longer than ~155 characters. */
+  metaDescription?: string;
   about: string[];
   aboutEn: string[];
   conditions?: string[];
@@ -33,6 +35,8 @@ export const specialists: Specialist[] = [
     role: "Kineziterapeutas, osteopatas, manualinės terapijos specialistas",
     roleEn: "Physiotherapist, osteopath, manual therapy specialist",
     tagline: "Stuburo ir kaklo problemos, sudėtingesnės judamojo aparato būklės, osteopatija",
+    metaDescription:
+      "Kineziterapeutas, osteopatas, manualinės terapijos specialistas Vilniuje: stuburo ir kaklo problemos, sudėtingesnės judamojo aparato būklės, osteopatija.",
     taglineEn: "Spine and neck problems, complex musculoskeletal conditions, osteopathy",
     about: [
       "Piotr Dubrovskij – patyręs kineziterapeutas, osteopatas ir manualinės terapijos specialistas, dirbantis su įvairiais judamojo aparato sutrikimais – nuo stuburo ir kaklo skausmų iki sudėtingesnių funkcinių bei pooperacinių būklių.",
@@ -365,6 +369,8 @@ export const specialists: Specialist[] = [
     role: "Kineziterapeutas, manualinės terapijos specialistas, masažuotojas",
     roleEn: "Physiotherapist, manual therapy specialist, massage therapist",
     tagline: "Nugaros, kaklo ir sąnarių skausmai, manualinė terapija, atsistatymas po ortopedinių operacijų",
+    metaDescription:
+      "Kineziterapeutas, manualinės terapijos specialistas, masažuotojas Vilniuje: nugaros, kaklo ir sąnarių skausmai, atsistatymas po ortopedinių operacijų.",
     taglineEn: "Back, neck and joint pain, manual therapy, recovery after orthopaedic surgery",
     about: [
       "Mangirdas Kazačenko – kineziterapeutas, manualinės terapijos specialistas ir masažuotojas, dirbantis su pacientais, turinčiais įvairių griaučių ir raumenų sistemos sutrikimų.",

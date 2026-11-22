@@ -12,7 +12,7 @@ export const metadata: Metadata = pageMetadata({
   path: "/dovanu-kuponas",
   title: "Dovanų kuponas — ReaMed",
   description:
-    "ReaMed dovanų kuponas kineziterapijai, masažui ar konsultacijai Vilniuje: nuo 50 €, galioja 12 mėnesių, sumą galima naudoti dalimis. Kuponą gausite el. paštu iškart po apmokėjimo.",
+    "ReaMed dovanų kuponas kineziterapijai, masažui ar konsultacijai Vilniuje: nuo 50 €, galioja 12 mėnesių, sumą galima naudoti dalimis.",
   noindex: !GIFT_VOUCHER_LIVE,
 });
 

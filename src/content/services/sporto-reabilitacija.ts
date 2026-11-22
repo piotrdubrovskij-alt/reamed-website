@@ -9,7 +9,7 @@ export const sportoReabilitacija: ServicePage = {
   meta: {
     title: "Sporto reabilitacija Vilniuje: grįžimas į sportą",
     description:
-      "Sporto traumų reabilitacija Vilniaus centre: raumenų patempimai, raiščių traumos, sausgyslių perkrovos ir saugus grįžimas į sportą. Kineziterapeutai, dirbantys su Lietuvos rinktinėmis.",
+      "Sporto traumų reabilitacija Vilniaus centre: patempimai, raiščių traumos, sausgyslių perkrovos, saugus grįžimas į sportą. Dirbame su Lietuvos rinktinėmis.",
   },
   therapyName: "Sporto reabilitacija",
   hero: {
