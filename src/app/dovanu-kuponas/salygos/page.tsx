@@ -9,9 +9,9 @@ import { GIFT_VOUCHER_LIVE } from "@/lib/voucher/launch";
 // Follows the voucher page: hidden from search until the launch.
 export const metadata: Metadata = pageMetadata({
   path: "/dovanu-kuponas/salygos",
-  title: "Dovanų kupono sąlygos — ReaMed",
+  title: "Dovanų kuponų taisyklės — ReaMed",
   description:
-    "ReaMed dovanų kupono sąlygos: galiojimas 12 mėnesių, naudojimas dalimis, pristatymas el. paštu, keitimas ir grąžinimas.",
+    "ReaMed dovanų kuponų taisyklės: galioja 12 mėnesių, naudojamas dalimis, nepratęsiamas, pristatomas el. paštu, atsisakyti galima per 14 dienų.",
   noindex: !GIFT_VOUCHER_LIVE,
 });
 
