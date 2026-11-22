@@ -95,7 +95,8 @@ export const translations = {
     footer: {
       menu: "Apačios meniu",
       privacy: "Privatumo politika",
-      terms: "Registracijos ir atšaukimo sąlygos",
+      cookiePolicy: "Slapukų politika",
+      terms: "Pirkimo ir atšaukimo taisyklės",
       cookies: "Slapukų nustatymai",
       legal: "Teisinė informacija",
       tagline: "Kineziterapijos ir reabilitacijos klinika Vilniuje",
@@ -185,7 +186,8 @@ export const translations = {
     footer: {
       menu: "Footer menu",
       privacy: "Privacy policy",
-      terms: "Booking and cancellation terms",
+      cookiePolicy: "Cookie policy",
+      terms: "Purchase and cancellation rules",
       cookies: "Cookie settings",
       legal: "Legal",
       tagline: "Physiotherapy and rehabilitation clinic in Vilnius",

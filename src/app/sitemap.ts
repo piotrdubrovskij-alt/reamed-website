@@ -22,6 +22,7 @@ const staticPaths = [
   "/rezervacija",
   "/rezervacija/salygos",
   "/privatumas",
+  "/slapukai",
 ];
 
 export default function sitemap(): MetadataRoute.Sitemap {
