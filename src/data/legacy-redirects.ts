@@ -33,8 +33,14 @@ const rules: Array<[string, string]> = [
   ["/sausgysliu-skausmo-gydymas/:path*", TENDONS],
   ["/stuburo-diskas/:path*", "/ka-gydome/stuburo-isvarza"],
   ["/nugaros-skausmas/:path*", BACK],
+  // Old Google Ads sitelink «Nugaros skausmo gydymas» (404 until 24.11.2026; the sitelink now points to BACK)
+  ["/nugaros-skausmo-gydymas/:path*", BACK],
 
   // Services
+  // Short service addresses people type or old links use; there was no page there (404 until 24.11.2026)
+  ["/kineziterapija/:path*", PHYSIO],
+  ["/manualine-terapija/:path*", "/paslaugos/manualine-terapija"],
+  ["/gydomasis-masazas/:path*", "/paslaugos/gydomasis-masazas"],
   ["/sporto-kineziterapija/:path*", "/paslaugos/sporto-reabilitacija"],
   ["/sporto-traumu-reabilitacija/:path*", "/paslaugos/sporto-reabilitacija"],
   ["/reabilitacija-po-operaciju/:path*", "/paslaugos/pooperacine-reabilitacija"],
